@@ -166,6 +166,34 @@
         "GSDHO",
         "TAVHL"
       ]
+    },
+    {
+      "date": "2026-06-23",
+      "scanned": 79,
+      "long_signals": 50,
+      "top5": [
+        "YKBNK",
+        "AKBNK",
+        "SKBNK",
+        "ODAS",
+        "GLYHO"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-06-23",
+      "scanned": 79,
+      "long_signals": 50,
+      "top5": [
+        "YKBNK",
+        "AKBNK",
+        "SKBNK",
+        "ODAS",
+        "GLYHO"
+      ],
+      "entries": [],
+      "exits": []
     }
   ]
 }
