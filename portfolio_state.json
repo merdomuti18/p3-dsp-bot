@@ -13,23 +13,23 @@
       "score": 0.166,
       "margin": 0.129
     },
-    "EUPWR": {
+    "SKBNK": {
       "entry_date": "2026-06-23",
-      "entry_price": NaN,
-      "score": 0.1497,
-      "margin": 0.1498
+      "entry_price": 16.47,
+      "score": 0.1296,
+      "margin": 0.0904
     },
-    "GSDHO": {
+    "ODAS": {
       "entry_date": "2026-06-23",
-      "entry_price": NaN,
-      "score": 0.1118,
-      "margin": 0.1117
+      "entry_price": 9.51,
+      "score": 0.1252,
+      "margin": 0.0844
     },
-    "TAVHL": {
+    "GLYHO": {
       "entry_date": "2026-06-23",
-      "entry_price": NaN,
-      "score": 0.1103,
-      "margin": 0.0867
+      "entry_price": 18.09,
+      "score": 0.122,
+      "margin": 0.1075
     }
   },
   "history": [
@@ -59,6 +59,33 @@
       "exit_price": NaN,
       "pnl_pct": NaN,
       "holding_days": 1
+    },
+    {
+      "symbol": "EUPWR",
+      "entry_date": "2026-06-23",
+      "exit_date": "2026-06-23",
+      "entry_price": NaN,
+      "exit_price": 92.95,
+      "pnl_pct": NaN,
+      "holding_days": 0
+    },
+    {
+      "symbol": "GSDHO",
+      "entry_date": "2026-06-23",
+      "exit_date": "2026-06-23",
+      "entry_price": NaN,
+      "exit_price": 5.77,
+      "pnl_pct": NaN,
+      "holding_days": 0
+    },
+    {
+      "symbol": "TAVHL",
+      "entry_date": "2026-06-23",
+      "exit_date": "2026-06-23",
+      "entry_price": NaN,
+      "exit_price": 285.0,
+      "pnl_pct": NaN,
+      "holding_days": 0
     }
   ],
   "scan_log": [
@@ -116,6 +143,28 @@
         "GARAN",
         "SAHOL",
         "THYAO"
+      ]
+    },
+    {
+      "date": "2026-06-23",
+      "scanned": 79,
+      "long_signals": 50,
+      "top5": [
+        "YKBNK",
+        "AKBNK",
+        "SKBNK",
+        "ODAS",
+        "GLYHO"
+      ],
+      "entries": [
+        "SKBNK",
+        "ODAS",
+        "GLYHO"
+      ],
+      "exits": [
+        "EUPWR",
+        "GSDHO",
+        "TAVHL"
       ]
     }
   ]
