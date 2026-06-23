@@ -455,6 +455,38 @@ def main():
     archive = HISTORY_DIR / f"{date.today().isoformat()}.html"
     archive.write_text(html, encoding="utf-8")
 
+    # Telegram bildirimi
+    token   = os.getenv("TELEGRAM_TOKEN", "")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
+    if token and chat_id:
+        try:
+            import requests
+            top5 = ", ".join(s.symbol for s in scan.top_longs[:5])
+            msg = (
+                f"📡 *P3-DSP* {date.today()}\n"
+                f"Taranan: {scan.scanned}/{scan.total_symbols} | "
+                f"Long: {scan.long_signals}\n"
+                f"🟢 Giriş: {', '.join(actions['entries']) or '—'}\n"
+                f"⬜ Çıkış: {', '.join(actions['exits']) or '—'}\n"
+                f"📊 Açık: {len(state['positions'])}/5\n"
+                f"🏆 Top5: {top5}\n"
+                f"📈 Rapor: https://merdomuti18.github.io/p3-dsp-bot/reports/latest.html"
+            )
+            requests.post(
+                f"https://api.telegram.org/bot{token}/sendMessage",
+                json={"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"},
+                timeout=10,
+            )
+            print("Telegram bildirimi gönderildi ✅")
+        except Exception as e:
+            print(f"Telegram hata: {e}")
+
+    print(f"{'='*55}\nSimülasyon tamamlandı ✅\n")
+
+
+if __name__ == "__main__":
+    main()
+
     print(f"{'='*55}\nSimülasyon tamamlandı ✅\n")
 
 
