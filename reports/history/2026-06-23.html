@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P3-DSP Simülasyon Raporu</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0d1117;
+            color: #c9d1d9; padding: 20px; max-width: 1100px; margin: 0 auto; }
+    h1   { color: #58a6ff; padding: 16px 0 8px; border-bottom: 1px solid #30363d; }
+    h2   { color: #79c0ff; margin: 28px 0 10px; font-size: 1.05em; }
+    .meta { color: #8b949e; font-size: 0.85em; margin: 6px 0 20px; }
+    .kpi  { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
+             gap: 10px; margin-bottom: 24px; }
+    .kpi-card { background: #161b22; border: 1px solid #30363d;
+                 border-radius: 8px; padding: 14px; text-align: center; }
+    .kpi-val  { font-size: 1.7em; font-weight: 700; color: #58a6ff; }
+    .kpi-lbl  { font-size: 0.75em; color: #8b949e; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+    th    { background: #161b22; color: #8b949e; padding: 8px 10px;
+             text-align: left; font-size: 0.8em; text-transform: uppercase; }
+    td    { padding: 8px 10px; border-bottom: 1px solid #21262d; }
+    tr:hover td { background: #161b22; }
+    .pos  { color: #3fb950; font-weight: 600; }
+    .neg  { color: #f85149; font-weight: 600; }
+    .neu  { color: #8b949e; }
+    .badge-long { background: #238636; color: #fff; padding: 2px 8px;
+                   border-radius: 10px; font-size: 0.8em; }
+    .badge-flat { background: #30363d; color: #8b949e; padding: 2px 8px;
+                   border-radius: 10px; font-size: 0.8em; }
+    .scan-row { background: #161b22; border-radius: 6px; padding: 8px 12px;
+                 margin: 4px 0; font-size: 0.85em; display: flex;
+                 justify-content: space-between; align-items: center; }
+    .scan-date { color: #58a6ff; min-width: 90px; }
+    footer { color: #30363d; font-size: 0.75em; margin-top: 40px;
+              text-align: center; border-top: 1px solid #21262d; padding-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>📡 P3-DSP Simülasyon Raporu</h1>
+  <p class="meta">
+    Son güncelleme: <strong>2026-06-23 17:19</strong> &nbsp;·&nbsp;
+    Strateji: <strong>DSP-XOVER (fast=15g, slow=40g, order=3)</strong> &nbsp;·&nbsp;
+    Paper trading — gerçek sermaye yok
+  </p>
+
+  <div class="kpi">
+    <div class="kpi-card">
+      <div class="kpi-val">5/5</div>
+      <div class="kpi-lbl">Açık Pozisyon</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">6</div>
+      <div class="kpi-lbl">Kapanan Trade</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val neg">0%</div>
+      <div class="kpi-lbl">Kazanma Oranı</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val neg">+nan%</div>
+      <div class="kpi-lbl">Toplam P&L</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">1.0g</div>
+      <div class="kpi-lbl">Ort. Süre</div>
+    </div>
+  </div>
+
+  <h2>📂 Açık Pozisyonlar</h2>
+  <table>
+          <tr><th>Sembol</th><th>Giriş</th><th>G.Fiyat</th>
+              <th>Güncel</th><th>P&L</th><th>Skor</th></tr>
+          <tr>
+              <td><strong>YKBNK</strong> </td>
+              <td>2026-06-22</td>
+              <td>43.840</td>
+              <td>42.880</td>
+              <td class='neg'>-2.2%</td>
+              <td class='neu'>+0.1713</td>
+            </tr><tr>
+              <td><strong>AKBNK</strong> </td>
+              <td>2026-06-22</td>
+              <td>82.000</td>
+              <td>80.500</td>
+              <td class='neg'>-1.8%</td>
+              <td class='neu'>+0.1660</td>
+            </tr><tr>
+              <td><strong>SKBNK</strong> 🟢 YENİ</td>
+              <td>2026-06-23</td>
+              <td>16.470</td>
+              <td>16.470</td>
+              <td class='pos'>+0.0%</td>
+              <td class='neu'>+0.1296</td>
+            </tr><tr>
+              <td><strong>ODAS</strong> 🟢 YENİ</td>
+              <td>2026-06-23</td>
+              <td>9.510</td>
+              <td>9.510</td>
+              <td class='pos'>+0.0%</td>
+              <td class='neu'>+0.1252</td>
+            </tr><tr>
+              <td><strong>GLYHO</strong> 🟢 YENİ</td>
+              <td>2026-06-23</td>
+              <td>18.090</td>
+              <td>18.090</td>
+              <td class='pos'>+0.0%</td>
+              <td class='neu'>+0.1220</td>
+            </tr></table>
+
+  <h2>📋 Son Tarama — 2026-06-23</h2>
+  <table>
+      <tr><th>Sembol</th><th>Sinyal</th><th>Skor</th>
+          <th>Marj</th><th>Mom(15g)</th></tr>
+      <tr>
+          <td><strong>YKBNK</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.1679</td>
+          <td class='pos'>+0.153</td>
+          <td class='pos'>+0.204</td>
+        </tr><tr>
+          <td><strong>AKBNK</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.1668</td>
+          <td class='pos'>+0.153</td>
+          <td class='pos'>+0.199</td>
+        </tr><tr>
+          <td><strong>SKBNK</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.1296</td>
+          <td class='pos'>+0.090</td>
+          <td class='pos'>+0.221</td>
+        </tr><tr>
+          <td><strong>ODAS</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.1252</td>
+          <td class='pos'>+0.084</td>
+          <td class='pos'>+0.220</td>
+        </tr><tr>
+          <td><strong>GLYHO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.1220</td>
+          <td class='pos'>+0.107</td>
+          <td class='pos'>+0.156</td>
+        </tr><tr>
+          <td><strong>EUPWR</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.1097</td>
+          <td class='pos'>+0.103</td>
+          <td class='pos'>+0.125</td>
+        </tr><tr>
+          <td><strong>TAVHL</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.1063</td>
+          <td class='pos'>+0.121</td>
+          <td class='pos'>+0.071</td>
+        </tr><tr>
+          <td><strong>ISCTR</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0994</td>
+          <td class='pos'>+0.096</td>
+          <td class='pos'>+0.108</td>
+        </tr><tr>
+          <td><strong>GARAN</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0937</td>
+          <td class='pos'>+0.096</td>
+          <td class='pos'>+0.088</td>
+        </tr><tr>
+          <td><strong>AKSA</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0926</td>
+          <td class='pos'>+0.095</td>
+          <td class='pos'>+0.088</td>
+        </tr><tr>
+          <td><strong>ORGE</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0833</td>
+          <td class='pos'>+0.087</td>
+          <td class='pos'>+0.075</td>
+        </tr><tr>
+          <td><strong>TOASO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0793</td>
+          <td class='pos'>+0.057</td>
+          <td class='pos'>+0.131</td>
+        </tr><tr>
+          <td><strong>EKGYO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0751</td>
+          <td class='pos'>+0.075</td>
+          <td class='pos'>+0.076</td>
+        </tr><tr>
+          <td><strong>EKGYO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0751</td>
+          <td class='pos'>+0.075</td>
+          <td class='pos'>+0.076</td>
+        </tr><tr>
+          <td><strong>AGESA</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0748</td>
+          <td class='pos'>+0.077</td>
+          <td class='pos'>+0.069</td>
+        </tr><tr>
+          <td><strong>THYAO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0746</td>
+          <td class='pos'>+0.072</td>
+          <td class='pos'>+0.080</td>
+        </tr><tr>
+          <td><strong>SAHOL</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0729</td>
+          <td class='pos'>+0.078</td>
+          <td class='pos'>+0.061</td>
+        </tr><tr>
+          <td><strong>GSDHO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0728</td>
+          <td class='pos'>+0.087</td>
+          <td class='pos'>+0.041</td>
+        </tr><tr>
+          <td><strong>ALKIM</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0645</td>
+          <td class='pos'>+0.060</td>
+          <td class='pos'>+0.074</td>
+        </tr><tr>
+          <td><strong>TCELL</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0542</td>
+          <td class='pos'>+0.068</td>
+          <td class='pos'>+0.023</td>
+        </tr><tr>
+          <td><strong>ALBRK</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0527</td>
+          <td class='pos'>+0.064</td>
+          <td class='pos'>+0.026</td>
+        </tr><tr>
+          <td><strong>IZMDC</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0515</td>
+          <td class='pos'>+0.032</td>
+          <td class='pos'>+0.098</td>
+        </tr><tr>
+          <td><strong>TSKB</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0500</td>
+          <td class='pos'>+0.053</td>
+          <td class='pos'>+0.044</td>
+        </tr><tr>
+          <td><strong>BIOEN</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0474</td>
+          <td class='pos'>+0.043</td>
+          <td class='pos'>+0.058</td>
+        </tr><tr>
+          <td><strong>PGSUS</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0463</td>
+          <td class='pos'>+0.052</td>
+          <td class='pos'>+0.034</td>
+        </tr><tr>
+          <td><strong>VAKBN</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0420</td>
+          <td class='pos'>+0.062</td>
+          <td class='pos'>-0.004</td>
+        </tr><tr>
+          <td><strong>DOAS</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0411</td>
+          <td class='pos'>+0.065</td>
+          <td class='pos'>-0.015</td>
+        </tr><tr>
+          <td><strong>AEFES</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0375</td>
+          <td class='pos'>+0.046</td>
+          <td class='pos'>+0.018</td>
+        </tr><tr>
+          <td><strong>AKSEN</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0357</td>
+          <td class='pos'>+0.030</td>
+          <td class='pos'>+0.049</td>
+        </tr><tr>
+          <td><strong>HALKB</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0324</td>
+          <td class='pos'>+0.068</td>
+          <td class='pos'>-0.050</td>
+        </tr><tr>
+          <td><strong>FROTO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0268</td>
+          <td class='pos'>+0.043</td>
+          <td class='pos'>-0.011</td>
+        </tr><tr>
+          <td><strong>MGROS</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0244</td>
+          <td class='pos'>+0.022</td>
+          <td class='pos'>+0.030</td>
+        </tr><tr>
+          <td><strong>ISGYO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0186</td>
+          <td class='pos'>+0.002</td>
+          <td class='pos'>+0.058</td>
+        </tr><tr>
+          <td><strong>KCHOL</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0168</td>
+          <td class='pos'>+0.028</td>
+          <td class='pos'>-0.009</td>
+        </tr><tr>
+          <td><strong>BIMAS</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0147</td>
+          <td class='pos'>+0.016</td>
+          <td class='pos'>+0.010</td>
+        </tr><tr>
+          <td><strong>POLHO</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0146</td>
+          <td class='pos'>+0.026</td>
+          <td class='pos'>-0.012</td>
+        </tr><tr>
+          <td><strong>GESAN</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0142</td>
+          <td class='pos'>+0.025</td>
+          <td class='pos'>-0.011</td>
+        </tr><tr>
+          <td><strong>AKSGY</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0095</td>
+          <td class='pos'>+0.008</td>
+          <td class='pos'>+0.012</td>
+        </tr><tr>
+          <td><strong>TTKOM</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0081</td>
+          <td class='pos'>+0.024</td>
+          <td class='pos'>-0.030</td>
+        </tr><tr>
+          <td><strong>SOKM</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0036</td>
+          <td class='pos'>+0.017</td>
+          <td class='pos'>-0.027</td>
+        </tr><tr>
+          <td><strong>ASELS</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='pos'>+0.0034</td>
+          <td class='pos'>+0.022</td>
+          <td class='pos'>-0.039</td>
+        </tr><tr>
+          <td><strong>CLEBI</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0010</td>
+          <td class='neg'>+0.017</td>
+          <td class='neg'>-0.043</td>
+        </tr><tr>
+          <td><strong>EREGL</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0032</td>
+          <td class='neg'>+0.002</td>
+          <td class='neg'>-0.016</td>
+        </tr><tr>
+          <td><strong>KLNMA</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0033</td>
+          <td class='neg'>+0.012</td>
+          <td class='neg'>-0.038</td>
+        </tr><tr>
+          <td><strong>BRYAT</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0033</td>
+          <td class='neg'>+0.010</td>
+          <td class='neg'>-0.034</td>
+        </tr><tr>
+          <td><strong>AYDEM</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0051</td>
+          <td class='neg'>+0.001</td>
+          <td class='neg'>-0.019</td>
+        </tr><tr>
+          <td><strong>SISE</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0091</td>
+          <td class='neg'>+0.005</td>
+          <td class='neg'>-0.043</td>
+        </tr><tr>
+          <td><strong>NETAS</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0143</td>
+          <td class='neg'>+0.002</td>
+          <td class='neg'>-0.052</td>
+        </tr><tr>
+          <td><strong>ARCLK</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0174</td>
+          <td class='neg'>+0.001</td>
+          <td class='neg'>-0.060</td>
+        </tr><tr>
+          <td><strong>AKCNS</strong></td>
+          <td><span class='badge-long'>LONG</span></td>
+          <td class='neg'>-0.0254</td>
+          <td class='neg'>+0.013</td>
+          <td class='neg'>-0.116</td>
+        </tr><tr>
+          <td><strong>KRDMD</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0578</td>
+          <td class='neg'>-0.000</td>
+          <td class='neg'>-0.025</td>
+        </tr><tr>
+          <td><strong>TTRAK</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0644</td>
+          <td class='neg'>-0.005</td>
+          <td class='neg'>-0.037</td>
+        </tr><tr>
+          <td><strong>ULKER</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0667</td>
+          <td class='neg'>-0.004</td>
+          <td class='neg'>-0.047</td>
+        </tr><tr>
+          <td><strong>ISMEN</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0668</td>
+          <td class='neg'>-0.006</td>
+          <td class='neg'>-0.041</td>
+        </tr><tr>
+          <td><strong>ASUZU</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0687</td>
+          <td class='neg'>-0.006</td>
+          <td class='neg'>-0.049</td>
+        </tr><tr>
+          <td><strong>MAVI</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0697</td>
+          <td class='neg'>-0.000</td>
+          <td class='neg'>-0.065</td>
+        </tr><tr>
+          <td><strong>SNPAM</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0718</td>
+          <td class='neg'>-0.024</td>
+          <td class='neg'>-0.017</td>
+        </tr><tr>
+          <td><strong>CIMSA</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0771</td>
+          <td class='neg'>-0.006</td>
+          <td class='neg'>-0.076</td>
+        </tr><tr>
+          <td><strong>KARSN</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0797</td>
+          <td class='neg'>-0.025</td>
+          <td class='neg'>-0.040</td>
+        </tr><tr>
+          <td><strong>ENJSA</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0804</td>
+          <td class='neg'>-0.012</td>
+          <td class='neg'>-0.073</td>
+        </tr><tr>
+          <td><strong>CWENE</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0814</td>
+          <td class='neg'>-0.011</td>
+          <td class='neg'>-0.078</td>
+        </tr><tr>
+          <td><strong>CCOLA</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0820</td>
+          <td class='neg'>-0.007</td>
+          <td class='neg'>-0.090</td>
+        </tr><tr>
+          <td><strong>OTKAR</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0832</td>
+          <td class='neg'>-0.032</td>
+          <td class='neg'>-0.036</td>
+        </tr><tr>
+          <td><strong>MPARK</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0864</td>
+          <td class='neg'>-0.031</td>
+          <td class='neg'>-0.048</td>
+        </tr><tr>
+          <td><strong>JANTS</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0929</td>
+          <td class='neg'>-0.031</td>
+          <td class='neg'>-0.072</td>
+        </tr><tr>
+          <td><strong>ENKAI</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0966</td>
+          <td class='neg'>-0.026</td>
+          <td class='neg'>-0.096</td>
+        </tr><tr>
+          <td><strong>HEKTS</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.0974</td>
+          <td class='neg'>-0.048</td>
+          <td class='neg'>-0.047</td>
+        </tr><tr>
+          <td><strong>DOHOL</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1018</td>
+          <td class='neg'>-0.022</td>
+          <td class='neg'>-0.122</td>
+        </tr><tr>
+          <td><strong>VESTL</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1033</td>
+          <td class='neg'>-0.039</td>
+          <td class='neg'>-0.087</td>
+        </tr><tr>
+          <td><strong>ZOREN</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1036</td>
+          <td class='neg'>-0.043</td>
+          <td class='neg'>-0.080</td>
+        </tr><tr>
+          <td><strong>TUPRS</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1104</td>
+          <td class='neg'>-0.032</td>
+          <td class='neg'>-0.127</td>
+        </tr><tr>
+          <td><strong>LOGO</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1141</td>
+          <td class='neg'>-0.046</td>
+          <td class='neg'>-0.106</td>
+        </tr><tr>
+          <td><strong>TMSN</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1200</td>
+          <td class='neg'>-0.056</td>
+          <td class='neg'>-0.103</td>
+        </tr><tr>
+          <td><strong>GUBRF</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1287</td>
+          <td class='neg'>-0.052</td>
+          <td class='neg'>-0.141</td>
+        </tr><tr>
+          <td><strong>TKFEN</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1306</td>
+          <td class='neg'>-0.039</td>
+          <td class='neg'>-0.177</td>
+        </tr><tr>
+          <td><strong>ICBCT</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1529</td>
+          <td class='neg'>-0.100</td>
+          <td class='neg'>-0.110</td>
+        </tr><tr>
+          <td><strong>PETKM</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1631</td>
+          <td class='neg'>-0.091</td>
+          <td class='neg'>-0.164</td>
+        </tr><tr>
+          <td><strong>ARDYZ</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1677</td>
+          <td class='neg'>-0.076</td>
+          <td class='neg'>-0.214</td>
+        </tr><tr>
+          <td><strong>ASTOR</strong></td>
+          <td><span class='badge-flat'>flat</span></td>
+          <td class='neg'>-0.1928</td>
+          <td class='neg'>-0.116</td>
+          <td class='neg'>-0.205</td>
+        </tr></table>
+
+  <h2>📈 Trade Geçmişi</h2>
+  <table>
+          <tr><th>Sembol</th><th>Giriş</th><th>Çıkış</th>
+              <th>G.Fiyat</th><th>Ç.Fiyat</th><th>P&L</th><th>Süre</th></tr>
+          <tr>
+              <td>TAVHL</td>
+              <td>2026-06-23</td>
+              <td>2026-06-23</td>
+              <td>nan</td>
+              <td>285.0</td>
+              <td class='neg'>+nan%</td>
+              <td>0g</td>
+            </tr><tr>
+              <td>GSDHO</td>
+              <td>2026-06-23</td>
+              <td>2026-06-23</td>
+              <td>nan</td>
+              <td>5.77</td>
+              <td class='neg'>+nan%</td>
+              <td>0g</td>
+            </tr><tr>
+              <td>EUPWR</td>
+              <td>2026-06-23</td>
+              <td>2026-06-23</td>
+              <td>nan</td>
+              <td>92.95</td>
+              <td class='neg'>+nan%</td>
+              <td>0g</td>
+            </tr><tr>
+              <td>THYAO</td>
+              <td>2026-06-22</td>
+              <td>2026-06-23</td>
+              <td>324.75</td>
+              <td>nan</td>
+              <td class='neg'>+nan%</td>
+              <td>1g</td>
+            </tr><tr>
+              <td>SAHOL</td>
+              <td>2026-06-22</td>
+              <td>2026-06-23</td>
+              <td>101.5</td>
+              <td>nan</td>
+              <td class='neg'>+nan%</td>
+              <td>1g</td>
+            </tr><tr>
+              <td>GARAN</td>
+              <td>2026-06-22</td>
+              <td>2026-06-23</td>
+              <td>143.7</td>
+              <td>nan</td>
+              <td class='neg'>+nan%</td>
+              <td>1g</td>
+            </tr></table>
+
+  <h2>🗓️ Günlük Tarama Günlüğü (son 14 gün)</h2>
+  <div class='scan-row'>
+          <span class='scan-date'>2026-06-23</span>
+          <span>79 sembol · 50 long</span>
+          <span style='color:#58a6ff'>↑ YKBNK, AKBNK, SKBNK, ODAS, GLYHO</span>
+          <span class='pos'>🟢 SKBNK, ODAS, GLYHO</span>
+          <span class='neg'>⬜ EUPWR, GSDHO, TAVHL</span>
+        </div><div class='scan-row'>
+          <span class='scan-date'>2026-06-23</span>
+          <span>79 sembol · 45 long</span>
+          <span style='color:#58a6ff'>↑ YKBNK, EUPWR, AKBNK, GSDHO, TAVHL</span>
+          <span class='pos'>🟢 EUPWR, GSDHO, TAVHL</span>
+          <span class='neg'>⬜ GARAN, SAHOL, THYAO</span>
+        </div><div class='scan-row'>
+          <span class='scan-date'>2026-06-22</span>
+          <span>20 sembol · 15 long</span>
+          <span style='color:#58a6ff'>↑ YKBNK, AKBNK, GARAN, SAHOL, THYAO</span>
+          <span class='pos'></span>
+          <span class='neg'></span>
+        </div><div class='scan-row'>
+          <span class='scan-date'>2026-06-22</span>
+          <span>20 sembol · 15 long</span>
+          <span style='color:#58a6ff'>↑ YKBNK, AKBNK, GARAN, SAHOL, THYAO</span>
+          <span class='pos'>🟢 YKBNK, AKBNK, GARAN, SAHOL, THYAO</span>
+          <span class='neg'></span>
+        </div>
+
+  <footer>
+    P3-DSP · Frekans domeni tabanlı paper strateji ·
+    P1 ve P2-SMC'den bağımsız · 2026-06-23 17:19
+  </footer>
+</body>
+</html>
