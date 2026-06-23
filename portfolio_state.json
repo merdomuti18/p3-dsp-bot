@@ -1,0 +1,122 @@
+{
+  "created": "2026-06-22",
+  "positions": {
+    "YKBNK": {
+      "entry_date": "2026-06-22",
+      "entry_price": 43.84,
+      "score": 0.1713,
+      "margin": 0.1284
+    },
+    "AKBNK": {
+      "entry_date": "2026-06-22",
+      "entry_price": 82.0,
+      "score": 0.166,
+      "margin": 0.129
+    },
+    "EUPWR": {
+      "entry_date": "2026-06-23",
+      "entry_price": NaN,
+      "score": 0.1497,
+      "margin": 0.1498
+    },
+    "GSDHO": {
+      "entry_date": "2026-06-23",
+      "entry_price": NaN,
+      "score": 0.1118,
+      "margin": 0.1117
+    },
+    "TAVHL": {
+      "entry_date": "2026-06-23",
+      "entry_price": NaN,
+      "score": 0.1103,
+      "margin": 0.0867
+    }
+  },
+  "history": [
+    {
+      "symbol": "GARAN",
+      "entry_date": "2026-06-22",
+      "exit_date": "2026-06-23",
+      "entry_price": 143.7,
+      "exit_price": NaN,
+      "pnl_pct": NaN,
+      "holding_days": 1
+    },
+    {
+      "symbol": "SAHOL",
+      "entry_date": "2026-06-22",
+      "exit_date": "2026-06-23",
+      "entry_price": 101.5,
+      "exit_price": NaN,
+      "pnl_pct": NaN,
+      "holding_days": 1
+    },
+    {
+      "symbol": "THYAO",
+      "entry_date": "2026-06-22",
+      "exit_date": "2026-06-23",
+      "entry_price": 324.75,
+      "exit_price": NaN,
+      "pnl_pct": NaN,
+      "holding_days": 1
+    }
+  ],
+  "scan_log": [
+    {
+      "date": "2026-06-22",
+      "scanned": 20,
+      "long_signals": 15,
+      "top5": [
+        "YKBNK",
+        "AKBNK",
+        "GARAN",
+        "SAHOL",
+        "THYAO"
+      ],
+      "entries": [
+        "YKBNK",
+        "AKBNK",
+        "GARAN",
+        "SAHOL",
+        "THYAO"
+      ],
+      "exits": []
+    },
+    {
+      "date": "2026-06-22",
+      "scanned": 20,
+      "long_signals": 15,
+      "top5": [
+        "YKBNK",
+        "AKBNK",
+        "GARAN",
+        "SAHOL",
+        "THYAO"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-06-23",
+      "scanned": 79,
+      "long_signals": 45,
+      "top5": [
+        "YKBNK",
+        "EUPWR",
+        "AKBNK",
+        "GSDHO",
+        "TAVHL"
+      ],
+      "entries": [
+        "EUPWR",
+        "GSDHO",
+        "TAVHL"
+      ],
+      "exits": [
+        "GARAN",
+        "SAHOL",
+        "THYAO"
+      ]
+    }
+  ]
+}

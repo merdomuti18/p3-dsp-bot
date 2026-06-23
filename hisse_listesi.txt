@@ -1,0 +1,113 @@
+# P3-DSP Hisse Listesi
+# =====================
+# Her satıra bir sembol (BIST kodu, .IS olmadan)
+# # ile başlayan satırlar yorum — atlanır
+# Boş satırlar atlanır
+# Sektör başlıklarını istediğin gibi düzenleyebilirsin
+# Hisse eklemek: yeni satır ekle
+# Hisse çıkarmak: satırın başına # koy veya sil
+
+# ── BANKACILIK ──────────────────────────────────────
+AKBNK
+ALBRK
+GARAN
+HALKB
+ICBCT
+ISCTR
+KLNMA
+SKBNK
+TSKB
+VAKBN
+YKBNK
+
+# ── ENERJİ ──────────────────────────────────────────
+AKSEN
+AYDEM
+BIOEN
+CWENE
+EKGYO
+ENJSA
+EUPWR
+ODAS
+ORGE
+PETKM
+TUPRS
+ZOREN
+
+# ── SANAYİ / OTOMOTİV ───────────────────────────────
+ASUZU
+DOAS
+FROTO
+OTKAR
+TOASO
+TTRAK
+
+# ── DEMİR ÇELİK / MADENCİLİK ───────────────────────
+EREGL
+IZMDC
+KRDMD
+TMSN
+
+# ── SAVUNMA / TEKNOLOJİ ─────────────────────────────
+ARDYZ
+ASELS
+ASTOR
+LOGO
+NETAS
+
+# ── HOLDİNG ─────────────────────────────────────────
+DOHOL
+GLYHO
+GSDHO
+KCHOL
+POLHO
+SAHOL
+SISE
+
+# ── PERAKENDECİLİK / TÜKETİCİ ───────────────────────
+AEFES
+BIMAS
+CCOLA
+MGROS
+MAVI
+SOKM
+ULKER
+
+# ── ULAŞIM / TURİZM ─────────────────────────────────
+CLEBI
+PGSUS
+TAVHL
+THYAO
+
+# ── İNŞAAT / GYO ────────────────────────────────────
+AKSGY
+EKGYO
+ENKAI
+ISGYO
+MPARK
+
+# ── KİMYA / GÜBRE ───────────────────────────────────
+AKCNS
+AKSA
+ALKIM
+GUBRF
+
+# ── TELEKOMÜNİKASYON ────────────────────────────────
+TCELL
+TTKOM
+
+# ── SİGORTA / FİNANS ────────────────────────────────
+AGESA
+ISMEN
+SNPAM
+
+# ── DİĞER ───────────────────────────────────────────
+ARCLK
+BRYAT
+CIMSA
+GESAN
+HEKTS
+JANTS
+KARSN
+TKFEN
+VESTL
