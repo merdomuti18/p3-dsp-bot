@@ -455,7 +455,7 @@ def main():
     archive = HISTORY_DIR / f"{date.today().isoformat()}.html"
     archive.write_text(html, encoding="utf-8")
 
-    # Telegram bildirimi
+   # Telegram bildirimi
     token   = os.getenv("TELEGRAM_TOKEN", "")
     chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
     if token and chat_id:
@@ -480,12 +480,6 @@ def main():
             print("Telegram bildirimi gönderildi ✅")
         except Exception as e:
             print(f"Telegram hata: {e}")
-
-    print(f"{'='*55}\nSimülasyon tamamlandı ✅\n")
-
-
-if __name__ == "__main__":
-    main()
 
     print(f"{'='*55}\nSimülasyon tamamlandı ✅\n")
 
