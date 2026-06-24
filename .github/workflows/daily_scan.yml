@@ -34,6 +34,7 @@ jobs:
         run: |
           git config user.name "DSP Bot"
           git config user.email "bot@p3dsp"
+          git pull --rebase
           git add reports/ portfolio_state.json
           git diff --cached --quiet || git commit -m "DSP tarama: $(date +'%Y-%m-%d')"
           git push
