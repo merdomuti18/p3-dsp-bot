@@ -613,8 +613,15 @@ def send_telegram(message: str):
     from datetime import datetime
     import pytz
     _now = datetime.now(pytz.timezone("Europe/Istanbul"))
-    _header = f"[P2] {_now.strftime('%d.%m.%Y | %H:%M')}\n"
-    message = _header + message
+    _zaman = _now.strftime('%d.%m.%Y | %H:%M TSİ')
+    _header = (
+        f"🔵 〰〰〰〰〰〰〰〰〰〰〰〰〰\n"
+        f"<b>P2 — SMC TARAMA</b>\n"
+        f"〰〰〰〰〰〰〰〰〰〰〰〰〰\n"
+        f"📅 {_zaman}\n\n"
+    )
+    _footer = "\n🔵 〰〰〰〰〰〰〰〰〰〰〰〰〰"
+    message = _header + message + _footer
     if not BOT_TOKEN or not CHAT_ID:
         print(message); return
     max_len = 3900

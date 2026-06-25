@@ -321,8 +321,16 @@ def send_telegram(msg):
     from datetime import datetime
     import pytz
     _now = datetime.now(pytz.timezone("Europe/Istanbul"))
-    _header = f"[P1] {_now.strftime('%d.%m.%Y | %H:%M')}\n"
-    msg = _header + msg
+    _zaman = _now.strftime('%d.%m.%Y | %H:%M TSİ')
+    _header = (
+        f"🟡 ━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"<b>P1 — MOMENTUM TARAMA</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"📅 {_zaman}\n\n"
+    )
+    _footer = "\n🟡 ━━━━━━━━━━━━━━━━━━━━━━━━"
+    msg = _header + msg + _footer
+    
     if not BOT_TOKEN or not CHAT_ID:
         log.warning("Telegram ayarları eksik")
         return
