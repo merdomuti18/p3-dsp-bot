@@ -1,120 +1,247 @@
 {
   "tarama": {
-    "scan_time": "25.06.2026 14:49",
-    "scan_label": "Gün İçi Manuel Tetikleme",
+    "scan_time": "25.06.2026 22:21",
+    "scan_label": "20:50 Kapanış",
     "signals": [
       {
         "symbol": "SNICA",
-        "scan_time": "25.06.2026 14:49",
-        "scan_label": "Gün İçi Manuel Tetikleme",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
         "strategies": [
           "GT",
           "MR"
         ],
         "score_count": 2,
-        "rsi": 62.42,
-        "rel_vol": 6.77,
-        "change_pct": 9.69,
-        "close": 4.53,
+        "rsi": 62.66,
+        "rel_vol": 7.8,
+        "change_pct": 9.93,
+        "close": 4.54,
         "adx": 33.4,
-        "cmf": 0.1502,
+        "cmf": 0.2321,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "GOODY",
-        "scan_time": "25.06.2026 14:49",
-        "scan_label": "Gün İçi Manuel Tetikleme",
+        "symbol": "MAKIM",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
         "strategies": [
-          "GTD"
+          "GT"
         ],
         "score_count": 1,
-        "rsi": 76.79,
-        "rel_vol": 4.17,
-        "change_pct": -7.15,
-        "close": 20.52,
-        "adx": 42.48,
-        "cmf": 0.1432,
+        "rsi": 61.9,
+        "rel_vol": 1.3,
+        "change_pct": -2.17,
+        "close": 19.35,
+        "adx": 35.45,
+        "cmf": 0.0105,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "TRGYO",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "GT"
+        ],
+        "score_count": 1,
+        "rsi": 58.41,
+        "rel_vol": 1.46,
+        "change_pct": 1.17,
+        "close": 99.15,
+        "adx": 28.74,
+        "cmf": 0.3815,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KARTN",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "GT",
+          "ZKN"
+        ],
+        "score_count": 2,
+        "rsi": 50.28,
+        "rel_vol": 1.02,
+        "change_pct": -4.42,
+        "close": 136.2,
+        "adx": 38.52,
+        "cmf": 0.0437,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KRDMA",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 54.93,
+        "rel_vol": 1.11,
+        "change_pct": 1.8,
+        "close": 39.68,
+        "adx": 21.27,
+        "cmf": 0.1745,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "HATSN",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZT3"
+        ],
+        "score_count": 1,
+        "rsi": 52.56,
+        "rel_vol": 1.46,
+        "change_pct": 6.62,
+        "close": 64.4,
+        "adx": 27.37,
+        "cmf": -0.3133,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "BALSU",
-        "scan_time": "25.06.2026 14:49",
-        "scan_label": "Gün İçi Manuel Tetikleme",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 86.64,
-        "rel_vol": 3.5,
-        "change_pct": 4.55,
-        "close": 19.52,
-        "adx": 38.15,
-        "cmf": 0.4322,
+        "rsi": 88.12,
+        "rel_vol": 5.42,
+        "change_pct": 9.91,
+        "close": 20.52,
+        "adx": 38.17,
+        "cmf": 0.6499,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "THYAO",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 77.63,
+        "rel_vol": 1.24,
+        "change_pct": 1.15,
+        "close": 328.5,
+        "adx": 45.05,
+        "cmf": -0.1226,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "ISGSY",
-        "scan_time": "25.06.2026 14:49",
-        "scan_label": "Gün İçi Manuel Tetikleme",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 72.5,
-        "rel_vol": 2.13,
-        "change_pct": 6.52,
-        "close": 133.9,
+        "rsi": 72.21,
+        "rel_vol": 3.13,
+        "change_pct": 6.05,
+        "close": 133.3,
         "adx": 47.87,
-        "cmf": -0.081,
+        "cmf": -0.1283,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "MOGAN",
-        "scan_time": "25.06.2026 14:49",
-        "scan_label": "Gün İçi Manuel Tetikleme",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
         "rsi": 64.79,
-        "rel_vol": 1.3,
+        "rel_vol": 1.68,
         "change_pct": 6.29,
         "close": 14.7,
         "adx": 25.57,
-        "cmf": -0.19,
+        "cmf": -0.18,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "INVEO",
-        "scan_time": "25.06.2026 14:49",
-        "scan_label": "Gün İçi Manuel Tetikleme",
+        "symbol": "PGSUS",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 58.69,
-        "rel_vol": 3.0,
-        "change_pct": 1.17,
-        "close": 8.63,
-        "adx": 23.47,
-        "cmf": -0.1892,
-        "alpha_bull": false,
+        "rsi": 63.6,
+        "rel_vol": 1.24,
+        "change_pct": 2.09,
+        "close": 180.7,
+        "adx": 36.29,
+        "cmf": -0.127,
+        "alpha_bull": true,
         "alpha_trend_bull": true
+      },
+      {
+        "symbol": "PSGYO",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 58.43,
+        "rel_vol": 1.68,
+        "change_pct": 4.65,
+        "close": 3.6,
+        "adx": 45.88,
+        "cmf": -0.0221,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "NTGAZ",
+        "scan_time": "25.06.2026 22:21",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "DIP"
+        ],
+        "score_count": 1,
+        "rsi": 19.84,
+        "rel_vol": 1.38,
+        "change_pct": 0.18,
+        "close": 11.14,
+        "adx": 40.04,
+        "cmf": -0.3673,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
       }
     ],
     "semboller": [
       "SNICA",
-      "GOODY",
+      "MAKIM",
+      "TRGYO",
+      "KARTN",
+      "KRDMA",
+      "HATSN",
       "BALSU",
+      "THYAO",
       "ISGSY",
       "MOGAN",
-      "INVEO"
+      "PGSUS",
+      "PSGYO",
+      "NTGAZ"
     ]
   },
-  "last_scan": "25.06.2026 14:49"
+  "last_scan": "25.06.2026 22:21"
 }
