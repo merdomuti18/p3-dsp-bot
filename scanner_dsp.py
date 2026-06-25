@@ -212,17 +212,16 @@ class RealDataAdapter:
     """
     def fetch(self, symbol: str, lookback_days: int) -> Optional[np.ndarray]:
         try:
-            # VM'de bu satır aktif edilir:
-            # from dsp_data_adapter import get_close_prices
-            # return get_close_prices(symbol, lookback_days)
-            raise NotImplementedError(
-                "RealDataAdapter: VM'de dsp_data_adapter.py import'u etkinleştir."
-            )
+            import yfinance as yf
+            ticker = f"{symbol}.IS" if not symbol.endswith(".IS") else symbol
+            df = yf.Ticker(ticker).history(period="max")
+            prices = df["Close"].dropna().values
+            if len(prices) >= lookback_days:
+                return prices[-lookback_days:]
+            return prices if len(prices) >= 60 else None
         except Exception as e:
             logger.warning(f"{symbol} veri hatası: {e}")
             return None
-
-
 # ---------------------------------------------------------------------------
 # Sinyal Skoru
 # ---------------------------------------------------------------------------
