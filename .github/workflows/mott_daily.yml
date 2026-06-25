@@ -1,0 +1,271 @@
+name: MOTT Günlük Tarama — P1 + P2 + P3
+
+on:
+  schedule:
+    # Her iş günü 16:05 UTC = 19:05 TSİ (BIST kapanış sonrası)
+    - cron: '5 16 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      run_mode:
+        description: 'Çalışma modu'
+        required: false
+        default: 'aksam'
+        type: choice
+        options:
+          - aksam      # Akşam tam tarama (varsayılan)
+          - sabah      # 09:00 sabah değerlendirmesi
+          - takip      # Gün içi saatlik takip
+          - ozet       # Portföy özeti
+          - durum      # Sadece durum raporu
+
+# Eşzamanlı çalışmayı engelle — state dosyaları çakışmasın
+concurrency:
+  group: mott-daily
+  cancel-in-progress: false
+
+jobs:
+  # ─────────────────────────────────────────────────────
+  # JOB 1: P3-DSP (Frekans Domeni)
+  # ─────────────────────────────────────────────────────
+  p3-dsp:
+    name: P3 — DSP Tarama
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Repo çek
+        uses: actions/checkout@v4
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Pip cache — kurulum 3 dk → 20 sn
+      - name: Pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: p3-pip-${{ hashFiles('requirements_p3.txt') }}
+          restore-keys: p3-pip-
+
+      - name: Bağımlılıkları yükle
+        run: |
+          pip install --upgrade pip
+          pip install scipy numpy yfinance pandas requests
+
+      - name: P3 tarama çalıştır
+        run: python simulate_dsp.py
+        env:
+          MOTT_BASE_DIR: "."
+          DSP_USE_TV: ${{ secrets.DSP_USE_TV || '0' }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID_P3 || secrets.TELEGRAM_CHAT_ID }}
+
+      - name: State ve raporu commit et
+        run: |
+          git config user.name "MOTT Bot"
+          git config user.email "bot@mott"
+          git add reports/ state_p3.json portfolio_state.json || true
+          git diff --cached --quiet || git commit -m "P3-DSP tarama: $(date +'%Y-%m-%d')"
+          git push origin HEAD:main
+
+  # ─────────────────────────────────────────────────────
+  # JOB 2: P1 — Momentum
+  # ─────────────────────────────────────────────────────
+  p1-momentum:
+    name: P1 — Momentum Tarama
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    # P3 bitmeden başlama — state çakışmasını önle
+    needs: p3-dsp
+
+    steps:
+      - name: Repo çek
+        uses: actions/checkout@v4
+        with:
+          # P3'ün commit'ini al
+          ref: main
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: p1-pip-${{ hashFiles('requirements_p1.txt') }}
+          restore-keys: p1-pip-
+
+      - name: Bağımlılıkları yükle
+        run: |
+          pip install --upgrade pip
+          pip install numpy pandas yfinance requests
+
+      - name: P1 tarama çalıştır
+        run: |
+          MODE=${{ github.event.inputs.run_mode || 'aksam' }}
+          if [ "$MODE" = "aksam" ]; then
+            python scanner_p1.py
+          elif [ "$MODE" = "takip" ]; then
+            python portfoy_yonetici.py takip
+          elif [ "$MODE" = "ozet" ]; then
+            python portfoy_yonetici.py ozet
+          elif [ "$MODE" = "durum" ]; then
+            python portfoy_yonetici.py durum
+          fi
+        env:
+          MOTT_BASE_DIR: "."
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID_P1 || secrets.TELEGRAM_CHAT_ID }}
+
+      - name: State commit et
+        run: |
+          git config user.name "MOTT Bot"
+          git config user.email "bot@mott"
+          git pull --rebase origin main
+          git add state_p1.json || true
+          git diff --cached --quiet || git commit -m "P1 tarama: $(date +'%Y-%m-%d')"
+          git push origin HEAD:main
+
+  # ─────────────────────────────────────────────────────
+  # JOB 3: P2 — SMC
+  # ─────────────────────────────────────────────────────
+  p2-smc:
+    name: P2 — SMC Tarama
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: p1-momentum
+
+    steps:
+      - name: Repo çek
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: p2-pip-${{ hashFiles('requirements_p2.txt') }}
+          restore-keys: p2-pip-
+
+      - name: Bağımlılıkları yükle
+        run: |
+          pip install --upgrade pip
+          pip install numpy pandas yfinance requests tradingview-screener pytz
+
+      - name: P2 tarama çalıştır
+        run: python scanner_smc.py
+        env:
+          MOTT_BASE_DIR: "."
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID_P2 || secrets.TELEGRAM_CHAT_ID }}
+
+      - name: State commit et
+        run: |
+          git config user.name "MOTT Bot"
+          git config user.email "bot@mott"
+          git pull --rebase origin main
+          git add state_p2.json || true
+          git diff --cached --quiet || git commit -m "P2-SMC tarama: $(date +'%Y-%m-%d')"
+          git push origin HEAD:main
+
+  # ─────────────────────────────────────────────────────
+  # JOB 4: P4 — Meta Portföy
+  # ─────────────────────────────────────────────────────
+  p4-meta:
+    name: P4 — Meta Portföy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: [p1-momentum, p2-smc, p3-dsp]
+
+    steps:
+      - name: Repo çek
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: p4-pip-${{ hashFiles('requirements_p4.txt') }}
+          restore-keys: p4-pip-
+
+      - name: Bağımlılıkları yükle
+        run: |
+          pip install --upgrade pip
+          pip install numpy pandas scipy yfinance requests pytz
+
+      - name: P4 meta portföy çalıştır
+        run: python meta_portfolio.py
+        env:
+          MOTT_BASE_DIR: "."
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: State commit et
+        run: |
+          git config user.name "MOTT Bot"
+          git config user.email "bot@mott"
+          git pull --rebase origin main
+          git add state_p4.json || true
+          git diff --cached --quiet || git commit -m "P4 meta portföy: $(date +'%Y-%m-%d')"
+          git push origin HEAD:main
+
+  # ─────────────────────────────────────────────────────
+  # JOB 5: Özet Rapor — 4 strateji tamamlandıktan sonra
+  # ─────────────────────────────────────────────────────
+  ozet-rapor:
+    name: Günlük Özet Rapor
+    runs-on: ubuntu-latest
+    needs: [p3-dsp, p1-momentum, p2-smc, p4-meta]
+    if: always()
+
+    steps:
+      - name: Repo çek
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ozet-pip-v1
+          restore-keys: ozet-pip-
+
+      - name: Bağımlılıkları yükle
+        run: pip install requests
+
+      - name: Günlük özet gönder
+        run: python mott_ozet.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          P1_STATUS: ${{ needs.p1-momentum.result }}
+          P2_STATUS: ${{ needs.p2-smc.result }}
+          P3_STATUS: ${{ needs.p3-dsp.result }}
+          P4_STATUS: ${{ needs.p4-meta.result }}

@@ -1,0 +1,19 @@
+﻿# Büyük veri dosyaları
+*.csv
+*.html
+*.png
+*.pkl
+*.log
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Geçici
+phase0_cache/
+data/
+deneme_*/
+
+# Yerel geliştirme
+.vscode/

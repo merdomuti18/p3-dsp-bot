@@ -29,6 +29,8 @@ from scanner_dsp import (
     MockDataAdapter, SYMBOL_UNIVERSE_SAMPLE, ScanResult
 )
 from dsp_strategies import XoverParams
+from nonstationarity_monitor import NonstationarityMonitor, fetch_prices_for_monitor
+from correlation_analysis import PortfolioCorrelation, run_portfolio_correlation
 
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
@@ -267,6 +269,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <h2>🗓️ Günlük Tarama Günlüğü (son 14 gün)</h2>
   {scan_log}
 
+  <h2>🔬 Non-Stationarity Monitör</h2>
+  {monitor_section}
+
+  <h2>🔗 Portföy Korelasyon Analizi</h2>
+  {correlation_section}
+
   <footer>
     P3-DSP · Frekans domeni tabanlı paper strateji ·
     P1 ve P2-SMC'den bağımsız · {update_time}
@@ -280,6 +288,8 @@ def build_report(
     scan: ScanResult,
     actions: dict,
     perf: dict,
+    monitor_result=None,
+    corr_result=None,
 ) -> str:
     today  = date.today().isoformat()
     now    = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -373,6 +383,26 @@ def build_report(
     if not log_html:
         log_html = "<p class='neu' style='padding:8px'>Henüz log yok.</p>"
 
+    # Korelasyon bölümü
+    if corr_result is not None:
+        corr_obj = PortfolioCorrelation()
+        correlation_section = corr_obj.html_section(corr_result)
+    else:
+        correlation_section = (
+            "<p class='neu' style='padding:8px'>"
+            "Korelasyon analizi için yeterli açık pozisyon yok (min 2)."
+            "</p>"
+        )
+
+    # Non-stationarity monitör bölümü
+    if monitor_result is not None:
+        from nonstationarity_monitor import NonstationarityMonitor
+        monitor_section = NonstationarityMonitor().html_section(monitor_result)
+        drift_kpi = f"{monitor_result.drifted_count}/{monitor_result.total_checked}"
+    else:
+        monitor_section = "<p class='neu' style='padding:8px'>Monitör bu çalıştırmada devre dışı.</p>"
+        drift_kpi = "—"
+
     # KPI renkleri
     wr  = perf["win_rate"]
     pnl = perf["total_pnl"]
@@ -392,6 +422,8 @@ def build_report(
         scan_table=scan_table,
         history_table=history_table,
         scan_log=log_html,
+        monitor_section=monitor_section,
+        correlation_section=correlation_section,
     )
 
 
@@ -431,7 +463,75 @@ def main():
     state   = load_state()
     actions = update_portfolio(state, scan)
     perf    = calc_performance(state)
+
+    # 3b. Non-stationarity monitör — her günlük taramada çalışır
+    print("\nNon-stationarity kontrolü...")
+    try:
+        monitor       = NonstationarityMonitor(drift_threshold=0.35)
+        prices_map    = fetch_prices_for_monitor(
+            SYMBOL_UNIVERSE_SAMPLE, lookback_days=300
+        )
+        monitor_result = monitor.run(prices_map, state)
+        print(monitor_result.summary_line())
+
+        if monitor_result.has_alerts():
+            print(f"⚠️  Drift tespit edildi: "
+                  f"{[a.symbol for a in monitor_result.alerts]}")
+            # Telegram bildirimi — notifier varsa gönder
+            _tg_token   = os.getenv("TELEGRAM_TOKEN", "")
+            _tg_chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
+            if _tg_token and _tg_chat_id:
+                try:
+                    import requests as _req
+                    _req.post(
+                        f"https://api.telegram.org/bot{_tg_token}/sendMessage",
+                        json={
+                            "chat_id":    _tg_chat_id,
+                            "text":       monitor.telegram_message(monitor_result),
+                            "parse_mode": "Markdown",
+                        },
+                        timeout=10,
+                    )
+                except Exception as _e:
+                    logger.warning(f"Telegram monitör bildirimi hatası: {_e}")
+        else:
+            print("✅ Tüm semboller stabil.")
+    except Exception as e:
+        logger.warning(f"Non-stationarity monitör hatası: {e}")
+        monitor_result = None
+
     save_state(state)
+
+    # 3c. Portföy korelasyon analizi
+    print("\nKorelasyon analizi...")
+    try:
+        corr_result = run_portfolio_correlation(state)
+        if corr_result:
+            print(corr_result.summary_line())
+            # HIGH/CRITICAL ise Telegram'a gönder
+            if corr_result.risk_level in ("HIGH", "CRITICAL"):
+                _tg_token   = os.getenv("TELEGRAM_TOKEN", "")
+                _tg_chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
+                if _tg_token and _tg_chat_id:
+                    try:
+                        import requests as _req
+                        _corr_obj = PortfolioCorrelation()
+                        _req.post(
+                            f"https://api.telegram.org/bot{_tg_token}/sendMessage",
+                            json={
+                                "chat_id":    _tg_chat_id,
+                                "text":       _corr_obj.telegram_message(corr_result),
+                                "parse_mode": "Markdown",
+                            },
+                            timeout=10,
+                        )
+                    except Exception as _e:
+                        logger.warning(f"Telegram korelasyon bildirimi hatası: {_e}")
+        else:
+            print("Korelasyon: yeterli pozisyon yok (min 2).")
+    except Exception as e:
+        logger.warning(f"Korelasyon analizi hatası: {e}")
+        corr_result = None
 
     print(f"\nGiriş : {actions['entries'] or '—'}")
     print(f"Çıkış : {actions['exits']   or '—'}")
@@ -445,7 +545,7 @@ def main():
     REPORT_DIR.mkdir(exist_ok=True)
     HISTORY_DIR.mkdir(exist_ok=True)
 
-    html = build_report(state, scan, actions, perf)
+    html = build_report(state, scan, actions, perf, monitor_result, corr_result)
 
     report_path = REPORT_DIR / "latest.html"
     report_path.write_text(html, encoding="utf-8")
@@ -455,34 +555,9 @@ def main():
     archive = HISTORY_DIR / f"{date.today().isoformat()}.html"
     archive.write_text(html, encoding="utf-8")
 
-   # Telegram bildirimi
-    token   = os.getenv("TELEGRAM_TOKEN", "")
-    chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
-    if token and chat_id:
-        try:
-            import requests
-            top5 = ", ".join(s.symbol for s in scan.top_longs[:5])
-            msg = (
-                f"📡 *P3-DSP* {date.today()}\n"
-                f"Taranan: {scan.scanned}/{scan.total_symbols} | "
-                f"Long: {scan.long_signals}\n"
-                f"🟢 Giriş: {', '.join(actions['entries']) or '—'}\n"
-                f"⬜ Çıkış: {', '.join(actions['exits']) or '—'}\n"
-                f"📊 Açık: {len(state['positions'])}/5\n"
-                f"🏆 Top5: {top5}\n"
-                f"📈 Rapor: https://merdomuti18.github.io/p3-dsp-bot/reports/latest.html"
-            )
-            requests.post(
-                f"https://api.telegram.org/bot{token}/sendMessage",
-                json={"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"},
-                timeout=10,
-            )
-            print("Telegram bildirimi gönderildi ✅")
-        except Exception as e:
-            print(f"Telegram hata: {e}")
-
     print(f"{'='*55}\nSimülasyon tamamlandı ✅\n")
 
 
 if __name__ == "__main__":
     main()
+ENDOFFILE
