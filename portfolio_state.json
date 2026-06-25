@@ -13,12 +13,6 @@
       "score": 0.166,
       "margin": 0.129
     },
-    "SKBNK": {
-      "entry_date": "2026-06-23",
-      "entry_price": 16.47,
-      "score": 0.1296,
-      "margin": 0.0904
-    },
     "ODAS": {
       "entry_date": "2026-06-23",
       "entry_price": 9.51,
@@ -30,6 +24,12 @@
       "entry_price": 18.09,
       "score": 0.122,
       "margin": 0.1075
+    },
+    "ORGE": {
+      "entry_date": "2026-06-25",
+      "entry_price": NaN,
+      "score": 0.1247,
+      "margin": 0.0942
     }
   },
   "history": [
@@ -86,6 +86,15 @@
       "exit_price": 285.0,
       "pnl_pct": NaN,
       "holding_days": 0
+    },
+    {
+      "symbol": "SKBNK",
+      "entry_date": "2026-06-23",
+      "exit_date": "2026-06-25",
+      "entry_price": 16.47,
+      "exit_price": NaN,
+      "pnl_pct": NaN,
+      "holding_days": 2
     }
   ],
   "scan_log": [
@@ -264,6 +273,350 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-06-25",
+      "scanned": 79,
+      "long_signals": 51,
+      "top5": [
+        "YKBNK",
+        "AKBNK",
+        "ORGE",
+        "GLYHO",
+        "ODAS"
+      ],
+      "entries": [
+        "ORGE"
+      ],
+      "exits": [
+        "SKBNK"
+      ]
     }
-  ]
+  ],
+  "cycle_monitor": {
+    "baselines": {
+      "AKBNK": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ALBRK": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "GARAN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "HALKB": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ICBCT": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ISCTR": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "KLNMA": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "SKBNK": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TSKB": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "VAKBN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "YKBNK": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "AKSEN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "AYDEM": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "BIOEN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "CWENE": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "EKGYO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ENJSA": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "EUPWR": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ODAS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ORGE": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "PETKM": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TUPRS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ZOREN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ASUZU": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "DOAS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "FROTO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "OTKAR": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TOASO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TTRAK": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "EREGL": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "IZMDC": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "KRDMD": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TMSN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ARDYZ": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ASELS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ASTOR": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "LOGO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "NETAS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "DOHOL": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "GLYHO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "GSDHO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "KCHOL": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "POLHO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "SAHOL": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "SISE": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "AEFES": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "BIMAS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "CCOLA": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "MGROS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "MAVI": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "SOKM": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ULKER": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "CLEBI": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "PGSUS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TAVHL": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "THYAO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "AKSGY": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ENKAI": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ISGYO": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "MPARK": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "AKCNS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "AKSA": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ALKIM": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "GUBRF": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TCELL": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TTKOM": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "AGESA": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ISMEN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "SNPAM": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "ARCLK": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "BRYAT": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "CIMSA": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "GESAN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "HEKTS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "JANTS": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "KARSN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "TKFEN": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      },
+      "VESTL": {
+        "period": 30.0,
+        "set_date": "2026-06-25"
+      }
+    },
+    "log": [
+      {
+        "date": "2026-06-25",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      }
+    ]
+  }
 }
