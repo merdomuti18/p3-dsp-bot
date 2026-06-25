@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "26.06.2026 00:24",
+    "scan_time": "26.06.2026 00:38",
     "scan_label": "Gece / Manuel Tetikleme",
     "signals": [
       {
         "symbol": "BORLS",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "GT"
@@ -22,7 +22,7 @@
       },
       {
         "symbol": "MAKIM",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "GT",
@@ -40,7 +40,7 @@
       },
       {
         "symbol": "CELHA",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "GT",
@@ -60,7 +60,7 @@
       },
       {
         "symbol": "KARTN",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "GT",
@@ -78,7 +78,7 @@
       },
       {
         "symbol": "SKTAS",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "GT"
@@ -95,7 +95,7 @@
       },
       {
         "symbol": "ALARK",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "ZKN"
@@ -112,7 +112,7 @@
       },
       {
         "symbol": "KARSN",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "ZKN"
@@ -129,7 +129,7 @@
       },
       {
         "symbol": "IEYHO",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "MR"
@@ -146,7 +146,7 @@
       },
       {
         "symbol": "GOODY",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "MR"
@@ -163,7 +163,7 @@
       },
       {
         "symbol": "BALSU",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "MR"
@@ -180,7 +180,7 @@
       },
       {
         "symbol": "ISGSY",
-        "scan_time": "26.06.2026 00:24",
+        "scan_time": "26.06.2026 00:38",
         "scan_label": "Gece / Manuel Tetikleme",
         "strategies": [
           "MR"
@@ -210,5 +210,5 @@
       "ISGSY"
     ]
   },
-  "last_scan": "26.06.2026 00:24"
+  "last_scan": "26.06.2026 00:38"
 }
