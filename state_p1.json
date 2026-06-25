@@ -1,0 +1,119 @@
+{
+  "tarama": {
+    "scan_time": "25.06.2026 13:48",
+    "scan_label": "Gün İçi Manuel Tetikleme",
+    "signals": [
+      {
+        "symbol": "GOODY",
+        "scan_time": "25.06.2026 13:48",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "GTD"
+        ],
+        "score_count": 1,
+        "rsi": 76.24,
+        "rel_vol": 3.77,
+        "change_pct": -7.42,
+        "close": 20.46,
+        "adx": 43.07,
+        "cmf": 0.1319,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "BALSU",
+        "scan_time": "25.06.2026 13:48",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 86.81,
+        "rel_vol": 3.26,
+        "change_pct": 5.09,
+        "close": 19.62,
+        "adx": 38.15,
+        "cmf": 0.4588,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "ISGSY",
+        "scan_time": "25.06.2026 13:48",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 72.91,
+        "rel_vol": 2.02,
+        "change_pct": 7.24,
+        "close": 134.8,
+        "adx": 47.87,
+        "cmf": -0.0498,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "MOGAN",
+        "scan_time": "25.06.2026 13:48",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 65.67,
+        "rel_vol": 1.17,
+        "change_pct": 7.81,
+        "close": 14.91,
+        "adx": 25.57,
+        "cmf": -0.1739,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "SNICA",
+        "scan_time": "25.06.2026 13:48",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 61.69,
+        "rel_vol": 4.53,
+        "change_pct": 8.96,
+        "close": 4.5,
+        "adx": 33.4,
+        "cmf": -0.0192,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "INVEO",
+        "scan_time": "25.06.2026 13:48",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 60.36,
+        "rel_vol": 2.84,
+        "change_pct": 2.23,
+        "close": 8.72,
+        "adx": 23.47,
+        "cmf": -0.1533,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      }
+    ],
+    "semboller": [
+      "GOODY",
+      "BALSU",
+      "ISGSY",
+      "MOGAN",
+      "SNICA",
+      "INVEO"
+    ]
+  },
+  "last_scan": "25.06.2026 13:48"
+}
