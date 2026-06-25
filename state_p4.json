@@ -3,10 +3,10 @@
     "GOODY": {
       "symbol": "GOODY",
       "giris_fiyat": 20.420000076293945,
-      "guncel_fiyat": 20.420000076293945,
+      "guncel_fiyat": 20.559999465942383,
       "lotlar": 612,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 0.69,
+      "gun": 1,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -18,10 +18,10 @@
     "BALSU": {
       "symbol": "BALSU",
       "giris_fiyat": 19.65999984741211,
-      "guncel_fiyat": 19.65999984741211,
+      "guncel_fiyat": 19.350000381469727,
       "lotlar": 635,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -1.58,
+      "gun": 1,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -33,10 +33,10 @@
     "ISGSY": {
       "symbol": "ISGSY",
       "giris_fiyat": 134.8000030517578,
-      "guncel_fiyat": 134.8000030517578,
+      "guncel_fiyat": 134.60000610351562,
       "lotlar": 92,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -0.15,
+      "gun": 1,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -48,10 +48,10 @@
     "MOGAN": {
       "symbol": "MOGAN",
       "giris_fiyat": 14.890000343322754,
-      "guncel_fiyat": 14.890000343322754,
+      "guncel_fiyat": 14.829999923706055,
       "lotlar": 839,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -0.4,
+      "gun": 1,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -63,10 +63,10 @@
     "SNICA": {
       "symbol": "SNICA",
       "giris_fiyat": 4.480000019073486,
-      "guncel_fiyat": 4.480000019073486,
+      "guncel_fiyat": 4.53000020980835,
       "lotlar": 2790,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 1.12,
+      "gun": 1,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -83,9 +83,15 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-06-25",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-06-25T10:49:24.141160",
+  "last_run": "2026-06-25T11:18:48.969985",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
