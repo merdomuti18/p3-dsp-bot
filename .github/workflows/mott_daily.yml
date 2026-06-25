@@ -57,7 +57,7 @@ jobs:
       - name: Bağımlılıkları yükle
         run: |
           pip install --upgrade pip
-          pip install scipy numpy yfinance pandas requests
+          pip install scipy numpy yfinance pandas requests pytz
 
       - name: P3 tarama çalıştır
         run: python simulate_dsp.py
@@ -109,7 +109,7 @@ jobs:
       - name: Bağımlılıkları yükle
         run: |
           pip install --upgrade pip
-          pip install numpy pandas yfinance requests
+          pip install numpy pandas yfinance requests pytz
 
       - name: P1 tarama çalıştır
         run: |
