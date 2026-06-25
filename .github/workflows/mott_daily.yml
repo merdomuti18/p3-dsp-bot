@@ -109,7 +109,7 @@ jobs:
       - name: Bağımlılıkları yükle
         run: |
           pip install --upgrade pip
-          pip install numpy pandas yfinance requests pytz
+          pip install numpy pandas yfinance requests tradingview-screener pytz smartmoneyconcepts
 
       - name: P1 tarama çalıştır
         run: |
@@ -170,7 +170,7 @@ jobs:
       - name: Bağımlılıkları yükle
         run: |
           pip install --upgrade pip
-          pip install numpy pandas yfinance requests tradingview-screener pytz
+          pip install numpy pandas yfinance requests tradingview-screener pytz smartmoneyconcepts
 
       - name: P2 tarama çalıştır
         run: python scanner_smc.py
@@ -277,4 +277,5 @@ jobs:
           P2_STATUS: ${{ needs.p2-smc.result }}
           P3_STATUS: ${{ needs.p3-dsp.result }}
           P4_STATUS: ${{ needs.p4-meta.result }}
+
 

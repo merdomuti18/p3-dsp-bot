@@ -555,6 +555,18 @@ def main():
     archive = HISTORY_DIR / f"{date.today().isoformat()}.html"
     archive.write_text(html, encoding="utf-8")
 
+# P3 Telegram bildirimi
+    try:
+        from mott_telegram import p3_mesaj, telegram_gonder
+        tg_mesaj = p3_mesaj(
+            top_longs=scan.top_longs,
+            portfoy=state,
+            monitor_alert=monitor_result.has_alerts() if monitor_result else False,
+            corr_risk=corr_result.risk_level if corr_result else "LOW",
+        )
+        telegram_gonder(tg_mesaj)
+    except Exception as e:
+        print(f"P3 Telegram hatası: {e}")
     print(f"{'='*55}\nSimülasyon tamamlandı ✅\n")
 
 
