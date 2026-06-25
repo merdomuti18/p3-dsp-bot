@@ -555,7 +555,7 @@ def main():
     archive = HISTORY_DIR / f"{date.today().isoformat()}.html"
     archive.write_text(html, encoding="utf-8")
 
-# P3 Telegram bildirimi
+    # P3 Telegram bildirimi
     try:
         from mott_telegram import p3_mesaj, telegram_gonder
         tg_mesaj = p3_mesaj(
