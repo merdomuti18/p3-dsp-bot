@@ -65,7 +65,7 @@ jobs:
           MOTT_BASE_DIR: "."
           DSP_USE_TV: ${{ secrets.DSP_USE_TV || '0' }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID_P3 || secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
       - name: State ve raporu commit et
         run: |
@@ -126,7 +126,7 @@ jobs:
         env:
           MOTT_BASE_DIR: "."
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID_P1 || secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
       - name: State commit et
         run: |
@@ -177,8 +177,7 @@ jobs:
         env:
           MOTT_BASE_DIR: "."
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID_P2 || secrets.TELEGRAM_CHAT_ID }}
-
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       - name: State commit et
         run: |
           git config user.name "MOTT Bot"
