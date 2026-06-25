@@ -116,21 +116,30 @@ jobs:
 
       - name: P1 tarama çalıştır
         run: |
-          MODE=${{ github.event.inputs.run_mode || 'aksam' }}
-          if [ "$MODE" = "aksam" ]; then
+          HOUR=$(date -u +%H)
+          MINUTE=$(date -u +%M)
+          MODE=${{ github.event.inputs.run_mode || 'auto' }}
+          if [ "$MODE" = "auto" ]; then
+            if [ "$HOUR" = "06" ]; then MODE="sabah"
+            elif [ "$HOUR" = "08" ] && [ "$MINUTE" = "00" ]; then MODE="aksam"
+            elif [ "$HOUR" = "08" ] && [ "$MINUTE" = "30" ]; then MODE="ozet"
+            elif [ "$HOUR" = "14" ] && [ "$MINUTE" = "30" ]; then MODE="ozet"
+            elif [ "$HOUR" = "16" ]; then MODE="aksam"
+            else MODE="takip"
+            fi
+          fi
+          echo "Çalışma modu: $MODE"
+          if [ "$MODE" = "aksam" ] || [ "$MODE" = "sabah" ]; then
             python scanner_p1.py
           elif [ "$MODE" = "takip" ]; then
             python portfoy_yonetici.py takip
           elif [ "$MODE" = "ozet" ]; then
             python portfoy_yonetici.py ozet
-          elif [ "$MODE" = "durum" ]; then
-            python portfoy_yonetici.py durum
           fi
         env:
           MOTT_BASE_DIR: "."
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
       - name: State commit et
         run: |
           git config user.name "MOTT Bot"
