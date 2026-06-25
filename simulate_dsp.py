@@ -25,7 +25,7 @@ PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scanner_dsp import (
-    DspScanner, YfDataAdapter, TvDataAdapter,
+    DspScanner, RealDataAdapter,
     MockDataAdapter, SYMBOL_UNIVERSE_SAMPLE, ScanResult
 )
 from dsp_strategies import XoverParams
@@ -443,10 +443,10 @@ def main():
 
     if use_tv:
         print("Veri: TradingView")
-        adapter = TvDataAdapter()
+        adapter = RealDataAdapter()
     else:
         print("Veri: yfinance")
-        adapter = YfDataAdapter()
+        adapter = RealDataAdapter()
 
     # 2. Tara
     scanner = DspScanner(
