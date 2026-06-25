@@ -601,7 +601,19 @@ def vm_gonder_p2(payload: dict | list, scan_time: str, scan_label: str, mod: str
         with open(state_file, "w", encoding="utf-8") as fh:
             json.dump(existing, fh, indent=2, ensure_ascii=False)
         n = len(payload) if isinstance(payload, list) else len(payload.get("signals", []))
-        log.info("P2 state_p2.json yazıldı: %d sinyal, mod=%s", n, mod)
+        
+        # tarama_listesi_p2.json — portfoy_yonetici.py için
+        if mod != "teyit":
+            tarama_file = BASE_DIR / "tarama_listesi_p2.json"
+            try:
+                signals = payload if isinstance(payload, list) else payload.get("signals", [])
+                with open(tarama_file, "w", encoding="utf-8") as fh:
+                    json.dump({"scan_time": scan_time, "scan_label": scan_label,
+                               "signals": signals}, fh, indent=2, ensure_ascii=False)
+                log.info("P2 tarama_listesi_p2.json yazıldı")
+            except Exception as ex:
+                log.warning("tarama_listesi_p2.json yazma hatası: %s", ex)
+                log.info("P2 state_p2.json yazıldı: %d sinyal, mod=%s", n, mod)
         return {"status": "ok", "n": n, "mod": mod}
     except Exception as e:
         log.warning("state_p2.json yazma hatası: %s", e)
