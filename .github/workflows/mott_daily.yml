@@ -194,8 +194,11 @@ jobs:
         run: |
           git config user.name "MOTT Bot"
           git config user.email "bot@mott"
-          git pull --rebase origin main
-          git add state_p2.json || true
+          git add state_p2.json tarama_listesi_p2.json portfoy_p2.json || true
+          git stash || true
+          git pull --rebase origin main || true
+          git stash pop || true
+          git add state_p2.json tarama_listesi_p2.json portfoy_p2.json || true
           git diff --cached --quiet || git commit -m "P2-SMC tarama: $(date +'%Y-%m-%d')"
           git push origin HEAD:main
 
