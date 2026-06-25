@@ -2,8 +2,12 @@ name: MOTT Günlük Tarama — P1 + P2 + P3
 
 on:
   schedule:
-    # Her iş günü 16:05 UTC = 19:05 TSİ (BIST kapanış sonrası)
-    - cron: '5 16 * * 1-5'
+    - cron: '5 16 * * 1-5'    # 19:05 TSİ — akşam tam tarama (P1+P2+P3+P4)
+    - cron: '0 6 * * 1-5'     # 09:00 TSİ — sabah değerlendirmesi (P1+P2)
+    - cron: '0 8 * * 1-5'     # 11:00 TSİ — ilk alım (P1+P2)
+    - cron: '30 8 * * 1-5'    # 11:30 TSİ — portföy özeti (P1+P2)
+    - cron: '0 9,10,11,12,13,14 * * 1-5'  # 12-17 TSİ — saatlik takip (P1+P2+P4)
+    - cron: '30 14 * * 1-5'   # 17:30 TSİ — kapanış özeti (P1+P2)
   workflow_dispatch:
     inputs:
       run_mode:
@@ -12,12 +16,12 @@ on:
         default: 'aksam'
         type: choice
         options:
-          - aksam      # Akşam tam tarama (varsayılan)
-          - sabah      # 09:00 sabah değerlendirmesi
-          - takip      # Gün içi saatlik takip
-          - ozet       # Portföy özeti
-          - durum      # Sadece durum raporu
-
+          - aksam
+          - sabah
+          - alim
+          - ozet
+          - takip
+          - kapani
 # Eşzamanlı çalışmayı engelle — state dosyaları çakışmasın
 concurrency:
   group: mott-daily
@@ -81,6 +85,7 @@ jobs:
       contents: write
     # P3 bitmeden başlama — state çakışmasını önle
     needs: p3-dsp
+    if: always()
 
     steps:
       - name: Repo çek
