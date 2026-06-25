@@ -3,10 +3,10 @@
     "GOODY": {
       "symbol": "GOODY",
       "giris_fiyat": 20.420000076293945,
-      "guncel_fiyat": 20.559999465942383,
+      "guncel_fiyat": 20.31999969482422,
       "lotlar": 612,
-      "pnl_pct": 0.69,
-      "gun": 1,
+      "pnl_pct": -0.49,
+      "gun": 2,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -18,10 +18,10 @@
     "BALSU": {
       "symbol": "BALSU",
       "giris_fiyat": 19.65999984741211,
-      "guncel_fiyat": 19.350000381469727,
+      "guncel_fiyat": 19.43000030517578,
       "lotlar": 635,
-      "pnl_pct": -1.58,
-      "gun": 1,
+      "pnl_pct": -1.17,
+      "gun": 2,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -33,10 +33,10 @@
     "ISGSY": {
       "symbol": "ISGSY",
       "giris_fiyat": 134.8000030517578,
-      "guncel_fiyat": 134.60000610351562,
+      "guncel_fiyat": 133.89999389648438,
       "lotlar": 92,
-      "pnl_pct": -0.15,
-      "gun": 1,
+      "pnl_pct": -0.67,
+      "gun": 2,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -48,10 +48,10 @@
     "MOGAN": {
       "symbol": "MOGAN",
       "giris_fiyat": 14.890000343322754,
-      "guncel_fiyat": 14.829999923706055,
+      "guncel_fiyat": 14.75,
       "lotlar": 839,
-      "pnl_pct": -0.4,
-      "gun": 1,
+      "pnl_pct": -0.94,
+      "gun": 2,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -66,7 +66,7 @@
       "guncel_fiyat": 4.53000020980835,
       "lotlar": 2790,
       "pnl_pct": 1.12,
-      "gun": 1,
+      "gun": 2,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -89,9 +89,15 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-06-25",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-06-25T11:18:48.969985",
+  "last_run": "2026-06-25T11:32:12.100147",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
