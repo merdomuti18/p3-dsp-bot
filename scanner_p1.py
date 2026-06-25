@@ -330,7 +330,7 @@ def send_telegram(msg):
     )
     _footer = "\n🟡 ━━━━━━━━━━━━━━━━━━━━━━━━"
     msg = _header + msg + _footer
-    
+
     if not BOT_TOKEN or not CHAT_ID:
         log.warning("Telegram ayarları eksik")
         return
@@ -491,9 +491,13 @@ def run_scan():
     signal_records = _build_signal_records(scan_time, scan_label, strategy_results)
     _append_signal_log(signal_records)
     vm_gonder(signal_records, scan_time, scan_label)
-    msg = format_message(res_gt, res_gtd, res_alpha, res_zkn, res_ztan, res_mr, res_kbms,
-                         res_dip, scan_time, scan_label, len(active_symbols))
-    send_telegram(msg)
+    try:
+        msg = format_message(res_gt, res_gtd, res_alpha, res_zkn, res_ztan, res_mr, res_kbms,
+                             res_dip, scan_time, scan_label, len(active_symbols))
+        send_telegram(msg)
+        log.info("P1 Telegram gonderildi")
+    except Exception as e:
+        log.error("P1 Telegram hatasi: %s", e, exc_info=True)
     log.info("P1 tarama tamamlandi: %s sinyal", len(signal_records))
 
 
