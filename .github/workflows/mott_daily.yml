@@ -258,7 +258,7 @@ jobs:
           restore-keys: ozet-pip-
 
       - name: Bağımlılıkları yükle
-        run: pip install requests
+        run: pip install requests pytz
 
       - name: Günlük özet gönder
         run: python mott_ozet.py
@@ -269,3 +269,4 @@ jobs:
           P2_STATUS: ${{ needs.p2-smc.result }}
           P3_STATUS: ${{ needs.p3-dsp.result }}
           P4_STATUS: ${{ needs.p4-meta.result }}
+
