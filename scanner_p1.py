@@ -345,8 +345,7 @@ def send_telegram(msg):
 
 def vm_gonder(signal_records, scan_time, scan_label):
     """
-    Eski: VM Flask API'ye HTTP POST
-    Yeni: Direkt JSON dosyasına yaz — GitHub Actions uyumlu
+    state_p1.json ve tarama_listesi.json'a yaz — GitHub Actions uyumlu.
     """
     payload = {
         "scan_time":  scan_time,
@@ -354,6 +353,7 @@ def vm_gonder(signal_records, scan_time, scan_label):
         "signals":    signal_records,
         "semboller":  [x["symbol"] for x in signal_records],
     }
+    # state_p1.json — P4 meta portföy için
     state_file = BASE_DIR / "state_p1.json"
     try:
         existing = {}
@@ -365,10 +365,19 @@ def vm_gonder(signal_records, scan_time, scan_label):
         with open(state_file, "w", encoding="utf-8") as fh:
             json.dump(existing, fh, indent=2, ensure_ascii=False)
         log.info("P1 tarama state_p1.json'a yazıldı: %d sinyal", len(signal_records))
-        return {"status": "ok", "n": len(signal_records)}
     except Exception as exc:
         log.warning("state_p1.json yazma hatası: %s", exc)
-        return {}
+
+    # tarama_listesi.json — portfoy_yonetici.py için
+    tarama_file = BASE_DIR / "tarama_listesi.json"
+    try:
+        with open(tarama_file, "w", encoding="utf-8") as fh:
+            json.dump(payload, fh, indent=2, ensure_ascii=False)
+        log.info("P1 tarama tarama_listesi.json'a yazıldı")
+    except Exception as exc:
+        log.warning("tarama_listesi.json yazma hatası: %s", exc)
+
+    return {"status": "ok", "n": len(signal_records)}
 
 def format_message(res_gt, res_gtd, res_alpha, res_zkn, res_ztan, res_mr, res_kbms, res_dip, scan_time, scan_label, n_symbols):
     set_gt   = {r["symbol"] for r in res_gt}
