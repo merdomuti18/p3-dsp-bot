@@ -167,7 +167,7 @@ def calc_performance(state: dict) -> dict:
             "n_closed": 0, "win_rate": 0, "avg_pnl": 0,
             "total_pnl": 0, "avg_hold": 0, "best": None, "worst": None
         }
-    pnls  = [t["pnl_pct"] for t in history if t.get("pnl_pct") is not None]
+    pnls  = [t["pnl_pct"] for t in history if t.get("pnl_pct") is not None and not (t["pnl_pct"] != t["pnl_pct"])]
     holds = [t["holding_days"] for t in history if t.get("holding_days")]
     wins  = sum(1 for p in pnls if p > 0)
 
@@ -560,4 +560,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-ENDOFFILE
+
