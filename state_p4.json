@@ -1,27 +1,12 @@
 {
   "pozisyonlar": {
-    "BORLS": {
-      "symbol": "BORLS",
-      "giris_fiyat": 7.599999904632568,
-      "guncel_fiyat": 7.599999904632568,
-      "lotlar": 1315,
-      "pnl_pct": 0.0,
-      "gun": 5,
-      "giris_tarih": "2026-06-25",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P1"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
     "MAKIM": {
       "symbol": "MAKIM",
       "giris_fiyat": 19.780000686645508,
-      "guncel_fiyat": 19.780000686645508,
+      "guncel_fiyat": 19.040000915527344,
       "lotlar": 505,
-      "pnl_pct": 0.0,
-      "gun": 5,
+      "pnl_pct": -3.74,
+      "gun": 6,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -33,10 +18,10 @@
     "CELHA": {
       "symbol": "CELHA",
       "giris_fiyat": 19.049999237060547,
-      "guncel_fiyat": 19.049999237060547,
+      "guncel_fiyat": 18.809999465942383,
       "lotlar": 524,
-      "pnl_pct": 0.0,
-      "gun": 5,
+      "pnl_pct": -1.26,
+      "gun": 6,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -45,13 +30,13 @@
       "coklu_onay": false,
       "strateji": "P4"
     },
-    "GOODY": {
-      "symbol": "GOODY",
-      "giris_fiyat": 22.100000381469727,
-      "guncel_fiyat": 22.100000381469727,
-      "lotlar": 452,
-      "pnl_pct": 0.0,
-      "gun": 0,
+    "BALSU": {
+      "symbol": "BALSU",
+      "giris_fiyat": 18.670000076293945,
+      "guncel_fiyat": 18.469999313354492,
+      "lotlar": 535,
+      "pnl_pct": -1.07,
+      "gun": 1,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -61,20 +46,35 @@
       "coklu_onay": true,
       "strateji": "P4"
     },
-    "BALSU": {
-      "symbol": "BALSU",
-      "giris_fiyat": 18.670000076293945,
-      "guncel_fiyat": 18.670000076293945,
-      "lotlar": 535,
+    "GOODY": {
+      "symbol": "GOODY",
+      "giris_fiyat": 17.90999984741211,
+      "guncel_fiyat": 17.90999984741211,
+      "lotlar": 558,
       "pnl_pct": 0.0,
       "gun": 0,
-      "giris_tarih": "2026-06-25",
+      "giris_tarih": "2026-06-26",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
         "P1",
         "P2"
       ],
       "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "BORLS": {
+      "symbol": "BORLS",
+      "giris_fiyat": 7.070000171661377,
+      "guncel_fiyat": 7.070000171661377,
+      "lotlar": 1414,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-06-26",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P1"
+      ],
+      "coklu_onay": false,
       "strateji": "P4"
     }
   },
@@ -132,6 +132,28 @@
       "neden": "MAX_GUN",
       "giris_tarih": "2026-06-25",
       "cikis_tarih": "2026-06-25",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "BORLS",
+      "giris_fiyat": 7.599999904632568,
+      "cikis_fiyat": 7.070000171661377,
+      "pnl_pct": -6.97,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-06-25",
+      "cikis_tarih": "2026-06-26",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "GOODY",
+      "giris_fiyat": 22.100000381469727,
+      "cikis_fiyat": 17.90999984741211,
+      "pnl_pct": -18.96,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-06-25",
+      "cikis_tarih": "2026-06-26",
       "strateji": "P4"
     }
   ],
@@ -201,9 +223,15 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-06-26",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-06-25T22:33:39.693256",
+  "last_run": "2026-06-26T13:36:58.846103",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
