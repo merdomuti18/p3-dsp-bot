@@ -3,10 +3,10 @@
     "MAKIM": {
       "symbol": "MAKIM",
       "giris_fiyat": 19.780000686645508,
-      "guncel_fiyat": 19.040000915527344,
+      "guncel_fiyat": 19.229999542236328,
       "lotlar": 505,
-      "pnl_pct": -3.74,
-      "gun": 6,
+      "pnl_pct": -2.78,
+      "gun": 7,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -18,10 +18,10 @@
     "CELHA": {
       "symbol": "CELHA",
       "giris_fiyat": 19.049999237060547,
-      "guncel_fiyat": 18.809999465942383,
+      "guncel_fiyat": 18.829999923706055,
       "lotlar": 524,
-      "pnl_pct": -1.26,
-      "gun": 6,
+      "pnl_pct": -1.15,
+      "gun": 7,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -33,10 +33,10 @@
     "BALSU": {
       "symbol": "BALSU",
       "giris_fiyat": 18.670000076293945,
-      "guncel_fiyat": 18.469999313354492,
+      "guncel_fiyat": 18.59000015258789,
       "lotlar": 535,
-      "pnl_pct": -1.07,
-      "gun": 1,
+      "pnl_pct": -0.43,
+      "gun": 2,
       "giris_tarih": "2026-06-25",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -52,7 +52,7 @@
       "guncel_fiyat": 17.90999984741211,
       "lotlar": 558,
       "pnl_pct": 0.0,
-      "gun": 0,
+      "gun": 1,
       "giris_tarih": "2026-06-26",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -65,10 +65,10 @@
     "BORLS": {
       "symbol": "BORLS",
       "giris_fiyat": 7.070000171661377,
-      "guncel_fiyat": 7.070000171661377,
+      "guncel_fiyat": 6.909999847412109,
       "lotlar": 1414,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -2.26,
+      "gun": 1,
       "giris_tarih": "2026-06-26",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -229,9 +229,15 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-06-26",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-06-26T13:36:58.846103",
+  "last_run": "2026-06-26T16:31:12.335231",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
