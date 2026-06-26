@@ -25,11 +25,11 @@
       "score": 0.122,
       "margin": 0.1075
     },
-    "ORGE": {
-      "entry_date": "2026-06-25",
-      "entry_price": NaN,
-      "score": 0.1247,
-      "margin": 0.0942
+    "ISGYO": {
+      "entry_date": "2026-06-26",
+      "entry_price": 26.9,
+      "score": 0.1048,
+      "margin": 0.0493
     }
   },
   "history": [
@@ -95,6 +95,15 @@
       "exit_price": NaN,
       "pnl_pct": NaN,
       "holding_days": 2
+    },
+    {
+      "symbol": "ORGE",
+      "entry_date": "2026-06-25",
+      "exit_date": "2026-06-26",
+      "entry_price": NaN,
+      "exit_price": 120.5,
+      "pnl_pct": NaN,
+      "holding_days": 1
     }
   ],
   "scan_log": [
@@ -290,6 +299,24 @@
       ],
       "exits": [
         "SKBNK"
+      ]
+    },
+    {
+      "date": "2026-06-26",
+      "scanned": 79,
+      "long_signals": 53,
+      "top5": [
+        "YKBNK",
+        "AKBNK",
+        "ODAS",
+        "GLYHO",
+        "ISGYO"
+      ],
+      "entries": [
+        "ISGYO"
+      ],
+      "exits": [
+        "ORGE"
       ]
     }
   ],
@@ -611,6 +638,14 @@
     "log": [
       {
         "date": "2026-06-25",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-06-26",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
