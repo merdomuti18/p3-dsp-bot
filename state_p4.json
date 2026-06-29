@@ -1,28 +1,12 @@
 {
   "pozisyonlar": {
-    "BALSU": {
-      "symbol": "BALSU",
-      "giris_fiyat": 18.670000076293945,
-      "guncel_fiyat": 20.520000457763672,
-      "lotlar": 535,
-      "pnl_pct": 9.91,
-      "gun": 6,
-      "giris_tarih": "2026-06-25",
-      "meta_score": 0.3666666666666667,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "coklu_onay": true,
-      "strateji": "P4"
-    },
     "BORLS": {
       "symbol": "BORLS",
       "giris_fiyat": 7.070000171661377,
-      "guncel_fiyat": 7.53000020980835,
+      "guncel_fiyat": 6.960000038146973,
       "lotlar": 1414,
-      "pnl_pct": 6.51,
-      "gun": 5,
+      "pnl_pct": -1.56,
+      "gun": 6,
       "giris_tarih": "2026-06-26",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -34,10 +18,10 @@
     "MAKIM": {
       "symbol": "MAKIM",
       "giris_fiyat": 19.229999542236328,
-      "guncel_fiyat": 19.350000381469727,
+      "guncel_fiyat": 19.25,
       "lotlar": 520,
-      "pnl_pct": 0.62,
-      "gun": 1,
+      "pnl_pct": 0.1,
+      "gun": 2,
       "giris_tarih": "2026-06-26",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -49,10 +33,10 @@
     "CELHA": {
       "symbol": "CELHA",
       "giris_fiyat": 18.829999923706055,
-      "guncel_fiyat": 18.170000076293945,
+      "guncel_fiyat": 20.079999923706055,
       "lotlar": 531,
-      "pnl_pct": -3.51,
-      "gun": 1,
+      "pnl_pct": 6.64,
+      "gun": 2,
       "giris_tarih": "2026-06-26",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -63,12 +47,28 @@
     },
     "GOODY": {
       "symbol": "GOODY",
-      "giris_fiyat": 19.889999389648438,
-      "guncel_fiyat": 19.889999389648438,
-      "lotlar": 502,
+      "giris_fiyat": 17.290000915527344,
+      "guncel_fiyat": 17.290000915527344,
+      "lotlar": 578,
       "pnl_pct": 0.0,
       "gun": 0,
-      "giris_tarih": "2026-06-26",
+      "giris_tarih": "2026-06-29",
+      "meta_score": 0.3666666666666667,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "BALSU": {
+      "symbol": "BALSU",
+      "giris_fiyat": 17.5,
+      "guncel_fiyat": 17.5,
+      "lotlar": 571,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-06-29",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
         "P1",
@@ -188,6 +188,28 @@
       "giris_tarih": "2026-06-26",
       "cikis_tarih": "2026-06-26",
       "strateji": "P4"
+    },
+    {
+      "symbol": "BALSU",
+      "giris_fiyat": 18.670000076293945,
+      "cikis_fiyat": 17.5,
+      "pnl_pct": -6.27,
+      "gun": 7,
+      "neden": "STOP",
+      "giris_tarih": "2026-06-25",
+      "cikis_tarih": "2026-06-29",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "GOODY",
+      "giris_fiyat": 19.889999389648438,
+      "cikis_fiyat": 17.290000915527344,
+      "pnl_pct": -13.07,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-06-26",
+      "cikis_tarih": "2026-06-29",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -292,9 +314,15 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-06-29",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-06-26T21:13:08.405409",
+  "last_run": "2026-06-29T17:16:50.136382",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
