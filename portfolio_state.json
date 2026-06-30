@@ -19,17 +19,17 @@
       "score": 0.0952,
       "margin": 0.077
     },
-    "AKBNK": {
-      "entry_date": "2026-06-29",
-      "entry_price": NaN,
-      "score": 0.1508,
-      "margin": 0.1819
-    },
     "SKBNK": {
       "entry_date": "2026-06-30",
       "entry_price": 15.75,
       "score": 0.1457,
       "margin": 0.1662
+    },
+    "YKBNK": {
+      "entry_date": "2026-06-30",
+      "entry_price": NaN,
+      "score": 0.1406,
+      "margin": 0.1767
     }
   },
   "history": [
@@ -149,6 +149,15 @@
       "exit_price": 39.88,
       "pnl_pct": -9.03,
       "holding_days": 8
+    },
+    {
+      "symbol": "AKBNK",
+      "entry_date": "2026-06-29",
+      "exit_date": "2026-06-30",
+      "entry_price": NaN,
+      "exit_price": NaN,
+      "pnl_pct": NaN,
+      "holding_days": 1
     }
   ],
   "scan_log": [
@@ -563,6 +572,24 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-06-30",
+      "scanned": 79,
+      "long_signals": 48,
+      "top5": [
+        "SKBNK",
+        "YKBNK",
+        "ODAS",
+        "GLYHO",
+        "ISGYO"
+      ],
+      "entries": [
+        "YKBNK"
+      ],
+      "exits": [
+        "AKBNK"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -971,6 +998,14 @@
       },
       {
         "date": "2026-06-29",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-06-30",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
