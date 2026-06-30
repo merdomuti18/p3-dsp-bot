@@ -590,6 +590,20 @@
       "exits": [
         "AKBNK"
       ]
+    },
+    {
+      "date": "2026-06-30",
+      "scanned": 79,
+      "long_signals": 48,
+      "top5": [
+        "SKBNK",
+        "YKBNK",
+        "ODAS",
+        "GLYHO",
+        "ISGYO"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -998,6 +1012,14 @@
       },
       {
         "date": "2026-06-29",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-06-30",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
