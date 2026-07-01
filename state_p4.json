@@ -1,27 +1,12 @@
 {
   "pozisyonlar": {
-    "BORLS": {
-      "symbol": "BORLS",
-      "giris_fiyat": 6.909999847412109,
-      "guncel_fiyat": 7.260000228881836,
-      "lotlar": 1447,
-      "pnl_pct": 5.07,
-      "gun": 9,
-      "giris_tarih": "2026-06-29",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P1"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
     "MAKIM": {
       "symbol": "MAKIM",
       "giris_fiyat": 19.049999237060547,
       "guncel_fiyat": 18.25,
       "lotlar": 524,
       "pnl_pct": -4.2,
-      "gun": 5,
+      "gun": 6,
       "giris_tarih": "2026-06-30",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -36,7 +21,7 @@
       "guncel_fiyat": 17.719999313354492,
       "lotlar": 544,
       "pnl_pct": -3.54,
-      "gun": 5,
+      "gun": 6,
       "giris_tarih": "2026-06-30",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -51,7 +36,7 @@
       "guncel_fiyat": 17.6200008392334,
       "lotlar": 578,
       "pnl_pct": 1.91,
-      "gun": 3,
+      "gun": 4,
       "giris_tarih": "2026-06-30",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -67,7 +52,7 @@
       "guncel_fiyat": 17.5,
       "lotlar": 571,
       "pnl_pct": 0.0,
-      "gun": 3,
+      "gun": 4,
       "giris_tarih": "2026-06-30",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -75,6 +60,21 @@
         "P2"
       ],
       "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "BORLS": {
+      "symbol": "BORLS",
+      "giris_fiyat": 7.260000228881836,
+      "guncel_fiyat": 7.260000228881836,
+      "lotlar": 1377,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-01",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P1"
+      ],
+      "coklu_onay": false,
       "strateji": "P4"
     }
   },
@@ -265,6 +265,17 @@
       "giris_tarih": "2026-06-29",
       "cikis_tarih": "2026-06-30",
       "strateji": "P4"
+    },
+    {
+      "symbol": "BORLS",
+      "giris_fiyat": 6.909999847412109,
+      "cikis_fiyat": 7.260000228881836,
+      "pnl_pct": 5.07,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-06-29",
+      "cikis_tarih": "2026-07-01",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -453,9 +464,15 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-01",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-07-01T16:45:59.718871",
+  "last_run": "2026-07-01T17:04:01.461440",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
