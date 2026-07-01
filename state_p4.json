@@ -6,7 +6,7 @@
       "guncel_fiyat": 18.25,
       "lotlar": 524,
       "pnl_pct": -4.2,
-      "gun": 6,
+      "gun": 7,
       "giris_tarih": "2026-06-30",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -21,7 +21,7 @@
       "guncel_fiyat": 17.719999313354492,
       "lotlar": 544,
       "pnl_pct": -3.54,
-      "gun": 6,
+      "gun": 7,
       "giris_tarih": "2026-06-30",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -36,7 +36,7 @@
       "guncel_fiyat": 17.6200008392334,
       "lotlar": 578,
       "pnl_pct": 1.91,
-      "gun": 4,
+      "gun": 5,
       "giris_tarih": "2026-06-30",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -52,7 +52,7 @@
       "guncel_fiyat": 17.5,
       "lotlar": 571,
       "pnl_pct": 0.0,
-      "gun": 4,
+      "gun": 5,
       "giris_tarih": "2026-06-30",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -68,7 +68,7 @@
       "guncel_fiyat": 7.260000228881836,
       "lotlar": 1377,
       "pnl_pct": 0.0,
-      "gun": 0,
+      "gun": 1,
       "giris_tarih": "2026-07-01",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -470,9 +470,15 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-01",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-07-01T17:04:01.461440",
+  "last_run": "2026-07-01T17:25:14.405502",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
