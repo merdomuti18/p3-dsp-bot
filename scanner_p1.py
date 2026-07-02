@@ -27,7 +27,7 @@ _load_env()
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
 
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_TOKEN", ""))
 CHAT_ID   = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 # GitHub Actions'ta state dosyası repo kök dizininde
@@ -468,8 +468,7 @@ def run_scan():
     active_symbols = aktif_hisse_listesi()
     ok = veri_hazirla(active_symbols)
     if ok == 0:
-        msg = f"\u26a0\ufe0f <b>BIST Tarama - {scan_label}</b>\nVeri \u00e7ekilemedi."
-        send_telegram(msg)
+        log.error("P1 tarama: veri cekilemedi")
         return
 
     res_gt, res_gtd, res_alpha, res_zkn = [], [], [], []
@@ -500,14 +499,7 @@ def run_scan():
     signal_records = _build_signal_records(scan_time, scan_label, strategy_results)
     _append_signal_log(signal_records)
     vm_gonder(signal_records, scan_time, scan_label)
-    try:
-        msg = format_message(res_gt, res_gtd, res_alpha, res_zkn, res_ztan, res_mr, res_kbms,
-                             res_dip, scan_time, scan_label, len(active_symbols))
-        send_telegram(msg)
-        log.info("P1 Telegram gonderildi")
-    except Exception as e:
-        log.error("P1 Telegram hatasi: %s", e, exc_info=True)
-    log.info("P1 tarama tamamlandi: %s sinyal", len(signal_records))
+    log.info("P1 tarama tamamlandi: %s sinyal (Telegram: yalnizca islem varsa portfoy_yonetici uzerinden)", len(signal_records))
 
 
 if __name__ == "__main__":

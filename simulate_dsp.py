@@ -148,9 +148,12 @@ def _get_price(symbol: str) -> float | None:
     try:
         import yfinance as yf
         ticker = f"{symbol}.IS" if not symbol.endswith(".IS") else symbol
-        df = yf.Ticker(ticker).history(period="3d")
+        df = yf.Ticker(ticker).history(period="5d")
+        df = df.dropna(subset=["Close"])
         if not df.empty:
-            return round(float(df["Close"].iloc[-1]), 3)
+            price = float(df["Close"].iloc[-1])
+            if price == price:  # NaN kontrolü (NaN != NaN)
+                return round(price, 3)
     except Exception:
         pass
     return None
@@ -477,23 +480,6 @@ def main():
         if monitor_result.has_alerts():
             print(f"⚠️  Drift tespit edildi: "
                   f"{[a.symbol for a in monitor_result.alerts]}")
-            # Telegram bildirimi — notifier varsa gönder
-            _tg_token   = os.getenv("TELEGRAM_TOKEN", "")
-            _tg_chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
-            if _tg_token and _tg_chat_id:
-                try:
-                    import requests as _req
-                    _req.post(
-                        f"https://api.telegram.org/bot{_tg_token}/sendMessage",
-                        json={
-                            "chat_id":    _tg_chat_id,
-                            "text":       monitor.telegram_message(monitor_result),
-                            "parse_mode": "Markdown",
-                        },
-                        timeout=10,
-                    )
-                except Exception as _e:
-                    logger.warning(f"Telegram monitör bildirimi hatası: {_e}")
         else:
             print("✅ Tüm semboller stabil.")
     except Exception as e:
@@ -508,25 +494,6 @@ def main():
         corr_result = run_portfolio_correlation(state)
         if corr_result:
             print(corr_result.summary_line())
-            # HIGH/CRITICAL ise Telegram'a gönder
-            if corr_result.risk_level in ("HIGH", "CRITICAL"):
-                _tg_token   = os.getenv("TELEGRAM_TOKEN", "")
-                _tg_chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
-                if _tg_token and _tg_chat_id:
-                    try:
-                        import requests as _req
-                        _corr_obj = PortfolioCorrelation()
-                        _req.post(
-                            f"https://api.telegram.org/bot{_tg_token}/sendMessage",
-                            json={
-                                "chat_id":    _tg_chat_id,
-                                "text":       _corr_obj.telegram_message(corr_result),
-                                "parse_mode": "Markdown",
-                            },
-                            timeout=10,
-                        )
-                    except Exception as _e:
-                        logger.warning(f"Telegram korelasyon bildirimi hatası: {_e}")
         else:
             print("Korelasyon: yeterli pozisyon yok (min 2).")
     except Exception as e:
@@ -555,18 +522,22 @@ def main():
     archive = HISTORY_DIR / f"{date.today().isoformat()}.html"
     archive.write_text(html, encoding="utf-8")
 
-    # P3 Telegram bildirimi
-    try:
-        from mott_telegram import p3_mesaj, telegram_gonder
-        tg_mesaj = p3_mesaj(
-            top_longs=scan.top_longs,
-            portfoy=state,
-            monitor_alert=monitor_result.has_alerts() if monitor_result else False,
-            corr_risk=corr_result.risk_level if corr_result else "LOW",
-        )
-        telegram_gonder(tg_mesaj)
-    except Exception as e:
-        print(f"P3 Telegram hatası: {e}")
+    # P3 Telegram — yalnızca akşam modunda ve alım/satım varsa
+    if os.getenv("MOTT_MODE", "aksam") == "aksam":
+        try:
+            from mott_telegram import telegram_islem_gonder
+            telegram_islem_gonder(
+                "P3",
+                sinyaller=[],
+                portfoy=state,
+                giris=actions.get("entries"),
+                cikis=actions.get("exits"),
+                top_longs=scan.top_longs,
+                monitor_alert=monitor_result.has_alerts() if monitor_result else False,
+                corr_risk=corr_result.risk_level if corr_result else "LOW",
+            )
+        except Exception as e:
+            print(f"P3 Telegram hatası: {e}")
     print(f"{'='*55}\nSimülasyon tamamlandı ✅\n")
 
 

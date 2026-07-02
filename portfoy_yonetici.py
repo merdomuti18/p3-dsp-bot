@@ -60,7 +60,7 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-BOT_TOKEN     = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+BOT_TOKEN     = os.environ.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_TOKEN", ""))
 CHAT_ID       = os.environ.get("TELEGRAM_CHAT_ID", "")
 # FLASK_PORT kaldırıldı — GitHub Actions Flask sunucusu kullanmaz
 FLASK_API_KEY = os.environ.get("FLASK_API_KEY", "")
@@ -400,9 +400,52 @@ def p2_ozet_mesaji(portfoy: dict, saat_label: str) -> str:
     return "\n".join(lines)
 
 
+def _p2_acik_detay(portfoy: dict) -> list[dict]:
+    detay = []
+    for sym, pos in portfoy.get("pozisyonlar", {}).items():
+        f = guncel_fiyat(sym)
+        ret = ((f - pos["giris_f"]) / pos["giris_f"] * 100) if f and pos.get("giris_f") else pos.get("pnl_pct")
+        detay.append({"symbol": sym, "pnl_pct": ret})
+    return detay
+
+
+def _p2_mott_portfoy(portfoy: dict) -> dict:
+    prev = p2_portfolio_preview(portfoy)
+    return {
+        "pozisyonlar":   portfoy.get("pozisyonlar", {}),
+        "trade_history": portfoy.get("trade_history", []),
+        "baslangic":     portfoy.get("baslangic", P2_SERMAYE_BASLANGIC),
+        "equity":        prev["equity"],
+        "acik_detay":    _p2_acik_detay(portfoy),
+    }
+
+
+def _p2_telegram_islem(
+    portfoy: dict,
+    giris: list | None = None,
+    cikis: list | None = None,
+    mesajlar: list | None = None,
+) -> None:
+    """Yalnızca alım/satım varsa P2 formatında Telegram gönder."""
+    try:
+        from mott_telegram import telegram_islem_gonder, yukle_p2_sinyaller
+        telegram_islem_gonder(
+            "P2",
+            sinyaller=yukle_p2_sinyaller(),
+            portfoy=_p2_mott_portfoy(portfoy),
+            giris=giris or [],
+            cikis=cikis or [],
+            mesajlar=mesajlar,
+        )
+    except Exception as exc:
+        log.warning("P2 Telegram hatasi: %s", exc)
+
+
 def p2_saatlik_kontrol(makro_karar: str):
     now = datetime.now()
+    p2_teyit_senkronize_et()
     portfoy = p2_portfoy_yukle()
+    onceki = set(portfoy["pozisyonlar"].keys())
     mesajlar = []
     if portfoy["pozisyonlar"]:
         portfoy, islem_msg = p2_pozisyon_kontrol(portfoy)
@@ -414,10 +457,14 @@ def p2_saatlik_kontrol(makro_karar: str):
         portfoy["bekleyen_al"] = [b for b in bekleyen if b["symbol"] not in set(alinan)]
     portfoy["last_hourly_check_time"] = now.strftime("%d.%m.%Y %H:%M")
     p2_portfoy_kaydet(portfoy)
-    if mesajlar or now.hour == 11:
-        ozet = p2_ozet_mesaji(portfoy, now.strftime("%d.%m.%Y %H:%M"))
-        parca = "\n".join(mesajlar) + "\n\n--------------------\n" + ozet if mesajlar else ozet
-        send_telegram(parca)
+    if mesajlar:
+        sonra = set(portfoy["pozisyonlar"].keys())
+        _p2_telegram_islem(
+            portfoy,
+            giris=list(sonra - onceki),
+            cikis=list(onceki - sonra),
+            mesajlar=mesajlar,
+        )
 
 
 def p2_gun_sonu_guncelle():
@@ -426,6 +473,79 @@ def p2_gun_sonu_guncelle():
         for pos in portfoy["pozisyonlar"].values():
             pos["gun"] = pos.get("gun", 0) + 1
         p2_portfoy_kaydet(portfoy)
+
+
+def p2_adaylari_yukle_ve_hazirla():
+    """
+    Akşam SMC taramasından (state_p2.json) adayları oku,
+    portfoy_p2.json'un bekleyen_al listesine aktar.
+
+    scanner_smc.py yalnızca tarama yapar (state_p2.json yazar) — gerçek
+    pozisyon açma/kapama işlemleri burada, portfoy_p2.json üzerinden yapılır.
+    Bu köprü olmadan P2 hiçbir zaman gerçek işlem yapamaz.
+    """
+    state_file = BASE_DIR / "state_p2.json"
+    if not state_file.exists():
+        log.info("P2 aday hazırlama: state_p2.json yok")
+        return
+    try:
+        with open(state_file, encoding="utf-8") as fh:
+            state = json.load(fh)
+    except Exception as exc:
+        log.warning("P2 state okunamadı: %s", exc)
+        return
+
+    sinyaller = state.get("tarama", {}).get("signals", [])
+    portfoy = p2_portfoy_yukle()
+    mevcut = set(portfoy["pozisyonlar"].keys())
+    bekleyen = []
+    for s in sinyaller:
+        sym = s.get("symbol")
+        if not sym or sym in mevcut:
+            continue
+        skor = float(s.get("score", 0))
+        if skor < P2_MIN_SCORE:
+            continue
+        bekleyen.append({
+            "symbol": sym,
+            "score": skor,
+            "final_score": skor,
+            "verdict": s.get("verdict", ""),
+            "signals": s.get("signals", []),
+            "teyit_skoru": 0.0,
+            "teyit_var": False,
+            "queued_at": state.get("last_scan", ""),
+            "attempt_count": 0,
+            "last_attempt_reason": "",
+        })
+    portfoy["bekleyen_al"] = bekleyen
+    portfoy["open_attempts_today"] = []
+    p2_portfoy_kaydet(portfoy)
+    log.info("P2 aday hazırlandı: %d aday bekleyen_al'a eklendi", len(bekleyen))
+
+
+def p2_teyit_senkronize_et():
+    """state_p2.json'daki (scanner_smc.py teyit modu) teyit skorlarını
+    portfoy_p2.json'un bekleyen_al listesine aktarır."""
+    state_file = BASE_DIR / "state_p2.json"
+    if not state_file.exists():
+        return
+    try:
+        with open(state_file, encoding="utf-8") as fh:
+            state = json.load(fh)
+    except Exception:
+        return
+    teyit_map = {b["symbol"]: b for b in state.get("bekleyen_al", [])}
+    if not teyit_map:
+        return
+    portfoy = p2_portfoy_yukle()
+    for item in portfoy.get("bekleyen_al", []):
+        t = teyit_map.get(item["symbol"])
+        if t:
+            item["teyit_skoru"] = t.get("teyit_skoru", 0)
+            item["teyit_var"] = t.get("teyit_var", False)
+            item["final_score"] = item.get("score", 0) + t.get("teyit_skoru", 0)
+    p2_portfoy_kaydet(portfoy)
 
 def portfoy_yukle() -> dict:
     if PORTFOY_FILE.exists():
@@ -524,6 +644,47 @@ def retry_bekleyenleri_filtrele(bekleyenler: list) -> list:
     return [b for b in bekleyenler
             if b.get("last_attempt_reason", "") in RETRY_REASONS
             or b.get("attempt_count", 0) == 0]
+
+
+def _p1_acik_detay(portfoy: dict) -> list[dict]:
+    detay = []
+    for sym, pos in portfoy.get("pozisyonlar", {}).items():
+        f = guncel_fiyat(sym)
+        ret = ((f - pos["giris_f"]) / pos["giris_f"] * 100) if f and pos.get("giris_f") else None
+        detay.append({"symbol": sym, "pnl_pct": ret})
+    return detay
+
+
+def _p1_mott_portfoy(portfoy: dict) -> dict:
+    prev = portfolio_preview(portfoy)
+    return {
+        "pozisyonlar":   portfoy.get("pozisyonlar", {}),
+        "trade_history": portfoy.get("trade_history", []),
+        "baslangic":     portfoy.get("baslangic", SERMAYE_BASLANGIC),
+        "equity":        prev["equity"],
+        "acik_detay":    _p1_acik_detay(portfoy),
+    }
+
+
+def _p1_telegram_islem(
+    portfoy: dict,
+    giris: list | None = None,
+    cikis: list | None = None,
+    mesajlar: list | None = None,
+) -> None:
+    """Yalnızca alım/satım varsa P1 formatında Telegram gönder."""
+    try:
+        from mott_telegram import telegram_islem_gonder, yukle_p1_sinyaller
+        telegram_islem_gonder(
+            "P1",
+            sinyaller=yukle_p1_sinyaller(),
+            portfoy=_p1_mott_portfoy(portfoy),
+            giris=giris or [],
+            cikis=cikis or [],
+            mesajlar=mesajlar,
+        )
+    except Exception as exc:
+        log.warning("P1 Telegram hatasi: %s", exc)
 
 
 def send_telegram(msg: str, parse_mode: str = "HTML"):
@@ -1309,8 +1470,7 @@ def sabah_09_akisi():
         lines.append("   - Bug\u00fcn g\u00fc\u00e7l\u00fc aday yok")
     if elinenler:
         lines.append(f"\n\U0001f6ab LGBM filtresiyle elinen: {', '.join(x['symbol'] for x in elinenler[:5])}")
-    lines += ["", "--------------------", portfoy_ozet_mesaji(portfoy, saat_label, model_status)]
-    send_telegram("\n".join(lines))
+    log.info("Sabah degerlendirmesi tamamlandi (Telegram: islem yok, atlandi)")
     return karar
 
 
@@ -1318,26 +1478,30 @@ def saat_11_alim(makro_karar: str):
     now = datetime.now()
     viop_bias = viop_bias_hesapla()
     portfoy = portfoy_yukle()
+    onceki = set(portfoy["pozisyonlar"].keys())
     portfoy, mesajlar, summary = alim_denemesi(portfoy, makro_karar, viop_bias, now)
     portfoy["last_hourly_check_time"] = now.strftime("%d.%m.%Y %H:%M")
     portfoy_kaydet(portfoy)
     if mesajlar:
-        _, model_status = lgbm_model_yukle()
-        send_telegram("\n".join(mesajlar) + "\n\n--------------------\n" +
-                      portfoy_ozet_mesaji(portfoy, now.strftime("%d.%m.%Y %H:%M"), model_status))
+        sonra = set(portfoy["pozisyonlar"].keys())
+        _p1_telegram_islem(
+            portfoy,
+            giris=list(sonra - onceki),
+            cikis=list(onceki - sonra),
+            mesajlar=mesajlar,
+        )
 
 
 def saat_1130_ozeti():
-    now = datetime.now()
-    portfoy = portfoy_yukle()
-    _, model_status = lgbm_model_yukle()
-    send_telegram(portfoy_ozet_mesaji(portfoy, now.strftime("%d.%m.%Y %H:%M"), model_status))
+    """11:30 özeti — işlem yoksa Telegram gönderilmez."""
+    log.info("11:30 ozet: islem bazli politika nedeniyle Telegram atlanir")
 
 
 def saatlik_kontrol(makro_karar: str):
     now = datetime.now()
     viop_bias = viop_bias_hesapla()
     portfoy = portfoy_yukle()
+    onceki = set(portfoy["pozisyonlar"].keys())
     mesajlar = []
     if portfoy["pozisyonlar"]:
         portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar)
@@ -1354,45 +1518,23 @@ def saatlik_kontrol(makro_karar: str):
         "bekleyen_sayisi": len(portfoy.get("bekleyen_al", [])),
     })
     if mesajlar:
-        _, model_status = lgbm_model_yukle()
-        send_telegram("\n".join(mesajlar) + "\n\n--------------------\n" +
-                      portfoy_ozet_mesaji(portfoy, now.strftime("%d.%m.%Y %H:%M"), model_status))
+        sonra = set(portfoy["pozisyonlar"].keys())
+        _p1_telegram_islem(
+            portfoy,
+            giris=list(sonra - onceki),
+            cikis=list(onceki - sonra),
+            mesajlar=mesajlar,
+        )
 
 
 def kapanis_ozeti_1730():
+    """17:30 — bekleyenleri temizle; Telegram yalnızca işlem anında gönderilir."""
     now = datetime.now()
     portfoy = portfoy_yukle()
-    _, model_status = lgbm_model_yukle()
     _, expired = ayikla_suresi_dolan_bekleyenler(portfoy.get("bekleyen_al", []), now)
     portfoy["bekleyen_al"] = []
     portfoy_kaydet(portfoy)
-    prev = portfolio_preview(portfoy)
-    lines = [
-        f"\U0001f306 <b>17:30 Kapan\u0131\u015f \u00d6zeti \u2014 {now.strftime('%d.%m.%Y')}</b>",
-        "--------------------",
-        f"\U0001f4b0 Ba\u015flang\u0131\u00e7 : {portfoy.get('baslangic', SERMAYE_BASLANGIC):,.0f} TL",
-        f"\U0001f4ca G\u00fcncel    : {prev['equity']:,.0f} TL",
-        f"\U0001f4b5 Nakit     : {prev['cash']:,.0f} TL",
-    ]
-    attempts = portfoy.get("open_attempts_today", [])
-    if attempts:
-        toplam_alinan = sum(len(a.get("alinan", [])) for a in attempts)
-        lines.append(f"\U0001f4c8 G\u00fcn i\u00e7i al\u0131m: {toplam_alinan} pozisyon a\u00e7\u0131ld\u0131")
-    if portfoy["pozisyonlar"]:
-        lines.append("\n<b>A\u00e7\u0131k pozisyonlar (yar\u0131na ta\u015f\u0131n\u0131yor):</b>")
-        for sym, pos in portfoy["pozisyonlar"].items():
-            f = guncel_fiyat(sym)
-            ret = ((f - pos["giris_f"]) / pos["giris_f"] * 100) if f else 0
-            lines.append(
-                f"   \u2022 <b>{sym}</b> {pos['lotlar']}lot | "
-                f"giri\u015f:{pos['giris_f']:.2f} | \u015fimdi:{f:.2f if f else '?'} "
-                f"({ret:+.1f}%) | g\u00fcn:{pos.get('gun',0)}"
-            )
-    else:
-        lines.append("   - A\u00e7\u0131k pozisyon yok")
-    if expired:
-        lines.append(f"\n\u23f3 Expire olan adaylar: {', '.join(x['symbol'] for x in expired[:7])}")
-    send_telegram("\n".join(lines))
+    log.info("17:30 kapanis: bekleyen temizlendi (Telegram: islem yoksa atlanir)")
 
 
 def preview_from_signals(signals: list, scan_time: str, scan_label: str) -> dict:
@@ -1658,10 +1800,14 @@ if __name__ == "__main__":
             "viop":   lambda: print(json.dumps(viop_bias_hesapla(), ensure_ascii=False)),
             "makro":  lambda: [print(f"Skor: {s} -> {k}") or [print(f"  {t}: {v:+.2f}%") for t,v in pr.items()]
                                for s,_,k,pr in [makro_risk_skoru()]],
+            # ── P2 — SMC portföy köprüsü ──────────────────────────────────
+            "p2_aksam": p2_adaylari_yukle_ve_hazirla,
+            "p2_takip": lambda: p2_saatlik_kontrol("NORMAL"),
+            "p2_durum": lambda: print(json.dumps(p2_portfoy_yukle(), indent=2, ensure_ascii=False)),
         }
         if cmd in cmds:
             cmds[cmd]()
         else:
-            print("Kullanim: python portfoy_yonetici.py [sabah|alim|ozet|kapani|takip|durum|viop|makro]")
+            print("Kullanim: python portfoy_yonetici.py [sabah|alim|ozet|kapani|takip|durum|viop|makro|p2_aksam|p2_takip|p2_durum]")
     else:
         main()

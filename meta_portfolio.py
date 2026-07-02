@@ -378,6 +378,22 @@ def portfoy_guncelle(state: dict, fiyat_cache: dict[str, np.ndarray]) -> dict:
 
         pnl_pct = (guncel - giris_fiy) / giris_fiy if giris_fiy > 0 else 0
 
+        # BIST günlük fiyat limiti ±10% civarındadır — tek günde bundan çok
+        # daha büyük bir düşüş gerçek zarar değil, bedelsiz sermaye artırımı /
+        # split kaynaklı olabilir. Böyle durumda STOP tetiklemek yerine
+        # giriş fiyatını oranla düzelt ve pozisyonu açık tut.
+        if pnl_pct < -0.40:
+            oran = giris_fiy / guncel if guncel > 0 else 1
+            log.warning(
+                "P4 %s: tek günde %.1f%% düşüş — muhtemel split/bedelsiz (oran~%.2f). "
+                "Giriş fiyatı düzeltiliyor, STOP tetiklenmedi.",
+                sym, pnl_pct * 100, oran,
+            )
+            giris_fiy = round(giris_fiy / oran, 4) if oran > 0 else giris_fiy
+            pos["giris_fiyat"] = giris_fiy
+            pos["split_duzeltme"] = round(oran, 4)
+            pnl_pct = (guncel - giris_fiy) / giris_fiy if giris_fiy > 0 else 0
+
         # Stop / TP / Max gün kontrolü
         neden = None
         if pnl_pct <= STOP_PCT:
@@ -539,17 +555,23 @@ def calistir():
     # 7. State kaydet
     state_kaydet(state)
 
-    # 8. Telegram bildirimi
-    try:
-        from mott_telegram import p4_mesaj, telegram_gonder
-        mesaj = p4_mesaj(
-            secilen  = adaylar[:MAX_POS],
-            portfoy  = state,
-            ic_scores = {"P1": ic_p1, "P2": ic_p2, "P3": ic_p3},
-        )
-        telegram_gonder(mesaj)
-    except Exception as e:
-        log.warning("Telegram hatası: %s", e)
+    # 8. Telegram — yalnızca akşam modunda ve alım/satım varsa
+    if os.environ.get("MOTT_MODE", "aksam") == "aksam":
+        try:
+            from mott_telegram import telegram_islem_gonder
+            giris = [p.get("symbol", "") for p in acilan]
+            cikis = [p.get("symbol", "") for p in sonuc["kapanan"]]
+            telegram_islem_gonder(
+                "P4",
+                sinyaller=[],
+                portfoy=state,
+                giris=giris,
+                cikis=cikis,
+                secilen=adaylar[:MAX_POS],
+                ic_scores={"P1": ic_p1, "P2": ic_p2, "P3": ic_p3},
+            )
+        except Exception as e:
+            log.warning("Telegram hatası: %s", e)
 
     return {
         "ic":     {"P1": ic_p1, "P2": ic_p2, "P3": ic_p3},

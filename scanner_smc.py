@@ -35,7 +35,7 @@ import yfinance as yf
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-BOT_TOKEN  = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+BOT_TOKEN  = os.environ.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_TOKEN", ""))
 CHAT_ID    = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 # GitHub Actions'ta state dosyası repo kök dizininde
@@ -433,7 +433,7 @@ def run_scan_smc(manual: bool = False) -> tuple[list, list]:
     manual=True → şu an tetiklenmiş, etiketi farklı.
     """
     if not SMC_OK:
-        send_telegram("⚠️ <b>P2-SMC</b>\nsmartmoneyconcepts kurulu değil.")
+        log.error("P2-SMC: smartmoneyconcepts kurulu degil")
         return [], []
 
     tz_tr     = timezone(timedelta(hours=3))
@@ -444,7 +444,7 @@ def run_scan_smc(manual: bool = False) -> tuple[list, list]:
     semboller = _hisse_listesi_yukle()
     ok = veri_hazirla(semboller, period="60d")
     if ok == 0:
-        send_telegram(f"⚠️ <b>P2-SMC</b>\nVeri çekilemedi.")
+        log.error("P2-SMC: veri cekilemedi")
         return [], []
 
     guclu_al, al, hatali = [], [], 0
@@ -500,8 +500,7 @@ def run_scan_smc(manual: bool = False) -> tuple[list, list]:
     _append_signal_log(records)
     vm_gonder_p2(records, scan_time, scan_label, mod="aksam")
 
-    msg = format_aksam(guclu_al, al, scan_time, scan_label, ok)
-    send_telegram(msg)
+    log.info("P2 aksam tarama tamamlandi (Telegram: yalnizca islem varsa)")
     return guclu_al, al
 
 # ── Gün içi teyit tarama (11:00-17:00) ────────────────────────────────────────
@@ -544,19 +543,6 @@ def saatlik_teyit_smc() -> dict:
         "teyitler": teyitler,
     }
     vm_gonder_p2(payload, scan_time, "Saatlik Teyit", mod="teyit")
-
-    # Teyit var olanları Telegram'a bildir
-    teyit_alanlar = [s for s, t in teyitler.items() if t["teyit_var"]]
-    if teyit_alanlar:
-        lines = [f"🟣 <b>P2-SMC Saatlik Teyit — {scan_time}</b>", ""]
-        for sym in teyit_alanlar:
-            t = teyitler[sym]
-            sig_str = " + ".join(
-                s.replace("Bullish ","") for s in t["teyit_sinyaller"]
-            )
-            lines.append(f"   ✅ <b>{sym}</b> +{t['teyit_skoru']:.1f} | {sig_str}")
-        lines += ["", "⏰ Alım denemesi VM tarafında yapılacak."]
-        send_telegram("\n".join(lines))
 
     return teyitler
 

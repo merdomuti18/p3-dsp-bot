@@ -312,14 +312,15 @@
     },
     {
       "symbol": "GOODY",
-      "giris_fiyat": 17.290000915527344,
+      "giris_fiyat": 3.0713,
       "cikis_fiyat": 2.950000047683716,
-      "pnl_pct": -82.94,
-      "gun": 8,
+      "pnl_pct": -3.95,
+      "gun": 2,
       "neden": "STOP",
       "giris_tarih": "2026-06-30",
       "cikis_tarih": "2026-07-02",
-      "strateji": "P4"
+      "strateji": "P4",
+      "not": "split_duzeltildi: GOODY %462.96 bedelsiz sermaye artirimi (02.07.2026), giris fiyati 5.6296e bolundu"
     }
   ],
   "ic_history": [

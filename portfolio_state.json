@@ -34,114 +34,6 @@
   },
   "history": [
     {
-      "symbol": "GARAN",
-      "entry_date": "2026-06-22",
-      "exit_date": "2026-06-23",
-      "entry_price": 143.7,
-      "exit_price": NaN,
-      "pnl_pct": NaN,
-      "holding_days": 1
-    },
-    {
-      "symbol": "SAHOL",
-      "entry_date": "2026-06-22",
-      "exit_date": "2026-06-23",
-      "entry_price": 101.5,
-      "exit_price": NaN,
-      "pnl_pct": NaN,
-      "holding_days": 1
-    },
-    {
-      "symbol": "THYAO",
-      "entry_date": "2026-06-22",
-      "exit_date": "2026-06-23",
-      "entry_price": 324.75,
-      "exit_price": NaN,
-      "pnl_pct": NaN,
-      "holding_days": 1
-    },
-    {
-      "symbol": "EUPWR",
-      "entry_date": "2026-06-23",
-      "exit_date": "2026-06-23",
-      "entry_price": NaN,
-      "exit_price": 92.95,
-      "pnl_pct": NaN,
-      "holding_days": 0
-    },
-    {
-      "symbol": "GSDHO",
-      "entry_date": "2026-06-23",
-      "exit_date": "2026-06-23",
-      "entry_price": NaN,
-      "exit_price": 5.77,
-      "pnl_pct": NaN,
-      "holding_days": 0
-    },
-    {
-      "symbol": "TAVHL",
-      "entry_date": "2026-06-23",
-      "exit_date": "2026-06-23",
-      "entry_price": NaN,
-      "exit_price": 285.0,
-      "pnl_pct": NaN,
-      "holding_days": 0
-    },
-    {
-      "symbol": "SKBNK",
-      "entry_date": "2026-06-23",
-      "exit_date": "2026-06-25",
-      "entry_price": 16.47,
-      "exit_price": NaN,
-      "pnl_pct": NaN,
-      "holding_days": 2
-    },
-    {
-      "symbol": "ORGE",
-      "entry_date": "2026-06-25",
-      "exit_date": "2026-06-26",
-      "entry_price": NaN,
-      "exit_price": 120.5,
-      "pnl_pct": NaN,
-      "holding_days": 1
-    },
-    {
-      "symbol": "AKBNK",
-      "entry_date": "2026-06-22",
-      "exit_date": "2026-06-26",
-      "entry_price": 82.0,
-      "exit_price": NaN,
-      "pnl_pct": NaN,
-      "holding_days": 4
-    },
-    {
-      "symbol": "ISGYO",
-      "entry_date": "2026-06-26",
-      "exit_date": "2026-06-26",
-      "entry_price": 26.9,
-      "exit_price": NaN,
-      "pnl_pct": NaN,
-      "holding_days": 0
-    },
-    {
-      "symbol": "ORGE",
-      "entry_date": "2026-06-26",
-      "exit_date": "2026-06-29",
-      "entry_price": NaN,
-      "exit_price": 115.0,
-      "pnl_pct": NaN,
-      "holding_days": 3
-    },
-    {
-      "symbol": "SKBNK",
-      "entry_date": "2026-06-26",
-      "exit_date": "2026-06-29",
-      "entry_price": NaN,
-      "exit_price": NaN,
-      "pnl_pct": NaN,
-      "holding_days": 3
-    },
-    {
       "symbol": "YKBNK",
       "entry_date": "2026-06-22",
       "exit_date": "2026-06-30",
@@ -149,24 +41,6 @@
       "exit_price": 39.88,
       "pnl_pct": -9.03,
       "holding_days": 8
-    },
-    {
-      "symbol": "AKBNK",
-      "entry_date": "2026-06-29",
-      "exit_date": "2026-06-30",
-      "entry_price": NaN,
-      "exit_price": NaN,
-      "pnl_pct": NaN,
-      "holding_days": 1
-    },
-    {
-      "symbol": "YKBNK",
-      "entry_date": "2026-06-30",
-      "exit_date": "2026-07-01",
-      "entry_price": NaN,
-      "exit_price": 40.62,
-      "pnl_pct": NaN,
-      "holding_days": 1
     }
   ],
   "scan_log": [
