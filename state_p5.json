@@ -1,8 +1,95 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "SKTAS": {
+      "symbol": "SKTAS",
+      "giris_fiyat": 3.7899999618530273,
+      "guncel_fiyat": 3.7899999618530273,
+      "lotlar": 5277,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-02",
+      "komite_skor": 75,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    },
+    "DAGI": {
+      "symbol": "DAGI",
+      "giris_fiyat": 9.180000305175781,
+      "guncel_fiyat": 9.180000305175781,
+      "lotlar": 2178,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-02",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    }
+  },
   "trade_history": [],
-  "komite_log": [],
-  "last_run": "",
+  "komite_log": [
+    {
+      "tarih": "2026-07-02",
+      "secilen": [
+        "SKTAS",
+        "DAGI"
+      ],
+      "elenen": [
+        {
+          "symbol": "VAKBN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ISGYO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "ISCTR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "GARAN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "MANAS",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "THYAO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "AKBNK",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "KLGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "GLYHO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "SKTAS",
+        "DAGI"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
+    }
+  ],
+  "last_run": "2026-07-02T18:06:05.212969",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
