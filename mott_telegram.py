@@ -82,6 +82,28 @@ def _islem_satirlari(giris: list | None, cikis: list | None) -> list[str]:
     return lines
 
 
+def _md(text: str) -> str:
+    """HTML <b> etiketlerini Markdown'a çevir (Telegram parse_mode=Markdown)."""
+    return text.replace("<b>", "*").replace("</b>", "*")
+
+
+def _detay_satirlari(mesajlar: list[str] | None) -> list[str]:
+    """STOP/TP1/TRAILING/MAX GÜN gibi işlem detaylarını mesaja ekle.
+
+    Bu olmadan mesajlar yalnızca gönderim/gönderilmeme kararı için
+    kullanılıyor, gerçek sebep (neden satıldığı) hiç görünmüyordu.
+    """
+    if not mesajlar:
+        return []
+    lines = ["🔔 *İşlem Detayı:*"]
+    for m in mesajlar:
+        for parca in _md(m).split("\n"):
+            parca = parca.strip()
+            if parca:
+                lines.append(f"  {parca}")
+    return lines
+
+
 def _portfoy_istatistik(portfoy: dict) -> tuple[int, str, str, list[str]]:
     """n_pos, wr_str, pnl_str, acik_satirlar"""
     pozlar = portfoy.get("positions", portfoy.get("pozisyonlar", {}))
@@ -192,6 +214,7 @@ def strateji_mesaj(
     giris: list | None = None,
     cikis: list | None = None,
     ekstra: list[str] | None = None,
+    mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
 ) -> str:
     """Tüm stratejiler için standart işlem mesajı."""
@@ -199,6 +222,10 @@ def strateji_mesaj(
     lines = [header(strateji, zaman)]
     lines.extend(_islem_satirlari(giris, cikis))
     if lines[-1] != header(strateji, zaman).split("\n")[-1]:
+        lines.append("")
+    detay = _detay_satirlari(mesajlar)
+    if detay:
+        lines.extend(detay)
         lines.append("")
     lines.extend(_sinyal_satirlari(sinyaller))
     lines.append("")
@@ -218,9 +245,11 @@ def p1_mesaj(
     portfoy: dict,
     giris: list | None = None,
     cikis: list | None = None,
+    mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
 ) -> str:
-    return strateji_mesaj("P1", sinyaller, portfoy, giris=giris, cikis=cikis, zaman=zaman)
+    return strateji_mesaj("P1", sinyaller, portfoy, giris=giris, cikis=cikis,
+                           mesajlar=mesajlar, zaman=zaman)
 
 
 def p2_mesaj(
@@ -228,9 +257,11 @@ def p2_mesaj(
     portfoy: dict,
     giris: list | None = None,
     cikis: list | None = None,
+    mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
 ) -> str:
-    return strateji_mesaj("P2", sinyaller, portfoy, giris=giris, cikis=cikis, zaman=zaman)
+    return strateji_mesaj("P2", sinyaller, portfoy, giris=giris, cikis=cikis,
+                           mesajlar=mesajlar, zaman=zaman)
 
 
 def p3_mesaj(
@@ -240,6 +271,7 @@ def p3_mesaj(
     cikis: list | None = None,
     monitor_alert: bool = False,
     corr_risk: str = "LOW",
+    mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
 ) -> str:
     sinyaller = []
@@ -262,7 +294,7 @@ def p3_mesaj(
     ]
     return strateji_mesaj(
         "P3", sinyaller, portfoy,
-        giris=giris, cikis=cikis, ekstra=ekstra, zaman=zaman,
+        giris=giris, cikis=cikis, ekstra=ekstra, mesajlar=mesajlar, zaman=zaman,
     )
 
 
@@ -272,6 +304,7 @@ def p4_mesaj(
     ic_scores: dict[str, float],
     giris: list | None = None,
     cikis: list | None = None,
+    mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
 ) -> str:
     sinyaller = [
@@ -287,7 +320,7 @@ def p4_mesaj(
         ic_lines.append(f"  {k}: {v:+.3f}")
     return strateji_mesaj(
         "P4", sinyaller, portfoy,
-        giris=giris, cikis=cikis, ekstra=ic_lines, zaman=zaman,
+        giris=giris, cikis=cikis, ekstra=ic_lines, mesajlar=mesajlar, zaman=zaman,
     )
 
 
@@ -297,6 +330,7 @@ def p5_mesaj(
     giris: list | None = None,
     cikis: list | None = None,
     elenen: list | None = None,
+    mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
 ) -> str:
     sinyaller = [
@@ -314,7 +348,7 @@ def p5_mesaj(
             ekstra.append(f"  `{e.get('symbol','?')}` — {e.get('neden','')}")
     return strateji_mesaj(
         "P5", sinyaller, portfoy,
-        giris=giris, cikis=cikis, ekstra=ekstra or None, zaman=zaman,
+        giris=giris, cikis=cikis, ekstra=ekstra or None, mesajlar=mesajlar, zaman=zaman,
     )
 
 
@@ -364,12 +398,13 @@ def telegram_islem_gonder(
             portfoy, giris=giris, cikis=cikis,
             monitor_alert=kwargs.get("monitor_alert", False),
             corr_risk=kwargs.get("corr_risk", "LOW"),
+            mesajlar=mesajlar,
         )
     elif strateji == "P4":
         msg = fn(
             kwargs.get("secilen", sinyaller),
             portfoy, ic_scores=kwargs.get("ic_scores", {}),
-            giris=giris, cikis=cikis,
+            giris=giris, cikis=cikis, mesajlar=mesajlar,
         )
     elif strateji == "P5":
         msg = p5_mesaj(
@@ -377,7 +412,8 @@ def telegram_islem_gonder(
             portfoy=portfoy,
             giris=giris, cikis=cikis,
             elenen=kwargs.get("elenen", []),
+            mesajlar=mesajlar,
         )
     else:
-        msg = fn(sinyaller, portfoy, giris=giris, cikis=cikis)
+        msg = fn(sinyaller, portfoy, giris=giris, cikis=cikis, mesajlar=mesajlar)
     return telegram_gonder(msg)

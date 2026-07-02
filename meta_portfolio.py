@@ -357,6 +357,20 @@ def half_kelly_boyut(
 # Portföy Güncelleme
 # ---------------------------------------------------------------------------
 
+def _elde_tutma_gunu(giris_tarih: str) -> int:
+    """Giriş tarihinden bugüne kadar geçen takvim günü.
+
+    Not: eskiden 'gun' alanı her çağrıda +1 artırılıyordu — bu, fonksiyon
+    günde birden fazla kez (canlı takip) çağrıldığında MAX_GUN'ı yapay
+    olarak çok hızlı tetikler. Tarih farkı, kontrol sıklığından bağımsız
+    her zaman doğru sonucu verir.
+    """
+    try:
+        return (date.today() - date.fromisoformat(giris_tarih)).days
+    except Exception:
+        return 0
+
+
 def portfoy_guncelle(state: dict, fiyat_cache: dict[str, np.ndarray]) -> dict:
     """
     Açık pozisyonları kontrol et: stop/TP/max gün.
@@ -367,7 +381,7 @@ def portfoy_guncelle(state: dict, fiyat_cache: dict[str, np.ndarray]) -> dict:
     devam      = {}
 
     for sym, pos in list(state["pozisyonlar"].items()):
-        gun       = pos.get("gun", 0) + 1
+        gun       = _elde_tutma_gunu(pos.get("giris_tarih", ""))
         giris_fiy = pos.get("giris_fiyat", 0)
 
         # Güncel fiyat
@@ -561,6 +575,11 @@ def calistir():
             from mott_telegram import telegram_islem_gonder
             giris = [p.get("symbol", "") for p in acilan]
             cikis = [p.get("symbol", "") for p in sonuc["kapanan"]]
+            cikis_mesaj = [
+                f"{'🛑' if t['neden']=='STOP' else '🎯' if t['neden']=='TP' else '⏰'} "
+                f"*{t['neden']} - {t['symbol']}*\n   Çıkış: {t['cikis_fiyat']:.2f} | Getiri: {t['pnl_pct']:+.1f}%"
+                for t in sonuc["kapanan"]
+            ]
             telegram_islem_gonder(
                 "P4",
                 sinyaller=[],
@@ -569,6 +588,7 @@ def calistir():
                 cikis=cikis,
                 secilen=adaylar[:MAX_POS],
                 ic_scores={"P1": ic_p1, "P2": ic_p2, "P3": ic_p3},
+                mesajlar=cikis_mesaj or None,
             )
         except Exception as e:
             log.warning("Telegram hatası: %s", e)
@@ -582,6 +602,44 @@ def calistir():
     }
 
 
+def monitor() -> dict:
+    """
+    Gün içi hafif kontrol (her ~15 dk çağrılır): yalnızca AÇIK pozisyonlar
+    için STOP/TP/MAX_GUN kontrolü yapar ve tetiklenirse ANINDA Telegram
+    gönderir. Tam günlük yeniden dengeleme (yeni aday seçimi) burada
+    YAPILMAZ — o yalnızca akşam `calistir()` çağrısında olur.
+    """
+    state = state_yukle()
+    if not state["pozisyonlar"]:
+        log.info("P4 monitor: açık pozisyon yok, atlandı")
+        return {"kapanan": 0}
+
+    semboller = list(state["pozisyonlar"].keys())
+    fiyat_cache = fiyat_cek(semboller, bars=5)
+    sonuc = portfoy_guncelle(state, fiyat_cache)
+    state_kaydet(state)
+    log.info("P4 monitor: kapanan=%d devam=%d", len(sonuc["kapanan"]), len(sonuc["devam_eden"]))
+
+    if sonuc["kapanan"]:
+        try:
+            from mott_telegram import telegram_islem_gonder
+            cikis = [t["symbol"] for t in sonuc["kapanan"]]
+            mesajlar = [
+                f"{'🛑' if t['neden']=='STOP' else '🎯' if t['neden']=='TP' else '⏰'} "
+                f"*{t['neden']} - {t['symbol']}*\n   Çıkış: {t['cikis_fiyat']:.2f} | Getiri: {t['pnl_pct']:+.1f}%"
+                for t in sonuc["kapanan"]
+            ]
+            telegram_islem_gonder(
+                "P4", sinyaller=[], portfoy=state,
+                giris=[], cikis=cikis, secilen=[], ic_scores={},
+                mesajlar=mesajlar,
+            )
+        except Exception as e:
+            log.warning("P4 monitor Telegram hatası: %s", e)
+
+    return {"kapanan": len(sonuc["kapanan"]), "devam_eden": len(sonuc["devam_eden"])}
+
+
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
@@ -592,11 +650,16 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="P4 Meta Portföy")
     parser.add_argument("--durum", action="store_true", help="Portföy durumunu göster")
+    parser.add_argument("--monitor", action="store_true",
+                         help="Gün içi hafif kontrol: yalnızca açık pozisyonlar için STOP/TP/MAX_GUN")
     args = parser.parse_args()
 
     if args.durum:
         state = state_yukle()
         print(json.dumps(state, indent=2, ensure_ascii=False))
+    elif args.monitor:
+        sonuc = monitor()
+        print(f"P4 monitor: kapanan={sonuc.get('kapanan', 0)}")
     else:
         sonuc = calistir()
         print(f"\nP4 tamamlandı:")

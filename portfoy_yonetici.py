@@ -105,6 +105,22 @@ WAITING_EXPIRES_HOUR     = 17
 EMERGENCY_LIQUIDATION_SCORE = 80
 RETRY_REASONS = {"veri_yok", "exception", "lot_yetersiz", "nakit_yetersiz"}
 
+
+def _elde_tutma_gunu(giris_t: str) -> int:
+    """Pozisyonun kaç takvim günüdür açık olduğunu giriş tarihinden hesapla.
+
+    Not: pos['gun'] sayacı yalnızca main() içindeki gün-sonu döngüsünde
+    artıyordu; GitHub Actions bu döngüyü hiç çalıştırmadığı için MAX_GUN
+    çıkışı hiçbir zaman tetiklenmiyordu. Bunun yerine giriş tarihinden
+    itibaren geçen gerçek gün sayısını hesaplıyoruz — kontrol sıklığından
+    (saatlik / 15 dk) bağımsız, her zaman doğru sonuç verir.
+    """
+    try:
+        giris_tarih = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date()
+        return (date.today() - giris_tarih).days
+    except Exception:
+        return 0
+
 # ── LGBM global (uygulama başında bir kez yüklenir) ──────────────────────────
 _LGBM_MODEL: object  = None
 _LGBM_STATUS: str    = "pasif"
@@ -360,7 +376,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
                     append_jsonl(PORTFOY_AUDIT_P2_FILE, {"event": "trailing", "symbol": sym,
                                                           "exit_price": cikis_f, "return_pct": ret_g * 100})
                     continue
-            if pos.get("gun", 0) >= P2_MAX_GUN:
+            if _elde_tutma_gunu(pos.get("giris_t", "")) >= P2_MAX_GUN:
                 portfoy["nakit"] += pos["lotlar"] * close
                 kapatilacak.append(sym)
                 gun_ret = (close - giris_f) / giris_f
@@ -1314,7 +1330,7 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
                     append_jsonl(PORTFOY_AUDIT_FILE, {"event":"trailing","symbol":sym,"exit_price":cikis_f,"return_pct":ret_g*100})
                     continue
             # MAX GUN
-            if pos.get("gun", 0) >= MAX_GUN:
+            if _elde_tutma_gunu(pos.get("giris_t", "")) >= MAX_GUN:
                 portfoy["nakit"] += pos["lotlar"] * close
                 kapatilacak.append(sym)
                 gun_ret = (close - giris_f) / giris_f
@@ -1479,7 +1495,15 @@ def saat_11_alim(makro_karar: str):
     viop_bias = viop_bias_hesapla()
     portfoy = portfoy_yukle()
     onceki = set(portfoy["pozisyonlar"].keys())
-    portfoy, mesajlar, summary = alim_denemesi(portfoy, makro_karar, viop_bias, now)
+    mesajlar = []
+    # Piyasa açılışından itibaren (10:00 TSİ) STOP/TP kontrolü de burada
+    # yapılır — yalnızca "takip" penceresini (11:20+) beklemek, sabah erken
+    # saatlerde taşınan pozisyonların saatlerce izlenmeden kalmasına yol açardı.
+    if portfoy["pozisyonlar"]:
+        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar)
+        mesajlar.extend(islem_msg)
+    portfoy, al_msg, summary = alim_denemesi(portfoy, makro_karar, viop_bias, now)
+    mesajlar.extend(al_msg)
     portfoy["last_hourly_check_time"] = now.strftime("%d.%m.%Y %H:%M")
     portfoy_kaydet(portfoy)
     if mesajlar:

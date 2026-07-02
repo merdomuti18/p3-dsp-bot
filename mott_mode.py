@@ -15,10 +15,15 @@ import pytz
 IST = pytz.timezone("Europe/Istanbul")
 
 # (dakika, mod) — gün içi sırayla, ilk eşleşen kazanır
+#
+# 10:00–18:15 arası pencereler boşluksuz (contiguous) tutulur: bu aralıkta
+# 15 dakikada bir "canlı takip" cron'u tetiklenir (STOP/TP/MAX_GUN'ın anında
+# yakalanması için). Aradaki boşluklar (ör. eski 16:45–17:00) bir tık modsuz
+# ("skip") kalıp pozisyonların saatlerce izlenmeden kalmasına yol açıyordu.
 _WINDOWS: list[tuple[tuple[int, int], str]] = [
     ((8 * 60 + 45, 9 * 60 + 45), "sabah"),       # 08:45–09:45 TSİ
-    ((10 * 60 + 45, 11 * 60 + 20), "alim"),      # 10:45–11:20 TSİ
-    ((11 * 60 + 20, 16 * 60 + 45), "takip"),     # 11:20–16:45 TSİ
+    ((10 * 60 + 0, 11 * 60 + 20), "alim"),       # 10:00–11:20 TSİ
+    ((11 * 60 + 20, 16 * 60 + 59), "takip"),     # 11:20–16:59 TSİ
     ((17 * 60 + 0, 18 * 60 + 15), "kapani"),     # 17:00–18:15 TSİ
     ((18 * 60 + 30, 21 * 60 + 30), "aksam"),     # 18:30–21:30 TSİ
 ]

@@ -44,6 +44,7 @@ REPORT_DIR   = PROJECT_ROOT / "reports"
 HISTORY_DIR  = REPORT_DIR / "history"
 MAX_POS      = 5
 POS_SIZE_PCT = 20.0   # her pozisyon %20
+EMERGENCY_STOP_PCT = -8.0   # tek pozisyon acil durdurma eşiği (%)
 
 PARAMS = XoverParams(fast_period=15, slow_period=40, order=3)
 
@@ -431,6 +432,72 @@ def build_report(
 
 
 # ---------------------------------------------------------------------------
+# Gün İçi Acil Stop Kontrolü (hafif — tam tarama yapmaz)
+# ---------------------------------------------------------------------------
+
+def monitor() -> dict:
+    """
+    Gün içi hafif kontrol (her ~15 dk çağrılır): P3'ün normalde tek karar
+    mekanizması olan günlük sinyal rotasyonudur (yalnızca akşam çalışır),
+    yani gün içinde STOP/TP kavramı yoktu. Burada, açık bir pozisyon
+    beklenmedik şekilde büyük düşerse (ör. %8+) günü beklemeden ACİL STOP
+    ile pozisyonu kapatıp anında Telegram gönderen bir güvenlik ağı
+    ekliyoruz. Tam 79 sembollük günlük tarama/rotasyon burada YAPILMAZ.
+    """
+    state = load_state()
+    positions = state["positions"]
+    if not positions:
+        print("P3 monitor: açık pozisyon yok")
+        return {"kapanan": []}
+
+    today = date.today().isoformat()
+    kapananlar = []
+    for sym in list(positions.keys()):
+        pos = positions[sym]
+        price = _get_price(sym)
+        ep = pos.get("entry_price")
+        if not price or not ep:
+            continue
+        pnl = (price - ep) / ep * 100
+        if pnl <= EMERGENCY_STOP_PCT:
+            positions.pop(sym)
+            try:
+                entry_d = date.fromisoformat(pos["entry_date"])
+                holding = (date.today() - entry_d).days
+            except Exception:
+                holding = None
+            state["history"].append({
+                "symbol":       sym,
+                "entry_date":   pos["entry_date"],
+                "exit_date":    today,
+                "entry_price":  ep,
+                "exit_price":   price,
+                "pnl_pct":      round(pnl, 2),
+                "holding_days": holding,
+                "reason":       "ACIL_STOP",
+            })
+            kapananlar.append({"symbol": sym, "pnl_pct": round(pnl, 2)})
+            print(f"🛑 ACİL STOP: {sym} {pnl:+.1f}%")
+
+    if kapananlar:
+        save_state(state)
+        try:
+            from mott_telegram import telegram_islem_gonder
+            mesajlar = [f"🛑 *ACİL STOP - {k['symbol']}*\n   Getiri: {k['pnl_pct']:+.1f}%" for k in kapananlar]
+            telegram_islem_gonder(
+                "P3", sinyaller=[], portfoy=state,
+                giris=[], cikis=[k["symbol"] for k in kapananlar],
+                top_longs=[], mesajlar=mesajlar,
+            )
+        except Exception as e:
+            print(f"P3 monitor Telegram hatası: {e}")
+    else:
+        print("P3 monitor: tetiklenen acil stop yok")
+
+    return {"kapanan": kapananlar}
+
+
+# ---------------------------------------------------------------------------
 # Ana Akış
 # ---------------------------------------------------------------------------
 
@@ -542,5 +609,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "monitor":
+        monitor()
+    else:
+        main()
 

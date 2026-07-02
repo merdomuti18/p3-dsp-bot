@@ -4,9 +4,11 @@ on:
   schedule:
     - cron: '5 16 * * 1-5'              # ~19:05 TSİ — akşam tam tarama
     - cron: '0 6 * * 1-5'               # ~09:00 TSİ — sabah değerlendirme
-    - cron: '0 8 * * 1-5'               # ~11:00 TSİ — ilk alım
-    - cron: '0 9,10,11,12,13,14 * * 1-5' # ~12–17 TSİ — saatlik takip
-    - cron: '30 14 * * 1-5'             # ~17:30 TSİ — kapanış (işlem varsa)
+    # Aşağıdaki tek blok, eski ayrı ayrı 11:00/saatlik-takip/17:30 cron'larının
+    # yerini alır: 10:00–18:15 TSİ arasını 15 dakikalık boşluksuz bir ızgara
+    # ile kapsar (alim/takip/kapani modları + P3/P4/P5 canlı takip için).
+    - cron: '*/15 7-14 * * 1-5'         # ~10:00–17:45 TSİ
+    - cron: '0,15 15 * * 1-5'           # ~18:00, 18:15 TSİ — kapanış penceresinin sonu (aksam moduna değmeden)
   workflow_dispatch:
     inputs:
       run_mode:
@@ -24,7 +26,11 @@ on:
 
 concurrency:
   group: mott-daily
-  cancel-in-progress: true
+  # false: artık 15 dk'da bir canlı takip tetiği eklendiği için, hâlâ
+  # süren bir çalıştırmayı (ör. akşam tam taraması) yeni bir tetik
+  # iptal etmesin diye kuyruğa alınır. Çalıştırmalar kısa sürdüğünden
+  # (~1-2 dk) kuyruklama birikmeye yol açmaz.
+  cancel-in-progress: false
 
 env:
   MOTT_BASE_DIR: "."
@@ -265,6 +271,126 @@ jobs:
           git stash pop || true
           git add state_p5.json || true
           git diff --cached --quiet || git commit -m "P5 komite: $(date +'%Y-%m-%d %H:%M')"
+          git push origin HEAD:main
+
+  # ── Canlı takip — gün içi 15 dk'da bir (yalnızca açık pozisyon kontrolü) ──
+  # P1/P2 zaten mevcut "alim"/"takip"/"kapani" job'ları üzerinden (daha sık
+  # tetiklenen cron sayesinde) STOP/TP kontrolü yapıyor. P3/P4/P5'in normal
+  # akışı yalnızca akşam çalıştığı için, STOP/TP/MAX_GUN gün içinde ancak
+  # akşama kadar (saatlerce) fark edilmiyordu. Bu job'lar YALNIZCA açık
+  # pozisyonları kontrol eder — yeni aday seçimi/tam tarama yapmaz.
+  p3-monitor:
+    name: P3 — Canlı Takip
+    needs: gate
+    if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: p3-pip-${{ hashFiles('requirements_p3.txt') }}
+          restore-keys: p3-pip-
+      - run: |
+          pip install --upgrade pip
+          pip install scipy numpy yfinance pandas requests pytz
+      - name: P3 acil stop kontrolü
+        run: python simulate_dsp.py monitor
+        env:
+          MOTT_MODE: canli
+      - name: State commit
+        run: |
+          git config user.name "MOTT Bot"
+          git config user.email "bot@mott"
+          git add portfolio_state.json || true
+          git stash || true
+          git pull --rebase origin main || true
+          git stash pop || true
+          git add portfolio_state.json || true
+          git diff --cached --quiet || git commit -m "P3 canli takip: $(date +'%Y-%m-%d %H:%M')"
+          git push origin HEAD:main
+
+  p4-monitor:
+    name: P4 — Canlı Takip
+    needs: gate
+    if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: p4-pip-${{ hashFiles('requirements_p4.txt') }}
+          restore-keys: p4-pip-
+      - run: |
+          pip install --upgrade pip
+          pip install numpy pandas scipy yfinance requests pytz
+      - name: P4 STOP/TP/MAX_GUN kontrolü
+        run: python meta_portfolio.py --monitor
+        env:
+          MOTT_MODE: canli
+      - name: State commit
+        run: |
+          git config user.name "MOTT Bot"
+          git config user.email "bot@mott"
+          git add state_p4.json || true
+          git stash || true
+          git pull --rebase origin main || true
+          git stash pop || true
+          git add state_p4.json || true
+          git diff --cached --quiet || git commit -m "P4 canli takip: $(date +'%Y-%m-%d %H:%M')"
+          git push origin HEAD:main
+
+  p5-monitor:
+    name: P5 — Canlı Takip
+    needs: gate
+    if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: p5-pip-${{ hashFiles('requirements_p4.txt') }}
+          restore-keys: p5-pip-
+      - run: |
+          pip install --upgrade pip
+          pip install numpy pandas scipy yfinance requests pytz
+      - name: P5 STOP/TP/MAX_GUN kontrolü
+        run: python p5_committee.py --monitor
+        env:
+          MOTT_MODE: canli
+      - name: State commit
+        run: |
+          git config user.name "MOTT Bot"
+          git config user.email "bot@mott"
+          git add state_p5.json || true
+          git stash || true
+          git pull --rebase origin main || true
+          git stash pop || true
+          git add state_p5.json || true
+          git diff --cached --quiet || git commit -m "P5 canli takip: $(date +'%Y-%m-%d %H:%M')"
           git push origin HEAD:main
 
   # ── Aylık rapor (ayın 1'i, akşam modunda) ────────────────────────────────

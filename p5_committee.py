@@ -231,12 +231,20 @@ def state_kaydet(state: dict) -> None:
         json.dump(state, f, indent=2, ensure_ascii=False)
 
 
+def _elde_tutma_gunu(giris_tarih: str) -> int:
+    """Giriş tarihinden bugüne kadar geçen takvim günü (bkz. meta_portfolio.py)."""
+    try:
+        return (date.today() - date.fromisoformat(giris_tarih)).days
+    except Exception:
+        return 0
+
+
 def portfoy_guncelle(state: dict, fiyat_cache: dict) -> dict:
     bugun = date.today().isoformat()
     kapananlar = []
     devam = {}
     for sym, pos in list(state.get("pozisyonlar", {}).items()):
-        gun = pos.get("gun", 0) + 1
+        gun = _elde_tutma_gunu(pos.get("giris_tarih", ""))
         giris = pos.get("giris_fiyat", 0)
         guncel = float(fiyat_cache[sym][-1]) if sym in fiyat_cache else giris
         pnl = (guncel - giris) / giris if giris > 0 else 0
@@ -357,6 +365,11 @@ def calistir() -> dict:
                 {"symbol": s["symbol"], "score": s["komite_skor"], "strategies": s["kaynaklar"]}
                 for s in secilen
             ]
+            cikis_mesaj = [
+                f"{'🛑' if t['neden']=='STOP' else '🎯' if t['neden']=='TP' else '⏰'} "
+                f"*{t['neden']} - {t['symbol']}*\n   Çıkış: {t['cikis_fiyat']:.2f} | Getiri: {t['pnl_pct']:+.1f}%"
+                for t in sonuc["kapanan"]
+            ]
             telegram_islem_gonder(
                 "P5",
                 sinyaller=sinyaller,
@@ -365,6 +378,7 @@ def calistir() -> dict:
                 cikis=[t["symbol"] for t in sonuc["kapanan"]],
                 secilen=secilen,
                 elenen=elenen,
+                mesajlar=cikis_mesaj or None,
             )
         except Exception as e:
             log.warning("P5 Telegram: %s", e)
@@ -377,13 +391,56 @@ def calistir() -> dict:
     }
 
 
+def monitor() -> dict:
+    """
+    Gün içi hafif kontrol (her ~15 dk çağrılır): yalnızca AÇIK pozisyonlar
+    için STOP/TP/MAX_GUN kontrolü yapar ve tetiklenirse ANINDA Telegram
+    gönderir. Yeni komite adayı seçimi burada YAPILMAZ (o yalnızca akşam
+    `calistir()` çağrısında olur).
+    """
+    state = state_yukle()
+    pozisyonlar = state.get("pozisyonlar", {})
+    if not pozisyonlar:
+        log.info("P5 monitor: açık pozisyon yok, atlandı")
+        return {"kapanan": 0}
+
+    fiyat_cache = fiyat_cek(list(pozisyonlar.keys()))
+    sonuc = portfoy_guncelle(state, fiyat_cache)
+    state_kaydet(state)
+    log.info("P5 monitor: kapanan=%d devam=%d", len(sonuc["kapanan"]), len(sonuc["devam_eden"]))
+
+    if sonuc["kapanan"]:
+        try:
+            from mott_telegram import telegram_islem_gonder
+            cikis = [t["symbol"] for t in sonuc["kapanan"]]
+            mesajlar = [
+                f"{'🛑' if t['neden']=='STOP' else '🎯' if t['neden']=='TP' else '⏰'} "
+                f"*{t['neden']} - {t['symbol']}*\n   Çıkış: {t['cikis_fiyat']:.2f} | Getiri: {t['pnl_pct']:+.1f}%"
+                for t in sonuc["kapanan"]
+            ]
+            telegram_islem_gonder(
+                "P5", sinyaller=[], portfoy=state,
+                giris=[], cikis=cikis, secilen=[], elenen=[],
+                mesajlar=mesajlar,
+            )
+        except Exception as e:
+            log.warning("P5 monitor Telegram: %s", e)
+
+    return {"kapanan": len(sonuc["kapanan"]), "devam_eden": len(sonuc["devam_eden"])}
+
+
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="P5 Komite Portföy")
     parser.add_argument("--durum", action="store_true")
+    parser.add_argument("--monitor", action="store_true",
+                         help="Gün içi hafif kontrol: yalnızca açık pozisyonlar için STOP/TP/MAX_GUN")
     args = parser.parse_args()
     if args.durum:
         print(json.dumps(state_yukle(), indent=2, ensure_ascii=False))
+    elif args.monitor:
+        r = monitor()
+        print(f"P5 monitor: kapanan={r.get('kapanan', 0)}")
     else:
         r = calistir()
         print(f"P5 tamamlandı: {r}")
