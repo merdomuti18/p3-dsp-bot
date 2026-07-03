@@ -3,10 +3,10 @@
     "ICBCT": {
       "symbol": "ICBCT",
       "giris_fiyat": 23.0,
-      "guncel_fiyat": 23.059999465942383,
+      "guncel_fiyat": 22.1200008392334,
       "lotlar": 543,
-      "pnl_pct": 0.26,
-      "gun": 0,
+      "pnl_pct": -3.83,
+      "gun": 1,
       "giris_tarih": "2026-07-02",
       "meta_score": 1.1,
       "kaynaklar": [
@@ -19,10 +19,10 @@
     "SKTAS": {
       "symbol": "SKTAS",
       "giris_fiyat": 3.7799999713897705,
-      "guncel_fiyat": 3.75,
+      "guncel_fiyat": 3.740000009536743,
       "lotlar": 3306,
-      "pnl_pct": -0.79,
-      "gun": 0,
+      "pnl_pct": -1.06,
+      "gun": 1,
       "giris_tarih": "2026-07-02",
       "meta_score": 0.7333333333333334,
       "kaynaklar": [
@@ -35,10 +35,10 @@
     "ARSAN": {
       "symbol": "ARSAN",
       "giris_fiyat": 3.4600000381469727,
-      "guncel_fiyat": 3.440000057220459,
+      "guncel_fiyat": 3.5,
       "lotlar": 3612,
-      "pnl_pct": -0.58,
-      "gun": 0,
+      "pnl_pct": 1.16,
+      "gun": 1,
       "giris_tarih": "2026-07-02",
       "meta_score": 0.48888888888888893,
       "kaynaklar": [
@@ -51,10 +51,10 @@
     "DAGI": {
       "symbol": "DAGI",
       "giris_fiyat": 9.170000076293945,
-      "guncel_fiyat": 9.220000267028809,
+      "guncel_fiyat": 9.329999923706055,
       "lotlar": 1363,
-      "pnl_pct": 0.55,
-      "gun": 0,
+      "pnl_pct": 1.74,
+      "gun": 1,
       "giris_tarih": "2026-07-02",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -67,10 +67,10 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 59.650001525878906,
-      "guncel_fiyat": 59.20000076293945,
+      "guncel_fiyat": 58.400001525878906,
       "lotlar": 209,
-      "pnl_pct": -0.75,
-      "gun": 0,
+      "pnl_pct": -2.1,
+      "gun": 1,
       "giris_tarih": "2026-07-02",
       "meta_score": 0.2222222222222222,
       "kaynaklar": [
