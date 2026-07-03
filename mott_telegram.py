@@ -352,29 +352,83 @@ def p5_mesaj(
     )
 
 
+MAX_TG_LEN = 4000       # Telegram sınırı 4096 — güvenlik payıyla
+RETRY_SAYISI = 3        # başarısız gönderim yeniden denenir
+RETRY_BEKLE = 5         # denemeler arası saniye
+
+
+def _parcala(mesaj: str) -> list[str]:
+    """4096 karakter sınırını aşan mesajları satır sınırından böl."""
+    if len(mesaj) <= MAX_TG_LEN:
+        return [mesaj]
+    parcalar, mevcut = [], ""
+    for satir in mesaj.split("\n"):
+        if len(mevcut) + len(satir) + 1 > MAX_TG_LEN:
+            parcalar.append(mevcut)
+            mevcut = satir
+        else:
+            mevcut = f"{mevcut}\n{satir}" if mevcut else satir
+    if mevcut:
+        parcalar.append(mevcut)
+    return parcalar
+
+
+def _tek_gonder(parca: str, token: str, chat_id: str, parse_mode: str) -> bool:
+    """Tek parçayı RETRY_SAYISI denemeyle gönder; Markdown hatasında düz metne düş."""
+    import time
+    for deneme in range(1, RETRY_SAYISI + 1):
+        try:
+            r = requests.post(
+                f"https://api.telegram.org/bot{token}/sendMessage",
+                json={"chat_id": chat_id, "text": parca, "parse_mode": parse_mode},
+                timeout=15,
+            )
+            if r.ok:
+                return True
+            # 400: genellikle Markdown parse hatası — düz metin olarak dene
+            if r.status_code == 400 and parse_mode:
+                log.warning("Telegram 400 (%s) — düz metin deneniyor", r.text[:100])
+                parse_mode = ""
+                continue
+            # 429: rate limit — Telegram'ın önerdiği süre kadar bekle
+            if r.status_code == 429:
+                try:
+                    bekle = int(r.json().get("parameters", {}).get("retry_after", RETRY_BEKLE))
+                except Exception:
+                    bekle = RETRY_BEKLE
+                log.warning("Telegram 429 — %ds bekleniyor (deneme %d/%d)", bekle, deneme, RETRY_SAYISI)
+                time.sleep(bekle)
+                continue
+            log.warning("Telegram hata: %s %s (deneme %d/%d)",
+                        r.status_code, r.text[:120], deneme, RETRY_SAYISI)
+        except Exception as e:
+            log.warning("Telegram exception: %s (deneme %d/%d)", e, deneme, RETRY_SAYISI)
+        if deneme < RETRY_SAYISI:
+            time.sleep(RETRY_BEKLE * deneme)
+    log.error("Telegram: %d denemede gönderilemedi — mesaj kaybedildi:\n%s",
+              RETRY_SAYISI, parca[:500])
+    return False
+
+
 def telegram_gonder(
     mesaj: str,
     token: Optional[str] = None,
     chat_id: Optional[str] = None,
+    parse_mode: str = "Markdown",
 ) -> bool:
+    """
+    Güvenilir Telegram gönderimi:
+      - 3 deneme (ağ hatası, 5xx)
+      - 429 rate-limit'te retry_after kadar bekleme
+      - Markdown parse hatasında (400) düz metne düşme
+      - 4096 karakter üstünde otomatik parçalama
+    """
     token = token or get_token()
     chat_id = chat_id or get_chat_id()
     if not token or not chat_id:
-        log.warning("Telegram token/chat_id eksik")
+        log.warning("Telegram token/chat_id eksik — mesaj gönderilemedi")
         return False
-    try:
-        r = requests.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": chat_id, "text": mesaj, "parse_mode": "Markdown"},
-            timeout=15,
-        )
-        if r.ok:
-            return True
-        log.warning("Telegram hata: %s %s", r.status_code, r.text[:120])
-        return False
-    except Exception as e:
-        log.warning("Telegram exception: %s", e)
-        return False
+    return all(_tek_gonder(p, token, chat_id, parse_mode) for p in _parcala(mesaj))
 
 
 def telegram_islem_gonder(

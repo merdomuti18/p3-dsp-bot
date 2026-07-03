@@ -120,7 +120,11 @@ def strateji_ic_hesapla(
 # ---------------------------------------------------------------------------
 
 def fiyat_cek(semboller: list[str], bars: int = 30) -> dict[str, np.ndarray]:
-    """Semboller için son N bar kapanış fiyatı."""
+    """
+    Semboller için son N bar kapanış fiyatı (yfinance geçmişi).
+    Son bar, TradingView canlı fiyatıyla üzerine yazılır — yfinance BIST
+    verisi gecikmeli/TV ile uyumsuz olabildiğinden karar fiyatı TV'dir.
+    """
     cache = {}
     for sym in semboller:
         try:
@@ -128,9 +132,20 @@ def fiyat_cek(semboller: list[str], bars: int = 30) -> dict[str, np.ndarray]:
             df = yf.Ticker(ticker).history(period="3mo")
             prices = df["Close"].dropna().values
             if len(prices) >= bars:
-                cache[sym] = prices[-bars:]
+                cache[sym] = prices[-bars:].copy()
         except Exception as e:
             log.debug("%s fiyat hatası: %s", sym, e)
+
+    try:
+        from mott_fiyat import tv_fiyatlar
+        canli = tv_fiyatlar(semboller)
+        for sym, p in canli.items():
+            if sym in cache:
+                cache[sym][-1] = p
+            else:
+                cache[sym] = np.array([p])
+    except Exception as e:
+        log.warning("TV canlı fiyat alınamadı, yfinance değerleri kullanılacak: %s", e)
     return cache
 
 
@@ -392,21 +407,34 @@ def portfoy_guncelle(state: dict, fiyat_cache: dict[str, np.ndarray]) -> dict:
 
         pnl_pct = (guncel - giris_fiy) / giris_fiy if giris_fiy > 0 else 0
 
-        # BIST günlük fiyat limiti ±10% civarındadır — tek günde bundan çok
-        # daha büyük bir düşüş gerçek zarar değil, bedelsiz sermaye artırımı /
-        # split kaynaklı olabilir. Böyle durumda STOP tetiklemek yerine
-        # giriş fiyatını oranla düzelt ve pozisyonu açık tut.
-        if pnl_pct < -0.40:
-            oran = giris_fiy / guncel if guncel > 0 else 1
+        # BIST'te günlük taban limiti %10'dur — son kayıtlı fiyata göre %10'u
+        # AŞAN bir düşüş gerçek piyasa hareketi olamaz; bedelsiz sermaye
+        # artırımı / split işaretidir. Böyle durumda STOP tetiklemek yerine
+        # giriş fiyatını oranla düzelt, pozisyonu açık tut ve durumu bildir.
+        onceki = pos.get("guncel_fiyat", giris_fiy)
+        gunluk = (guncel - onceki) / onceki if onceki > 0 else 0
+        if gunluk < -0.10 and guncel > 0:
+            oran = onceki / guncel
             log.warning(
-                "P4 %s: tek günde %.1f%% düşüş — muhtemel split/bedelsiz (oran~%.2f). "
-                "Giriş fiyatı düzeltiliyor, STOP tetiklenmedi.",
-                sym, pnl_pct * 100, oran,
+                "P4 %s: son kayittan bu yana %.1f%% düşüş (BIST limiti %%10) — "
+                "muhtemel split/bedelsiz (oran~%.2f). Giriş fiyatı düzeltildi, STOP tetiklenmedi.",
+                sym, gunluk * 100, oran,
             )
             giris_fiy = round(giris_fiy / oran, 4) if oran > 0 else giris_fiy
             pos["giris_fiyat"] = giris_fiy
             pos["split_duzeltme"] = round(oran, 4)
+            pos["split_tarih"] = bugun
             pnl_pct = (guncel - giris_fiy) / giris_fiy if giris_fiy > 0 else 0
+            try:
+                from mott_telegram import telegram_gonder
+                telegram_gonder(
+                    f"⚠️ *P4 — Bölünme şüphesi: {sym}*\n"
+                    f"Son kayıtlı fiyat {onceki:.2f} → güncel {guncel:.2f} ({gunluk*100:+.1f}%).\n"
+                    f"BIST günlük limiti aşıldığı için bedelsiz/split varsayıldı; "
+                    f"giriş fiyatı {oran:.2f} oranıyla düzeltildi. Lütfen KAP'tan doğrulayın."
+                )
+            except Exception:
+                pass
 
         # Stop / TP / Max gün kontrolü
         neden = None

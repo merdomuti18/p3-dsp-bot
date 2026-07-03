@@ -199,27 +199,36 @@ def guncel_makro_skoru() -> float:
 
 def guncel_fiyat(symbol: str):
     """
-    Fiyat çekme — üç katmanlı fallback:
-      1. Intraday 1m chart (piyasa açıkken en güncel)
-      2. fast_info.last_price (hızlı canlı alan)
-      3. Son günlük Close (her zaman çalışır)
+    Fiyat çekme — dört katmanlı fallback:
+      1. TradingView screener (gerçek zamanlı, TV grafikleriyle birebir)
+      2. Intraday 1m chart (yfinance, piyasa açıkken)
+      3. fast_info.last_price (yfinance hızlı canlı alan)
+      4. Son günlük Close (her zaman çalışır)
     """
+    # 1. TradingView
+    try:
+        from mott_fiyat import tv_fiyatlar
+        p = tv_fiyatlar([symbol]).get(symbol)
+        if p and p > 0:
+            return float(p)
+    except Exception:
+        pass
     ticker_obj = _ticker(f"{symbol}.IS")
-    # 1. Intraday
+    # 2. Intraday
     try:
         df = ticker_obj.history(period="1d", interval="1m")
         if len(df) >= 1:
             return float(df["Close"].iloc[-1])
     except Exception:
         pass
-    # 2. fast_info
+    # 3. fast_info
     try:
         price = ticker_obj.fast_info.get("last_price") or ticker_obj.fast_info.get("lastPrice")
         if price and float(price) > 0:
             return float(price)
     except Exception:
         pass
-    # 3. Günlük Close
+    # 4. Günlük Close
     try:
         df = ticker_obj.history(period="5d", interval="1d")
         if len(df) >= 1:
@@ -712,15 +721,10 @@ def send_telegram(msg: str, parse_mode: str = "HTML"):
     if not BOT_TOKEN or not CHAT_ID:
         log.info("[TELEGRAM SIMULE]\n%s", msg)
         return
+    # Gönderim mott_telegram üzerinden — retry + parçalama merkezî olarak orada
     try:
-        r = requests.post(
-            f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-            json={"chat_id": CHAT_ID, "text": msg, "parse_mode": parse_mode,
-                  "disable_web_page_preview": True},
-            timeout=15,
-        )
-        if not r.ok:
-            log.error("Telegram %s: %s", r.status_code, r.text[:200])
+        from mott_telegram import telegram_gonder
+        telegram_gonder(msg, parse_mode=parse_mode)
     except Exception as exc:
         log.error("Telegram hatasi: %s", exc)
 

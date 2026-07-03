@@ -1,0 +1,11 @@
+# MOTT — tüm stratejilerin (P1–P5) ortak bağımlılıkları.
+# Sürümler sabitlendi (3 Temmuz 2026, CI'da doğrulanan sürümler).
+# Güncellerken: önce tek stratejide deneyin, sonra tümüne yayın.
+numpy==2.5.0
+pandas==3.0.3
+scipy==1.18.0
+yfinance==1.5.1
+requests==2.34.2
+pytz==2026.2
+tradingview-screener==3.2.1
+smartmoneyconcepts==0.0.27

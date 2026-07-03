@@ -331,15 +331,10 @@ def send_telegram(msg):
     _footer = "\n🟡 ━━━━━━━━━━━━━━━━━━━━━━━━"
     msg = _header + msg + _footer
 
-    if not BOT_TOKEN or not CHAT_ID:
-        log.warning("Telegram ayarları eksik")
-        return
+    # Gönderim mott_telegram üzerinden — retry + parçalama merkezî olarak orada
     try:
-        requests.post(
-            f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-            json={"chat_id": CHAT_ID, "text": msg, "parse_mode": "HTML"},
-            timeout=15,
-        )
+        from mott_telegram import telegram_gonder
+        telegram_gonder(msg, parse_mode="HTML")
     except Exception as exc:
         log.warning("Telegram gönderilemedi: %s", exc)
 

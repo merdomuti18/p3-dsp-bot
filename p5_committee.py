@@ -118,6 +118,7 @@ def drift_sembolleri() -> set[str]:
 
 
 def fiyat_cek(semboller: list[str]) -> dict[str, np.ndarray]:
+    """yfinance geçmişi + son bar TradingView canlı fiyatıyla güncellenir."""
     cache = {}
     for sym in semboller:
         try:
@@ -125,9 +126,20 @@ def fiyat_cek(semboller: list[str]) -> dict[str, np.ndarray]:
             df = yf.Ticker(ticker).history(period="3mo")
             prices = df["Close"].dropna().values
             if len(prices) >= 5:
-                cache[sym] = prices
+                cache[sym] = prices.copy()
         except Exception as e:
             log.debug("%s fiyat: %s", sym, e)
+
+    try:
+        from mott_fiyat import tv_fiyatlar
+        canli = tv_fiyatlar(semboller)
+        for sym, p in canli.items():
+            if sym in cache:
+                cache[sym][-1] = p
+            else:
+                cache[sym] = np.array([p])
+    except Exception as e:
+        log.warning("TV canlı fiyat alınamadı, yfinance değerleri kullanılacak: %s", e)
     return cache
 
 
@@ -249,15 +261,29 @@ def portfoy_guncelle(state: dict, fiyat_cache: dict) -> dict:
         guncel = float(fiyat_cache[sym][-1]) if sym in fiyat_cache else giris
         pnl = (guncel - giris) / giris if giris > 0 else 0
 
-        # Split/bedelsiz sermaye artırımı koruması (bkz. meta_portfolio.py)
-        if pnl < -0.40:
-            oran = giris / guncel if guncel > 0 else 1
-            log.warning("P5 %s: tek günde %.1f%% düşüş — muhtemel split (oran~%.2f), düzeltiliyor.",
-                        sym, pnl * 100, oran)
+        # Split/bedelsiz koruması: BIST günlük taban limiti %10 — son kayıtlı
+        # fiyata göre %10'u aşan düşüş piyasa hareketi olamaz (bkz. meta_portfolio.py)
+        onceki = pos.get("guncel_fiyat", giris)
+        gunluk = (guncel - onceki) / onceki if onceki > 0 else 0
+        if gunluk < -0.10 and guncel > 0:
+            oran = onceki / guncel
+            log.warning("P5 %s: son kayittan bu yana %.1f%% düşüş — muhtemel split (oran~%.2f), düzeltiliyor.",
+                        sym, gunluk * 100, oran)
             giris = round(giris / oran, 4) if oran > 0 else giris
             pos["giris_fiyat"] = giris
             pos["split_duzeltme"] = round(oran, 4)
+            pos["split_tarih"] = bugun
             pnl = (guncel - giris) / giris if giris > 0 else 0
+            try:
+                from mott_telegram import telegram_gonder
+                telegram_gonder(
+                    f"⚠️ *P5 — Bölünme şüphesi: {sym}*\n"
+                    f"Son kayıtlı fiyat {onceki:.2f} → güncel {guncel:.2f} ({gunluk*100:+.1f}%).\n"
+                    f"BIST günlük limiti aşıldığı için bedelsiz/split varsayıldı; "
+                    f"giriş fiyatı {oran:.2f} oranıyla düzeltildi. Lütfen KAP'tan doğrulayın."
+                )
+            except Exception:
+                pass
 
         neden = None
         if pnl <= STOP_PCT:

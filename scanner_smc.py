@@ -622,30 +622,12 @@ def send_telegram(message: str):
     message = _header + message + _footer
     if not BOT_TOKEN or not CHAT_ID:
         print(message); return
-    max_len = 3900
-    parcalar, parca = [], ""
-    for satir in message.split("\n"):
-        if len(parca) + len(satir) + 1 > max_len:
-            if parca.strip(): parcalar.append(parca.strip())
-            parca = satir + "\n"
-        else:
-            parca += satir + "\n"
-    if parca.strip(): parcalar.append(parca.strip())
-    for idx, p in enumerate(parcalar, 1):
-        if len(parcalar) > 1:
-            p = f"({idx}/{len(parcalar)})\n{p}"
-        try:
-            resp = requests.post(
-                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-                json={"chat_id": CHAT_ID, "text": p,
-                      "parse_mode": "HTML", "disable_web_page_preview": True},
-                timeout=15,
-            )
-            if not resp.ok:
-                log.error("Telegram %s: %s", resp.status_code, resp.text[:200])
-            time.sleep(0.4)
-        except Exception as e:
-            log.error("Telegram: %s", e)
+    # Gönderim mott_telegram üzerinden — retry + parçalama merkezî olarak orada
+    try:
+        from mott_telegram import telegram_gonder
+        telegram_gonder(message, parse_mode="HTML")
+    except Exception as e:
+        log.error("Telegram: %s", e)
 
 # ── Mesaj formatı ──────────────────────────────────────────────────────────────
 

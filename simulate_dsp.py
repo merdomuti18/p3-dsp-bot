@@ -145,7 +145,15 @@ def update_portfolio(state: dict, scan: ScanResult) -> dict:
 
 
 def _get_price(symbol: str) -> float | None:
-    """Son kapanış fiyatını yfinance'ten çek."""
+    """Güncel fiyat — TradingView öncelikli, yfinance yedekli (mott_fiyat)."""
+    try:
+        from mott_fiyat import canli_fiyat
+        p = canli_fiyat(symbol)
+        if p is not None:
+            return round(p, 3)
+    except Exception:
+        pass
+    # mott_fiyat erişilemezse eski yol: yfinance
     try:
         import yfinance as yf
         ticker = f"{symbol}.IS" if not symbol.endswith(".IS") else symbol

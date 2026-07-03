@@ -2,13 +2,13 @@ name: MOTT Günlük Tarama — P1 + P2 + P3 + P4 + P5
 
 on:
   schedule:
-    - cron: '5 16 * * 1-5'              # ~19:05 TSİ — akşam tam tarama
-    - cron: '0 6 * * 1-5'               # ~09:00 TSİ — sabah değerlendirme
-    # Aşağıdaki tek blok, eski ayrı ayrı 11:00/saatlik-takip/17:30 cron'larının
-    # yerini alır: 10:00–18:15 TSİ arasını 15 dakikalık boşluksuz bir ızgara
-    # ile kapsar (alim/takip/kapani modları + P3/P4/P5 canlı takip için).
-    - cron: '*/15 7-14 * * 1-5'         # ~10:00–17:45 TSİ
-    - cron: '0,15 15 * * 1-5'           # ~18:00, 18:15 TSİ — kapanış penceresinin sonu (aksam moduna değmeden)
+    - cron: '5 16 * * 1-5'          # ~19:05 TSİ — akşam tam tarama
+    - cron: '0 6 * * 1-5'           # ~09:00 TSİ — sabah değerlendirme
+    # Gün içi canlı takip: saatlik. (Not: GitHub zamanlanmış tetikleri
+    # "en iyi çaba" ile çalıştırır — 15 dk'lık deneme pratikte atlandığı
+    # için saatliğe çekildi. 15 dk sıklık için yol haritasına bakın:
+    # README "Yapılacaklar" → harici tetikleyici ile workflow_dispatch.)
+    - cron: '0 7-15 * * 1-5'        # ~10:00–18:00 TSİ, saat başı
   workflow_dispatch:
     inputs:
       run_mode:
@@ -26,10 +26,7 @@ on:
 
 concurrency:
   group: mott-daily
-  # false: artık 15 dk'da bir canlı takip tetiği eklendiği için, hâlâ
-  # süren bir çalıştırmayı (ör. akşam tam taraması) yeni bir tetik
-  # iptal etmesin diye kuyruğa alınır. Çalıştırmalar kısa sürdüğünden
-  # (~1-2 dk) kuyruklama birikmeye yol açmaz.
+  # Yeni tetik, süren çalıştırmayı iptal etmesin; kuyruğa alınsın.
   cancel-in-progress: false
 
 env:
@@ -57,6 +54,13 @@ jobs:
           MODE=$(python mott_mode.py "$INPUT")
           echo "mode=$MODE" >> $GITHUB_OUTPUT
           echo "MOTT modu (TSİ): $MODE"
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'Mod — TSİ' job'ı başarısız. Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
   # ── P3 — yalnızca akşam tarama ────────────────────────────────────────────
   p3-dsp:
@@ -74,32 +78,43 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: p3-pip-${{ hashFiles('requirements_p3.txt') }}
-          restore-keys: p3-pip-
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
       - run: |
           pip install --upgrade pip
-          pip install scipy numpy yfinance pandas requests pytz
+          pip install -r requirements.txt
       - name: P3 akşam taraması
         run: python simulate_dsp.py
         env:
           MOTT_MODE: aksam
           DSP_USE_TV: ${{ secrets.DSP_USE_TV || '0' }}
+      - name: Eski raporları temizle (30 gün sakla)
+        run: |
+          if [ -d reports/history ]; then
+            ls reports/history/*.html 2>/dev/null | sort | head -n -30 | xargs -r rm -- || true
+          fi
       - name: State commit
         run: |
           git config user.name "MOTT Bot"
           git config user.email "bot@mott"
-          FILES="reports/ portfolio_state.json"
           for i in 1 2 3 4 5; do
-            git add $FILES || true
+            git add -A reports/ || true
+            git add portfolio_state.json || true
             if git diff --cached --quiet; then echo "Degisiklik yok."; break; fi
             git commit -m "P3-DSP: $(date +'%Y-%m-%d %H:%M')" || true
             if git push origin HEAD:main; then echo "Push basarili (deneme $i)."; break; fi
             echo "Push cakismasi (deneme $i/5) - senkronize ediliyor..."
             git fetch origin main
             git reset --soft origin/main
-            git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'P3 — DSP' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
   # ── P1 — Momentum ─────────────────────────────────────────────────────────
   p1-momentum:
@@ -117,11 +132,11 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: p1-pip-${{ hashFiles('requirements_p1.txt') }}
-          restore-keys: p1-pip-
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
       - run: |
           pip install --upgrade pip
-          pip install numpy pandas yfinance requests tradingview-screener pytz smartmoneyconcepts
+          pip install -r requirements.txt
       - name: P1 çalıştır
         run: |
           MODE="${{ needs.gate.outputs.mode }}"
@@ -154,6 +169,13 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'P1 — Momentum' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
   # ── P2 — SMC ──────────────────────────────────────────────────────────────
   p2-smc:
@@ -171,11 +193,11 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: p2-pip-${{ hashFiles('requirements_p2.txt') }}
-          restore-keys: p2-pip-
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
       - run: |
           pip install --upgrade pip
-          pip install numpy pandas yfinance requests tradingview-screener pytz smartmoneyconcepts
+          pip install -r requirements.txt
       - name: P2 çalıştır
         run: |
           MODE="${{ needs.gate.outputs.mode }}"
@@ -203,6 +225,13 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'P2 — SMC' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
   # ── P4 — Meta (yalnızca akşam) ────────────────────────────────────────────
   p4-meta:
@@ -225,11 +254,11 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: p4-pip-${{ hashFiles('requirements_p4.txt') }}
-          restore-keys: p4-pip-
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
       - run: |
           pip install --upgrade pip
-          pip install numpy pandas scipy yfinance requests pytz
+          pip install -r requirements.txt
       - name: P4 meta portföy
         run: python meta_portfolio.py
         env:
@@ -250,6 +279,13 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'P4 — Meta Portföy' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
   # ── P5 — Komite (yalnızca akşam, P4 ile paralel) ─────────────────────────
   p5-komite:
@@ -272,11 +308,11 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: p5-pip-${{ hashFiles('requirements_p4.txt') }}
-          restore-keys: p5-pip-
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
       - run: |
           pip install --upgrade pip
-          pip install numpy pandas scipy yfinance requests pytz
+          pip install -r requirements.txt
       - name: P5 komite portföy
         run: python p5_committee.py
         env:
@@ -297,13 +333,19 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'P5 — Komite' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
-  # ── Canlı takip — gün içi 15 dk'da bir (yalnızca açık pozisyon kontrolü) ──
-  # P1/P2 zaten mevcut "alim"/"takip"/"kapani" job'ları üzerinden (daha sık
-  # tetiklenen cron sayesinde) STOP/TP kontrolü yapıyor. P3/P4/P5'in normal
-  # akışı yalnızca akşam çalıştığı için, STOP/TP/MAX_GUN gün içinde ancak
-  # akşama kadar (saatlerce) fark edilmiyordu. Bu job'lar YALNIZCA açık
-  # pozisyonları kontrol eder — yeni aday seçimi/tam tarama yapmaz.
+  # ── Canlı takip — gün içi saatlik (yalnızca açık pozisyon kontrolü) ──────
+  # P1/P2 zaten "alim"/"takip"/"kapani" job'ları üzerinden STOP/TP kontrolü
+  # yapıyor. P3/P4/P5'in normal akışı yalnızca akşam çalıştığı için bu
+  # job'lar gün içinde YALNIZCA açık pozisyonları kontrol eder — yeni aday
+  # seçimi/tam tarama yapmaz. Fiyat kaynağı: TradingView (yfinance yedekli).
   p3-monitor:
     name: P3 — Canlı Takip
     needs: gate
@@ -321,11 +363,11 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: p3-pip-${{ hashFiles('requirements_p3.txt') }}
-          restore-keys: p3-pip-
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
       - run: |
           pip install --upgrade pip
-          pip install scipy numpy yfinance pandas requests pytz
+          pip install -r requirements.txt
       - name: P3 acil stop kontrolü
         run: python simulate_dsp.py monitor
         env:
@@ -346,6 +388,13 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'P3 — Canlı Takip' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
   p4-monitor:
     name: P4 — Canlı Takip
@@ -364,11 +413,11 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: p4-pip-${{ hashFiles('requirements_p4.txt') }}
-          restore-keys: p4-pip-
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
       - run: |
           pip install --upgrade pip
-          pip install numpy pandas scipy yfinance requests pytz
+          pip install -r requirements.txt
       - name: P4 STOP/TP/MAX_GUN kontrolü
         run: python meta_portfolio.py --monitor
         env:
@@ -389,6 +438,13 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'P4 — Canlı Takip' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
   p5-monitor:
     name: P5 — Canlı Takip
@@ -407,11 +463,11 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: p5-pip-${{ hashFiles('requirements_p4.txt') }}
-          restore-keys: p5-pip-
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
       - run: |
           pip install --upgrade pip
-          pip install numpy pandas scipy yfinance requests pytz
+          pip install -r requirements.txt
       - name: P5 STOP/TP/MAX_GUN kontrolü
         run: python p5_committee.py --monitor
         env:
@@ -432,6 +488,13 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'P5 — Canlı Takip' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
 
   # ── Aylık rapor (ayın 1'i, akşam modunda) ────────────────────────────────
   aylik-rapor:
@@ -448,7 +511,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install numpy pandas yfinance requests pytz
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: mott-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: mott-pip-
+      - run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Aylık rapor (ayın 1'i)
         run: |
           GUN=$(TZ=Europe/Istanbul date +%d)
@@ -459,3 +529,10 @@ jobs:
           fi
         env:
           MOTT_MODE: aksam
+      - name: Hata bildirimi (Telegram)
+        if: failure()
+        run: |
+          TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
+          [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="🚨 MOTT HATA: 'Aylık Karşılaştırma' job'ı başarısız. Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
