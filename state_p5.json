@@ -3,9 +3,9 @@
     "SKTAS": {
       "symbol": "SKTAS",
       "giris_fiyat": 3.7899999618530273,
-      "guncel_fiyat": 3.740000009536743,
+      "guncel_fiyat": 3.7300000190734863,
       "lotlar": 5277,
-      "pnl_pct": -1.32,
+      "pnl_pct": -1.58,
       "gun": 1,
       "giris_tarih": "2026-07-02",
       "komite_skor": 75,
@@ -18,9 +18,9 @@
     "DAGI": {
       "symbol": "DAGI",
       "giris_fiyat": 9.180000305175781,
-      "guncel_fiyat": 9.329999923706055,
+      "guncel_fiyat": 9.430000305175781,
       "lotlar": 2178,
-      "pnl_pct": 1.63,
+      "pnl_pct": 2.72,
       "gun": 1,
       "giris_tarih": "2026-07-02",
       "komite_skor": 60,
