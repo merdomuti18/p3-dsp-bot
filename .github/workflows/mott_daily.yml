@@ -508,29 +508,38 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Ayın 1'i mi? (TSİ)
+        id: gun
+        run: |
+          GUN=$(TZ=Europe/Istanbul date +%d)
+          echo "gun=$GUN" >> $GITHUB_OUTPUT
+          if [ "$GUN" = "01" ]; then
+            echo "Aylık rapor çalışacak (bugün: $GUN)"
+          else
+            echo "Aylık rapor atlandı — yalnızca ayın 1'inde (bugün: $GUN)"
+          fi
       - uses: actions/setup-python@v5
+        if: steps.gun.outputs.gun == '01'
         with:
           python-version: '3.11'
       - uses: actions/cache@v4
+        if: steps.gun.outputs.gun == '01'
         with:
           path: ~/.cache/pip
           key: mott-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: mott-pip-
-      - run: |
+      - name: Bağımlılıkları kur
+        if: steps.gun.outputs.gun == '01'
+        run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Aylık rapor (ayın 1'i)
-        run: |
-          GUN=$(TZ=Europe/Istanbul date +%d)
-          if [ "$GUN" = "01" ]; then
-            python mott_aylik_rapor.py --telegram
-          else
-            echo "Aylık rapor yalnızca ayın 1'inde gönderilir (bugün: $GUN)"
-          fi
+      - name: Aylık rapor gönder
+        if: steps.gun.outputs.gun == '01'
+        run: python mott_aylik_rapor.py --telegram
         env:
           MOTT_MODE: aksam
       - name: Hata bildirimi (Telegram)
-        if: failure()
+        if: failure() && steps.gun.outputs.gun == '01'
         run: |
           TOKEN="${TELEGRAM_BOT_TOKEN:-$TELEGRAM_TOKEN}"
           [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \

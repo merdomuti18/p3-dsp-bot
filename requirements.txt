@@ -1,11 +1,11 @@
 # MOTT — tüm stratejilerin (P1–P5) ortak bağımlılıkları.
-# Sürümler sabitlendi (3 Temmuz 2026, CI'da doğrulanan sürümler).
-# Güncellerken: önce tek stratejide deneyin, sonra tümüne yayın.
-numpy==2.5.0
-pandas==3.0.3
-scipy==1.18.0
+# Python 3.11 (GitHub Actions) ile uyumlu sabit sürümler.
+# NOT: numpy 2.5+ ve pandas 3.x Python 3.12+ ister — CI 3.11 kullanır.
+numpy==2.4.6
+pandas==2.2.3
+scipy==1.15.2
 yfinance==1.5.1
-requests==2.34.2
-pytz==2026.2
+requests==2.32.5
+pytz==2025.2
 tradingview-screener==3.2.1
 smartmoneyconcepts==0.0.27
