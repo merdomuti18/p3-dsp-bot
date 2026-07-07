@@ -1,85 +1,301 @@
 {
   "tarama": {
-    "scan_time": "07.07.2026 14:10",
+    "scan_time": "02.07.2026 18:03",
     "scan_label": "Gün İçi Manuel Tetikleme",
     "signals": [
       {
-        "symbol": "TRGYO",
-        "scan_time": "07.07.2026 14:10",
+        "symbol": "EFOR",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "GT"
+        ],
+        "score_count": 1,
+        "rsi": 58.8,
+        "rel_vol": 1.14,
+        "change_pct": 1.91,
+        "close": 14.92,
+        "adx": 48.37,
+        "cmf": 0.0463,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "ISCTR",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "GT"
+        ],
+        "score_count": 1,
+        "rsi": 58.68,
+        "rel_vol": 1.05,
+        "change_pct": -0.8,
+        "close": 14.81,
+        "adx": 30.48,
+        "cmf": 0.0099,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "SNICA",
+        "scan_time": "02.07.2026 18:03",
         "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
           "GT",
-          "ZKN"
+          "MR"
         ],
         "score_count": 2,
-        "rsi": 56.58,
-        "rel_vol": 1.23,
-        "change_pct": 1.32,
-        "close": 99.8,
-        "adx": 20.47,
-        "cmf": 0.1561,
+        "rsi": 58.2,
+        "rel_vol": 1.47,
+        "change_pct": 0.23,
+        "close": 4.34,
+        "adx": 43.04,
+        "cmf": 0.0035,
         "alpha_bull": false,
-        "alpha_trend_bull": true
+        "alpha_trend_bull": false
       },
       {
-        "symbol": "MAKIM",
-        "scan_time": "07.07.2026 14:10",
+        "symbol": "ARSAN",
+        "scan_time": "02.07.2026 18:03",
         "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
-          "ZT3"
+          "ALPHA",
+          "KBM"
+        ],
+        "score_count": 2,
+        "rsi": 61.9,
+        "rel_vol": 4.33,
+        "change_pct": 8.15,
+        "close": 3.45,
+        "adx": 21.14,
+        "cmf": 0.0363,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "GARAN",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZKN"
         ],
         "score_count": 1,
-        "rsi": 54.88,
-        "rel_vol": 1.37,
-        "change_pct": 2.38,
-        "close": 19.8,
-        "adx": 37.73,
-        "cmf": -0.1155,
+        "rsi": 56.48,
+        "rel_vol": 0.85,
+        "change_pct": -0.07,
+        "close": 138.4,
+        "adx": 32.88,
+        "cmf": 0.006,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "ARDYZ",
-        "scan_time": "07.07.2026 14:10",
+        "symbol": "VAKBN",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 56.28,
+        "rel_vol": 0.82,
+        "change_pct": 0.9,
+        "close": 33.58,
+        "adx": 23.2,
+        "cmf": -0.0722,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "SKTAS",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 55.36,
+        "rel_vol": 1.62,
+        "change_pct": -6.42,
+        "close": 3.79,
+        "adx": 32.59,
+        "cmf": -0.0336,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "SAHOL",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 53.89,
+        "rel_vol": 0.89,
+        "change_pct": -0.66,
+        "close": 97.45,
+        "adx": 22.68,
+        "cmf": -0.0281,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "GSDHO",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 53.7,
+        "rel_vol": 1.3,
+        "change_pct": 7.2,
+        "close": 6.25,
+        "adx": 28.49,
+        "cmf": -0.0592,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "THYAO",
+        "scan_time": "02.07.2026 18:03",
         "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 71.55,
-        "rel_vol": 1.6,
-        "change_pct": 6.24,
-        "close": 67.3,
-        "adx": 24.08,
-        "cmf": -0.0323,
+        "rsi": 73.91,
+        "rel_vol": 1.4,
+        "change_pct": 1.22,
+        "close": 332.5,
+        "adx": 45.24,
+        "cmf": -0.0905,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "AKSEN",
-        "scan_time": "07.07.2026 14:10",
+        "symbol": "DAGI",
+        "scan_time": "02.07.2026 18:03",
         "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
-          "MR",
-          "KBM"
+          "MR"
         ],
-        "score_count": 2,
-        "rsi": 64.26,
-        "rel_vol": 1.12,
-        "change_pct": 3.0,
-        "close": 87.6,
-        "adx": 16.77,
-        "cmf": 0.0568,
+        "score_count": 1,
+        "rsi": 69.38,
+        "rel_vol": 1.61,
+        "change_pct": 5.78,
+        "close": 9.15,
+        "adx": 48.82,
+        "cmf": 0.0032,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KLGYO",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 67.42,
+        "rel_vol": 1.31,
+        "change_pct": 2.33,
+        "close": 5.26,
+        "adx": 43.26,
+        "cmf": -0.1778,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "MANAS",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 66.48,
+        "rel_vol": 1.62,
+        "change_pct": 0.2,
+        "close": 30.38,
+        "adx": 37.45,
+        "cmf": 0.0325,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KLMSN",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 62.81,
+        "rel_vol": 1.57,
+        "change_pct": 2.73,
+        "close": 33.92,
+        "adx": 22.78,
+        "cmf": -0.3594,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "INVEO",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 61.73,
+        "rel_vol": 3.37,
+        "change_pct": 6.39,
+        "close": 8.83,
+        "adx": 38.74,
+        "cmf": -0.1607,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "ICBCT",
+        "scan_time": "02.07.2026 18:03",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 61.73,
+        "rel_vol": 2.28,
+        "change_pct": 0.61,
+        "close": 22.92,
+        "adx": 15.15,
+        "cmf": -0.1719,
         "alpha_bull": false,
         "alpha_trend_bull": true
       }
     ],
     "semboller": [
-      "TRGYO",
-      "MAKIM",
-      "ARDYZ",
-      "AKSEN"
+      "EFOR",
+      "ISCTR",
+      "SNICA",
+      "ARSAN",
+      "GARAN",
+      "VAKBN",
+      "SKTAS",
+      "SAHOL",
+      "GSDHO",
+      "THYAO",
+      "DAGI",
+      "KLGYO",
+      "MANAS",
+      "KLMSN",
+      "INVEO",
+      "ICBCT"
     ]
   },
-  "last_scan": "07.07.2026 14:10"
+  "last_scan": "02.07.2026 18:03"
 }
