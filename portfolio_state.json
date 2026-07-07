@@ -92,6 +92,20 @@
         "ODAS",
         "AKBNK"
       ]
+    },
+    {
+      "date": "2026-07-07",
+      "scanned": 79,
+      "long_signals": 34,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "GLYHO",
+        "THYAO"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -412,6 +426,14 @@
     "log": [
       {
         "date": "2026-07-02",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-07",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
