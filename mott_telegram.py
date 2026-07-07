@@ -233,6 +233,11 @@ def strateji_mesaj(
     lines.append(f"💼 *Açık pozisyon ({n_pos}):*")
     lines.extend(acik)
     lines.append(f"📊 *WR:* {wr_str}  |  *P&L:* {pnl_str}")
+    try:
+        from mott_portfoy_deger import portfoy_degeri_satiri
+        lines.append(portfoy_degeri_satiri(strateji, portfoy))
+    except Exception as exc:
+        log.debug("Portföy değeri satırı atlandı: %s", exc)
     if ekstra:
         lines.append("")
         lines.extend(ekstra)
@@ -470,4 +475,13 @@ def telegram_islem_gonder(
         )
     else:
         msg = fn(sinyaller, portfoy, giris=giris, cikis=cikis, mesajlar=mesajlar)
+
+    if os.environ.get("MOTT_MODE", "") == "aksam":
+        try:
+            from mott_aksam_telegram import pending_kaydet
+            pending_kaydet(strateji, msg, meta={"giris": giris, "cikis": cikis})
+            return True
+        except Exception as exc:
+            log.warning("[%s] Akşam kuyruk hatası, doğrudan gönderiliyor: %s", strateji, exc)
+
     return telegram_gonder(msg)

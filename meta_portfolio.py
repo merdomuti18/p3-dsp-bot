@@ -236,6 +236,11 @@ def state_yukle() -> dict:
 
 
 def state_kaydet(state: dict):
+    try:
+        from mott_portfoy_deger import equity_hesapla
+        state["sermaye_mevcut"] = equity_hesapla("P4", state)["equity"]
+    except Exception:
+        pass
     path = BASE_DIR / "state_p4.json"
     with open(path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2, ensure_ascii=False)

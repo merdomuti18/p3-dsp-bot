@@ -113,6 +113,14 @@ jobs:
             git checkout origin/main -- $KORUMA 2>/dev/null || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Telegram kuyruk artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tg-P3-pending
+          path: reports/telegram_pending/P3.json
+          if-no-files-found: ignore
+          retention-days: 1
       - name: Hata bildirimi (Telegram)
         if: failure()
         run: |
@@ -301,6 +309,14 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Telegram kuyruk artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tg-P4-pending
+          path: reports/telegram_pending/P4.json
+          if-no-files-found: ignore
+          retention-days: 1
       - name: Hata bildirimi (Telegram)
         if: failure()
         run: |
@@ -355,6 +371,14 @@ jobs:
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
+      - name: Telegram kuyruk artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tg-P5-pending
+          path: reports/telegram_pending/P5.json
+          if-no-files-found: ignore
+          retention-days: 1
       - name: Hata bildirimi (Telegram)
         if: failure()
         run: |
@@ -362,6 +386,44 @@ jobs:
           [ -n "$TOKEN" ] && curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
             --data-urlencode chat_id="${TELEGRAM_CHAT_ID}" \
             --data-urlencode text="🚨 MOTT HATA: 'P5 — Komite' job'ı başarısız (mod: ${{ needs.gate.outputs.mode }}). Detay: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
+
+  # ── Akşam Telegram — P1→P5 sıralı rapor ─────────────────────────────────
+  aksam-telegram:
+    name: Telegram — P1→P5 Sıralı
+    needs: [gate, p1-momentum, p2-smc, p3-dsp, p4-meta, p5-komite]
+    if: |
+      always() &&
+      needs.gate.outputs.mode == 'aksam' &&
+      needs.p1-momentum.result == 'success' &&
+      needs.p2-smc.result == 'success' &&
+      needs.p3-dsp.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Telegram kuyruk indir
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: tg-P*-pending
+          merge-multiple: true
+          path: reports/telegram_pending
+      - name: State senkronize et
+        run: |
+          git fetch origin main
+          git checkout origin/main -- \
+            state_p1.json state_p2.json portfolio_state.json \
+            state_p4.json state_p5.json portfoy.json portfoy_p2.json \
+            tarama_listesi.json tarama_listesi_p2.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pytz requests
+      - name: P1→P5 sıralı Telegram gönder
+        run: python mott_aksam_telegram.py --gonder
+        env:
+          MOTT_MODE: aksam
 
   # ── Canlı takip — gün içi saatlik (yalnızca açık pozisyon kontrolü) ──────
   # P1/P2 zaten "alim"/"takip"/"kapani" job'ları üzerinden STOP/TP kontrolü
