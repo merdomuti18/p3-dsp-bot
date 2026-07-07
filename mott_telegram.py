@@ -252,9 +252,10 @@ def p1_mesaj(
     cikis: list | None = None,
     mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
+    ekstra: list[str] | None = None,
 ) -> str:
     return strateji_mesaj("P1", sinyaller, portfoy, giris=giris, cikis=cikis,
-                           mesajlar=mesajlar, zaman=zaman)
+                           mesajlar=mesajlar, zaman=zaman, ekstra=ekstra)
 
 
 def p2_mesaj(
@@ -264,9 +265,10 @@ def p2_mesaj(
     cikis: list | None = None,
     mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
+    ekstra: list[str] | None = None,
 ) -> str:
     return strateji_mesaj("P2", sinyaller, portfoy, giris=giris, cikis=cikis,
-                           mesajlar=mesajlar, zaman=zaman)
+                           mesajlar=mesajlar, zaman=zaman, ekstra=ekstra)
 
 
 def p3_mesaj(
@@ -278,6 +280,7 @@ def p3_mesaj(
     corr_risk: str = "LOW",
     mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
+    ekstra: list[str] | None = None,
 ) -> str:
     sinyaller = []
     for s in top_longs[:8]:
@@ -293,13 +296,14 @@ def p3_mesaj(
                 "score": s.get("score", 0),
                 "strategies": [f"marj={s.get('crossover_margin', 0):+.3f}"],
             })
-    ekstra = [
+    ekstra_lines = list(ekstra) if ekstra else []
+    ekstra_lines += [
         f"🔬 Non-stat: {'⚠️ Drift' if monitor_alert else '✅ Stabil'}",
         f"🔗 Korelasyon: {corr_risk}",
     ]
     return strateji_mesaj(
         "P3", sinyaller, portfoy,
-        giris=giris, cikis=cikis, ekstra=ekstra, mesajlar=mesajlar, zaman=zaman,
+        giris=giris, cikis=cikis, ekstra=ekstra_lines, mesajlar=mesajlar, zaman=zaman,
     )
 
 
@@ -311,6 +315,7 @@ def p4_mesaj(
     cikis: list | None = None,
     mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
+    ekstra: list[str] | None = None,
 ) -> str:
     sinyaller = [
         {
@@ -320,12 +325,14 @@ def p4_mesaj(
         }
         for s in secilen[:8]
     ]
-    ic_lines = ["🧠 *IC ağırlıkları:*"]
-    for k, v in sorted(ic_scores.items(), key=lambda x: x[1], reverse=True):
-        ic_lines.append(f"  {k}: {v:+.3f}")
+    ic_lines = list(ekstra or [])
+    if ic_scores:
+        ic_lines.append("🧠 *IC ağırlıkları:*")
+        for k, v in sorted(ic_scores.items(), key=lambda x: x[1], reverse=True):
+            ic_lines.append(f"  {k}: {v:+.3f}")
     return strateji_mesaj(
         "P4", sinyaller, portfoy,
-        giris=giris, cikis=cikis, ekstra=ic_lines, mesajlar=mesajlar, zaman=zaman,
+        giris=giris, cikis=cikis, ekstra=ic_lines or None, mesajlar=mesajlar, zaman=zaman,
     )
 
 
@@ -337,6 +344,7 @@ def p5_mesaj(
     elenen: list | None = None,
     mesajlar: list[str] | None = None,
     zaman: Optional[str] = None,
+    ekstra: list[str] | None = None,
 ) -> str:
     sinyaller = [
         {
@@ -346,14 +354,14 @@ def p5_mesaj(
         }
         for s in secilen[:8]
     ]
-    ekstra = []
+    ekstra_lines = list(ekstra or [])
     if elenen:
-        ekstra.append("🚫 *Elenen (örnek):*")
+        ekstra_lines.append("🚫 *Elenen (örnek):*")
         for e in elenen[:5]:
-            ekstra.append(f"  `{e.get('symbol','?')}` — {e.get('neden','')}")
+            ekstra_lines.append(f"  `{e.get('symbol','?')}` — {e.get('neden','')}")
     return strateji_mesaj(
         "P5", sinyaller, portfoy,
-        giris=giris, cikis=cikis, ekstra=ekstra or None, mesajlar=mesajlar, zaman=zaman,
+        giris=giris, cikis=cikis, ekstra=ekstra_lines or None, mesajlar=mesajlar, zaman=zaman,
     )
 
 

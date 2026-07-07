@@ -90,18 +90,19 @@ def _sinyaller_yukle(strateji: str) -> list[dict]:
 
 
 def portfoy_ozet_mesaji(strateji: str) -> str:
-    """İşlem olmasa da gönderilecek akşam portföy özeti."""
+    """İşlem olmasa da gönderilecek akşam tarama özeti."""
     from mott_telegram import p1_mesaj, p2_mesaj, p3_mesaj, p4_mesaj, p5_mesaj
 
     portfoy = _portfoy_yukle(strateji)
     sinyaller = _sinyaller_yukle(strateji)
+    aksam_not = ["📋 *Akşam tarama sonuçları*"]
 
     if strateji == "P1":
-        return p1_mesaj(sinyaller, portfoy, giris=[], cikis=[])
+        return p1_mesaj(sinyaller, portfoy, giris=[], cikis=[], ekstra=aksam_not)
     if strateji == "P2":
-        return p2_mesaj(sinyaller, portfoy, giris=[], cikis=[])
+        return p2_mesaj(sinyaller, portfoy, giris=[], cikis=[], ekstra=aksam_not)
     if strateji == "P3":
-        return p3_mesaj(sinyaller, portfoy, giris=[], cikis=[])
+        return p3_mesaj(sinyaller, portfoy, giris=[], cikis=[], ekstra=aksam_not)
     if strateji == "P4":
         secilen = [
             {
@@ -111,7 +112,7 @@ def portfoy_ozet_mesaji(strateji: str) -> str:
             }
             for s in sinyaller
         ]
-        return p4_mesaj(secilen, portfoy, ic_scores={}, giris=[], cikis=[])
+        return p4_mesaj(secilen, portfoy, ic_scores={}, giris=[], cikis=[], ekstra=aksam_not)
     if strateji == "P5":
         secilen = [
             {
@@ -121,7 +122,7 @@ def portfoy_ozet_mesaji(strateji: str) -> str:
             }
             for s in sinyaller
         ]
-        return p5_mesaj(secilen, portfoy, giris=[], cikis=[])
+        return p5_mesaj(secilen, portfoy, giris=[], cikis=[], ekstra=aksam_not)
     return ""
 
 

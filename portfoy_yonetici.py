@@ -1468,8 +1468,18 @@ def sabah_09_akisi():
     portfoy["bekleyen_al"] = bekleyen
     portfoy["open_attempts_today"] = []
     portfoy_kaydet(portfoy)
-    durum_kaydet({"tarih": saat_label, "makro_skor": skor, "makro_karar": karar,
-                  "makro_detaylar": detaylar})
+    durum_kaydet({
+        "tarih": saat_label,
+        "makro_skor": skor,
+        "makro_karar": karar,
+        "makro_detaylar": detaylar,
+        "piyasa_ret": piyasa_ret,
+        "viop": {
+            "label": viop_bias.get("label"),
+            "score": viop_bias.get("score"),
+            "ticker": viop_bias.get("ticker"),
+        },
+    })
     lines = [
         f"\u2600\ufe0f <b>09:00 Sabah De\u011flendirmesi \u2014 {saat_label}</b>", "",
         makro_ozet_metni(skor, karar, detaylar, piyasa_ret), "",
@@ -1490,7 +1500,12 @@ def sabah_09_akisi():
         lines.append("   - Bug\u00fcn g\u00fc\u00e7l\u00fc aday yok")
     if elinenler:
         lines.append(f"\n\U0001f6ab LGBM filtresiyle elinen: {', '.join(x['symbol'] for x in elinenler[:5])}")
-    log.info("Sabah degerlendirmesi tamamlandi (Telegram: islem yok, atlandi)")
+    try:
+        from mott_sabah_telegram import gunluk_plan_gonder
+        gunluk_plan_gonder()
+    except Exception as exc:
+        log.warning("Sabah günlük plan Telegram: %s", exc)
+    log.info("Sabah degerlendirmesi tamamlandi")
     return karar
 
 
