@@ -3,9 +3,9 @@
     "SKTAS": {
       "symbol": "SKTAS",
       "giris_fiyat": 3.7899999618530273,
-      "guncel_fiyat": 3.67,
+      "guncel_fiyat": 3.69,
       "lotlar": 5277,
-      "pnl_pct": -3.17,
+      "pnl_pct": -2.64,
       "gun": 5,
       "giris_tarih": "2026-07-02",
       "komite_skor": 75,
@@ -88,5 +88,5 @@
   ],
   "last_run": "2026-07-02T18:06:05.212969",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 101566
+  "sermaye_mevcut": 101672
 }
