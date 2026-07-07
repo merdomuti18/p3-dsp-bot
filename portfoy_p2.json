@@ -45,7 +45,7 @@
     "DAGI": {
       "giris_f": 9.43,
       "giris_t": "03.07.2026 13:23",
-      "tepe_f": 10.329999923706055,
+      "tepe_f": 10.579999923706055,
       "lotlar": 393,
       "gun": 0,
       "tp1_yapildi": true,
@@ -71,7 +71,7 @@
     "CWENE": {
       "giris_f": 40.26,
       "giris_t": "03.07.2026 13:23",
-      "tepe_f": 40.34000015258789,
+      "tepe_f": 41.13999938964844,
       "lotlar": 127,
       "gun": 0,
       "tp1_yapildi": false,
@@ -300,5 +300,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "07.07.2026 12:26"
+  "last_hourly_check_time": "07.07.2026 13:56"
 }
