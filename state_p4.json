@@ -3,9 +3,9 @@
     "SKTAS": {
       "symbol": "SKTAS",
       "giris_fiyat": 3.7799999713897705,
-      "guncel_fiyat": 3.67,
+      "guncel_fiyat": 3.66,
       "lotlar": 3306,
-      "pnl_pct": -2.91,
+      "pnl_pct": -3.17,
       "gun": 5,
       "giris_tarih": "2026-07-02",
       "meta_score": 0.7333333333333334,
@@ -19,9 +19,9 @@
     "ARSAN": {
       "symbol": "ARSAN",
       "giris_fiyat": 3.4600000381469727,
-      "guncel_fiyat": 3.41,
+      "guncel_fiyat": 3.42,
       "lotlar": 3612,
-      "pnl_pct": -1.45,
+      "pnl_pct": -1.16,
       "gun": 5,
       "giris_tarih": "2026-07-02",
       "meta_score": 0.48888888888888893,
@@ -51,9 +51,9 @@
     "DAGI": {
       "symbol": "DAGI",
       "giris_fiyat": 10.23,
-      "guncel_fiyat": 10.19,
+      "guncel_fiyat": 10.23,
       "lotlar": 1221,
-      "pnl_pct": -0.39,
+      "pnl_pct": 0.0,
       "gun": 0,
       "giris_tarih": "2026-07-07",
       "meta_score": 0.48888888888888893,
@@ -67,9 +67,9 @@
     "KLMSN": {
       "symbol": "KLMSN",
       "giris_fiyat": 34.0,
-      "guncel_fiyat": 33.62,
+      "guncel_fiyat": 34.0,
       "lotlar": 367,
-      "pnl_pct": -1.12,
+      "pnl_pct": 0.0,
       "gun": 0,
       "giris_tarih": "2026-07-07",
       "meta_score": 0.40740740740740744,
@@ -132,5 +132,5 @@
   ],
   "last_run": "2026-07-07T11:12:00.241635",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 102626
+  "sermaye_mevcut": 100000
 }
