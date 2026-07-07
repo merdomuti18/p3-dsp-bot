@@ -31,16 +31,19 @@ from typing import Optional
 
 import numpy as np
 import pandas as pd
+import pytz
 import yfinance as yf
 
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
+IST = pytz.timezone("Europe/Istanbul")
 BASE_DIR   = Path(os.environ.get("MOTT_BASE_DIR", "."))
 MAX_POS    = 5          # Maksimum açık pozisyon
 SERMAYE    = 100_000    # 100k TL
 POS_TL     = SERMAYE / MAX_POS   # Pozisyon başı 20k TL
-STOP_PCT   = -0.05      # %5 stop-loss
+STOP_PCT   = -0.05      # %5 stop-loss (normal)
+STOP_PCT_COKLU_ONAY = -0.10  # bugünkü P1+P2 onayı varsa (BIST günlük limiti)
 TP_PCT     = 0.10       # %10 take-profit
 MAX_GUN    = 10         # Maksimum elde tutma süresi
 IC_WINDOW  = 60         # Rolling IC penceresi (bar)
@@ -150,6 +153,67 @@ def fiyat_cek(semboller: list[str], bars: int = 30) -> dict[str, np.ndarray]:
 
 
 # ---------------------------------------------------------------------------
+# Sinyal tazeliği (TSİ) — bayat tarama P4 kararlarında kullanılmaz
+# ---------------------------------------------------------------------------
+
+def bugun_tsi() -> date:
+    return datetime.now(IST).date()
+
+
+def _parse_tarama_tarih(state: dict) -> date | None:
+    """state_p1/p2 last_scan veya tarama.scan_time → tarih."""
+    raw = (
+        state.get("last_scan")
+        or state.get("tarama", {}).get("scan_time", "")
+        or ""
+    ).strip()
+    if not raw:
+        return None
+    if len(raw) >= 10 and raw[4] == "-":
+        try:
+            return date.fromisoformat(raw[:10])
+        except ValueError:
+            pass
+    try:
+        return datetime.strptime(raw[:10], "%d.%m.%Y").date()
+    except ValueError:
+        return None
+
+
+def tarama_bugun_mu(state: dict) -> bool:
+    t = _parse_tarama_tarih(state)
+    return t == bugun_tsi() if t else False
+
+
+def sinyaller_taze_filtre(
+    state: dict,
+    sinyaller: list[dict],
+    kaynak: str,
+) -> list[dict]:
+    """Yalnızca bugünkü (TSİ) tarama sinyallerini döndür."""
+    if tarama_bugun_mu(state):
+        log.info("%s: bugünkü tarama — %d sinyal kullanılacak", kaynak, len(sinyaller))
+        return sinyaller
+    t = _parse_tarama_tarih(state)
+    log.warning(
+        "%s: bayat tarama (%s, bugün %s) — sinyaller yok sayılıyor",
+        kaynak,
+        t.isoformat() if t else "?",
+        bugun_tsi().isoformat(),
+    )
+    return []
+
+
+def bugun_sembol_seti(sinyaller: list[dict]) -> set[str]:
+    return {s["symbol"] for s in sinyaller if s.get("symbol")}
+
+
+def gunluk_coklu_onay(sym: str, p1_syms: set[str], p2_syms: set[str]) -> bool:
+    """Hisse bugünkü P1 ve P2 taramasında birlikte yer alıyor mu?"""
+    return sym in p1_syms and sym in p2_syms
+
+
+# ---------------------------------------------------------------------------
 # State Yönetimi
 # ---------------------------------------------------------------------------
 
@@ -178,48 +242,56 @@ def state_kaydet(state: dict):
     log.info("P4 state kaydedildi")
 
 
-def p1_sinyalleri_yukle() -> tuple[list[dict], list[dict]]:
-    """state_p1.json'dan sinyal ve portföy yükle."""
+def p1_sinyalleri_yukle() -> tuple[list[dict], dict]:
+    """state_p1.json'dan sinyal ve portföy yükle (yalnızca bugünkü tarama)."""
     state = {}
     path  = BASE_DIR / "state_p1.json"
     if path.exists():
         with open(path, encoding="utf-8") as f:
             state = json.load(f)
-    sinyaller = state.get("tarama", {}).get("signals", [])
-    return sinyaller, state
+    ham = state.get("tarama", {}).get("signals", [])
+    return sinyaller_taze_filtre(state, ham, "P1"), state
 
 
-def p2_sinyalleri_yukle() -> tuple[list[dict], list[dict]]:
-    """state_p2.json'dan sinyal ve portföy yükle."""
+def p2_sinyalleri_yukle() -> tuple[list[dict], dict]:
+    """state_p2.json'dan sinyal ve portföy yükle (yalnızca bugünkü tarama)."""
     state = {}
     path  = BASE_DIR / "state_p2.json"
     if path.exists():
         with open(path, encoding="utf-8") as f:
             state = json.load(f)
-    sinyaller = state.get("tarama", {}).get("signals", [])
-    return sinyaller, state
+    ham = state.get("tarama", {}).get("signals", [])
+    return sinyaller_taze_filtre(state, ham, "P2"), state
 
 
 def p3_sinyalleri_yukle() -> tuple[list[dict], dict]:
-    """portfolio_state.json'dan P3 sinyal ve portföy yükle."""
+    """portfolio_state.json'dan P3 sinyal ve portföy yükle (yalnızca bugünkü tarama)."""
     state = {}
     path  = BASE_DIR / "portfolio_state.json"
     if path.exists():
         with open(path, encoding="utf-8") as f:
             state = json.load(f)
 
-    # Son tarama logundaki top longs
     scan_log = state.get("scan_log", [])
-    sinyaller = []
+    sinyaller: list[dict] = []
     if scan_log:
         son_tarama = scan_log[-1]
-        for sym in son_tarama.get("top_longs", []):
+        tarama_gun = son_tarama.get("date", "")
+        if tarama_gun != bugun_tsi().isoformat():
+            log.warning(
+                "P3: bayat scan_log (%s, bugün %s) — sinyaller yok sayılıyor",
+                tarama_gun or "?",
+                bugun_tsi().isoformat(),
+            )
+            return [], state
+        for sym in son_tarama.get("top5", son_tarama.get("top_longs", [])):
             sinyaller.append({
                 "symbol":       sym,
                 "score":        0.0,
                 "final_score":  0.0,
                 "strateji":     "P3",
             })
+        log.info("P3: bugünkü tarama — %d sinyal kullanılacak", len(sinyaller))
 
     return sinyaller, state
 
@@ -386,12 +458,18 @@ def _elde_tutma_gunu(giris_tarih: str) -> int:
         return 0
 
 
-def portfoy_guncelle(state: dict, fiyat_cache: dict[str, np.ndarray]) -> dict:
+def portfoy_guncelle(
+    state: dict,
+    fiyat_cache: dict[str, np.ndarray],
+    p1_syms: set[str] | None = None,
+    p2_syms: set[str] | None = None,
+) -> dict:
     """
     Açık pozisyonları kontrol et: stop/TP/max gün.
+    STOP eşiği: bugünkü P1+P2 onayı varsa -%10, yoksa -%5.
     Returns: {"kapanan": [...], "devam_eden": [...]}
     """
-    bugun      = date.today().isoformat()
+    bugun      = bugun_tsi().isoformat()
     kapananlar = []
     devam      = {}
 
@@ -438,7 +516,24 @@ def portfoy_guncelle(state: dict, fiyat_cache: dict[str, np.ndarray]) -> dict:
 
         # Stop / TP / Max gün kontrolü
         neden = None
-        if pnl_pct <= STOP_PCT:
+        stop_esik = STOP_PCT
+        if (
+            p1_syms is not None
+            and p2_syms is not None
+            and gunluk_coklu_onay(sym, p1_syms, p2_syms)
+        ):
+            stop_esik = STOP_PCT_COKLU_ONAY
+            log.info(
+                "P4 %s: bugünkü P1+P2 onayı — STOP eşiği %.0f%%",
+                sym, stop_esik * 100,
+            )
+        elif pnl_pct <= STOP_PCT and pnl_pct > STOP_PCT_COKLU_ONAY:
+            log.info(
+                "P4 %s: bugünkü P1/P2 listesinde değil — STOP eşiği %.0f%%",
+                sym, STOP_PCT * 100,
+            )
+
+        if pnl_pct <= stop_esik:
             neden = "STOP"
         elif pnl_pct >= TP_PCT:
             neden = "TP"
@@ -474,9 +569,10 @@ def yeni_pozisyon_ac(
     state:     dict,
     adaylar:   list[dict],
     fiyat_cache: dict[str, np.ndarray],
+    stop_kapanan_bugun: set[str] | None = None,
 ) -> list[dict]:
     """En iyi adaylardan boş slotları doldur."""
-    bugun    = date.today().isoformat()
+    bugun    = bugun_tsi().isoformat()
     acilan   = []
     mevcut   = set(state["pozisyonlar"].keys())
     bos_slot = MAX_POS - len(mevcut)
@@ -501,6 +597,9 @@ def yeni_pozisyon_ac(
             break
         sym = aday["symbol"]
         if sym in mevcut:
+            continue
+        if sym in (stop_kapanan_bugun or set()):
+            log.info("P4 %s: bugün STOP ile kapandı — aynı turda yeniden alınmayacak", sym)
             continue
 
         fiyat = float(fiyat_cache[sym][-1]) if sym in fiyat_cache else 0
@@ -547,7 +646,12 @@ def calistir():
     p2_sig, p2_state = p2_sinyalleri_yukle()
     p3_sig, p3_state = p3_sinyalleri_yukle()
 
-    log.info("Sinyaller: P1=%d P2=%d P3=%d", len(p1_sig), len(p2_sig), len(p3_sig))
+    p1_syms = bugun_sembol_seti(p1_sig)
+    p2_syms = bugun_sembol_seti(p2_sig)
+    log.info(
+        "Sinyaller (bugün TSİ): P1=%d P2=%d P3=%d",
+        len(p1_sig), len(p2_sig), len(p3_sig),
+    )
 
     # 2. Fiyat verisi çek
     tum_semboller = list(set(
@@ -586,12 +690,18 @@ def calistir():
     log.info("Birleşik aday: %d sembol", len(adaylar))
 
     # 5. Mevcut pozisyonları güncelle
-    sonuc = portfoy_guncelle(state, fiyat_cache)
+    sonuc = portfoy_guncelle(state, fiyat_cache, p1_syms=p1_syms, p2_syms=p2_syms)
     log.info("Kapanan: %d | Devam: %d",
              len(sonuc["kapanan"]), len(sonuc["devam_eden"]))
 
     # 6. Yeni pozisyon aç
-    acilan = yeni_pozisyon_ac(state, adaylar, fiyat_cache)
+    stop_kapanan = {
+        t["symbol"] for t in sonuc["kapanan"]
+        if t.get("neden") == "STOP" and t.get("cikis_tarih") == bugun_tsi().isoformat()
+    }
+    acilan = yeni_pozisyon_ac(
+        state, adaylar, fiyat_cache, stop_kapanan_bugun=stop_kapanan,
+    )
     log.info("Açılan: %d yeni pozisyon", len(acilan))
 
     # 7. State kaydet
@@ -642,9 +752,14 @@ def monitor() -> dict:
         log.info("P4 monitor: açık pozisyon yok, atlandı")
         return {"kapanan": 0}
 
+    p1_sig, _ = p1_sinyalleri_yukle()
+    p2_sig, _ = p2_sinyalleri_yukle()
+    p1_syms = bugun_sembol_seti(p1_sig)
+    p2_syms = bugun_sembol_seti(p2_sig)
+
     semboller = list(state["pozisyonlar"].keys())
     fiyat_cache = fiyat_cek(semboller, bars=5)
-    sonuc = portfoy_guncelle(state, fiyat_cache)
+    sonuc = portfoy_guncelle(state, fiyat_cache, p1_syms=p1_syms, p2_syms=p2_syms)
     state_kaydet(state)
     log.info("P4 monitor: kapanan=%d devam=%d", len(sonuc["kapanan"]), len(sonuc["devam_eden"]))
 

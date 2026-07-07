@@ -97,15 +97,20 @@ jobs:
         run: |
           git config user.name "MOTT Bot"
           git config user.email "bot@mott"
+          # P3 yalnızca kendi dosyalarını commit etmeli — P1/P2 state'ini ezme
+          KORUMA="state_p1.json state_p2.json tarama_listesi.json tarama_listesi_p2.json portfoy.json portfoy_p2.json state_p4.json state_p5.json"
           for i in 1 2 3 4 5; do
-            git add -A reports/ || true
-            git add portfolio_state.json || true
+            git fetch origin main || true
+            git checkout origin/main -- $KORUMA 2>/dev/null || true
+            git restore --staged $KORUMA 2>/dev/null || true
+            git add reports/ portfolio_state.json
             if git diff --cached --quiet; then echo "Degisiklik yok."; break; fi
             git commit -m "P3-DSP: $(date +'%Y-%m-%d %H:%M')" || true
             if git push origin HEAD:main; then echo "Push basarili (deneme $i)."; break; fi
             echo "Push cakismasi (deneme $i/5) - senkronize ediliyor..."
             git fetch origin main
             git reset --soft origin/main
+            git checkout origin/main -- $KORUMA 2>/dev/null || true
             sleep $((RANDOM % 5 + 2))
           done
       - name: Hata bildirimi (Telegram)
@@ -158,7 +163,11 @@ jobs:
           git config user.name "MOTT Bot"
           git config user.email "bot@mott"
           FILES="state_p1.json tarama_listesi.json portfoy.json"
+          KORUMA="state_p2.json tarama_listesi_p2.json portfoy_p2.json portfolio_state.json state_p4.json state_p5.json"
           for i in 1 2 3 4 5; do
+            git fetch origin main || true
+            git checkout origin/main -- $KORUMA 2>/dev/null || true
+            git restore --staged $KORUMA 2>/dev/null || true
             git add $FILES || true
             if git diff --cached --quiet; then echo "Degisiklik yok."; break; fi
             git commit -m "P1: $(date +'%Y-%m-%d %H:%M')" || true
@@ -166,6 +175,7 @@ jobs:
             echo "Push cakismasi (deneme $i/5) - senkronize ediliyor..."
             git fetch origin main
             git reset --soft origin/main
+            git checkout origin/main -- $KORUMA 2>/dev/null || true
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
@@ -214,7 +224,11 @@ jobs:
           git config user.name "MOTT Bot"
           git config user.email "bot@mott"
           FILES="state_p2.json tarama_listesi_p2.json portfoy_p2.json"
+          KORUMA="state_p1.json tarama_listesi.json portfoy.json portfolio_state.json state_p4.json state_p5.json"
           for i in 1 2 3 4 5; do
+            git fetch origin main || true
+            git checkout origin/main -- $KORUMA 2>/dev/null || true
+            git restore --staged $KORUMA 2>/dev/null || true
             git add $FILES || true
             if git diff --cached --quiet; then echo "Degisiklik yok."; break; fi
             git commit -m "P2-SMC: $(date +'%Y-%m-%d %H:%M')" || true
@@ -222,6 +236,7 @@ jobs:
             echo "Push cakismasi (deneme $i/5) - senkronize ediliyor..."
             git fetch origin main
             git reset --soft origin/main
+            git checkout origin/main -- $KORUMA 2>/dev/null || true
             git add $FILES || true
             sleep $((RANDOM % 5 + 2))
           done
@@ -248,6 +263,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: P1/P2/P3 state senkronize et
+        run: |
+          git fetch origin main
+          git checkout origin/main -- \
+            state_p1.json state_p2.json \
+            tarama_listesi.json tarama_listesi_p2.json \
+            portfolio_state.json
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
