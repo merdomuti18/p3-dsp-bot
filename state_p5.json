@@ -3,10 +3,10 @@
     "SKTAS": {
       "symbol": "SKTAS",
       "giris_fiyat": 3.7899999618530273,
-      "guncel_fiyat": 3.740000009536743,
+      "guncel_fiyat": 3.66,
       "lotlar": 5277,
-      "pnl_pct": -1.32,
-      "gun": 1,
+      "pnl_pct": -3.43,
+      "gun": 5,
       "giris_tarih": "2026-07-02",
       "komite_skor": 75,
       "kaynaklar": [
@@ -15,23 +15,50 @@
       ],
       "strateji": "P5"
     },
-    "DAGI": {
-      "symbol": "DAGI",
-      "giris_fiyat": 9.180000305175781,
-      "guncel_fiyat": 9.329999923706055,
-      "lotlar": 2178,
-      "pnl_pct": 1.63,
-      "gun": 1,
-      "giris_tarih": "2026-07-02",
+    "ARSAN": {
+      "symbol": "ARSAN",
+      "giris_fiyat": 3.42,
+      "guncel_fiyat": 3.42,
+      "lotlar": 5847,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-07",
       "komite_skor": 60,
       "kaynaklar": [
         "P1",
         "P2"
       ],
       "strateji": "P5"
+    },
+    "THYAO": {
+      "symbol": "THYAO",
+      "giris_fiyat": 354.5,
+      "guncel_fiyat": 354.5,
+      "lotlar": 56,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-07",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
     }
   },
-  "trade_history": [],
+  "trade_history": [
+    {
+      "symbol": "DAGI",
+      "giris_fiyat": 9.180000305175781,
+      "cikis_fiyat": 10.23,
+      "pnl_pct": 11.44,
+      "gun": 5,
+      "neden": "TP",
+      "giris_tarih": "2026-07-02",
+      "cikis_tarih": "2026-07-07",
+      "strateji": "P5"
+    }
+  ],
   "komite_log": [
     {
       "tarih": "2026-07-02",
@@ -87,9 +114,67 @@
       ],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-07",
+      "secilen": [
+        "SKTAS",
+        "ARSAN",
+        "THYAO"
+      ],
+      "elenen": [
+        {
+          "symbol": "KLMSN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ECZYT",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "DEVA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "INGRM",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "LINK",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ICBCT",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "GARAN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "SAHOL",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "HALKB",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "ARSAN",
+        "THYAO"
+      ],
+      "kapanan": [
+        "DAGI"
+      ],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-07-02T18:06:05.212969",
+  "last_run": "2026-07-07T11:12:00.218903",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100000
 }
