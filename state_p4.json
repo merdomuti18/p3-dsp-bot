@@ -1,27 +1,11 @@
 {
   "pozisyonlar": {
-    "ICBCT": {
-      "symbol": "ICBCT",
-      "giris_fiyat": 21.78,
-      "guncel_fiyat": 20.98,
-      "lotlar": 573,
-      "pnl_pct": -3.67,
-      "gun": 1,
-      "giris_tarih": "2026-07-07",
-      "meta_score": 0.7333333333333334,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "coklu_onay": true,
-      "strateji": "P4"
-    },
     "THYAO": {
       "symbol": "THYAO",
       "giris_fiyat": 348.25,
-      "guncel_fiyat": 336.25,
+      "guncel_fiyat": 332.0,
       "lotlar": 35,
-      "pnl_pct": -3.45,
+      "pnl_pct": -4.67,
       "gun": 1,
       "giris_tarih": "2026-07-07",
       "meta_score": 0.8923076923076924,
@@ -31,6 +15,67 @@
         "P3"
       ],
       "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "KORDS": {
+      "symbol": "KORDS",
+      "giris_fiyat": 83.95,
+      "guncel_fiyat": 83.95,
+      "lotlar": 119,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-08",
+      "meta_score": 0.5703703703703704,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "PAGYO": {
+      "symbol": "PAGYO",
+      "giris_fiyat": 160.2,
+      "guncel_fiyat": 160.2,
+      "lotlar": 62,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-08",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P1"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "ASTOR": {
+      "symbol": "ASTOR",
+      "giris_fiyat": 317.5,
+      "guncel_fiyat": 317.5,
+      "lotlar": 31,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-08",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P1"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "SNICA": {
+      "symbol": "SNICA",
+      "giris_fiyat": 4.3,
+      "guncel_fiyat": 4.3,
+      "lotlar": 2325,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-08",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P1"
+      ],
+      "coklu_onay": false,
       "strateji": "P4"
     }
   },
@@ -111,6 +156,17 @@
       "giris_tarih": "2026-07-07",
       "cikis_tarih": "2026-07-08",
       "strateji": "P4"
+    },
+    {
+      "symbol": "ICBCT",
+      "giris_fiyat": 21.78,
+      "cikis_fiyat": 20.56,
+      "pnl_pct": -5.6,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-07",
+      "cikis_tarih": "2026-07-08",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -131,9 +187,15 @@
       "ic_p1": 0.0,
       "ic_p2": -0.2342,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-08",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-07-07T16:15:17.070429",
+  "last_run": "2026-07-08T18:09:00.413545",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 96818
+  "sermaye_mevcut": 96188
 }
