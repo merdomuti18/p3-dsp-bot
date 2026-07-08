@@ -25,11 +25,11 @@
       "score": 0.0758,
       "margin": 0.0567
     },
-    "THYAO": {
-      "entry_date": "2026-07-07",
-      "entry_price": 355.0,
-      "score": 0.0593,
-      "margin": 0.0423
+    "KLNMA": {
+      "entry_date": "2026-07-08",
+      "entry_price": 9.79,
+      "score": 0.0481,
+      "margin": 0.0521
     }
   },
   "history": [
@@ -50,6 +50,15 @@
       "exit_price": 74.95,
       "pnl_pct": -3.48,
       "holding_days": 5
+    },
+    {
+      "symbol": "THYAO",
+      "entry_date": "2026-07-07",
+      "exit_date": "2026-07-08",
+      "entry_price": 355.0,
+      "exit_price": 332.0,
+      "pnl_pct": -6.48,
+      "holding_days": 1
     }
   ],
   "scan_log": [
@@ -106,6 +115,24 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-07-08",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "GLYHO",
+        "KLNMA"
+      ],
+      "entries": [
+        "KLNMA"
+      ],
+      "exits": [
+        "THYAO"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -442,6 +469,14 @@
       },
       {
         "date": "2026-07-07",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-08",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
