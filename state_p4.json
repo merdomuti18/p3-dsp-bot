@@ -3,9 +3,9 @@
     "ICBCT": {
       "symbol": "ICBCT",
       "giris_fiyat": 21.78,
-      "guncel_fiyat": 21.0,
+      "guncel_fiyat": 20.98,
       "lotlar": 573,
-      "pnl_pct": -3.58,
+      "pnl_pct": -3.67,
       "gun": 1,
       "giris_tarih": "2026-07-07",
       "meta_score": 0.7333333333333334,
@@ -135,5 +135,5 @@
   ],
   "last_run": "2026-07-07T16:15:17.070429",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 96836
+  "sermaye_mevcut": 96818
 }
