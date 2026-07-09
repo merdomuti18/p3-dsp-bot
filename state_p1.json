@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "09.07.2026 19:13",
+    "scan_time": "09.07.2026 19:18",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
         "symbol": "TRGYO",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GT"
@@ -22,7 +22,7 @@
       },
       {
         "symbol": "AKSEN",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GT",
@@ -40,7 +40,7 @@
       },
       {
         "symbol": "ARDYZ",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GTD",
@@ -58,7 +58,7 @@
       },
       {
         "symbol": "UFUK",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ALPHA",
@@ -76,7 +76,7 @@
       },
       {
         "symbol": "CATES",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
@@ -93,7 +93,7 @@
       },
       {
         "symbol": "CWENE",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
@@ -110,7 +110,7 @@
       },
       {
         "symbol": "EKGYO",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
@@ -127,7 +127,7 @@
       },
       {
         "symbol": "MOBTL",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -144,7 +144,7 @@
       },
       {
         "symbol": "DAGI",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -161,7 +161,7 @@
       },
       {
         "symbol": "SAHOL",
-        "scan_time": "09.07.2026 19:13",
+        "scan_time": "09.07.2026 19:18",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "DIP"
@@ -190,5 +190,5 @@
       "SAHOL"
     ]
   },
-  "last_scan": "09.07.2026 19:13"
+  "last_scan": "09.07.2026 19:18"
 }
