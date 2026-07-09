@@ -214,9 +214,60 @@
         "KORDS"
       ],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-09",
+      "secilen": [
+        "AKSEN"
+      ],
+      "elenen": [
+        {
+          "symbol": "KORDS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "SAHOL",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "CELHA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "SKBNK",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "EKGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TRGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "OBASE",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-07-09T16:14:55.299919",
+  "last_run": "2026-07-09T16:20:01.887983",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 100056
 }
