@@ -160,6 +160,20 @@
       "exits": [
         "GLYHO"
       ]
+    },
+    {
+      "date": "2026-07-09",
+      "scanned": 79,
+      "long_signals": 26,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "TUPRS",
+        "KLNMA"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -504,6 +518,14 @@
       },
       {
         "date": "2026-07-08",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-09",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
