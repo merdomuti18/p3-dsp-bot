@@ -1,13 +1,13 @@
 {
   "pozisyonlar": {
-    "KORDS": {
-      "symbol": "KORDS",
-      "giris_fiyat": 83.95,
-      "guncel_fiyat": 83.95,
-      "lotlar": 238,
+    "AKSEN": {
+      "symbol": "AKSEN",
+      "giris_fiyat": 89.45,
+      "guncel_fiyat": 89.45,
+      "lotlar": 223,
       "pnl_pct": 0.0,
       "gun": 0,
-      "giris_tarih": "2026-07-08",
+      "giris_tarih": "2026-07-09",
       "komite_skor": 75,
       "kaynaklar": [
         "P1",
@@ -37,6 +37,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-07-02",
       "cikis_tarih": "2026-07-08",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "KORDS",
+      "giris_fiyat": 83.95,
+      "cikis_fiyat": 79.6,
+      "pnl_pct": -5.18,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-08",
+      "cikis_tarih": "2026-07-09",
       "strateji": "P5"
     }
   ],
@@ -148,9 +159,64 @@
       ],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-09",
+      "secilen": [
+        "AKSEN"
+      ],
+      "elenen": [
+        {
+          "symbol": "ISGYO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TRGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "EKGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "CATES",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "REEDR",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "OBASE",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "IEYHO",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TURSG",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "AKSEN"
+      ],
+      "kapanan": [
+        "KORDS"
+      ],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-07-08T18:09:04.411741",
+  "last_run": "2026-07-09T16:14:55.299919",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 101092
+  "sermaye_mevcut": 100056
 }
