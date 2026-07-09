@@ -13,12 +13,6 @@
       "score": 0.1471,
       "margin": 0.1522
     },
-    "GLYHO": {
-      "entry_date": "2026-07-02",
-      "entry_price": 18.12,
-      "score": 0.1186,
-      "margin": 0.0979
-    },
     "IZMDC": {
       "entry_date": "2026-07-07",
       "entry_price": 9.25,
@@ -30,6 +24,12 @@
       "entry_price": 9.79,
       "score": 0.0481,
       "margin": 0.0521
+    },
+    "TUPRS": {
+      "entry_date": "2026-07-09",
+      "entry_price": 264.25,
+      "score": 0.0709,
+      "margin": 0.0556
     }
   },
   "history": [
@@ -59,6 +59,15 @@
       "exit_price": 332.0,
       "pnl_pct": -6.48,
       "holding_days": 1
+    },
+    {
+      "symbol": "GLYHO",
+      "entry_date": "2026-07-02",
+      "exit_date": "2026-07-09",
+      "entry_price": 18.12,
+      "exit_price": 17.55,
+      "pnl_pct": -3.15,
+      "holding_days": 7
     }
   ],
   "scan_log": [
@@ -132,6 +141,24 @@
       ],
       "exits": [
         "THYAO"
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "scanned": 79,
+      "long_signals": 26,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "TUPRS",
+        "KLNMA"
+      ],
+      "entries": [
+        "TUPRS"
+      ],
+      "exits": [
+        "GLYHO"
       ]
     }
   ],
@@ -477,6 +504,14 @@
       },
       {
         "date": "2026-07-08",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-09",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
