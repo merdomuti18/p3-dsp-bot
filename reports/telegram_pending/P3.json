@@ -1,12 +1,12 @@
 {
   "strateji": "P3",
-  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 09.07.2026 | 19:14 TSİ\n\n🟢 *Alım:* `TUPRS`\n⬜ *Satım:* `GLYHO`\n\n📈 *Sinyaller:*\n  • `ISGYO   ` skor=+0.170  _marj=+0.143_\n  • `SKBNK   ` skor=+0.132  _marj=+0.134_\n  • `IZMDC   ` skor=+0.087  _marj=+0.059_\n  • `TUPRS   ` skor=+0.071  _marj=+0.056_\n  • `KLNMA   ` skor=+0.061  _marj=+0.066_\n\n💼 *Açık pozisyon (5):*\n  • `SKBNK`\n  • `ISGYO`\n  • `IZMDC`\n  • `KLNMA`\n  • `TUPRS`\n📊 *WR:* 0%  |  *P&L:* -16.2%\n🔴 *Portföy değeri:* `96,754 TL` (-3.2%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 10.07.2026 | 19:08 TSİ\n\n🟢 *Alım:* `AKCNS`\n⬜ *Satım:* `KLNMA`\n\n📈 *Sinyaller:*\n  • `SKBNK   ` skor=+0.163  _marj=+0.143_\n  • `ISGYO   ` skor=+0.151  _marj=+0.137_\n  • `TUPRS   ` skor=+0.083  _marj=+0.078_\n  • `AKCNS   ` skor=+0.078  _marj=+0.076_\n  • `IZMDC   ` skor=+0.067  _marj=+0.064_\n\n💼 *Açık pozisyon (5):*\n  • `SKBNK`\n  • `ISGYO`\n  • `IZMDC`\n  • `TUPRS`\n  • `AKCNS`\n📊 *WR:* 0%  |  *P&L:* -17.2%\n🔴 *Portföy değeri:* `96,570 TL` (-3.4%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
   "meta": {
     "giris": [
-      "TUPRS"
+      "AKCNS"
     ],
     "cikis": [
-      "GLYHO"
+      "KLNMA"
     ]
   }
 }
