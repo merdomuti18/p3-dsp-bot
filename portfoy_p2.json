@@ -102,45 +102,163 @@
   "baslangic": 100000,
   "bekleyen_al": [
     {
-      "symbol": "TURSG",
-      "score": 5.0,
-      "final_score": 5.0,
-      "verdict": "AL",
+      "symbol": "PNLSN",
+      "score": 8.0,
+      "final_score": 8.0,
+      "verdict": "GÜÇLÜ AL",
       "signals": [
         "Bullish MACD Cross",
+        "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "09.07.2026 19:18",
+      "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "REEDR",
+      "symbol": "CATES",
+      "score": 6.5,
+      "final_score": 6.5,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "10.07.2026 19:07",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "TABGD",
+      "score": 6.0,
+      "final_score": 6.0,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bearish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "10.07.2026 19:07",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ENTRA",
       "score": 4.5,
       "final_score": 4.5,
       "verdict": "AL",
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "09.07.2026 19:18",
+      "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "IEYHO",
-      "score": 3.0,
-      "final_score": 3.0,
+      "symbol": "KORDS",
+      "score": 4.5,
+      "final_score": 4.5,
       "verdict": "AL",
       "signals": [
-        "Bullish OB"
+        "Bullish OB",
+        "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "09.07.2026 19:18",
+      "queued_at": "10.07.2026 19:07",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ODAS",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "10.07.2026 19:07",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "BAGFS",
+      "score": 4.0,
+      "final_score": 4.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bearish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "10.07.2026 19:07",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "MAVI",
+      "score": 4.0,
+      "final_score": 4.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bearish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "10.07.2026 19:07",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "BIMAS",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "10.07.2026 19:07",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "BVSAN",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "10.07.2026 19:07",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "TURSG",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
       "last_attempt_reason": ""
     }
