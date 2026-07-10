@@ -3,12 +3,42 @@
     "AKSEN": {
       "symbol": "AKSEN",
       "giris_fiyat": 89.45,
-      "guncel_fiyat": 89.45,
+      "guncel_fiyat": 92.1,
       "lotlar": 223,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 2.96,
+      "gun": 1,
       "giris_tarih": "2026-07-09",
       "komite_skor": 75,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    },
+    "CATES": {
+      "symbol": "CATES",
+      "giris_fiyat": 46.12,
+      "guncel_fiyat": 46.12,
+      "lotlar": 433,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-10",
+      "komite_skor": 75,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    },
+    "OBASE": {
+      "symbol": "OBASE",
+      "giris_fiyat": 41.36,
+      "guncel_fiyat": 41.36,
+      "lotlar": 483,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-10",
+      "komite_skor": 70,
       "kaynaklar": [
         "P1",
         "P2"
@@ -214,9 +244,64 @@
         "KORDS"
       ],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-10",
+      "secilen": [
+        "CATES",
+        "OBASE"
+      ],
+      "elenen": [
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "AKCNS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "BIMAS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KORDS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TABGD",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "AKSEN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "EKGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ASTOR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TURSG",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "UFUK",
+          "neden": "tek kaynak (P1)"
+        }
+      ],
+      "acilan": [
+        "CATES",
+        "OBASE"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-07-09T16:14:55.299919",
+  "last_run": "2026-07-10T16:09:23.265254",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 100056
+  "sermaye_mevcut": 100648
 }
