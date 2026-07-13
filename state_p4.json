@@ -3,10 +3,10 @@
     "THYAO": {
       "symbol": "THYAO",
       "giris_fiyat": 348.25,
-      "guncel_fiyat": 334.25,
+      "guncel_fiyat": 344.5,
       "lotlar": 35,
-      "pnl_pct": -4.02,
-      "gun": 6,
+      "pnl_pct": -1.08,
+      "gun": 3,
       "giris_tarih": "2026-07-07",
       "meta_score": 0.8923076923076924,
       "kaynaklar": [
@@ -20,10 +20,10 @@
     "AKSEN": {
       "symbol": "AKSEN",
       "giris_fiyat": 89.45,
-      "guncel_fiyat": 91.35,
+      "guncel_fiyat": 92.1,
       "lotlar": 111,
-      "pnl_pct": 2.12,
-      "gun": 4,
+      "pnl_pct": 2.96,
+      "gun": 1,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.7333333333333334,
       "kaynaklar": [
@@ -36,10 +36,10 @@
     "TRGYO": {
       "symbol": "TRGYO",
       "giris_fiyat": 101.7,
-      "guncel_fiyat": 99.7,
+      "guncel_fiyat": 101.3,
       "lotlar": 98,
-      "pnl_pct": -1.97,
-      "gun": 4,
+      "pnl_pct": -0.39,
+      "gun": 1,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -51,10 +51,10 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 67.7,
-      "guncel_fiyat": 66.95,
+      "guncel_fiyat": 65.0,
       "lotlar": 147,
-      "pnl_pct": -1.11,
-      "gun": 4,
+      "pnl_pct": -3.99,
+      "gun": 1,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -66,10 +66,10 @@
     "UFUK": {
       "symbol": "UFUK",
       "giris_fiyat": 1685.0,
-      "guncel_fiyat": 1709.0,
+      "guncel_fiyat": 1685.0,
       "lotlar": 5,
-      "pnl_pct": 1.42,
-      "gun": 4,
+      "pnl_pct": 0.0,
+      "gun": 1,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -203,5 +203,5 @@
   ],
   "last_run": "2026-07-10T16:09:33.290097",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 96446
+  "sermaye_mevcut": 96658
 }
