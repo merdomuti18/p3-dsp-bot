@@ -58,7 +58,7 @@
     "OBASE": {
       "giris_f": 41.38,
       "giris_t": "10.07.2026 13:27",
-      "tepe_f": 41.38,
+      "tepe_f": 42.31999969482422,
       "lotlar": 438,
       "gun": 0,
       "tp1_yapildi": false,
@@ -72,7 +72,7 @@
     "CELHA": {
       "giris_f": 23.4,
       "giris_t": "10.07.2026 13:27",
-      "tepe_f": 23.4,
+      "tepe_f": 24.200000762939453,
       "lotlar": 463,
       "gun": 0,
       "tp1_yapildi": false,
@@ -111,7 +111,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -126,7 +126,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -141,7 +141,7 @@
         "Bullish MACD Cross",
         "Bearish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -155,7 +155,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -170,7 +170,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -184,7 +184,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -199,7 +199,7 @@
         "Bullish MACD Cross",
         "Bearish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -214,7 +214,7 @@
         "Bullish MACD Cross",
         "Bearish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -228,7 +228,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -242,7 +242,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -256,7 +256,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "10.07.2026 19:07",
       "attempt_count": 0,
@@ -264,5 +264,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "10.07.2026 13:27"
+  "last_hourly_check_time": "13.07.2026 13:40"
 }
