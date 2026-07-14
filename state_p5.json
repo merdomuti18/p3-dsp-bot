@@ -3,10 +3,10 @@
     "AKSEN": {
       "symbol": "AKSEN",
       "giris_fiyat": 89.45,
-      "guncel_fiyat": 91.35,
+      "guncel_fiyat": 94.5,
       "lotlar": 223,
-      "pnl_pct": 2.12,
-      "gun": 4,
+      "pnl_pct": 5.65,
+      "gun": 5,
       "giris_tarih": "2026-07-09",
       "komite_skor": 75,
       "kaynaklar": [
@@ -218,5 +218,5 @@
   ],
   "last_run": "2026-07-09T16:14:55.299919",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 100480
+  "sermaye_mevcut": 101186
 }
