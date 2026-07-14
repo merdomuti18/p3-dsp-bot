@@ -30,8 +30,8 @@
       "queued_at": "14.07.2026 07:05",
       "valid_for_date": "2026-07-15",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "14.07.2026 11:12",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -60,8 +60,8 @@
       "queued_at": "14.07.2026 07:05",
       "valid_for_date": "2026-07-15",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "14.07.2026 11:12",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -90,8 +90,8 @@
       "queued_at": "14.07.2026 07:05",
       "valid_for_date": "2026-07-15",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "14.07.2026 11:12",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -120,8 +120,8 @@
       "queued_at": "14.07.2026 07:05",
       "valid_for_date": "2026-07-15",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "14.07.2026 11:12",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -150,8 +150,8 @@
       "queued_at": "14.07.2026 07:05",
       "valid_for_date": "2026-07-15",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "14.07.2026 11:12",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -180,8 +180,8 @@
       "queued_at": "14.07.2026 07:05",
       "valid_for_date": "2026-07-15",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "14.07.2026 11:12",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -210,27 +210,12 @@
       "queued_at": "14.07.2026 07:05",
       "valid_for_date": "2026-07-15",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "14.07.2026 11:12",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [
-    {
-      "saat": "11:12",
-      "tarih": "2026-07-14",
-      "alinan": [],
-      "alinmayan": [],
-      "nedenler": {}
-    }
-  ],
-  "last_open_attempt_summary": {
-    "pending": 7,
-    "bought": 0,
-    "failed": 0,
-    "expired": 0,
-    "failed_reasons": [],
-    "time": "14.07.2026 11:12"
-  },
-  "last_hourly_check_time": "14.07.2026 11:12"
+  "open_attempts_today": [],
+  "last_open_attempt_summary": {},
+  "last_hourly_check_time": "08.07.2026 12:08"
 }
