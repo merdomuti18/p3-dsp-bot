@@ -1,11 +1,13 @@
-# Runs BQRP hourly EMA paper using this repo's existing Telegram secrets.
-# Secrets stay here (p3-dsp-bot); BQRP code is checked out each hour.
+# Optional: if BQRP stays private, p3 can checkout it with a PAT secret
+# named BQRP_CHECKOUT_TOKEN (contents: read access to merdomuti18/BQRP).
+# Prefer running the cron on BQRP itself after copying TELEGRAM_* secrets there.
 name: BQRP Hourly EMA Paper
 
 on:
-  schedule:
-    - cron: "5 * * * *" # every hour at :05 UTC
   workflow_dispatch:
+  # schedule disabled until BQRP_CHECKOUT_TOKEN exists or BQRP is public
+  # schedule:
+  #   - cron: "5 * * * *"
 
 jobs:
   scan:
@@ -16,6 +18,7 @@ jobs:
         with:
           repository: merdomuti18/BQRP
           path: BQRP
+          token: ${{ secrets.BQRP_CHECKOUT_TOKEN || github.token }}
 
       - uses: actions/setup-python@v5
         with:
