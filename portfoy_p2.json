@@ -85,7 +85,7 @@
     "BVSAN": {
       "giris_f": 123.0,
       "giris_t": "15.07.2026 11:17",
-      "tepe_f": 123.0,
+      "tepe_f": 127.80000305175781,
       "lotlar": 162,
       "gun": 0,
       "tp1_yapildi": false,
@@ -444,5 +444,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "15.07.2026 11:17"
+  "last_hourly_check_time": "15.07.2026 12:06"
 }
