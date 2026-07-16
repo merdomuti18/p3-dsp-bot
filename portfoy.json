@@ -68,7 +68,7 @@
     "CATES": {
       "giris_f": 45.96,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 45.96,
+      "tepe_f": 46.2599983215332,
       "lotlar": 435,
       "gun": 0,
       "tp1_yapildi": false,
@@ -89,7 +89,7 @@
     "AKSEN": {
       "giris_f": 100.6,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 100.6,
+      "tepe_f": 101.0999984741211,
       "lotlar": 133,
       "gun": 0,
       "tp1_yapildi": false,
@@ -110,7 +110,7 @@
     "KARTN": {
       "giris_f": 202.7,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 202.7,
+      "tepe_f": 203.1999969482422,
       "lotlar": 43,
       "gun": 0,
       "tp1_yapildi": false,
@@ -131,38 +131,7 @@
   },
   "nakit": 17565.259999999987,
   "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "ARDYZ",
-      "score_count": 1,
-      "strategies": [
-        "GT"
-      ],
-      "tarama_score": 18,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 2,
-      "alpha_tag": "AT+",
-      "final_score": 22,
-      "change_pct": -2.22,
-      "rsi": 63.74,
-      "rel_vol": 1.01,
-      "cmf": 0.0327,
-      "islem_tl": 0,
-      "scan_time": "15.07.2026 20:49",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "16.07.2026 07:05",
-      "valid_for_date": "2026-07-17",
-      "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "16.07.2026 11:56",
-      "last_attempt_reason": ""
-    }
-  ],
+  "bekleyen_al": [],
   "open_attempts_today": [
     {
       "saat": "11:56",
@@ -184,5 +153,5 @@
     "failed_reasons": [],
     "time": "16.07.2026 11:56"
   },
-  "last_hourly_check_time": "16.07.2026 11:56"
+  "last_hourly_check_time": "16.07.2026 12:11"
 }
