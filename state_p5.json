@@ -1,21 +1,5 @@
 {
-  "pozisyonlar": {
-    "AKSEN": {
-      "symbol": "AKSEN",
-      "giris_fiyat": 89.45,
-      "guncel_fiyat": 95.6,
-      "lotlar": 223,
-      "pnl_pct": 6.88,
-      "gun": 6,
-      "giris_tarih": "2026-07-09",
-      "komite_skor": 75,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "strateji": "P5"
-    }
-  },
+  "pozisyonlar": {},
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -48,6 +32,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-07-08",
       "cikis_tarih": "2026-07-09",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "AKSEN",
+      "giris_fiyat": 89.45,
+      "cikis_fiyat": 100.1,
+      "pnl_pct": 11.91,
+      "gun": 7,
+      "neden": "TP",
+      "giris_tarih": "2026-07-09",
+      "cikis_tarih": "2026-07-16",
       "strateji": "P5"
     }
   ],
@@ -218,5 +213,5 @@
   ],
   "last_run": "2026-07-09T16:14:55.299919",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 101432
+  "sermaye_mevcut": 102438
 }
