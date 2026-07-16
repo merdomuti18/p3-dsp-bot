@@ -3,9 +3,9 @@
     "TRGYO": {
       "symbol": "TRGYO",
       "giris_fiyat": 101.7,
-      "guncel_fiyat": 100.3,
+      "guncel_fiyat": 100.2,
       "lotlar": 98,
-      "pnl_pct": -1.38,
+      "pnl_pct": -1.47,
       "gun": 7,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
@@ -18,9 +18,9 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 67.7,
-      "guncel_fiyat": 66.55,
+      "guncel_fiyat": 67.95,
       "lotlar": 147,
-      "pnl_pct": -1.7,
+      "pnl_pct": 0.37,
       "gun": 7,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
@@ -33,9 +33,9 @@
     "UFUK": {
       "symbol": "UFUK",
       "giris_fiyat": 1685.0,
-      "guncel_fiyat": 1689.0,
+      "guncel_fiyat": 1687.0,
       "lotlar": 5,
-      "pnl_pct": 0.24,
+      "pnl_pct": 0.12,
       "gun": 7,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
@@ -48,9 +48,9 @@
     "KRDMA": {
       "symbol": "KRDMA",
       "giris_fiyat": 41.02,
-      "guncel_fiyat": 41.12,
+      "guncel_fiyat": 41.14,
       "lotlar": 243,
-      "pnl_pct": 0.24,
+      "pnl_pct": 0.29,
       "gun": 2,
       "giris_tarih": "2026-07-14",
       "meta_score": 1.1,
@@ -226,5 +226,5 @@
   ],
   "last_run": "2026-07-15T17:51:25.452925",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 97754
+  "sermaye_mevcut": 98136
 }
