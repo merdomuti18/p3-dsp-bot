@@ -1,304 +1,427 @@
 {
-  "scan_time": "15.07.2026 20:49",
+  "scan_time": "16.07.2026 19:58",
   "scan_label": "20:50 Kapanış",
   "signals": [
     {
-      "symbol": "KRDMA",
-      "scan_time": "15.07.2026 20:49",
-      "scan_label": "20:50 Kapanış",
-      "strategies": [
-        "GT",
-        "ZT3",
-        "MR",
-        "KBM"
-      ],
-      "score_count": 4,
-      "rsi": 64.49,
-      "rel_vol": 2.09,
-      "change_pct": 0.69,
-      "close": 41.02,
-      "adx": 32.96,
-      "cmf": 0.2721,
-      "alpha_bull": false,
-      "alpha_trend_bull": true
-    },
-    {
-      "symbol": "ARDYZ",
-      "scan_time": "15.07.2026 20:49",
-      "scan_label": "20:50 Kapanış",
-      "strategies": [
-        "GT"
-      ],
-      "score_count": 1,
-      "rsi": 63.74,
-      "rel_vol": 1.01,
-      "change_pct": -2.22,
-      "close": 66.05,
-      "adx": 47.62,
-      "cmf": 0.0327,
-      "alpha_bull": false,
-      "alpha_trend_bull": true
-    },
-    {
-      "symbol": "ASTOR",
-      "scan_time": "15.07.2026 20:49",
-      "scan_label": "20:50 Kapanış",
-      "strategies": [
-        "GT",
-        "MR"
-      ],
-      "score_count": 2,
-      "rsi": 60.31,
-      "rel_vol": 1.27,
-      "change_pct": 2.2,
-      "close": 325.0,
-      "adx": 27.04,
-      "cmf": 0.0713,
-      "alpha_bull": false,
-      "alpha_trend_bull": true
-    },
-    {
       "symbol": "BIMAS",
-      "scan_time": "15.07.2026 20:49",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "GT",
-        "ALPHA"
-      ],
-      "score_count": 2,
-      "rsi": 57.61,
-      "rel_vol": 1.23,
-      "change_pct": 2.74,
-      "close": 384.5,
-      "adx": 28.03,
-      "cmf": 0.0483,
-      "alpha_bull": true,
-      "alpha_trend_bull": true
-    },
-    {
-      "symbol": "KARTN",
-      "scan_time": "15.07.2026 20:49",
-      "scan_label": "20:50 Kapanış",
-      "strategies": [
-        "GTD",
         "MR"
       ],
       "score_count": 2,
-      "rsi": 77.21,
-      "rel_vol": 1.59,
-      "change_pct": 9.97,
-      "close": 202.9,
-      "adx": 68.33,
-      "cmf": 0.2693,
+      "rsi": 63.09,
+      "rel_vol": 1.22,
+      "change_pct": 3.06,
+      "close": 396.25,
+      "adx": 30.08,
+      "cmf": 0.1294,
       "alpha_bull": false,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "AKSEN",
-      "scan_time": "15.07.2026 20:49",
+      "symbol": "MOGAN",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
-        "GTD",
+        "GT",
         "MR"
       ],
       "score_count": 2,
-      "rsi": 77.04,
-      "rel_vol": 1.37,
-      "change_pct": 3.8,
-      "close": 95.6,
-      "adx": 31.93,
-      "cmf": 0.2679,
+      "rsi": 62.32,
+      "rel_vol": 1.42,
+      "change_pct": 8.48,
+      "close": 16.76,
+      "adx": 31.28,
+      "cmf": 0.0225,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "KRDMA",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "GT",
+        "MR"
+      ],
+      "score_count": 2,
+      "rsi": 61.3,
+      "rel_vol": 1.67,
+      "change_pct": 0.29,
+      "close": 41.14,
+      "adx": 32.77,
+      "cmf": 0.2555,
       "alpha_bull": false,
       "alpha_trend_bull": true
     },
     {
       "symbol": "CATES",
-      "scan_time": "15.07.2026 20:49",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "GTD"
+      ],
+      "score_count": 1,
+      "rsi": 73.48,
+      "rel_vol": 2.06,
+      "change_pct": -0.22,
+      "close": 45.7,
+      "adx": 30.02,
+      "cmf": 0.1692,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "ARDYZ",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "GTD",
         "MR"
       ],
       "score_count": 2,
-      "rsi": 67.58,
-      "rel_vol": 2.34,
-      "change_pct": 1.78,
-      "close": 45.8,
-      "adx": 27.66,
-      "cmf": 0.2714,
+      "rsi": 69.29,
+      "rel_vol": 1.21,
+      "change_pct": 5.53,
+      "close": 69.7,
+      "adx": 51.78,
+      "cmf": 0.1254,
       "alpha_bull": false,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "KRDMD",
-      "scan_time": "15.07.2026 20:49",
+      "symbol": "PAGYO",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "GTD"
+      ],
+      "score_count": 1,
+      "rsi": 68.47,
+      "rel_vol": 1.44,
+      "change_pct": -2.5,
+      "close": 159.6,
+      "adx": 62.46,
+      "cmf": 0.1314,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "CWENE",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ALPHA"
       ],
       "score_count": 1,
-      "rsi": 51.0,
-      "rel_vol": 1.12,
-      "change_pct": 6.8,
-      "close": 40.84,
-      "adx": 30.08,
-      "cmf": -0.0426,
+      "rsi": 59.04,
+      "rel_vol": 1.23,
+      "change_pct": 2.56,
+      "close": 40.0,
+      "adx": 23.08,
+      "cmf": -0.0052,
       "alpha_bull": true,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "CWENE",
-      "scan_time": "15.07.2026 20:49",
+      "symbol": "ECZYT",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "ALPHA"
+      ],
+      "score_count": 1,
+      "rsi": 57.57,
+      "rel_vol": 1.88,
+      "change_pct": 9.94,
+      "close": 340.25,
+      "adx": 29.08,
+      "cmf": -0.0223,
+      "alpha_bull": true,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "ALARK",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "ALPHA"
+      ],
+      "score_count": 1,
+      "rsi": 54.87,
+      "rel_vol": 1.22,
+      "change_pct": 4.36,
+      "close": 104.1,
+      "adx": 22.46,
+      "cmf": 0.1924,
+      "alpha_bull": true,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "ISDMR",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "ALPHA"
+      ],
+      "score_count": 1,
+      "rsi": 47.47,
+      "rel_vol": 1.25,
+      "change_pct": 4.32,
+      "close": 58.0,
+      "adx": 27.08,
+      "cmf": -0.0164,
+      "alpha_bull": true,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "THYAO",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"
       ],
       "score_count": 1,
-      "rsi": 51.67,
-      "rel_vol": 0.99,
-      "change_pct": 2.09,
-      "close": 39.0,
-      "adx": 21.92,
-      "cmf": -0.0651,
+      "rsi": 50.93,
+      "rel_vol": 0.81,
+      "change_pct": 1.23,
+      "close": 330.0,
+      "adx": 33.12,
+      "cmf": -0.0289,
       "alpha_bull": false,
       "alpha_trend_bull": false
     },
     {
       "symbol": "EKGYO",
-      "scan_time": "15.07.2026 20:49",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"
       ],
       "score_count": 1,
-      "rsi": 51.6,
-      "rel_vol": 0.98,
-      "change_pct": 0.86,
-      "close": 21.02,
-      "adx": 18.26,
-      "cmf": -0.0247,
+      "rsi": 49.62,
+      "rel_vol": 1.2,
+      "change_pct": -1.24,
+      "close": 20.76,
+      "adx": 16.81,
+      "cmf": -0.0615,
       "alpha_bull": false,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "DEVA",
-      "scan_time": "15.07.2026 20:49",
+      "symbol": "MANAS",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
-        "ZKN"
+        "ZT3",
+        "MR"
       ],
-      "score_count": 1,
-      "rsi": 51.47,
-      "rel_vol": 0.99,
-      "change_pct": 3.0,
-      "close": 73.7,
-      "adx": 37.33,
-      "cmf": 0.1062,
+      "score_count": 2,
+      "rsi": 74.78,
+      "rel_vol": 1.75,
+      "change_pct": 9.97,
+      "close": 32.44,
+      "adx": 37.68,
+      "cmf": -0.0951,
       "alpha_bull": false,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "THYAO",
-      "scan_time": "15.07.2026 20:49",
-      "scan_label": "20:50 Kapanış",
-      "strategies": [
-        "ZKN"
-      ],
-      "score_count": 1,
-      "rsi": 50.78,
-      "rel_vol": 1.13,
-      "change_pct": -2.25,
-      "close": 326.0,
-      "adx": 36.18,
-      "cmf": -0.0661,
-      "alpha_bull": false,
-      "alpha_trend_bull": false
-    },
-    {
-      "symbol": "EFOR",
-      "scan_time": "15.07.2026 20:49",
-      "scan_label": "20:50 Kapanış",
-      "strategies": [
-        "ZKN"
-      ],
-      "score_count": 1,
-      "rsi": 41.55,
-      "rel_vol": 1.08,
-      "change_pct": 6.5,
-      "close": 15.4,
-      "adx": 22.4,
-      "cmf": 0.0349,
-      "alpha_bull": false,
-      "alpha_trend_bull": false
-    },
-    {
-      "symbol": "MOGAN",
-      "scan_time": "15.07.2026 20:49",
+      "symbol": "SISE",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZT3"
       ],
       "score_count": 1,
-      "rsi": 60.23,
-      "rel_vol": 1.05,
-      "change_pct": 9.96,
-      "close": 15.45,
-      "adx": 30.86,
-      "cmf": -0.0651,
+      "rsi": 53.85,
+      "rel_vol": 1.09,
+      "change_pct": 3.21,
+      "close": 45.0,
+      "adx": 30.61,
+      "cmf": -0.2063,
       "alpha_bull": true,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "KLYPV",
-      "scan_time": "15.07.2026 20:49",
+      "symbol": "TUPRS",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
       "score_count": 1,
-      "rsi": 59.01,
-      "rel_vol": 1.95,
-      "change_pct": 4.55,
-      "close": 64.3,
-      "adx": 12.85,
-      "cmf": -0.1567,
+      "rsi": 96.79,
+      "rel_vol": 1.25,
+      "change_pct": 5.72,
+      "close": 286.25,
+      "adx": 61.78,
+      "cmf": 0.19,
       "alpha_bull": false,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "CEMTS",
-      "scan_time": "15.07.2026 20:49",
+      "symbol": "AKSEN",
+      "scan_time": "16.07.2026 19:58",
       "scan_label": "20:50 Kapanış",
       "strategies": [
-        "DIP"
+        "MR"
       ],
       "score_count": 1,
-      "rsi": 22.05,
-      "rel_vol": 1.45,
-      "change_pct": -0.11,
-      "close": 9.29,
-      "adx": 26.36,
-      "cmf": -0.2956,
+      "rsi": 87.43,
+      "rel_vol": 2.77,
+      "change_pct": 7.43,
+      "close": 102.7,
+      "adx": 37.22,
+      "cmf": 0.4298,
       "alpha_bull": false,
-      "alpha_trend_bull": false
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "CCOLA",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "MR"
+      ],
+      "score_count": 1,
+      "rsi": 68.17,
+      "rel_vol": 1.53,
+      "change_pct": 7.08,
+      "close": 90.0,
+      "adx": 19.83,
+      "cmf": 0.1462,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "OBASE",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "MR"
+      ],
+      "score_count": 1,
+      "rsi": 66.83,
+      "rel_vol": 1.23,
+      "change_pct": 5.81,
+      "close": 43.36,
+      "adx": 31.08,
+      "cmf": -0.0576,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "KLYPV",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "MR"
+      ],
+      "score_count": 1,
+      "rsi": 66.07,
+      "rel_vol": 1.35,
+      "change_pct": 2.33,
+      "close": 65.8,
+      "adx": 16.44,
+      "cmf": -0.0713,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "ARSAN",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "MR"
+      ],
+      "score_count": 1,
+      "rsi": 65.1,
+      "rel_vol": 1.95,
+      "change_pct": 4.82,
+      "close": 3.7,
+      "adx": 30.16,
+      "cmf": -0.2023,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "PNLSN",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "MR"
+      ],
+      "score_count": 1,
+      "rsi": 65.04,
+      "rel_vol": 2.22,
+      "change_pct": 4.09,
+      "close": 48.82,
+      "adx": 38.76,
+      "cmf": -0.0492,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "TKFEN",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "MR"
+      ],
+      "score_count": 1,
+      "rsi": 60.45,
+      "rel_vol": 1.11,
+      "change_pct": 0.85,
+      "close": 143.0,
+      "adx": 18.13,
+      "cmf": -0.1184,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
+    },
+    {
+      "symbol": "EREGL",
+      "scan_time": "16.07.2026 19:58",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "KBM"
+      ],
+      "score_count": 1,
+      "rsi": 66.04,
+      "rel_vol": 0.95,
+      "change_pct": 5.21,
+      "close": 44.06,
+      "adx": 27.23,
+      "cmf": 0.1583,
+      "alpha_bull": false,
+      "alpha_trend_bull": true
     }
   ],
   "semboller": [
-    "KRDMA",
-    "ARDYZ",
-    "ASTOR",
     "BIMAS",
-    "KARTN",
-    "AKSEN",
-    "CATES",
-    "KRDMD",
-    "CWENE",
-    "EKGYO",
-    "DEVA",
-    "THYAO",
-    "EFOR",
     "MOGAN",
+    "KRDMA",
+    "CATES",
+    "ARDYZ",
+    "PAGYO",
+    "CWENE",
+    "ECZYT",
+    "ALARK",
+    "ISDMR",
+    "THYAO",
+    "EKGYO",
+    "MANAS",
+    "SISE",
+    "TUPRS",
+    "AKSEN",
+    "CCOLA",
+    "OBASE",
     "KLYPV",
-    "CEMTS"
+    "ARSAN",
+    "PNLSN",
+    "TKFEN",
+    "EREGL"
   ]
 }
