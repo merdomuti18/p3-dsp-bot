@@ -1,28 +1,12 @@
 {
   "pozisyonlar": {
-    "AKSEN": {
-      "symbol": "AKSEN",
-      "giris_fiyat": 89.45,
-      "guncel_fiyat": 95.6,
-      "lotlar": 111,
-      "pnl_pct": 6.88,
-      "gun": 6,
-      "giris_tarih": "2026-07-09",
-      "meta_score": 0.7333333333333334,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "coklu_onay": true,
-      "strateji": "P4"
-    },
     "TRGYO": {
       "symbol": "TRGYO",
       "giris_fiyat": 101.7,
-      "guncel_fiyat": 100.4,
+      "guncel_fiyat": 100.3,
       "lotlar": 98,
-      "pnl_pct": -1.28,
-      "gun": 6,
+      "pnl_pct": -1.38,
+      "gun": 7,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -34,10 +18,10 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 67.7,
-      "guncel_fiyat": 66.05,
+      "guncel_fiyat": 66.55,
       "lotlar": 147,
-      "pnl_pct": -2.44,
-      "gun": 6,
+      "pnl_pct": -1.7,
+      "gun": 7,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -49,10 +33,10 @@
     "UFUK": {
       "symbol": "UFUK",
       "giris_fiyat": 1685.0,
-      "guncel_fiyat": 1701.0,
+      "guncel_fiyat": 1689.0,
       "lotlar": 5,
-      "pnl_pct": 0.95,
-      "gun": 6,
+      "pnl_pct": 0.24,
+      "gun": 7,
       "giris_tarih": "2026-07-09",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
@@ -64,10 +48,10 @@
     "KRDMA": {
       "symbol": "KRDMA",
       "giris_fiyat": 41.02,
-      "guncel_fiyat": 41.02,
+      "guncel_fiyat": 41.12,
       "lotlar": 243,
-      "pnl_pct": 0.0,
-      "gun": 1,
+      "pnl_pct": 0.24,
+      "gun": 2,
       "giris_tarih": "2026-07-14",
       "meta_score": 1.1,
       "kaynaklar": [
@@ -177,6 +161,17 @@
       "giris_tarih": "2026-07-07",
       "cikis_tarih": "2026-07-14",
       "strateji": "P4"
+    },
+    {
+      "symbol": "AKSEN",
+      "giris_fiyat": 89.45,
+      "cikis_fiyat": 100.6,
+      "pnl_pct": 12.47,
+      "gun": 7,
+      "neden": "TP",
+      "giris_tarih": "2026-07-09",
+      "cikis_tarih": "2026-07-16",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -231,5 +226,5 @@
   ],
   "last_run": "2026-07-15T17:51:25.452925",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 96602
+  "sermaye_mevcut": 97754
 }
