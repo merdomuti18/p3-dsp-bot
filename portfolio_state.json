@@ -243,6 +243,20 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-07-16",
+      "scanned": 79,
+      "long_signals": 20,
+      "top5": [
+        "TUPRS",
+        "SKBNK",
+        "ISGYO",
+        "AKCNS",
+        "IZMDC"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -636,6 +650,14 @@
       {
         "date": "2026-07-15",
         "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-16",
+        "total": 77,
         "reliable": 0,
         "drifted": 0,
         "refit": 0,
