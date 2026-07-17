@@ -3,7 +3,7 @@
     "KRDMA": {
       "giris_f": 41.02,
       "giris_t": "15.07.2026 12:06",
-      "tepe_f": 41.15999984741211,
+      "tepe_f": 41.2400016784668,
       "lotlar": 487,
       "gun": 0,
       "tp1_yapildi": false,
@@ -44,27 +44,6 @@
         "alpha_trend_bonus": 0
       }
     },
-    "ASTOR": {
-      "giris_f": 325.0,
-      "giris_t": "15.07.2026 12:06",
-      "tepe_f": 325.0,
-      "lotlar": 26,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 31,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "MR"
-        ],
-        "viop_bias": "Küçük boyut / nakit ağırlık",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "CATES": {
       "giris_f": 45.96,
       "giris_t": "16.07.2026 11:56",
@@ -89,7 +68,7 @@
     "AKSEN": {
       "giris_f": 100.6,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 100.6,
+      "tepe_f": 103.0,
       "lotlar": 133,
       "gun": 0,
       "tp1_yapildi": false,
@@ -110,10 +89,10 @@
     "KARTN": {
       "giris_f": 202.7,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 202.7,
-      "lotlar": 43,
+      "tepe_f": 219.0,
+      "lotlar": 22,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "final_score": 31,
       "ma_score": 0.0,
       "lgbm_score": null,
@@ -127,73 +106,53 @@
         "alpha_tag": "AT+",
         "alpha_trend_bonus": 2
       }
+    },
+    "MANAS": {
+      "giris_f": 33.42,
+      "giris_t": "17.07.2026 11:55",
+      "tepe_f": 33.42,
+      "lotlar": 247,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 38,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ZT3",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "MOGAN": {
+      "giris_f": 17.87,
+      "giris_t": "17.07.2026 11:55",
+      "tepe_f": 17.87,
+      "lotlar": 336,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 38,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GT",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
     }
   },
-  "nakit": 17565.259999999987,
+  "nakit": 15878.099871826162,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "MANAS",
-      "score_count": 2,
-      "strategies": [
-        "ZT3",
-        "MR"
-      ],
-      "tarama_score": 28,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 38,
-      "change_pct": 9.97,
-      "rsi": 74.78,
-      "rel_vol": 1.75,
-      "cmf": -0.0951,
-      "islem_tl": 0,
-      "scan_time": "16.07.2026 19:58",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "17.07.2026 07:05",
-      "valid_for_date": "2026-07-20",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "MOGAN",
-      "score_count": 2,
-      "strategies": [
-        "GT",
-        "MR"
-      ],
-      "tarama_score": 28,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 38,
-      "change_pct": 8.48,
-      "rsi": 62.32,
-      "rel_vol": 1.42,
-      "cmf": 0.0225,
-      "islem_tl": 0,
-      "scan_time": "16.07.2026 19:58",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "17.07.2026 07:05",
-      "valid_for_date": "2026-07-20",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "ARDYZ",
       "score_count": 2,
@@ -221,8 +180,8 @@
       "queued_at": "17.07.2026 07:05",
       "valid_for_date": "2026-07-20",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "17.07.2026 11:55",
       "last_attempt_reason": ""
     },
     {
@@ -251,8 +210,8 @@
       "queued_at": "17.07.2026 07:05",
       "valid_for_date": "2026-07-20",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "17.07.2026 11:55",
       "last_attempt_reason": ""
     },
     {
@@ -281,19 +240,30 @@
       "queued_at": "17.07.2026 07:05",
       "valid_for_date": "2026-07-20",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "17.07.2026 11:55",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:55",
+      "tarih": "2026-07-17",
+      "alinan": [
+        "MANAS",
+        "MOGAN"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 4,
-    "bought": 3,
+    "pending": 5,
+    "bought": 2,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "16.07.2026 11:56"
+    "time": "17.07.2026 11:55"
   },
-  "last_hourly_check_time": "16.07.2026 11:56"
+  "last_hourly_check_time": "17.07.2026 11:55"
 }
