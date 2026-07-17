@@ -3,7 +3,7 @@
     "AKSEN": {
       "giris_f": 89.95,
       "giris_t": "08.07.2026 12:08",
-      "tepe_f": 102.0999984741211,
+      "tepe_f": 103.0,
       "lotlar": 96,
       "gun": 0,
       "tp1_yapildi": true,
@@ -58,10 +58,10 @@
     "OBASE": {
       "giris_f": 41.38,
       "giris_t": "10.07.2026 13:27",
-      "tepe_f": 43.560001373291016,
-      "lotlar": 438,
+      "tepe_f": 45.099998474121094,
+      "lotlar": 219,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "smc_score": 6.5,
       "teyit_skoru": 0,
       "signals": [
@@ -96,7 +96,7 @@
       ]
     }
   },
-  "nakit": 15228.140515819548,
+  "nakit": 24785.300382152556,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -576,5 +576,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "17.07.2026 11:10"
+  "last_hourly_check_time": "17.07.2026 11:55"
 }
