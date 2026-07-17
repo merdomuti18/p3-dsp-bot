@@ -7,12 +7,6 @@
       "score": 0.1645,
       "margin": 0.1464
     },
-    "ISGYO": {
-      "entry_date": "2026-07-02",
-      "entry_price": 24.96,
-      "score": 0.1471,
-      "margin": 0.1522
-    },
     "IZMDC": {
       "entry_date": "2026-07-07",
       "entry_price": 9.25,
@@ -25,11 +19,17 @@
       "score": 0.0709,
       "margin": 0.0556
     },
-    "AKCNS": {
-      "entry_date": "2026-07-10",
-      "entry_price": 234.7,
-      "score": 0.0778,
-      "margin": 0.0756
+    "AKSEN": {
+      "entry_date": "2026-07-17",
+      "entry_price": 106.0,
+      "score": 0.1261,
+      "margin": 0.0768
+    },
+    "ARDYZ": {
+      "entry_date": "2026-07-17",
+      "entry_price": 68.8,
+      "score": 0.1216,
+      "margin": 0.1152
     }
   },
   "history": [
@@ -77,6 +77,24 @@
       "exit_price": 9.7,
       "pnl_pct": -0.92,
       "holding_days": 2
+    },
+    {
+      "symbol": "ISGYO",
+      "entry_date": "2026-07-02",
+      "exit_date": "2026-07-17",
+      "entry_price": 24.96,
+      "exit_price": 27.58,
+      "pnl_pct": 10.5,
+      "holding_days": 15
+    },
+    {
+      "symbol": "AKCNS",
+      "entry_date": "2026-07-10",
+      "exit_date": "2026-07-17",
+      "entry_price": 234.7,
+      "exit_price": 238.3,
+      "pnl_pct": 1.53,
+      "holding_days": 7
     }
   ],
   "scan_log": [
@@ -257,6 +275,26 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-07-17",
+      "scanned": 79,
+      "long_signals": 22,
+      "top5": [
+        "TUPRS",
+        "IZMDC",
+        "SKBNK",
+        "AKSEN",
+        "ARDYZ"
+      ],
+      "entries": [
+        "AKSEN",
+        "ARDYZ"
+      ],
+      "exits": [
+        "ISGYO",
+        "AKCNS"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -658,6 +696,14 @@
       {
         "date": "2026-07-16",
         "total": 77,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-17",
+        "total": 78,
         "reliable": 0,
         "drifted": 0,
         "refit": 0,
