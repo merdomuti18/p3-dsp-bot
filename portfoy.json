@@ -3,10 +3,10 @@
     "KRDMA": {
       "giris_f": 41.02,
       "giris_t": "15.07.2026 12:06",
-      "tepe_f": 41.15999984741211,
-      "lotlar": 487,
+      "tepe_f": 45.279998779296875,
+      "lotlar": 244,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "final_score": 65,
       "ma_score": 0.0,
       "lgbm_score": null,
@@ -26,7 +26,7 @@
     "BIMAS": {
       "giris_f": 384.5,
       "giris_t": "15.07.2026 12:06",
-      "tepe_f": 397.0,
+      "tepe_f": 400.5,
       "lotlar": 31,
       "gun": 0,
       "tp1_yapildi": false,
@@ -44,31 +44,10 @@
         "alpha_trend_bonus": 0
       }
     },
-    "ASTOR": {
-      "giris_f": 325.0,
-      "giris_t": "15.07.2026 12:06",
-      "tepe_f": 325.0,
-      "lotlar": 26,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 31,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "MR"
-        ],
-        "viop_bias": "Küçük boyut / nakit ağırlık",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "CATES": {
       "giris_f": 45.96,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 45.96,
+      "tepe_f": 46.220001220703125,
       "lotlar": 435,
       "gun": 0,
       "tp1_yapildi": false,
@@ -89,10 +68,10 @@
     "AKSEN": {
       "giris_f": 100.6,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 100.6,
-      "lotlar": 133,
+      "tepe_f": 109.19999694824219,
+      "lotlar": 67,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "final_score": 31,
       "ma_score": 0.0,
       "lgbm_score": null,
@@ -110,10 +89,10 @@
     "KARTN": {
       "giris_f": 202.7,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 202.7,
-      "lotlar": 43,
+      "tepe_f": 219.89999389648438,
+      "lotlar": 22,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "final_score": 31,
       "ma_score": 0.0,
       "lgbm_score": null,
@@ -129,7 +108,7 @@
       }
     }
   },
-  "nakit": 17565.259999999987,
+  "nakit": 48392.699804077136,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -159,8 +138,8 @@
       "queued_at": "20.07.2026 07:05",
       "valid_for_date": "2026-07-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "20.07.2026 13:24",
       "last_attempt_reason": ""
     },
     {
@@ -189,8 +168,8 @@
       "queued_at": "20.07.2026 07:05",
       "valid_for_date": "2026-07-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "20.07.2026 13:24",
       "last_attempt_reason": ""
     },
     {
@@ -219,8 +198,8 @@
       "queued_at": "20.07.2026 07:05",
       "valid_for_date": "2026-07-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "20.07.2026 13:24",
       "last_attempt_reason": ""
     },
     {
@@ -249,8 +228,8 @@
       "queued_at": "20.07.2026 07:05",
       "valid_for_date": "2026-07-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "20.07.2026 13:24",
       "last_attempt_reason": ""
     },
     {
@@ -279,8 +258,8 @@
       "queued_at": "20.07.2026 07:05",
       "valid_for_date": "2026-07-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "20.07.2026 13:24",
       "last_attempt_reason": ""
     },
     {
@@ -309,19 +288,27 @@
       "queued_at": "20.07.2026 07:05",
       "valid_for_date": "2026-07-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "20.07.2026 13:24",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "13:24",
+      "tarih": "2026-07-20",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 4,
-    "bought": 3,
+    "pending": 6,
+    "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "16.07.2026 11:56"
+    "time": "20.07.2026 13:24"
   },
-  "last_hourly_check_time": "16.07.2026 11:56"
+  "last_hourly_check_time": "20.07.2026 13:24"
 }
