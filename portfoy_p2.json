@@ -16,7 +16,7 @@
     "VKING": {
       "giris_f": 24.82,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 24.82,
+      "tepe_f": 25.1200008392334,
       "lotlar": 754,
       "gun": 0,
       "tp1_yapildi": false,
@@ -30,7 +30,7 @@
     "GARFA": {
       "giris_f": 29.96,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 29.96,
+      "tepe_f": 30.459999084472656,
       "lotlar": 408,
       "gun": 0,
       "tp1_yapildi": false,
@@ -45,7 +45,7 @@
     "KGYO": {
       "giris_f": 9.4,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 9.4,
+      "tepe_f": 9.470000267028809,
       "lotlar": 859,
       "gun": 0,
       "tp1_yapildi": false,
@@ -58,7 +58,7 @@
     "MOGAN": {
       "giris_f": 18.62,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 18.62,
+      "tepe_f": 18.84000015258789,
       "lotlar": 367,
       "gun": 0,
       "tp1_yapildi": false,
@@ -72,7 +72,7 @@
     "EFOR": {
       "giris_f": 18.05,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 18.05,
+      "tepe_f": 18.200000762939453,
       "lotlar": 296,
       "gun": 0,
       "tp1_yapildi": false,
@@ -87,7 +87,7 @@
     "ENSRI": {
       "giris_f": 6.9,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 6.9,
+      "tepe_f": 6.900000095367432,
       "lotlar": 666,
       "gun": 0,
       "tp1_yapildi": false,
@@ -488,5 +488,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "20.07.2026 13:24"
+  "last_hourly_check_time": "20.07.2026 13:30"
 }
