@@ -30,7 +30,7 @@
     "GARFA": {
       "giris_f": 29.96,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 30.459999084472656,
+      "tepe_f": 30.780000686645508,
       "lotlar": 408,
       "gun": 0,
       "tp1_yapildi": false,
@@ -72,7 +72,7 @@
     "EFOR": {
       "giris_f": 18.05,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 18.200000762939453,
+      "tepe_f": 18.93000030517578,
       "lotlar": 296,
       "gun": 0,
       "tp1_yapildi": false,
@@ -84,38 +84,24 @@
         "Bullish FVG"
       ]
     },
-    "ENSRI": {
-      "giris_f": 6.9,
-      "giris_t": "20.07.2026 13:24",
-      "tepe_f": 6.900000095367432,
-      "lotlar": 666,
+    "LIDFA": {
+      "giris_f": 3.02,
+      "giris_t": "21.07.2026 12:09",
+      "tepe_f": 3.02,
+      "lotlar": 6622,
       "gun": 0,
       "tp1_yapildi": false,
       "smc_score": 6.0,
       "teyit_skoru": 0,
       "signals": [
-        "Bullish OB"
+        "Bullish MACD Cross",
+        "Bullish FVG"
       ]
     }
   },
-  "nakit": 27962.521006313316,
+  "nakit": 12329.711006313319,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "LIDFA",
-      "score": 6.0,
-      "final_score": 6.0,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "17.07.2026 19:37",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "TTRAK",
       "score": 6.0,
@@ -488,5 +474,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "20.07.2026 13:30"
+  "last_hourly_check_time": "21.07.2026 12:09"
 }
