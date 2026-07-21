@@ -1,12 +1,6 @@
 {
   "created": "2026-07-02",
   "positions": {
-    "SKBNK": {
-      "entry_date": "2026-07-02",
-      "entry_price": 17.43,
-      "score": 0.1645,
-      "margin": 0.1464
-    },
     "IZMDC": {
       "entry_date": "2026-07-07",
       "entry_price": 9.25,
@@ -30,6 +24,12 @@
       "entry_price": 68.8,
       "score": 0.1216,
       "margin": 0.1152
+    },
+    "ISGYO": {
+      "entry_date": "2026-07-21",
+      "entry_price": 26.5,
+      "score": 0.0978,
+      "margin": 0.0927
     }
   },
   "history": [
@@ -95,6 +95,15 @@
       "exit_price": 238.3,
       "pnl_pct": 1.53,
       "holding_days": 7
+    },
+    {
+      "symbol": "SKBNK",
+      "entry_date": "2026-07-02",
+      "exit_date": "2026-07-21",
+      "entry_price": 17.43,
+      "exit_price": 16.12,
+      "pnl_pct": -7.52,
+      "holding_days": 19
     }
   ],
   "scan_log": [
@@ -294,6 +303,24 @@
       "exits": [
         "ISGYO",
         "AKCNS"
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "scanned": 79,
+      "long_signals": 27,
+      "top5": [
+        "TUPRS",
+        "IZMDC",
+        "AKSEN",
+        "ARDYZ",
+        "ISGYO"
+      ],
+      "entries": [
+        "ISGYO"
+      ],
+      "exits": [
+        "SKBNK"
       ]
     }
   ],
@@ -703,6 +730,14 @@
       },
       {
         "date": "2026-07-17",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-21",
         "total": 78,
         "reliable": 0,
         "drifted": 0,

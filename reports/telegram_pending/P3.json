@@ -1,14 +1,12 @@
 {
   "strateji": "P3",
-  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 17.07.2026 | 19:39 TSİ\n\n🟢 *Alım:* `AKSEN`, `ARDYZ`\n⬜ *Satım:* `ISGYO`, `AKCNS`\n\n📈 *Sinyaller:*\n  • `TUPRS   ` skor=+0.156  _marj=+0.139_\n  • `IZMDC   ` skor=+0.146  _marj=+0.100_\n  • `SKBNK   ` skor=+0.145  _marj=+0.135_\n  • `AKSEN   ` skor=+0.126  _marj=+0.077_\n  • `ARDYZ   ` skor=+0.122  _marj=+0.115_\n\n💼 *Açık pozisyon (5):*\n  • `SKBNK`\n  • `IZMDC`\n  • `TUPRS`\n  • `AKSEN`\n  • `ARDYZ`\n📊 *WR:* 29%  |  *P&L:* -5.1%\n🔴 *Portföy değeri:* `98,976 TL` (-1.0%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 21.07.2026 | 20:57 TSİ\n\n🟢 *Alım:* `ISGYO`\n⬜ *Satım:* `SKBNK`\n\n📈 *Sinyaller:*\n  • `TUPRS   ` skor=+0.191  _marj=+0.157_\n  • `IZMDC   ` skor=+0.188  _marj=+0.132_\n  • `AKSEN   ` skor=+0.156  _marj=+0.119_\n  • `ARDYZ   ` skor=+0.123  _marj=+0.123_\n  • `ISGYO   ` skor=+0.098  _marj=+0.093_\n\n💼 *Açık pozisyon (5):*\n  • `IZMDC`\n  • `TUPRS`\n  • `AKSEN`\n  • `ARDYZ`\n  • `ISGYO`\n📊 *WR:* 25%  |  *P&L:* -12.6%\n🔴 *Portföy değeri:* `97,472 TL` (-2.5%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
   "meta": {
     "giris": [
-      "AKSEN",
-      "ARDYZ"
+      "ISGYO"
     ],
     "cikis": [
-      "ISGYO",
-      "AKCNS"
+      "SKBNK"
     ]
   }
 }
