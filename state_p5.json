@@ -1,5 +1,21 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "AKSEN": {
+      "symbol": "AKSEN",
+      "giris_fiyat": 111.3,
+      "guncel_fiyat": 111.3,
+      "lotlar": 179,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-21",
+      "komite_skor": 70,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    }
+  },
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -209,9 +225,62 @@
         "KORDS"
       ],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-21",
+      "secilen": [
+        "AKSEN"
+      ],
+      "elenen": [
+        {
+          "symbol": "ISDMR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "KRDMB",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "EFOR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TKFEN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "MGROS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "DEVA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "ARSAN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "KCHOL",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "IMASM",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "AKSEN"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-07-09T16:14:55.299919",
+  "last_run": "2026-07-21T17:57:43.423514",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 102438
 }
