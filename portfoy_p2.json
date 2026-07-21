@@ -87,7 +87,7 @@
     "LIDFA": {
       "giris_f": 3.02,
       "giris_t": "21.07.2026 12:09",
-      "tepe_f": 3.02,
+      "tepe_f": 3.049999952316284,
       "lotlar": 6622,
       "gun": 0,
       "tp1_yapildi": false,
@@ -474,5 +474,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "21.07.2026 12:09"
+  "last_hourly_check_time": "21.07.2026 12:14"
 }
