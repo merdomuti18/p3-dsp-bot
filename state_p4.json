@@ -3,9 +3,9 @@
     "TUPRS": {
       "symbol": "TUPRS",
       "giris_fiyat": 286.25,
-      "guncel_fiyat": 312.5,
+      "guncel_fiyat": 312.75,
       "lotlar": 34,
-      "pnl_pct": 9.17,
+      "pnl_pct": 9.26,
       "gun": 6,
       "giris_tarih": "2026-07-16",
       "meta_score": 0.7333333333333334,
@@ -19,9 +19,9 @@
     "AKSEN": {
       "symbol": "AKSEN",
       "giris_fiyat": 111.3,
-      "guncel_fiyat": 113.9,
+      "guncel_fiyat": 113.8,
       "lotlar": 89,
-      "pnl_pct": 2.34,
+      "pnl_pct": 2.25,
       "gun": 1,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.7333333333333334,
@@ -51,9 +51,9 @@
     "KRDMB": {
       "symbol": "KRDMB",
       "giris_fiyat": 133.5,
-      "guncel_fiyat": 132.0,
+      "guncel_fiyat": 131.9,
       "lotlar": 74,
-      "pnl_pct": -1.12,
+      "pnl_pct": -1.2,
       "gun": 1,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.3666666666666667,
@@ -302,5 +302,5 @@
   ],
   "last_run": "2026-07-21T17:58:05.454552",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 99808
+  "sermaye_mevcut": 99792
 }

@@ -86,7 +86,7 @@
     "ENSRI": {
       "giris_f": 6.13,
       "giris_t": "22.07.2026 12:13",
-      "tepe_f": 6.269999980926514,
+      "tepe_f": 6.13,
       "lotlar": 3262,
       "gun": 0,
       "tp1_yapildi": false,
@@ -485,5 +485,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "22.07.2026 12:18"
+  "last_hourly_check_time": "22.07.2026 12:13"
 }
