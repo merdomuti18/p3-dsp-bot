@@ -1,28 +1,5 @@
 {
   "pozisyonlar": {
-    "KRDMA": {
-      "giris_f": 41.02,
-      "giris_t": "15.07.2026 12:06",
-      "tepe_f": 47.7599983215332,
-      "lotlar": 244,
-      "gun": 0,
-      "tp1_yapildi": true,
-      "final_score": 65,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 4,
-        "strategies": [
-          "GT",
-          "ZT3",
-          "MR",
-          "KBM"
-        ],
-        "viop_bias": "Küçük boyut / nakit ağırlık",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "BIMAS": {
       "giris_f": 384.5,
       "giris_t": "15.07.2026 12:06",
@@ -68,29 +45,8 @@
     "AKSEN": {
       "giris_f": 100.6,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 109.19999694824219,
+      "tepe_f": 115.30000305175781,
       "lotlar": 67,
-      "gun": 0,
-      "tp1_yapildi": true,
-      "final_score": 31,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GTD",
-          "MR"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "AT+",
-        "alpha_trend_bonus": 2
-      }
-    },
-    "KARTN": {
-      "giris_f": 202.7,
-      "giris_t": "16.07.2026 11:56",
-      "tepe_f": 219.89999389648438,
-      "lotlar": 22,
       "gun": 0,
       "tp1_yapildi": true,
       "final_score": 31,
@@ -110,7 +66,7 @@
     "MOGAN": {
       "giris_f": 19.05,
       "giris_t": "21.07.2026 12:09",
-      "tepe_f": 19.05,
+      "tepe_f": 19.079999923706055,
       "lotlar": 1049,
       "gun": 0,
       "tp1_yapildi": false,
@@ -127,42 +83,32 @@
         "alpha_tag": "AT+",
         "alpha_trend_bonus": 2
       }
-    }
-  },
-  "nakit": 28409.249804077135,
-  "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "DEVA",
-      "score_count": 2,
-      "strategies": [
-        "GT",
-        "MR"
-      ],
-      "tarama_score": 28,
+    },
+    "DEVA": {
+      "giris_f": 75.3,
+      "giris_t": "22.07.2026 12:13",
+      "tepe_f": 75.3,
+      "lotlar": 265,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 34,
       "ma_score": 0.0,
       "lgbm_score": null,
-      "viop_bias": "Temkinli long",
-      "viop_score": -2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 34,
-      "change_pct": 2.53,
-      "rsi": 62.65,
-      "rel_vol": 2.53,
-      "cmf": 0.1795,
-      "islem_tl": 0,
-      "scan_time": "21.07.2026 20:56",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "22.07.2026 07:05",
-      "valid_for_date": "2026-07-23",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GT",
+          "MR"
+        ],
+        "viop_bias": "Temkinli long",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    }
+  },
+  "nakit": 24121.42780407713,
+  "baslangic": 100000,
+  "bekleyen_al": [
     {
       "symbol": "CCOLA",
       "score_count": 1,
@@ -189,8 +135,8 @@
       "queued_at": "22.07.2026 07:05",
       "valid_for_date": "2026-07-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.07.2026 12:13",
       "last_attempt_reason": ""
     },
     {
@@ -219,8 +165,8 @@
       "queued_at": "22.07.2026 07:05",
       "valid_for_date": "2026-07-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.07.2026 12:13",
       "last_attempt_reason": ""
     },
     {
@@ -249,8 +195,8 @@
       "queued_at": "22.07.2026 07:05",
       "valid_for_date": "2026-07-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.07.2026 12:13",
       "last_attempt_reason": ""
     },
     {
@@ -279,8 +225,8 @@
       "queued_at": "22.07.2026 07:05",
       "valid_for_date": "2026-07-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.07.2026 12:13",
       "last_attempt_reason": ""
     },
     {
@@ -309,19 +255,29 @@
       "queued_at": "22.07.2026 07:05",
       "valid_for_date": "2026-07-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.07.2026 12:13",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "12:13",
+      "tarih": "2026-07-22",
+      "alinan": [
+        "DEVA"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 6,
     "bought": 1,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "21.07.2026 12:09"
+    "time": "22.07.2026 12:13"
   },
-  "last_hourly_check_time": "21.07.2026 12:14"
+  "last_hourly_check_time": "22.07.2026 12:13"
 }
