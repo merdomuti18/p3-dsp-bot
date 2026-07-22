@@ -322,6 +322,20 @@
       "exits": [
         "SKBNK"
       ]
+    },
+    {
+      "date": "2026-07-22",
+      "scanned": 79,
+      "long_signals": 25,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "ARDYZ",
+        "ISGYO"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -738,6 +752,14 @@
       },
       {
         "date": "2026-07-21",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-22",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
