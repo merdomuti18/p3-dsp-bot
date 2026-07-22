@@ -1,5 +1,51 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "AKSEN": {
+      "symbol": "AKSEN",
+      "giris_fiyat": 116.0,
+      "guncel_fiyat": 116.0,
+      "lotlar": 172,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-22",
+      "komite_skor": 70,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    },
+    "ARDYZ": {
+      "symbol": "ARDYZ",
+      "giris_fiyat": 70.85,
+      "guncel_fiyat": 70.85,
+      "lotlar": 282,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-22",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    },
+    "KRDMA": {
+      "symbol": "KRDMA",
+      "giris_fiyat": 43.18,
+      "guncel_fiyat": 43.18,
+      "lotlar": 463,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-22",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    }
+  },
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -209,9 +255,66 @@
         "KORDS"
       ],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-22",
+      "secilen": [
+        "AKSEN",
+        "ARDYZ",
+        "KRDMA"
+      ],
+      "elenen": [
+        {
+          "symbol": "SASA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TRMET",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "BORSK",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "EGSER",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "PRKAB",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ISGYO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "KGYO",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "AKSEN",
+        "ARDYZ",
+        "KRDMA"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-07-09T16:14:55.299919",
+  "last_run": "2026-07-22T17:52:39.379783",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 102438
 }
