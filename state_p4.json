@@ -3,9 +3,9 @@
     "AKSEN": {
       "symbol": "AKSEN",
       "giris_fiyat": 111.3,
-      "guncel_fiyat": 109.1,
+      "guncel_fiyat": 108.9,
       "lotlar": 89,
-      "pnl_pct": -1.98,
+      "pnl_pct": -2.16,
       "gun": 2,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.7333333333333334,
@@ -19,9 +19,9 @@
     "MOGAN": {
       "symbol": "MOGAN",
       "giris_fiyat": 18.92,
-      "guncel_fiyat": 18.07,
+      "guncel_fiyat": 18.06,
       "lotlar": 528,
-      "pnl_pct": -4.49,
+      "pnl_pct": -4.55,
       "gun": 2,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.3948717948717949,
@@ -35,9 +35,9 @@
     "KRDMB": {
       "symbol": "KRDMB",
       "giris_fiyat": 133.5,
-      "guncel_fiyat": 134.7,
+      "guncel_fiyat": 134.5,
       "lotlar": 74,
-      "pnl_pct": 0.9,
+      "pnl_pct": 0.75,
       "gun": 2,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.3666666666666667,
@@ -51,9 +51,9 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 70.85,
-      "guncel_fiyat": 73.75,
+      "guncel_fiyat": 73.6,
       "lotlar": 141,
-      "pnl_pct": 4.09,
+      "pnl_pct": 3.88,
       "gun": 1,
       "giris_tarih": "2026-07-22",
       "meta_score": 0.7333333333333334,
@@ -319,5 +319,5 @@
   ],
   "last_run": "2026-07-22T17:52:37.648588",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 100524
+  "sermaye_mevcut": 100404
 }
