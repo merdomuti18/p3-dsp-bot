@@ -42,52 +42,10 @@
         "alpha_trend_bonus": 2
       }
     },
-    "AKSEN": {
-      "giris_f": 100.6,
-      "giris_t": "16.07.2026 11:56",
-      "tepe_f": 115.30000305175781,
-      "lotlar": 67,
-      "gun": 0,
-      "tp1_yapildi": true,
-      "final_score": 31,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GTD",
-          "MR"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "AT+",
-        "alpha_trend_bonus": 2
-      }
-    },
-    "MOGAN": {
-      "giris_f": 19.05,
-      "giris_t": "21.07.2026 12:09",
-      "tepe_f": 19.079999923706055,
-      "lotlar": 1049,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 36,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GTD",
-          "MR"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "AT+",
-        "alpha_trend_bonus": 2
-      }
-    },
     "DEVA": {
       "giris_f": 75.3,
       "giris_t": "22.07.2026 12:13",
-      "tepe_f": 75.3,
+      "tepe_f": 76.1500015258789,
       "lotlar": 265,
       "gun": 0,
       "tp1_yapildi": false,
@@ -104,75 +62,55 @@
         "alpha_tag": "",
         "alpha_trend_bonus": 0
       }
+    },
+    "TRMET": {
+      "giris_f": 133.9,
+      "giris_t": "23.07.2026 12:11",
+      "tepe_f": 133.9,
+      "lotlar": 149,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 70,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 4,
+        "strategies": [
+          "ALPHA",
+          "ZT3",
+          "MR",
+          "KBM"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "ARDYZ": {
+      "giris_f": 73.75,
+      "giris_t": "23.07.2026 12:11",
+      "tepe_f": 73.75,
+      "lotlar": 145,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 38,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GT",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
     }
   },
-  "nakit": 24121.42780407713,
+  "nakit": 19799.700304077127,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "TRMET",
-      "score_count": 4,
-      "strategies": [
-        "ALPHA",
-        "ZT3",
-        "MR",
-        "KBM"
-      ],
-      "tarama_score": 52,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 70,
-      "change_pct": 4.55,
-      "rsi": 59.13,
-      "rel_vol": 1.31,
-      "cmf": 0.0304,
-      "islem_tl": 0,
-      "scan_time": "22.07.2026 20:50",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "23.07.2026 07:05",
-      "valid_for_date": "2026-07-24",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ARDYZ",
-      "score_count": 2,
-      "strategies": [
-        "GT",
-        "MR"
-      ],
-      "tarama_score": 28,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 38,
-      "change_pct": 2.24,
-      "rsi": 62.18,
-      "rel_vol": 1.18,
-      "cmf": 0.0837,
-      "islem_tl": 0,
-      "scan_time": "22.07.2026 20:50",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "23.07.2026 07:05",
-      "valid_for_date": "2026-07-24",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "KRDMA",
       "score_count": 1,
@@ -199,8 +137,8 @@
       "queued_at": "23.07.2026 07:05",
       "valid_for_date": "2026-07-24",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "23.07.2026 12:11",
       "last_attempt_reason": ""
     },
     {
@@ -229,8 +167,8 @@
       "queued_at": "23.07.2026 07:05",
       "valid_for_date": "2026-07-24",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "23.07.2026 12:11",
       "last_attempt_reason": ""
     },
     {
@@ -259,8 +197,8 @@
       "queued_at": "23.07.2026 07:05",
       "valid_for_date": "2026-07-24",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "23.07.2026 12:11",
       "last_attempt_reason": ""
     },
     {
@@ -289,19 +227,30 @@
       "queued_at": "23.07.2026 07:05",
       "valid_for_date": "2026-07-24",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "23.07.2026 12:11",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "12:11",
+      "tarih": "2026-07-23",
+      "alinan": [
+        "TRMET",
+        "ARDYZ"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 6,
-    "bought": 1,
+    "bought": 2,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "22.07.2026 12:13"
+    "time": "23.07.2026 12:11"
   },
-  "last_hourly_check_time": "22.07.2026 12:13"
+  "last_hourly_check_time": "23.07.2026 12:11"
 }
