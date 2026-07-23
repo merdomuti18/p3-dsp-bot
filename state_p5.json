@@ -1,5 +1,81 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "ODAS": {
+      "symbol": "ODAS",
+      "giris_fiyat": 9.14,
+      "guncel_fiyat": 9.14,
+      "lotlar": 2188,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-23",
+      "komite_skor": 75,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    },
+    "AKSEN": {
+      "symbol": "AKSEN",
+      "giris_fiyat": 104.4,
+      "guncel_fiyat": 104.4,
+      "lotlar": 191,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-23",
+      "komite_skor": 70,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    },
+    "ARDYZ": {
+      "symbol": "ARDYZ",
+      "giris_fiyat": 71.7,
+      "guncel_fiyat": 71.7,
+      "lotlar": 278,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-23",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    },
+    "PETKM": {
+      "symbol": "PETKM",
+      "giris_fiyat": 22.56,
+      "guncel_fiyat": 22.56,
+      "lotlar": 886,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-23",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    },
+    "RUZYE": {
+      "symbol": "RUZYE",
+      "giris_fiyat": 10.53,
+      "guncel_fiyat": 10.53,
+      "lotlar": 1899,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-07-23",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    }
+  },
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -209,9 +285,70 @@
         "KORDS"
       ],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-23",
+      "secilen": [
+        "ODAS",
+        "AKSEN",
+        "ARDYZ",
+        "PETKM",
+        "RUZYE"
+      ],
+      "elenen": [
+        {
+          "symbol": "CCOLA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "DOKTA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "SARKY",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUREX",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KRDMA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ASELS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KRDMD",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "KRDMB",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TRMET",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "ODAS",
+        "AKSEN",
+        "ARDYZ",
+        "PETKM",
+        "RUZYE"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-07-09T16:14:55.299919",
+  "last_run": "2026-07-23T18:00:57.894701",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 102438
 }
