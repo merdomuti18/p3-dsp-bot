@@ -25,11 +25,11 @@
       "score": 0.1216,
       "margin": 0.1152
     },
-    "ISGYO": {
-      "entry_date": "2026-07-21",
-      "entry_price": 26.5,
-      "score": 0.0978,
-      "margin": 0.0927
+    "PETKM": {
+      "entry_date": "2026-07-23",
+      "entry_price": 22.56,
+      "score": 0.0849,
+      "margin": 0.0746
     }
   },
   "history": [
@@ -104,6 +104,15 @@
       "exit_price": 16.12,
       "pnl_pct": -7.52,
       "holding_days": 19
+    },
+    {
+      "symbol": "ISGYO",
+      "entry_date": "2026-07-21",
+      "exit_date": "2026-07-23",
+      "entry_price": 26.5,
+      "exit_price": 25.8,
+      "pnl_pct": -2.64,
+      "holding_days": 2
     }
   ],
   "scan_log": [
@@ -336,6 +345,24 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-07-23",
+      "scanned": 79,
+      "long_signals": 27,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "ARDYZ",
+        "PETKM"
+      ],
+      "entries": [
+        "PETKM"
+      ],
+      "exits": [
+        "ISGYO"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -760,6 +787,14 @@
       },
       {
         "date": "2026-07-22",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-23",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
