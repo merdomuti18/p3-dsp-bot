@@ -89,7 +89,7 @@
     "PAGYO": {
       "giris_f": 166.4,
       "giris_t": "24.07.2026 09:23",
-      "tepe_f": 166.4,
+      "tepe_f": 167.3000030517578,
       "lotlar": 63,
       "gun": 0,
       "tp1_yapildi": false,
@@ -131,7 +131,7 @@
     "EREGL": {
       "giris_f": 43.78,
       "giris_t": "24.07.2026 09:23",
-      "tepe_f": 43.78,
+      "tepe_f": 44.20000076293945,
       "lotlar": 94,
       "gun": 0,
       "tp1_yapildi": false,
@@ -152,100 +152,7 @@
   },
   "nakit": 8882.342804077127,
   "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "KRDMA",
-      "score_count": 2,
-      "strategies": [
-        "GT",
-        "MR"
-      ],
-      "tarama_score": 28,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 2,
-      "alpha_tag": "AT+",
-      "final_score": 38,
-      "change_pct": 2.78,
-      "rsi": 63.47,
-      "rel_vol": 1.16,
-      "cmf": 0.3196,
-      "islem_tl": 0,
-      "scan_time": "23.07.2026 20:58",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.07.2026 07:05",
-      "valid_for_date": "2026-07-27",
-      "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "24.07.2026 09:23",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KUYAS",
-      "score_count": 2,
-      "strategies": [
-        "ALPHA",
-        "ZKN"
-      ],
-      "tarama_score": 30,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 38,
-      "change_pct": 9.99,
-      "rsi": 45.3,
-      "rel_vol": 2.84,
-      "cmf": -0.0484,
-      "islem_tl": 0,
-      "scan_time": "23.07.2026 20:58",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.07.2026 07:05",
-      "valid_for_date": "2026-07-27",
-      "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "24.07.2026 09:23",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "CCOLA",
-      "score_count": 1,
-      "strategies": [
-        "GT"
-      ],
-      "tarama_score": 18,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 2,
-      "alpha_tag": "AT+",
-      "final_score": 22,
-      "change_pct": -0.98,
-      "rsi": 62.94,
-      "rel_vol": 1.12,
-      "cmf": 0.2023,
-      "islem_tl": 0,
-      "scan_time": "23.07.2026 20:58",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.07.2026 07:05",
-      "valid_for_date": "2026-07-27",
-      "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "24.07.2026 09:23",
-      "last_attempt_reason": ""
-    }
-  ],
+  "bekleyen_al": [],
   "open_attempts_today": [
     {
       "saat": "09:23",
@@ -267,5 +174,5 @@
     "failed_reasons": [],
     "time": "24.07.2026 09:23"
   },
-  "last_hourly_check_time": "24.07.2026 09:23"
+  "last_hourly_check_time": "24.07.2026 11:43"
 }
