@@ -24,7 +24,7 @@
     "CATES": {
       "giris_f": 45.96,
       "giris_t": "16.07.2026 11:56",
-      "tepe_f": 46.220001220703125,
+      "tepe_f": 48.400001525878906,
       "lotlar": 435,
       "gun": 0,
       "tp1_yapildi": false,
@@ -66,7 +66,7 @@
     "TRMET": {
       "giris_f": 133.9,
       "giris_t": "23.07.2026 12:11",
-      "tepe_f": 133.9,
+      "tepe_f": 139.1999969482422,
       "lotlar": 149,
       "gun": 0,
       "tp1_yapildi": false,
@@ -86,11 +86,53 @@
         "alpha_trend_bonus": 0
       }
     },
-    "ARDYZ": {
-      "giris_f": 73.75,
-      "giris_t": "23.07.2026 12:11",
-      "tepe_f": 73.75,
-      "lotlar": 145,
+    "PAGYO": {
+      "giris_f": 166.4,
+      "giris_t": "24.07.2026 09:23",
+      "tepe_f": 166.4,
+      "lotlar": 63,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 42,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GT",
+          "ALPHA"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "KRDMD": {
+      "giris_f": 42.9,
+      "giris_t": "24.07.2026 09:23",
+      "tepe_f": 42.9,
+      "lotlar": 151,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 40,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GT",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "AT↑",
+        "alpha_trend_bonus": 4
+      }
+    },
+    "EREGL": {
+      "giris_f": 43.78,
+      "giris_t": "24.07.2026 09:23",
+      "tepe_f": 43.78,
+      "lotlar": 94,
       "gun": 0,
       "tp1_yapildi": false,
       "final_score": 38,
@@ -103,107 +145,14 @@
           "MR"
         ],
         "viop_bias": "Normal",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
+        "alpha_tag": "AT+",
+        "alpha_trend_bonus": 2
       }
     }
   },
-  "nakit": 19799.700304077127,
+  "nakit": 8882.342804077127,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "PAGYO",
-      "score_count": 2,
-      "strategies": [
-        "GT",
-        "ALPHA"
-      ],
-      "tarama_score": 34,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 42,
-      "change_pct": 8.45,
-      "rsi": 63.69,
-      "rel_vol": 2.0,
-      "cmf": 0.1834,
-      "islem_tl": 0,
-      "scan_time": "23.07.2026 20:58",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.07.2026 07:05",
-      "valid_for_date": "2026-07-27",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KRDMD",
-      "score_count": 2,
-      "strategies": [
-        "GT",
-        "MR"
-      ],
-      "tarama_score": 28,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": true,
-      "alpha_trend_bonus": 4,
-      "alpha_tag": "AT↑",
-      "final_score": 40,
-      "change_pct": 0.48,
-      "rsi": 59.95,
-      "rel_vol": 1.63,
-      "cmf": 0.0027,
-      "islem_tl": 0,
-      "scan_time": "23.07.2026 20:58",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.07.2026 07:05",
-      "valid_for_date": "2026-07-27",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "EREGL",
-      "score_count": 2,
-      "strategies": [
-        "GT",
-        "MR"
-      ],
-      "tarama_score": 28,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 2,
-      "alpha_tag": "AT+",
-      "final_score": 38,
-      "change_pct": 4.64,
-      "rsi": 62.04,
-      "rel_vol": 1.32,
-      "cmf": 0.144,
-      "islem_tl": 0,
-      "scan_time": "23.07.2026 20:58",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.07.2026 07:05",
-      "valid_for_date": "2026-07-27",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "KRDMA",
       "score_count": 2,
@@ -231,8 +180,8 @@
       "queued_at": "24.07.2026 07:05",
       "valid_for_date": "2026-07-27",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.07.2026 09:23",
       "last_attempt_reason": ""
     },
     {
@@ -262,8 +211,8 @@
       "queued_at": "24.07.2026 07:05",
       "valid_for_date": "2026-07-27",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.07.2026 09:23",
       "last_attempt_reason": ""
     },
     {
@@ -292,19 +241,31 @@
       "queued_at": "24.07.2026 07:05",
       "valid_for_date": "2026-07-27",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.07.2026 09:23",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "09:23",
+      "tarih": "2026-07-24",
+      "alinan": [
+        "PAGYO",
+        "KRDMD",
+        "EREGL"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 6,
-    "bought": 2,
+    "bought": 3,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "23.07.2026 12:11"
+    "time": "24.07.2026 09:23"
   },
-  "last_hourly_check_time": "23.07.2026 12:11"
+  "last_hourly_check_time": "24.07.2026 09:23"
 }
