@@ -3,9 +3,9 @@
     "KRDMB": {
       "symbol": "KRDMB",
       "giris_fiyat": 133.5,
-      "guncel_fiyat": 136.0,
+      "guncel_fiyat": 134.8,
       "lotlar": 74,
-      "pnl_pct": 1.87,
+      "pnl_pct": 0.97,
       "gun": 3,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.3666666666666667,
@@ -19,9 +19,9 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 70.85,
-      "guncel_fiyat": 69.75,
+      "guncel_fiyat": 68.7,
       "lotlar": 141,
-      "pnl_pct": -1.55,
+      "pnl_pct": -3.03,
       "gun": 2,
       "giris_tarih": "2026-07-22",
       "meta_score": 0.7333333333333334,
@@ -35,9 +35,9 @@
     "PRKAB": {
       "symbol": "PRKAB",
       "giris_fiyat": 35.74,
-      "guncel_fiyat": 35.74,
+      "guncel_fiyat": 35.48,
       "lotlar": 279,
-      "pnl_pct": 0.0,
+      "pnl_pct": -0.73,
       "gun": 1,
       "giris_tarih": "2026-07-23",
       "meta_score": 1.0,
@@ -50,9 +50,9 @@
     "TUREX": {
       "symbol": "TUREX",
       "giris_fiyat": 7.23,
-      "guncel_fiyat": 7.38,
+      "guncel_fiyat": 7.56,
       "lotlar": 1383,
-      "pnl_pct": 2.07,
+      "pnl_pct": 4.56,
       "gun": 1,
       "giris_tarih": "2026-07-23",
       "meta_score": 1.0,
@@ -65,9 +65,9 @@
     "ODAS": {
       "symbol": "ODAS",
       "giris_fiyat": 9.14,
-      "guncel_fiyat": 9.18,
+      "guncel_fiyat": 9.07,
       "lotlar": 1094,
-      "pnl_pct": 0.44,
+      "pnl_pct": -0.77,
       "gun": 1,
       "giris_tarih": "2026-07-23",
       "meta_score": 0.8555555555555556,
@@ -361,5 +361,5 @@
   ],
   "last_run": "2026-07-23T18:01:00.052027",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 98984
+  "sermaye_mevcut": 98618
 }
