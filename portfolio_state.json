@@ -363,6 +363,20 @@
       "exits": [
         "ISGYO"
       ]
+    },
+    {
+      "date": "2026-07-24",
+      "scanned": 79,
+      "long_signals": 32,
+      "top5": [
+        "IZMDC",
+        "AKSEN",
+        "TUPRS",
+        "ARDYZ",
+        "PETKM"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -795,6 +809,14 @@
       },
       {
         "date": "2026-07-23",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-24",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
