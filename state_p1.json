@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "27.07.2026 19:22",
+    "scan_time": "27.07.2026 20:50",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
         "symbol": "CCOLA",
-        "scan_time": "27.07.2026 19:22",
+        "scan_time": "27.07.2026 20:50",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GT"
@@ -22,7 +22,7 @@
       },
       {
         "symbol": "GRSEL",
-        "scan_time": "27.07.2026 19:22",
+        "scan_time": "27.07.2026 20:50",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GTD"
@@ -39,7 +39,7 @@
       },
       {
         "symbol": "KARTN",
-        "scan_time": "27.07.2026 19:22",
+        "scan_time": "27.07.2026 20:50",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GTD",
@@ -57,7 +57,7 @@
       },
       {
         "symbol": "HATEK",
-        "scan_time": "27.07.2026 19:22",
+        "scan_time": "27.07.2026 20:50",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
@@ -74,7 +74,7 @@
       },
       {
         "symbol": "AKSA",
-        "scan_time": "27.07.2026 19:22",
+        "scan_time": "27.07.2026 20:50",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -91,7 +91,7 @@
       },
       {
         "symbol": "KCAER",
-        "scan_time": "27.07.2026 19:22",
+        "scan_time": "27.07.2026 20:50",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -116,5 +116,5 @@
       "KCAER"
     ]
   },
-  "last_scan": "27.07.2026 19:22"
+  "last_scan": "27.07.2026 20:50"
 }
