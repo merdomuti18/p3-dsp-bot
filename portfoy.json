@@ -1,51 +1,9 @@
 {
   "pozisyonlar": {
-    "BIMAS": {
-      "giris_f": 384.5,
-      "giris_t": "15.07.2026 12:06",
-      "tepe_f": 400.5,
-      "lotlar": 31,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 37,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "ALPHA"
-        ],
-        "viop_bias": "Küçük boyut / nakit ağırlık",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
-    "CATES": {
-      "giris_f": 45.96,
-      "giris_t": "16.07.2026 11:56",
-      "tepe_f": 48.400001525878906,
-      "lotlar": 435,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 34,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GTD",
-          "MR"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "AT+",
-        "alpha_trend_bonus": 2
-      }
-    },
     "DEVA": {
       "giris_f": 75.3,
       "giris_t": "22.07.2026 12:13",
-      "tepe_f": 76.1500015258789,
+      "tepe_f": 76.4000015258789,
       "lotlar": 265,
       "gun": 0,
       "tp1_yapildi": false,
@@ -89,7 +47,7 @@
     "PAGYO": {
       "giris_f": 166.4,
       "giris_t": "24.07.2026 09:23",
-      "tepe_f": 167.3000030517578,
+      "tepe_f": 170.39999389648438,
       "lotlar": 63,
       "gun": 0,
       "tp1_yapildi": false,
@@ -148,42 +106,32 @@
         "alpha_tag": "AT+",
         "alpha_trend_bonus": 2
       }
-    }
-  },
-  "nakit": 8882.342804077127,
-  "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "GRSEL",
-      "score_count": 2,
-      "strategies": [
-        "GTD",
-        "MR"
-      ],
-      "tarama_score": 24,
+    },
+    "GRSEL": {
+      "giris_f": 340.5,
+      "giris_t": "27.07.2026 09:40",
+      "tepe_f": 340.5,
+      "lotlar": 58,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 32,
       "ma_score": 0.0,
       "lgbm_score": null,
-      "viop_bias": "Temkinli long",
-      "viop_score": -2,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 2,
-      "alpha_tag": "AT+",
-      "final_score": 32,
-      "change_pct": 9.67,
-      "rsi": 72.33,
-      "rel_vol": 5.23,
-      "cmf": 0.226,
-      "islem_tl": 0,
-      "scan_time": "24.07.2026 20:46",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "27.07.2026 07:05",
-      "valid_for_date": "2026-07-28",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GTD",
+          "MR"
+        ],
+        "viop_bias": "Temkinli long",
+        "alpha_tag": "AT+",
+        "alpha_trend_bonus": 2
+      }
+    }
+  },
+  "nakit": 20879.99353421018,
+  "baslangic": 100000,
+  "bekleyen_al": [
     {
       "symbol": "ICBCT",
       "score_count": 1,
@@ -210,8 +158,8 @@
       "queued_at": "27.07.2026 07:05",
       "valid_for_date": "2026-07-28",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "27.07.2026 09:40",
       "last_attempt_reason": ""
     },
     {
@@ -240,19 +188,29 @@
       "queued_at": "27.07.2026 07:05",
       "valid_for_date": "2026-07-28",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "27.07.2026 09:40",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "09:40",
+      "tarih": "2026-07-27",
+      "alinan": [
+        "GRSEL"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 6,
-    "bought": 3,
+    "pending": 3,
+    "bought": 1,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "24.07.2026 09:23"
+    "time": "27.07.2026 09:40"
   },
-  "last_hourly_check_time": "24.07.2026 11:58"
+  "last_hourly_check_time": "27.07.2026 09:40"
 }
