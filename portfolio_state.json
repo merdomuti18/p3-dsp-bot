@@ -24,6 +24,12 @@
       "entry_price": 68.8,
       "score": 0.1216,
       "margin": 0.1152
+    },
+    "PETKM": {
+      "entry_date": "2026-07-23",
+      "entry_price": 22.56,
+      "score": 0.0849,
+      "margin": 0.0746
     }
   },
   "history": [
@@ -107,16 +113,6 @@
       "exit_price": 25.8,
       "pnl_pct": -2.64,
       "holding_days": 2
-    },
-    {
-      "symbol": "PETKM",
-      "entry_date": "2026-07-23",
-      "exit_date": "2026-07-27",
-      "entry_price": 22.56,
-      "exit_price": 20.6,
-      "pnl_pct": -8.69,
-      "holding_days": 4,
-      "reason": "ACIL_STOP"
     }
   ],
   "scan_log": [
