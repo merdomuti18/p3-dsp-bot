@@ -24,6 +24,12 @@
       "entry_price": 68.8,
       "score": 0.1216,
       "margin": 0.1152
+    },
+    "SOKM": {
+      "entry_date": "2026-07-27",
+      "entry_price": 52.0,
+      "score": 0.0883,
+      "margin": 0.1121
     }
   },
   "history": [
@@ -380,6 +386,22 @@
         "PETKM"
       ],
       "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-27",
+      "scanned": 79,
+      "long_signals": 32,
+      "top5": [
+        "IZMDC",
+        "AKSEN",
+        "TUPRS",
+        "ARDYZ",
+        "SOKM"
+      ],
+      "entries": [
+        "SOKM"
+      ],
       "exits": []
     }
   ],
@@ -821,6 +843,14 @@
       },
       {
         "date": "2026-07-24",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-27",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
