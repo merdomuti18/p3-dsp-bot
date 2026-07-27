@@ -1,10 +1,10 @@
 {
-  "scan_time": "27.07.2026 19:22",
+  "scan_time": "27.07.2026 20:50",
   "scan_label": "20:50 Akşam Tarama",
   "signals": [
     {
       "symbol": "TUREX",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 9.5,
@@ -22,7 +22,7 @@
     },
     {
       "symbol": "HATEK",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 8.0,
@@ -40,7 +40,7 @@
     },
     {
       "symbol": "TARKM",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 7.5,
@@ -58,7 +58,7 @@
     },
     {
       "symbol": "MAVI",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 5.5,
@@ -76,7 +76,7 @@
     },
     {
       "symbol": "KARTN",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 5.0,
@@ -93,7 +93,7 @@
     },
     {
       "symbol": "DITAS",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -110,7 +110,7 @@
     },
     {
       "symbol": "IEYHO",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -128,7 +128,7 @@
     },
     {
       "symbol": "GRSEL",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
@@ -145,7 +145,7 @@
     },
     {
       "symbol": "KCAER",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
@@ -162,7 +162,7 @@
     },
     {
       "symbol": "AKSA",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.0,
@@ -180,7 +180,7 @@
     },
     {
       "symbol": "PAGYO",
-      "scan_time": "27.07.2026 19:22",
+      "scan_time": "27.07.2026 20:50",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.0,
