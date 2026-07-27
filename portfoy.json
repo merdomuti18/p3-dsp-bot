@@ -110,7 +110,7 @@
     "GRSEL": {
       "giris_f": 340.5,
       "giris_t": "27.07.2026 09:40",
-      "tepe_f": 346.25,
+      "tepe_f": 352.0,
       "lotlar": 58,
       "gun": 0,
       "tp1_yapildi": false,
@@ -151,5 +151,5 @@
     "failed_reasons": [],
     "time": "27.07.2026 09:40"
   },
-  "last_hourly_check_time": "27.07.2026 10:44"
+  "last_hourly_check_time": "27.07.2026 13:40"
 }
