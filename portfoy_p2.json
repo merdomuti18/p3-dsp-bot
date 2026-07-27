@@ -87,7 +87,7 @@
     "TARKM": {
       "giris_f": 507.5,
       "giris_t": "27.07.2026 10:45",
-      "tepe_f": 507.5,
+      "tepe_f": 514.0,
       "lotlar": 30,
       "gun": 0,
       "tp1_yapildi": false,
@@ -349,5 +349,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "27.07.2026 10:45"
+  "last_hourly_check_time": "27.07.2026 13:40"
 }
