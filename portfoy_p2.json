@@ -3,7 +3,7 @@
     "EFOR": {
       "giris_f": 18.05,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 19.329999923706055,
+      "tepe_f": 19.469999313354492,
       "lotlar": 296,
       "gun": 0,
       "tp1_yapildi": false,
@@ -11,34 +11,6 @@
       "teyit_skoru": 0,
       "signals": [
         "Bullish MACD Cross",
-        "Bullish OB",
-        "Bullish FVG"
-      ]
-    },
-    "LIDFA": {
-      "giris_f": 3.02,
-      "giris_t": "21.07.2026 12:09",
-      "tepe_f": 3.119999885559082,
-      "lotlar": 6622,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "smc_score": 6.0,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish FVG"
-      ]
-    },
-    "ENSRI": {
-      "giris_f": 6.13,
-      "giris_t": "22.07.2026 12:13",
-      "tepe_f": 6.260000228881836,
-      "lotlar": 3262,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "smc_score": 9.5,
-      "teyit_skoru": 0,
-      "signals": [
         "Bullish OB",
         "Bullish FVG"
       ]
@@ -71,19 +43,6 @@
         "Bullish FVG"
       ]
     },
-    "RUZYE": {
-      "giris_f": 9.3,
-      "giris_t": "27.07.2026 09:40",
-      "tepe_f": 9.3,
-      "lotlar": 2150,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "smc_score": 8.0,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish OB"
-      ]
-    },
     "TARKM": {
       "giris_f": 507.5,
       "giris_t": "27.07.2026 10:45",
@@ -98,56 +57,53 @@
         "Bullish OB",
         "Bullish FVG"
       ]
-    }
-  },
-  "nakit": 250.23849549865372,
-  "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "TUREX",
-      "score": 9.5,
-      "final_score": 9.5,
-      "verdict": "GÜÇLÜ AL",
+    },
+    "TUREX": {
+      "giris_f": 7.07,
+      "giris_t": "28.07.2026 09:37",
+      "tepe_f": 7.07,
+      "lotlar": 2828,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 9.5,
+      "teyit_skoru": 0,
       "signals": [
         "Bullish OB",
         "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "27.07.2026 20:50",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
+      ]
     },
-    {
-      "symbol": "HATEK",
-      "score": 8.0,
-      "final_score": 8.0,
-      "verdict": "GÜÇLÜ AL",
+    "HATEK": {
+      "giris_f": 16.16,
+      "giris_t": "28.07.2026 09:37",
+      "tepe_f": 16.16,
+      "lotlar": 801,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 8.0,
+      "teyit_skoru": 0,
       "signals": [
         "Bullish MACD Cross",
         "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "27.07.2026 20:50",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
+      ]
     },
-    {
-      "symbol": "MAVI",
-      "score": 5.5,
-      "final_score": 5.5,
-      "verdict": "AL",
+    "MAVI": {
+      "giris_f": 39.26,
+      "giris_t": "28.07.2026 09:37",
+      "tepe_f": 39.26,
+      "lotlar": 148,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 5.5,
+      "teyit_skoru": 0,
       "signals": [
         "Bullish OB",
         "Bearish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "27.07.2026 20:50",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
+      ]
+    }
+  },
+  "nakit": 18491.66349549866,
+  "baslangic": 100000,
+  "bekleyen_al": [
     {
       "symbol": "KARTN",
       "score": 5.0,
@@ -156,7 +112,7 @@
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "27.07.2026 20:50",
       "attempt_count": 0,
@@ -170,7 +126,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "27.07.2026 20:50",
       "attempt_count": 0,
@@ -185,7 +141,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "27.07.2026 20:50",
       "attempt_count": 0,
@@ -199,7 +155,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "27.07.2026 20:50",
       "attempt_count": 0,
@@ -213,7 +169,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "27.07.2026 20:50",
       "attempt_count": 0,
@@ -228,7 +184,7 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "27.07.2026 20:50",
       "attempt_count": 0,
@@ -243,7 +199,7 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "27.07.2026 20:50",
       "attempt_count": 0,
@@ -251,5 +207,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "27.07.2026 13:40"
+  "last_hourly_check_time": "28.07.2026 09:37"
 }
