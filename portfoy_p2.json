@@ -3,10 +3,10 @@
     "EFOR": {
       "giris_f": 18.05,
       "giris_t": "20.07.2026 13:24",
-      "tepe_f": 19.469999313354492,
-      "lotlar": 296,
+      "tepe_f": 19.850000381469727,
+      "lotlar": 148,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "smc_score": 6.0,
       "teyit_skoru": 0,
       "signals": [
@@ -61,7 +61,7 @@
     "TUREX": {
       "giris_f": 7.07,
       "giris_t": "28.07.2026 09:37",
-      "tepe_f": 7.07,
+      "tepe_f": 7.099999904632568,
       "lotlar": 2828,
       "gun": 0,
       "tp1_yapildi": false,
@@ -75,7 +75,7 @@
     "HATEK": {
       "giris_f": 16.16,
       "giris_t": "28.07.2026 09:37",
-      "tepe_f": 16.16,
+      "tepe_f": 16.420000076293945,
       "lotlar": 801,
       "gun": 0,
       "tp1_yapildi": false,
@@ -89,7 +89,7 @@
     "MAVI": {
       "giris_f": 39.26,
       "giris_t": "28.07.2026 09:37",
-      "tepe_f": 39.26,
+      "tepe_f": 39.36000061035156,
       "lotlar": 148,
       "gun": 0,
       "tp1_yapildi": false,
@@ -101,7 +101,7 @@
       ]
     }
   },
-  "nakit": 18491.66349549866,
+  "nakit": 21427.983518081666,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -207,5 +207,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "28.07.2026 09:37"
+  "last_hourly_check_time": "28.07.2026 11:59"
 }
