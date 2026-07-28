@@ -68,7 +68,7 @@
     "KRDMD": {
       "giris_f": 42.9,
       "giris_t": "24.07.2026 09:23",
-      "tepe_f": 43.08000183105469,
+      "tepe_f": 42.9,
       "lotlar": 151,
       "gun": 0,
       "tp1_yapildi": false,
@@ -159,8 +159,8 @@
       "queued_at": "28.07.2026 07:05",
       "valid_for_date": "2026-07-29",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "28.07.2026 08:25",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -189,8 +189,8 @@
       "queued_at": "28.07.2026 07:05",
       "valid_for_date": "2026-07-29",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "28.07.2026 08:25",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -219,8 +219,8 @@
       "queued_at": "28.07.2026 07:05",
       "valid_for_date": "2026-07-29",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "28.07.2026 08:25",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -249,8 +249,8 @@
       "queued_at": "28.07.2026 07:05",
       "valid_for_date": "2026-07-29",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "28.07.2026 08:25",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -279,27 +279,19 @@
       "queued_at": "28.07.2026 07:05",
       "valid_for_date": "2026-07-29",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "28.07.2026 08:25",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [
-    {
-      "saat": "08:25",
-      "tarih": "2026-07-28",
-      "alinan": [],
-      "alinmayan": [],
-      "nedenler": {}
-    }
-  ],
+  "open_attempts_today": [],
   "last_open_attempt_summary": {
-    "pending": 5,
-    "bought": 0,
+    "pending": 3,
+    "bought": 1,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "28.07.2026 08:25"
+    "time": "27.07.2026 09:40"
   },
-  "last_hourly_check_time": "28.07.2026 08:25"
+  "last_hourly_check_time": "27.07.2026 13:40"
 }
