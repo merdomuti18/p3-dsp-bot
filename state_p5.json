@@ -3,9 +3,9 @@
     "HATEK": {
       "symbol": "HATEK",
       "giris_fiyat": 16.05,
-      "guncel_fiyat": 16.43,
+      "guncel_fiyat": 16.16,
       "lotlar": 1246,
-      "pnl_pct": 2.37,
+      "pnl_pct": 0.69,
       "gun": 1,
       "giris_tarih": "2026-07-27",
       "komite_skor": 75,
@@ -18,9 +18,9 @@
     "AKSA": {
       "symbol": "AKSA",
       "giris_fiyat": 12.44,
-      "guncel_fiyat": 12.5,
+      "guncel_fiyat": 12.56,
       "lotlar": 1607,
-      "pnl_pct": 0.48,
+      "pnl_pct": 0.96,
       "gun": 1,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
@@ -33,9 +33,9 @@
     "GRSEL": {
       "symbol": "GRSEL",
       "giris_fiyat": 344.0,
-      "guncel_fiyat": 344.0,
+      "guncel_fiyat": 342.0,
       "lotlar": 58,
-      "pnl_pct": 0.0,
+      "pnl_pct": -0.58,
       "gun": 1,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
@@ -316,5 +316,5 @@
   ],
   "last_run": "2026-07-27T16:23:45.469508",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 103008
+  "sermaye_mevcut": 102652
 }
