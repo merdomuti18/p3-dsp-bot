@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "28.07.2026 19:41",
+    "scan_time": "28.07.2026 20:43",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
         "symbol": "CCOLA",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GT"
@@ -22,7 +22,7 @@
       },
       {
         "symbol": "FENER",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ALPHA"
@@ -39,7 +39,7 @@
       },
       {
         "symbol": "ARDYZ",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
@@ -56,7 +56,7 @@
       },
       {
         "symbol": "EFOR",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -73,7 +73,7 @@
       },
       {
         "symbol": "GRSEL",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -90,7 +90,7 @@
       },
       {
         "symbol": "CATES",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -107,7 +107,7 @@
       },
       {
         "symbol": "KMPUR",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -124,7 +124,7 @@
       },
       {
         "symbol": "HATSN",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -151,5 +151,5 @@
       "HATSN"
     ]
   },
-  "last_scan": "28.07.2026 19:41"
+  "last_scan": "28.07.2026 20:43"
 }
