@@ -431,6 +431,20 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-07-28",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "IZMDC",
+        "AKSEN",
+        "TUPRS",
+        "SOKM",
+        "ARDYZ"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -887,6 +901,14 @@
       },
       {
         "date": "2026-07-27",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-28",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
