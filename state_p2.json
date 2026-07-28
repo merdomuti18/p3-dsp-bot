@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "28.07.2026 19:41",
+    "scan_time": "28.07.2026 20:43",
     "scan_label": "20:50 Akşam Tarama",
     "signals": [
       {
         "symbol": "BFREN",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "GÜÇLÜ AL",
         "score": 8.0,
@@ -23,7 +23,7 @@
       },
       {
         "symbol": "EFOR",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "GÜÇLÜ AL",
         "score": 6.5,
@@ -41,7 +41,7 @@
       },
       {
         "symbol": "TARKM",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "GÜÇLÜ AL",
         "score": 6.0,
@@ -58,7 +58,7 @@
       },
       {
         "symbol": "IEYHO",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -76,7 +76,7 @@
       },
       {
         "symbol": "CATES",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 3.5,
@@ -93,7 +93,7 @@
       },
       {
         "symbol": "HATEK",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 3.5,
@@ -110,7 +110,7 @@
       },
       {
         "symbol": "KARTN",
-        "scan_time": "28.07.2026 19:41",
+        "scan_time": "28.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 3.0,
@@ -131,7 +131,7 @@
   "bekleyen_al": [
     {
       "symbol": "BFREN",
-      "scan_time": "28.07.2026 19:41",
+      "scan_time": "28.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 8.0,
@@ -149,7 +149,7 @@
     },
     {
       "symbol": "EFOR",
-      "scan_time": "28.07.2026 19:41",
+      "scan_time": "28.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.5,
@@ -167,7 +167,7 @@
     },
     {
       "symbol": "TARKM",
-      "scan_time": "28.07.2026 19:41",
+      "scan_time": "28.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.0,
@@ -184,7 +184,7 @@
     },
     {
       "symbol": "IEYHO",
-      "scan_time": "28.07.2026 19:41",
+      "scan_time": "28.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -202,7 +202,7 @@
     },
     {
       "symbol": "CATES",
-      "scan_time": "28.07.2026 19:41",
+      "scan_time": "28.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
@@ -219,7 +219,7 @@
     },
     {
       "symbol": "HATEK",
-      "scan_time": "28.07.2026 19:41",
+      "scan_time": "28.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
@@ -236,7 +236,7 @@
     },
     {
       "symbol": "KARTN",
-      "scan_time": "28.07.2026 19:41",
+      "scan_time": "28.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.0,
@@ -252,5 +252,5 @@
       "change_pct": -6.56
     }
   ],
-  "last_scan": "28.07.2026 19:41"
+  "last_scan": "28.07.2026 20:43"
 }
