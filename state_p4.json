@@ -3,9 +3,9 @@
     "KRDMB": {
       "symbol": "KRDMB",
       "giris_fiyat": 133.5,
-      "guncel_fiyat": 131.5,
+      "guncel_fiyat": 132.4,
       "lotlar": 74,
-      "pnl_pct": -1.5,
+      "pnl_pct": -0.82,
       "gun": 7,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.3666666666666667,
@@ -16,12 +16,28 @@
       "coklu_onay": true,
       "strateji": "P4"
     },
+    "ARDYZ": {
+      "symbol": "ARDYZ",
+      "giris_fiyat": 70.85,
+      "guncel_fiyat": 67.6,
+      "lotlar": 141,
+      "pnl_pct": -4.59,
+      "gun": 6,
+      "giris_tarih": "2026-07-22",
+      "meta_score": 0.7333333333333334,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
     "PRKAB": {
       "symbol": "PRKAB",
       "giris_fiyat": 35.74,
-      "guncel_fiyat": 35.08,
+      "guncel_fiyat": 35.36,
       "lotlar": 279,
-      "pnl_pct": -1.85,
+      "pnl_pct": -1.06,
       "gun": 5,
       "giris_tarih": "2026-07-23",
       "meta_score": 1.0,
@@ -34,9 +50,9 @@
     "TUREX": {
       "symbol": "TUREX",
       "giris_fiyat": 7.23,
-      "guncel_fiyat": 6.96,
+      "guncel_fiyat": 7.02,
       "lotlar": 1383,
-      "pnl_pct": -3.73,
+      "pnl_pct": -2.9,
       "gun": 5,
       "giris_tarih": "2026-07-23",
       "meta_score": 1.0,
@@ -49,9 +65,9 @@
     "TRMET": {
       "symbol": "TRMET",
       "giris_fiyat": 136.1,
-      "guncel_fiyat": 129.6,
+      "guncel_fiyat": 130.7,
       "lotlar": 73,
-      "pnl_pct": -4.78,
+      "pnl_pct": -3.97,
       "gun": 4,
       "giris_tarih": "2026-07-24",
       "meta_score": 0.6233333333333334,
@@ -272,17 +288,6 @@
       "giris_tarih": "2026-07-23",
       "cikis_tarih": "2026-07-24",
       "strateji": "P4"
-    },
-    {
-      "symbol": "ARDYZ",
-      "giris_fiyat": 70.85,
-      "cikis_fiyat": 66.85,
-      "pnl_pct": -5.65,
-      "gun": 6,
-      "neden": "STOP",
-      "giris_tarih": "2026-07-22",
-      "cikis_tarih": "2026-07-28",
-      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -379,5 +384,5 @@
   ],
   "last_run": "2026-07-27T17:52:02.352292",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 93560
+  "sermaye_mevcut": 94394
 }
