@@ -1,26 +1,5 @@
 {
   "pozisyonlar": {
-    "DEVA": {
-      "giris_f": 75.3,
-      "giris_t": "22.07.2026 12:13",
-      "tepe_f": 76.4000015258789,
-      "lotlar": 265,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 34,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "MR"
-        ],
-        "viop_bias": "Temkinli long",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "TRMET": {
       "giris_f": 133.9,
       "giris_t": "23.07.2026 12:11",
@@ -110,7 +89,7 @@
     "GRSEL": {
       "giris_f": 340.5,
       "giris_t": "27.07.2026 09:40",
-      "tepe_f": 352.0,
+      "tepe_f": 352.25,
       "lotlar": 58,
       "gun": 0,
       "tp1_yapildi": false,
@@ -129,7 +108,7 @@
       }
     }
   },
-  "nakit": 20879.99353421018,
+  "nakit": 39836.768534210176,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -158,8 +137,8 @@
       "queued_at": "29.07.2026 07:05",
       "valid_for_date": "2026-07-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.07.2026 09:38",
       "last_attempt_reason": ""
     },
     {
@@ -188,8 +167,8 @@
       "queued_at": "29.07.2026 07:05",
       "valid_for_date": "2026-07-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.07.2026 09:38",
       "last_attempt_reason": ""
     },
     {
@@ -218,8 +197,8 @@
       "queued_at": "29.07.2026 07:05",
       "valid_for_date": "2026-07-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.07.2026 09:38",
       "last_attempt_reason": ""
     },
     {
@@ -248,8 +227,8 @@
       "queued_at": "29.07.2026 07:05",
       "valid_for_date": "2026-07-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.07.2026 09:38",
       "last_attempt_reason": ""
     },
     {
@@ -278,8 +257,8 @@
       "queued_at": "29.07.2026 07:05",
       "valid_for_date": "2026-07-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.07.2026 09:38",
       "last_attempt_reason": ""
     },
     {
@@ -308,8 +287,8 @@
       "queued_at": "29.07.2026 07:05",
       "valid_for_date": "2026-07-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.07.2026 09:38",
       "last_attempt_reason": ""
     },
     {
@@ -338,19 +317,27 @@
       "queued_at": "29.07.2026 07:05",
       "valid_for_date": "2026-07-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.07.2026 09:38",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "09:38",
+      "tarih": "2026-07-29",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 5,
+    "pending": 7,
     "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "28.07.2026 09:37"
+    "time": "29.07.2026 09:38"
   },
-  "last_hourly_check_time": "28.07.2026 11:59"
+  "last_hourly_check_time": "29.07.2026 09:38"
 }
