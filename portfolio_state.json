@@ -13,6 +13,12 @@
       "score": 0.0709,
       "margin": 0.0556
     },
+    "AKSEN": {
+      "entry_date": "2026-07-17",
+      "entry_price": 106.0,
+      "score": 0.1261,
+      "margin": 0.0768
+    },
     "ARDYZ": {
       "entry_date": "2026-07-17",
       "entry_price": 68.8,
@@ -116,16 +122,6 @@
       "exit_price": 20.64,
       "pnl_pct": -8.51,
       "holding_days": 4,
-      "reason": "ACIL_STOP"
-    },
-    {
-      "symbol": "AKSEN",
-      "entry_date": "2026-07-17",
-      "exit_date": "2026-07-29",
-      "entry_price": 106.0,
-      "exit_price": 96.85,
-      "pnl_pct": -8.63,
-      "holding_days": 12,
       "reason": "ACIL_STOP"
     }
   ],
