@@ -3,9 +3,9 @@
     "KRDMB": {
       "symbol": "KRDMB",
       "giris_fiyat": 133.5,
-      "guncel_fiyat": 133.5,
+      "guncel_fiyat": 131.7,
       "lotlar": 74,
-      "pnl_pct": 0.0,
+      "pnl_pct": -1.35,
       "gun": 8,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.3666666666666667,
@@ -19,9 +19,9 @@
     "PRKAB": {
       "symbol": "PRKAB",
       "giris_fiyat": 35.74,
-      "guncel_fiyat": 34.2,
+      "guncel_fiyat": 34.28,
       "lotlar": 279,
-      "pnl_pct": -4.31,
+      "pnl_pct": -4.09,
       "gun": 6,
       "giris_tarih": "2026-07-23",
       "meta_score": 1.0,
@@ -34,44 +34,12 @@
     "EFOR": {
       "symbol": "EFOR",
       "giris_fiyat": 20.62,
-      "guncel_fiyat": 21.2,
+      "guncel_fiyat": 21.18,
       "lotlar": 484,
-      "pnl_pct": 2.81,
+      "pnl_pct": 2.72,
       "gun": 1,
       "giris_tarih": "2026-07-28",
       "meta_score": 0.6233333333333334,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "coklu_onay": true,
-      "strateji": "P4"
-    },
-    "AKSEN": {
-      "symbol": "AKSEN",
-      "giris_fiyat": 96.85,
-      "guncel_fiyat": 96.85,
-      "lotlar": 103,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-07-29",
-      "meta_score": 0.7333333333333334,
-      "kaynaklar": [
-        "P1",
-        "P3"
-      ],
-      "coklu_onay": true,
-      "strateji": "P4"
-    },
-    "ENTRA": {
-      "symbol": "ENTRA",
-      "giris_fiyat": 5.18,
-      "guncel_fiyat": 5.18,
-      "lotlar": 1930,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-07-29",
-      "meta_score": 0.6111111111111112,
       "kaynaklar": [
         "P1",
         "P2"
@@ -426,15 +394,9 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
-    },
-    {
-      "tarih": "2026-07-29",
-      "ic_p1": 0.0,
-      "ic_p2": 0.0,
-      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-07-29T17:25:36.205907",
+  "last_run": "2026-07-28T17:44:35.132410",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 93108
+  "sermaye_mevcut": 92864
 }
