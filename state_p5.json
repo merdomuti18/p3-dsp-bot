@@ -3,9 +3,9 @@
     "HATEK": {
       "symbol": "HATEK",
       "giris_fiyat": 16.05,
-      "guncel_fiyat": 17.33,
+      "guncel_fiyat": 16.69,
       "lotlar": 1246,
-      "pnl_pct": 7.98,
+      "pnl_pct": 3.99,
       "gun": 2,
       "giris_tarih": "2026-07-27",
       "komite_skor": 75,
@@ -18,9 +18,9 @@
     "AKSA": {
       "symbol": "AKSA",
       "giris_fiyat": 12.44,
-      "guncel_fiyat": 12.43,
+      "guncel_fiyat": 12.31,
       "lotlar": 1607,
-      "pnl_pct": -0.08,
+      "pnl_pct": -1.05,
       "gun": 2,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
@@ -316,5 +316,5 @@
   ],
   "last_run": "2026-07-27T16:23:45.469508",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 104206
+  "sermaye_mevcut": 103214
 }
