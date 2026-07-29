@@ -1,10 +1,12 @@
 {
   "strateji": "P3",
-  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 27.07.2026 | 19:22 TSİ\n\n🟢 *Alım:* `SOKM`\n\n📈 *Sinyaller:*\n  • `IZMDC   ` skor=+0.231  _marj=+0.233_\n  • `AKSEN   ` skor=+0.196  _marj=+0.193_\n  • `TUPRS   ` skor=+0.167  _marj=+0.191_\n  • `ARDYZ   ` skor=+0.120  _marj=+0.110_\n  • `SOKM    ` skor=+0.088  _marj=+0.112_\n\n💼 *Açık pozisyon (5):*\n  • `IZMDC`\n  • `TUPRS`\n  • `AKSEN`\n  • `ARDYZ`\n  • `SOKM`\n📊 *WR:* 20%  |  *P&L:* -23.8%\n🔴 *Portföy değeri:* `95,242 TL` (-4.8%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 29.07.2026 | 20:25 TSİ\n\n🟢 *Alım:* `KRDMD`\n⬜ *Satım:* `ARDYZ`\n\n📈 *Sinyaller:*\n  • `IZMDC   ` skor=+0.220  _marj=+0.246_\n  • `TUPRS   ` skor=+0.159  _marj=+0.177_\n  • `AKSEN   ` skor=+0.136  _marj=+0.182_\n  • `SOKM    ` skor=+0.111  _marj=+0.128_\n  • `KRDMD   ` skor=+0.076  _marj=+0.084_\n\n💼 *Açık pozisyon (5):*\n  • `IZMDC`\n  • `TUPRS`\n  • `AKSEN`\n  • `SOKM`\n  • `KRDMD`\n📊 *WR:* 18%  |  *P&L:* -25.0%\n🔴 *Portföy değeri:* `94,994 TL` (-5.0%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
   "meta": {
     "giris": [
-      "SOKM"
+      "KRDMD"
     ],
-    "cikis": []
+    "cikis": [
+      "ARDYZ"
+    ]
   }
 }
