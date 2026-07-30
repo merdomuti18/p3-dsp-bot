@@ -2,8 +2,8 @@
   "pozisyonlar": {
     "HATEK": {
       "symbol": "HATEK",
-      "giris_fiyat": 16.05,
-      "guncel_fiyat": 16.75,
+      "giris_fiyat": 14.1048,
+      "guncel_fiyat": 14.72,
       "lotlar": 1246,
       "pnl_pct": 4.36,
       "gun": 3,
@@ -13,14 +13,16 @@
         "P1",
         "P2"
       ],
-      "strateji": "P5"
+      "strateji": "P5",
+      "split_duzeltme": 1.1379,
+      "split_tarih": "2026-07-30"
     },
     "AKSA": {
       "symbol": "AKSA",
       "giris_fiyat": 12.44,
-      "guncel_fiyat": 12.22,
+      "guncel_fiyat": 12.24,
       "lotlar": 1607,
-      "pnl_pct": -1.77,
+      "pnl_pct": -1.61,
       "gun": 3,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
@@ -33,9 +35,9 @@
     "GRSEL": {
       "symbol": "GRSEL",
       "giris_fiyat": 344.0,
-      "guncel_fiyat": 361.25,
+      "guncel_fiyat": 357.75,
       "lotlar": 58,
-      "pnl_pct": 5.01,
+      "pnl_pct": 4.0,
       "gun": 3,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
@@ -48,9 +50,9 @@
     "AKSEN": {
       "symbol": "AKSEN",
       "giris_fiyat": 96.85,
-      "guncel_fiyat": 98.7,
+      "guncel_fiyat": 97.5,
       "lotlar": 206,
-      "pnl_pct": 1.91,
+      "pnl_pct": 0.67,
       "gun": 1,
       "giris_tarih": "2026-07-29",
       "komite_skor": 70,
@@ -63,9 +65,9 @@
     "ENTRA": {
       "symbol": "ENTRA",
       "giris_fiyat": 5.18,
-      "guncel_fiyat": 5.11,
+      "guncel_fiyat": 5.36,
       "lotlar": 3861,
-      "pnl_pct": -1.35,
+      "pnl_pct": 3.47,
       "gun": 1,
       "giris_tarih": "2026-07-29",
       "komite_skor": 60,
@@ -401,5 +403,5 @@
   ],
   "last_run": "2026-07-29T17:25:41.184254",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 104070
+  "sermaye_mevcut": 104616
 }
