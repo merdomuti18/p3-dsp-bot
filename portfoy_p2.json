@@ -87,7 +87,22 @@
   },
   "nakit": 7105.135940261844,
   "baslangic": 100000,
-  "bekleyen_al": [],
+  "bekleyen_al": [
+    {
+      "symbol": "UFUK",
+      "score": 5.0,
+      "final_score": 5.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "30.07.2026 19:28",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    }
+  ],
   "open_attempts_today": [],
   "last_hourly_check_time": "30.07.2026 11:53"
 }
