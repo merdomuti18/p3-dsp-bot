@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "30.07.2026 19:28",
+    "scan_time": "30.07.2026 20:43",
     "scan_label": "20:50 Akşam Tarama",
     "signals": [
       {
         "symbol": "ENTRA",
-        "scan_time": "30.07.2026 19:28",
+        "scan_time": "30.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 5.5,
@@ -23,7 +23,7 @@
       },
       {
         "symbol": "UFUK",
-        "scan_time": "30.07.2026 19:28",
+        "scan_time": "30.07.2026 20:43",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 5.0,
@@ -44,7 +44,7 @@
   "bekleyen_al": [
     {
       "symbol": "ENTRA",
-      "scan_time": "30.07.2026 19:28",
+      "scan_time": "30.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 5.5,
@@ -62,7 +62,7 @@
     },
     {
       "symbol": "UFUK",
-      "scan_time": "30.07.2026 19:28",
+      "scan_time": "30.07.2026 20:43",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 5.0,
@@ -78,5 +78,5 @@
       "change_pct": 10.0
     }
   ],
-  "last_scan": "30.07.2026 19:28"
+  "last_scan": "30.07.2026 20:43"
 }
