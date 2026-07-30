@@ -510,6 +510,20 @@
       "exits": [
         "KRDMD"
       ]
+    },
+    {
+      "date": "2026-07-30",
+      "scanned": 79,
+      "long_signals": 28,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "SOKM",
+        "TKFEN"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -990,6 +1004,14 @@
       },
       {
         "date": "2026-07-29",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-30",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
