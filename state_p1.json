@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "30.07.2026 19:28",
+    "scan_time": "30.07.2026 20:43",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
         "symbol": "UFUK",
-        "scan_time": "30.07.2026 19:28",
+        "scan_time": "30.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GT",
@@ -23,7 +23,7 @@
       },
       {
         "symbol": "DEVA",
-        "scan_time": "30.07.2026 19:28",
+        "scan_time": "30.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ALPHA"
@@ -40,7 +40,7 @@
       },
       {
         "symbol": "ARDYZ",
-        "scan_time": "30.07.2026 19:28",
+        "scan_time": "30.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
@@ -57,7 +57,7 @@
       },
       {
         "symbol": "ENTRA",
-        "scan_time": "30.07.2026 19:28",
+        "scan_time": "30.07.2026 20:43",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
@@ -80,5 +80,5 @@
       "ENTRA"
     ]
   },
-  "last_scan": "30.07.2026 19:28"
+  "last_scan": "30.07.2026 20:43"
 }
