@@ -19,11 +19,17 @@
       "score": 0.0883,
       "margin": 0.1121
     },
-    "KRDMD": {
-      "entry_date": "2026-07-29",
-      "entry_price": 41.84,
-      "score": 0.0758,
-      "margin": 0.084
+    "AKSEN": {
+      "entry_date": "2026-07-30",
+      "entry_price": 97.0,
+      "score": 0.1318,
+      "margin": 0.1621
+    },
+    "TKFEN": {
+      "entry_date": "2026-07-30",
+      "entry_price": 152.7,
+      "score": 0.0844,
+      "margin": 0.0677
     }
   },
   "history": [
@@ -136,6 +142,15 @@
       "pnl_pct": -8.02,
       "holding_days": 13,
       "reason": "ACIL_STOP"
+    },
+    {
+      "symbol": "KRDMD",
+      "entry_date": "2026-07-29",
+      "exit_date": "2026-07-30",
+      "entry_price": 41.84,
+      "exit_price": 40.88,
+      "pnl_pct": -2.29,
+      "holding_days": 1
     }
   ],
   "scan_log": [
@@ -475,6 +490,25 @@
       ],
       "exits": [
         "ARDYZ"
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "scanned": 79,
+      "long_signals": 28,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "SOKM",
+        "TKFEN"
+      ],
+      "entries": [
+        "AKSEN",
+        "TKFEN"
+      ],
+      "exits": [
+        "KRDMD"
       ]
     }
   ],
@@ -956,6 +990,14 @@
       },
       {
         "date": "2026-07-29",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-30",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
