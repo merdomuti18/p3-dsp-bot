@@ -3,10 +3,10 @@
     "KRDMB": {
       "symbol": "KRDMB",
       "giris_fiyat": 133.5,
-      "guncel_fiyat": 131.7,
+      "guncel_fiyat": 130.9,
       "lotlar": 74,
-      "pnl_pct": -1.35,
-      "gun": 8,
+      "pnl_pct": -1.95,
+      "gun": 9,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.3666666666666667,
       "kaynaklar": [
@@ -16,28 +16,13 @@
       "coklu_onay": true,
       "strateji": "P4"
     },
-    "PRKAB": {
-      "symbol": "PRKAB",
-      "giris_fiyat": 35.74,
-      "guncel_fiyat": 34.28,
-      "lotlar": 279,
-      "pnl_pct": -4.09,
-      "gun": 6,
-      "giris_tarih": "2026-07-23",
-      "meta_score": 1.0,
-      "kaynaklar": [
-        "P2"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
     "EFOR": {
       "symbol": "EFOR",
       "giris_fiyat": 20.62,
-      "guncel_fiyat": 21.18,
+      "guncel_fiyat": 21.32,
       "lotlar": 484,
-      "pnl_pct": 2.72,
-      "gun": 1,
+      "pnl_pct": 3.39,
+      "gun": 2,
       "giris_tarih": "2026-07-28",
       "meta_score": 0.6233333333333334,
       "kaynaklar": [
@@ -290,6 +275,17 @@
       "giris_tarih": "2026-07-24",
       "cikis_tarih": "2026-07-29",
       "strateji": "P4"
+    },
+    {
+      "symbol": "PRKAB",
+      "giris_fiyat": 35.74,
+      "cikis_fiyat": 33.56,
+      "pnl_pct": -6.1,
+      "gun": 7,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-23",
+      "cikis_tarih": "2026-07-30",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -398,5 +394,5 @@
   ],
   "last_run": "2026-07-28T17:44:35.132410",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 92864
+  "sermaye_mevcut": 92476
 }
