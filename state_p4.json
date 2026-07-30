@@ -3,9 +3,9 @@
     "KRDMB": {
       "symbol": "KRDMB",
       "giris_fiyat": 133.5,
-      "guncel_fiyat": 130.9,
+      "guncel_fiyat": 130.7,
       "lotlar": 74,
-      "pnl_pct": -1.95,
+      "pnl_pct": -2.1,
       "gun": 9,
       "giris_tarih": "2026-07-21",
       "meta_score": 0.3666666666666667,
@@ -19,9 +19,9 @@
     "EFOR": {
       "symbol": "EFOR",
       "giris_fiyat": 20.62,
-      "guncel_fiyat": 21.32,
+      "guncel_fiyat": 21.24,
       "lotlar": 484,
-      "pnl_pct": 3.39,
+      "pnl_pct": 3.01,
       "gun": 2,
       "giris_tarih": "2026-07-28",
       "meta_score": 0.6233333333333334,
@@ -394,5 +394,5 @@
   ],
   "last_run": "2026-07-28T17:44:35.132410",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 92476
+  "sermaye_mevcut": 92370
 }
