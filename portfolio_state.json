@@ -13,12 +13,6 @@
       "score": 0.0709,
       "margin": 0.0556
     },
-    "AKSEN": {
-      "entry_date": "2026-07-17",
-      "entry_price": 106.0,
-      "score": 0.1261,
-      "margin": 0.0768
-    },
     "SOKM": {
       "entry_date": "2026-07-27",
       "entry_price": 52.0,
@@ -132,6 +126,16 @@
       "exit_price": 67.95,
       "pnl_pct": -1.24,
       "holding_days": 12
+    },
+    {
+      "symbol": "AKSEN",
+      "entry_date": "2026-07-17",
+      "exit_date": "2026-07-30",
+      "entry_price": 106.0,
+      "exit_price": 97.5,
+      "pnl_pct": -8.02,
+      "holding_days": 13,
+      "reason": "ACIL_STOP"
     }
   ],
   "scan_log": [
