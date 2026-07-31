@@ -90,6 +90,22 @@
   "bekleyen_al": [
     {
       "symbol": "UFUK",
+      "score": 6.0,
+      "final_score": 6.0,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "31.07.2026 20:48",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "AKSA",
       "score": 5.0,
       "final_score": 5.0,
       "verdict": "AL",
@@ -98,7 +114,77 @@
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "30.07.2026 20:43",
+      "queued_at": "31.07.2026 20:48",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ASTOR",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "31.07.2026 20:48",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "SAFKR",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "31.07.2026 20:48",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "TTRAK",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "31.07.2026 20:48",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "KGYO",
+      "score": 3.0,
+      "final_score": 3.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "31.07.2026 20:48",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "TABGD",
+      "score": 3.0,
+      "final_score": 3.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "31.07.2026 20:48",
       "attempt_count": 0,
       "last_attempt_reason": ""
     }
