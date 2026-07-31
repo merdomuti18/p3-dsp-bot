@@ -1,9 +1,37 @@
 {
   "pozisyonlar": {
+    "ODAS": {
+      "giris_f": 8.79,
+      "giris_t": "24.07.2026 13:48",
+      "tepe_f": 8.920000076293945,
+      "lotlar": 569,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 6.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ]
+    },
+    "TUREX": {
+      "giris_f": 7.07,
+      "giris_t": "28.07.2026 09:37",
+      "tepe_f": 7.07,
+      "lotlar": 2828,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 9.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ]
+    },
     "MAVI": {
       "giris_f": 39.26,
       "giris_t": "28.07.2026 09:37",
-      "tepe_f": 39.31999969482422,
+      "tepe_f": 39.26,
       "lotlar": 148,
       "gun": 0,
       "tp1_yapildi": false,
@@ -31,7 +59,7 @@
     "IEYHO": {
       "giris_f": 165.7,
       "giris_t": "29.07.2026 12:02",
-      "tepe_f": 168.8000030517578,
+      "tepe_f": 165.7,
       "lotlar": 120,
       "gun": 0,
       "tp1_yapildi": false,
@@ -45,7 +73,7 @@
     "ENTRA": {
       "giris_f": 5.17,
       "giris_t": "30.07.2026 11:53",
-      "tepe_f": 5.320000171661377,
+      "tepe_f": 5.17,
       "lotlar": 3868,
       "gun": 0,
       "tp1_yapildi": false,
@@ -55,24 +83,26 @@
         "Bullish OB",
         "Bullish FVG"
       ]
-    },
-    "UFUK": {
-      "giris_f": 1769.0,
-      "giris_t": "31.07.2026 09:46",
-      "tepe_f": 1769.0,
-      "lotlar": 11,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "smc_score": 5.0,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish OB"
-      ]
     }
   },
-  "nakit": 11391.832440261842,
+  "nakit": 7105.135940261844,
   "baslangic": 100000,
-  "bekleyen_al": [],
+  "bekleyen_al": [
+    {
+      "symbol": "UFUK",
+      "score": 5.0,
+      "final_score": 5.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "30.07.2026 20:43",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    }
+  ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "31.07.2026 09:46"
+  "last_hourly_check_time": "30.07.2026 11:53"
 }
