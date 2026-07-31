@@ -63,6 +63,27 @@
         "alpha_trend_bonus": 2
       }
     },
+    "ODAS": {
+      "giris_f": 8.78,
+      "giris_t": "30.07.2026 11:53",
+      "tepe_f": 8.78,
+      "lotlar": 2277,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 32,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "MR"
+        ],
+        "viop_bias": "Temkinli long",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
     "KARTN": {
       "giris_f": 216.4,
       "giris_t": "30.07.2026 11:53",
@@ -87,7 +108,7 @@
     "UFUK": {
       "giris_f": 1765.0,
       "giris_t": "31.07.2026 08:41",
-      "tepe_f": 1800.0,
+      "tepe_f": 1765.0,
       "lotlar": 11,
       "gun": 0,
       "tp1_yapildi": false,
@@ -106,9 +127,100 @@
       }
     }
   },
-  "nakit": 29381.715534210176,
+  "nakit": 10389.258534210177,
   "baslangic": 100000,
-  "bekleyen_al": [],
+  "bekleyen_al": [
+    {
+      "symbol": "DEVA",
+      "score_count": 1,
+      "strategies": [
+        "ALPHA"
+      ],
+      "tarama_score": 16,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "viop_bias": "Küçük boyut / nakit ağırlık",
+      "viop_score": -5,
+      "alpha_trend_state": "bearish",
+      "alpha_trend_flip": false,
+      "alpha_trend_bonus": 0,
+      "alpha_tag": "",
+      "final_score": 13,
+      "change_pct": 2.18,
+      "rsi": 60.67,
+      "rel_vol": 1.1,
+      "cmf": -0.0378,
+      "islem_tl": 0,
+      "scan_time": "30.07.2026 20:43",
+      "scan_label": "20:50 Kapanış",
+      "queued_at": "31.07.2026 07:05",
+      "valid_for_date": "2026-08-03",
+      "expires_at_hour": 17,
+      "attempt_count": 1,
+      "last_attempt_time": "31.07.2026 08:41",
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ARDYZ",
+      "score_count": 1,
+      "strategies": [
+        "ZKN"
+      ],
+      "tarama_score": 14,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "viop_bias": "Küçük boyut / nakit ağırlık",
+      "viop_score": -5,
+      "alpha_trend_state": "bearish",
+      "alpha_trend_flip": false,
+      "alpha_trend_bonus": 0,
+      "alpha_tag": "",
+      "final_score": 11,
+      "change_pct": -0.15,
+      "rsi": 50.32,
+      "rel_vol": 1.06,
+      "cmf": -0.0674,
+      "islem_tl": 0,
+      "scan_time": "30.07.2026 20:43",
+      "scan_label": "20:50 Kapanış",
+      "queued_at": "31.07.2026 07:05",
+      "valid_for_date": "2026-08-03",
+      "expires_at_hour": 17,
+      "attempt_count": 1,
+      "last_attempt_time": "31.07.2026 08:41",
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ENTRA",
+      "score_count": 1,
+      "strategies": [
+        "MR"
+      ],
+      "tarama_score": 10,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "viop_bias": "Küçük boyut / nakit ağırlık",
+      "viop_score": -5,
+      "alpha_trend_state": "bearish",
+      "alpha_trend_flip": false,
+      "alpha_trend_bonus": 0,
+      "alpha_tag": "",
+      "final_score": 7,
+      "change_pct": 2.7,
+      "rsi": 70.26,
+      "rel_vol": 4.32,
+      "cmf": 0.1901,
+      "islem_tl": 0,
+      "scan_time": "30.07.2026 20:43",
+      "scan_label": "20:50 Kapanış",
+      "queued_at": "31.07.2026 07:05",
+      "valid_for_date": "2026-08-03",
+      "expires_at_hour": 17,
+      "attempt_count": 1,
+      "last_attempt_time": "31.07.2026 08:41",
+      "last_attempt_reason": ""
+    }
+  ],
   "open_attempts_today": [
     {
       "saat": "08:41",
@@ -128,5 +240,5 @@
     "failed_reasons": [],
     "time": "31.07.2026 08:41"
   },
-  "last_hourly_check_time": "31.07.2026 12:01"
+  "last_hourly_check_time": "31.07.2026 08:41"
 }
