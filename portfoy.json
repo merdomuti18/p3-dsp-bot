@@ -21,27 +21,6 @@
         "alpha_trend_bonus": 0
       }
     },
-    "KRDMD": {
-      "giris_f": 42.9,
-      "giris_t": "24.07.2026 09:23",
-      "tepe_f": 43.02000045776367,
-      "lotlar": 151,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 40,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "MR"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "AT↑",
-        "alpha_trend_bonus": 4
-      }
-    },
     "EREGL": {
       "giris_f": 43.78,
       "giris_t": "24.07.2026 09:23",
@@ -66,7 +45,7 @@
     "GRSEL": {
       "giris_f": 340.5,
       "giris_t": "27.07.2026 09:40",
-      "tepe_f": 362.0,
+      "tepe_f": 363.0,
       "lotlar": 58,
       "gun": 0,
       "tp1_yapildi": false,
@@ -108,7 +87,7 @@
     "KARTN": {
       "giris_f": 216.4,
       "giris_t": "30.07.2026 11:53",
-      "tepe_f": 216.4,
+      "tepe_f": 223.8000030517578,
       "lotlar": 70,
       "gun": 0,
       "tp1_yapildi": false,
@@ -125,42 +104,32 @@
         "alpha_tag": "AT↑",
         "alpha_trend_bonus": 4
       }
-    }
-  },
-  "nakit": 23650.253534210176,
-  "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "UFUK",
-      "score_count": 2,
-      "strategies": [
-        "GT",
-        "ALPHA"
-      ],
-      "tarama_score": 34,
+    },
+    "UFUK": {
+      "giris_f": 1765.0,
+      "giris_t": "31.07.2026 08:41",
+      "tepe_f": 1765.0,
+      "lotlar": 11,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 37,
       "ma_score": 0.0,
       "lgbm_score": null,
-      "viop_bias": "Küçük boyut / nakit ağırlık",
-      "viop_score": -5,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 37,
-      "change_pct": 8.7,
-      "rsi": 59.76,
-      "rel_vol": 3.7,
-      "cmf": 0.2008,
-      "islem_tl": 0,
-      "scan_time": "30.07.2026 20:43",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "31.07.2026 07:05",
-      "valid_for_date": "2026-08-03",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GT",
+          "ALPHA"
+        ],
+        "viop_bias": "Küçük boyut / nakit ağırlık",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    }
+  },
+  "nakit": 10389.258534210177,
+  "baslangic": 100000,
+  "bekleyen_al": [
     {
       "symbol": "DEVA",
       "score_count": 1,
@@ -187,8 +156,8 @@
       "queued_at": "31.07.2026 07:05",
       "valid_for_date": "2026-08-03",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "31.07.2026 08:41",
       "last_attempt_reason": ""
     },
     {
@@ -217,8 +186,8 @@
       "queued_at": "31.07.2026 07:05",
       "valid_for_date": "2026-08-03",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "31.07.2026 08:41",
       "last_attempt_reason": ""
     },
     {
@@ -247,19 +216,29 @@
       "queued_at": "31.07.2026 07:05",
       "valid_for_date": "2026-08-03",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "31.07.2026 08:41",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "08:41",
+      "tarih": "2026-07-31",
+      "alinan": [
+        "UFUK"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 7,
-    "bought": 2,
+    "pending": 4,
+    "bought": 1,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "30.07.2026 11:53"
+    "time": "31.07.2026 08:41"
   },
-  "last_hourly_check_time": "30.07.2026 11:53"
+  "last_hourly_check_time": "31.07.2026 08:41"
 }
