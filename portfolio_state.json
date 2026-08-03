@@ -538,6 +538,20 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-08-03",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "TKFEN",
+        "SOKM",
+        "AKSEN"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1042,6 +1056,14 @@
       },
       {
         "date": "2026-07-31",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-03",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
