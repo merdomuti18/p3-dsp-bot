@@ -1,47 +1,5 @@
 {
   "pozisyonlar": {
-    "PAGYO": {
-      "giris_f": 166.4,
-      "giris_t": "24.07.2026 09:23",
-      "tepe_f": 175.0,
-      "lotlar": 63,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 42,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "ALPHA"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
-    "EREGL": {
-      "giris_f": 43.78,
-      "giris_t": "24.07.2026 09:23",
-      "tepe_f": 44.2400016784668,
-      "lotlar": 94,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 38,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "MR"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "AT+",
-        "alpha_trend_bonus": 2
-      }
-    },
     "GRSEL": {
       "giris_f": 340.5,
       "giris_t": "27.07.2026 09:40",
@@ -63,52 +21,10 @@
         "alpha_trend_bonus": 2
       }
     },
-    "ODAS": {
-      "giris_f": 8.78,
-      "giris_t": "30.07.2026 11:53",
-      "tepe_f": 8.78,
-      "lotlar": 2277,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 32,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "ALPHA",
-          "MR"
-        ],
-        "viop_bias": "Temkinli long",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
-    "KARTN": {
-      "giris_f": 216.4,
-      "giris_t": "30.07.2026 11:53",
-      "tepe_f": 223.8000030517578,
-      "lotlar": 70,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 31,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GTD",
-          "MR"
-        ],
-        "viop_bias": "Temkinli long",
-        "alpha_tag": "AT↑",
-        "alpha_trend_bonus": 4
-      }
-    },
     "UFUK": {
       "giris_f": 1765.0,
       "giris_t": "31.07.2026 08:41",
-      "tepe_f": 1765.0,
+      "tepe_f": 1798.0,
       "lotlar": 11,
       "gun": 0,
       "tp1_yapildi": false,
@@ -127,7 +43,7 @@
       }
     }
   },
-  "nakit": 10389.258534210177,
+  "nakit": 57988.66991873166,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -156,8 +72,8 @@
       "queued_at": "03.08.2026 07:05",
       "valid_for_date": "2026-08-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.08.2026 09:33",
       "last_attempt_reason": ""
     },
     {
@@ -186,8 +102,8 @@
       "queued_at": "03.08.2026 07:05",
       "valid_for_date": "2026-08-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.08.2026 09:33",
       "last_attempt_reason": ""
     },
     {
@@ -216,8 +132,8 @@
       "queued_at": "03.08.2026 07:05",
       "valid_for_date": "2026-08-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.08.2026 09:33",
       "last_attempt_reason": ""
     },
     {
@@ -246,19 +162,27 @@
       "queued_at": "03.08.2026 07:05",
       "valid_for_date": "2026-08-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.08.2026 09:33",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "09:33",
+      "tarih": "2026-08-03",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 4,
-    "bought": 1,
+    "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "31.07.2026 08:41"
+    "time": "03.08.2026 09:33"
   },
-  "last_hourly_check_time": "31.07.2026 08:41"
+  "last_hourly_check_time": "03.08.2026 09:33"
 }
