@@ -1,121 +1,120 @@
 {
   "tarama": {
-    "scan_time": "31.07.2026 20:48",
+    "scan_time": "03.08.2026 19:27",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
-        "symbol": "ARDYZ",
-        "scan_time": "31.07.2026 20:48",
+        "symbol": "BIMAS",
+        "scan_time": "03.08.2026 19:27",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GT"
         ],
         "score_count": 1,
-        "rsi": 64.31,
-        "rel_vol": 1.5,
-        "change_pct": 6.56,
-        "close": 72.3,
-        "adx": 47.28,
-        "cmf": 0.0476,
+        "rsi": 53.22,
+        "rel_vol": 1.14,
+        "change_pct": -1.04,
+        "close": 379.0,
+        "adx": 31.46,
+        "cmf": 0.0957,
         "alpha_bull": false,
-        "alpha_trend_bull": true
+        "alpha_trend_bull": false
       },
       {
-        "symbol": "UFUK",
-        "scan_time": "31.07.2026 20:48",
+        "symbol": "CELHA",
+        "scan_time": "03.08.2026 19:27",
         "scan_label": "20:50 Kapanış",
         "strategies": [
-          "GT",
-          "MR",
-          "KBM"
-        ],
-        "score_count": 3,
-        "rsi": 62.67,
-        "rel_vol": 1.22,
-        "change_pct": 1.49,
-        "close": 1776.0,
-        "adx": 23.87,
-        "cmf": 0.248,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "KARTN",
-        "scan_time": "31.07.2026 20:48",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GT"
+          "GTD"
         ],
         "score_count": 1,
-        "rsi": 62.31,
-        "rel_vol": 1.1,
-        "change_pct": -5.17,
-        "close": 211.0,
-        "adx": 71.45,
-        "cmf": 0.1203,
+        "rsi": 66.49,
+        "rel_vol": 3.28,
+        "change_pct": 7.75,
+        "close": 25.86,
+        "adx": 38.54,
+        "cmf": 0.1507,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "TRMET",
-        "scan_time": "31.07.2026 20:48",
+        "scan_time": "03.08.2026 19:27",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
         ],
         "score_count": 1,
-        "rsi": 48.84,
-        "rel_vol": 0.93,
-        "change_pct": -2.89,
-        "close": 124.5,
-        "adx": 40.21,
-        "cmf": -0.0429,
+        "rsi": 49.37,
+        "rel_vol": 1.26,
+        "change_pct": -2.42,
+        "close": 125.1,
+        "adx": 40.37,
+        "cmf": -0.0049,
         "alpha_bull": false,
         "alpha_trend_bull": false
       },
       {
-        "symbol": "AKSA",
-        "scan_time": "31.07.2026 20:48",
+        "symbol": "ARDYZ",
+        "scan_time": "03.08.2026 19:27",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZT3",
+          "KBM"
+        ],
+        "score_count": 2,
+        "rsi": 68.24,
+        "rel_vol": 1.01,
+        "change_pct": 11.2,
+        "close": 75.45,
+        "adx": 48.35,
+        "cmf": 0.0089,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "TKFEN",
+        "scan_time": "03.08.2026 19:27",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 68.13,
-        "rel_vol": 2.3,
-        "change_pct": 5.52,
-        "close": 13.0,
-        "adx": 16.41,
-        "cmf": 0.051,
+        "rsi": 91.33,
+        "rel_vol": 2.71,
+        "change_pct": 7.4,
+        "close": 164.0,
+        "adx": 26.94,
+        "cmf": 0.0296,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "BIMAS",
-        "scan_time": "31.07.2026 20:48",
+        "symbol": "AKSA",
+        "scan_time": "03.08.2026 19:27",
         "scan_label": "20:50 Kapanış",
         "strategies": [
-          "KBM"
+          "MR"
         ],
         "score_count": 1,
-        "rsi": 58.51,
-        "rel_vol": 0.95,
-        "change_pct": 1.89,
-        "close": 390.25,
-        "adx": 31.77,
-        "cmf": 0.1861,
+        "rsi": 62.67,
+        "rel_vol": 1.16,
+        "change_pct": 1.46,
+        "close": 12.5,
+        "adx": 17.02,
+        "cmf": -0.1198,
         "alpha_bull": false,
         "alpha_trend_bull": true
       }
     ],
     "semboller": [
-      "ARDYZ",
-      "UFUK",
-      "KARTN",
+      "BIMAS",
+      "CELHA",
       "TRMET",
-      "AKSA",
-      "BIMAS"
+      "ARDYZ",
+      "TKFEN",
+      "AKSA"
     ]
   },
-  "last_scan": "31.07.2026 20:48"
+  "last_scan": "03.08.2026 19:27"
 }
