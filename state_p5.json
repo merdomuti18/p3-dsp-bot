@@ -3,9 +3,9 @@
     "AKSA": {
       "symbol": "AKSA",
       "giris_fiyat": 12.44,
-      "guncel_fiyat": 12.54,
+      "guncel_fiyat": 12.44,
       "lotlar": 1607,
-      "pnl_pct": 0.8,
+      "pnl_pct": 0.0,
       "gun": 8,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
@@ -18,45 +18,15 @@
     "GRSEL": {
       "symbol": "GRSEL",
       "giris_fiyat": 344.0,
-      "guncel_fiyat": 341.75,
+      "guncel_fiyat": 347.0,
       "lotlar": 58,
-      "pnl_pct": -0.65,
+      "pnl_pct": 0.87,
       "gun": 8,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
       "kaynaklar": [
         "P1",
         "P2"
-      ],
-      "strateji": "P5"
-    },
-    "CELHA": {
-      "symbol": "CELHA",
-      "giris_fiyat": 26.6,
-      "guncel_fiyat": 26.6,
-      "lotlar": 751,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-08-04",
-      "komite_skor": 70,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "strateji": "P5"
-    },
-    "ARDYZ": {
-      "symbol": "ARDYZ",
-      "giris_fiyat": 76.8,
-      "guncel_fiyat": 76.8,
-      "lotlar": 260,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-08-04",
-      "komite_skor": 60,
-      "kaynaklar": [
-        "P2",
-        "P3"
       ],
       "strateji": "P5"
     }
@@ -455,64 +425,9 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
-    },
-    {
-      "tarih": "2026-08-04",
-      "secilen": [
-        "CELHA",
-        "ARDYZ"
-      ],
-      "elenen": [
-        {
-          "symbol": "BIMAS",
-          "neden": "tek kaynak (P1)"
-        },
-        {
-          "symbol": "BVSAN",
-          "neden": "tek kaynak (P2)"
-        },
-        {
-          "symbol": "CCOLA",
-          "neden": "tek kaynak (P1)"
-        },
-        {
-          "symbol": "ISCTR",
-          "neden": "tek kaynak (P2)"
-        },
-        {
-          "symbol": "MOBTL",
-          "neden": "tek kaynak (P1)"
-        },
-        {
-          "symbol": "INGRM",
-          "neden": "tek kaynak (P2)"
-        },
-        {
-          "symbol": "TUPRS",
-          "neden": "tek kaynak (P3)"
-        },
-        {
-          "symbol": "ISGSY",
-          "neden": "tek kaynak (P2)"
-        },
-        {
-          "symbol": "TRMET",
-          "neden": "tek kaynak (P1)"
-        },
-        {
-          "symbol": "KRDMD",
-          "neden": "tek kaynak (P1)"
-        }
-      ],
-      "acilan": [
-        "CELHA",
-        "ARDYZ"
-      ],
-      "kapanan": [],
-      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-08-04T18:01:04.114955",
+  "last_run": "2026-07-30T16:29:44.504050",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 97984
+  "sermaye_mevcut": 98128
 }
