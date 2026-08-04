@@ -1,119 +1,276 @@
 {
   "tarama": {
-    "scan_time": "03.08.2026 21:00",
+    "scan_time": "04.08.2026 20:59",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
-        "symbol": "BIMAS",
-        "scan_time": "03.08.2026 21:00",
+        "symbol": "KCHOL",
+        "scan_time": "04.08.2026 20:59",
         "scan_label": "20:50 Kapanış",
         "strategies": [
-          "GT"
+          "GT",
+          "MR",
+          "KBM"
         ],
-        "score_count": 1,
-        "rsi": 52.09,
-        "rel_vol": 1.14,
-        "change_pct": -2.88,
-        "close": 379.0,
-        "adx": 32.6,
-        "cmf": 0.1656,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
-      },
-      {
-        "symbol": "CELHA",
-        "scan_time": "03.08.2026 21:00",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GTD"
-        ],
-        "score_count": 1,
-        "rsi": 66.13,
-        "rel_vol": 3.32,
-        "change_pct": 5.29,
-        "close": 25.86,
-        "adx": 35.11,
-        "cmf": 0.1492,
+        "score_count": 3,
+        "rsi": 61.54,
+        "rel_vol": 1.37,
+        "change_pct": 1.12,
+        "close": 198.9,
+        "adx": 23.22,
+        "cmf": 0.0673,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "TRMET",
-        "scan_time": "03.08.2026 21:00",
+        "symbol": "CELHA",
+        "scan_time": "04.08.2026 20:59",
         "scan_label": "20:50 Kapanış",
         "strategies": [
-          "ZKN"
+          "GTD",
+          "ZT3",
+          "MR",
+          "KBM"
+        ],
+        "score_count": 4,
+        "rsi": 71.58,
+        "rel_vol": 2.48,
+        "change_pct": 2.86,
+        "close": 26.6,
+        "adx": 33.86,
+        "cmf": 0.1752,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KMPUR",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ALPHA",
+          "MR"
+        ],
+        "score_count": 2,
+        "rsi": 63.94,
+        "rel_vol": 1.96,
+        "change_pct": 6.5,
+        "close": 20.98,
+        "adx": 48.36,
+        "cmf": -0.0449,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "ALARK",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ALPHA"
         ],
         "score_count": 1,
-        "rsi": 55.36,
-        "rel_vol": 1.25,
-        "change_pct": 0.48,
-        "close": 125.1,
-        "adx": 36.83,
-        "cmf": -0.0022,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
+        "rsi": 58.66,
+        "rel_vol": 1.06,
+        "change_pct": 0.97,
+        "close": 103.9,
+        "adx": 25.41,
+        "cmf": 0.1598,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "ANSGR",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ALPHA",
+          "ZKN",
+          "ZT3",
+          "KBM"
+        ],
+        "score_count": 4,
+        "rsi": 53.01,
+        "rel_vol": 1.75,
+        "change_pct": 2.64,
+        "close": 28.0,
+        "adx": 28.67,
+        "cmf": 0.2397,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "REEDR",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ALPHA",
+          "ZKN",
+          "ZT3",
+          "KBM"
+        ],
+        "score_count": 4,
+        "rsi": 52.09,
+        "rel_vol": 1.89,
+        "change_pct": 6.29,
+        "close": 7.1,
+        "adx": 37.27,
+        "cmf": 0.0507,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
       },
       {
         "symbol": "EREGL",
-        "scan_time": "03.08.2026 21:00",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ALPHA",
+          "ZKN"
+        ],
+        "score_count": 2,
+        "rsi": 49.52,
+        "rel_vol": 1.26,
+        "change_pct": 2.56,
+        "close": 41.74,
+        "adx": 40.46,
+        "cmf": 0.0252,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "RALYH",
+        "scan_time": "04.08.2026 20:59",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
         ],
         "score_count": 1,
-        "rsi": 49.45,
-        "rel_vol": 0.96,
-        "change_pct": -4.33,
-        "close": 40.7,
-        "adx": 41.13,
-        "cmf": 0.0596,
+        "rsi": 57.51,
+        "rel_vol": 0.8,
+        "change_pct": 1.83,
+        "close": 234.2,
+        "adx": 44.49,
+        "cmf": 0.0462,
         "alpha_bull": false,
         "alpha_trend_bull": false
       },
       {
-        "symbol": "TKFEN",
-        "scan_time": "03.08.2026 21:00",
+        "symbol": "TRMET",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 57.31,
+        "rel_vol": 0.86,
+        "change_pct": 0.88,
+        "close": 126.2,
+        "adx": 35.62,
+        "cmf": -0.0452,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "CCOLA",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 56.16,
+        "rel_vol": 0.95,
+        "change_pct": 0.23,
+        "close": 87.2,
+        "adx": 31.75,
+        "cmf": 0.1687,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KRDMD",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 54.04,
+        "rel_vol": 0.84,
+        "change_pct": 3.88,
+        "close": 41.78,
+        "adx": 25.66,
+        "cmf": 0.0068,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "BIMAS",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 50.57,
+        "rel_vol": 0.82,
+        "change_pct": 1.78,
+        "close": 385.75,
+        "adx": 31.54,
+        "cmf": 0.152,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "NTGAZ",
+        "scan_time": "04.08.2026 20:59",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZT3"
+        ],
+        "score_count": 1,
+        "rsi": 50.62,
+        "rel_vol": 1.46,
+        "change_pct": 1.43,
+        "close": 11.33,
+        "adx": 27.72,
+        "cmf": -0.1293,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "MOBTL",
+        "scan_time": "04.08.2026 20:59",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 89.93,
-        "rel_vol": 2.76,
-        "change_pct": 6.15,
-        "close": 164.0,
-        "adx": 29.35,
-        "cmf": 0.11,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "ARDYZ",
-        "scan_time": "03.08.2026 21:00",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "KBM"
-        ],
-        "score_count": 1,
-        "rsi": 65.13,
-        "rel_vol": 0.97,
-        "change_pct": 4.36,
-        "close": 75.45,
-        "adx": 46.12,
-        "cmf": 0.0794,
+        "rsi": 68.68,
+        "rel_vol": 2.63,
+        "change_pct": 3.21,
+        "close": 15.11,
+        "adx": 24.82,
+        "cmf": -0.2073,
         "alpha_bull": false,
         "alpha_trend_bull": true
       }
     ],
     "semboller": [
-      "BIMAS",
+      "KCHOL",
       "CELHA",
-      "TRMET",
+      "KMPUR",
+      "ALARK",
+      "ANSGR",
+      "REEDR",
       "EREGL",
-      "TKFEN",
-      "ARDYZ"
+      "RALYH",
+      "TRMET",
+      "CCOLA",
+      "KRDMD",
+      "BIMAS",
+      "NTGAZ",
+      "MOBTL"
     ]
   },
-  "last_scan": "03.08.2026 21:00"
+  "last_scan": "04.08.2026 20:59"
 }
