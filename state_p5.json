@@ -3,9 +3,9 @@
     "AKSA": {
       "symbol": "AKSA",
       "giris_fiyat": 12.44,
-      "guncel_fiyat": 12.44,
+      "guncel_fiyat": 12.5,
       "lotlar": 1607,
-      "pnl_pct": 0.0,
+      "pnl_pct": 0.48,
       "gun": 8,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
@@ -18,9 +18,9 @@
     "GRSEL": {
       "symbol": "GRSEL",
       "giris_fiyat": 344.0,
-      "guncel_fiyat": 343.0,
+      "guncel_fiyat": 346.5,
       "lotlar": 58,
-      "pnl_pct": -0.29,
+      "pnl_pct": 0.73,
       "gun": 8,
       "giris_tarih": "2026-07-27",
       "komite_skor": 60,
@@ -429,5 +429,5 @@
   ],
   "last_run": "2026-07-30T16:29:44.504050",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 97896
+  "sermaye_mevcut": 98196
 }
