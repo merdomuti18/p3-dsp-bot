@@ -13,12 +13,6 @@
       "score": 0.0709,
       "margin": 0.0556
     },
-    "SOKM": {
-      "entry_date": "2026-07-27",
-      "entry_price": 52.0,
-      "score": 0.0883,
-      "margin": 0.1121
-    },
     "TKFEN": {
       "entry_date": "2026-07-30",
       "entry_price": 152.7,
@@ -30,6 +24,12 @@
       "entry_price": 75.45,
       "score": 0.0935,
       "margin": 0.057
+    },
+    "ENJSA": {
+      "entry_date": "2026-08-05",
+      "entry_price": 113.0,
+      "score": 0.0592,
+      "margin": 0.0386
     }
   },
   "history": [
@@ -160,6 +160,15 @@
       "exit_price": 91.0,
       "pnl_pct": -6.19,
       "holding_days": 4
+    },
+    {
+      "symbol": "SOKM",
+      "entry_date": "2026-07-27",
+      "exit_date": "2026-08-05",
+      "entry_price": 52.0,
+      "exit_price": 51.3,
+      "pnl_pct": -1.35,
+      "holding_days": 9
     }
   ],
   "scan_log": [
@@ -593,6 +602,24 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-08-05",
+      "scanned": 79,
+      "long_signals": 21,
+      "top5": [
+        "IZMDC",
+        "TKFEN",
+        "TUPRS",
+        "ARDYZ",
+        "ENJSA"
+      ],
+      "entries": [
+        "ENJSA"
+      ],
+      "exits": [
+        "SOKM"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -1121,6 +1148,14 @@
       },
       {
         "date": "2026-08-04",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-05",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
