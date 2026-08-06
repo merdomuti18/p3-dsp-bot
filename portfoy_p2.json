@@ -87,7 +87,7 @@
     "ASTOR": {
       "giris_f": 288.0,
       "giris_t": "03.08.2026 13:43",
-      "tepe_f": 318.25,
+      "tepe_f": 318.75,
       "lotlar": 7,
       "gun": 0,
       "tp1_yapildi": true,
@@ -591,5 +591,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "06.08.2026 08:25"
+  "last_hourly_check_time": "06.08.2026 09:41"
 }
