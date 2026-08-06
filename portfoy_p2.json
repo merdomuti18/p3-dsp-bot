@@ -42,20 +42,6 @@
         "Bullish FVG"
       ]
     },
-    "ENTRA": {
-      "giris_f": 5.17,
-      "giris_t": "30.07.2026 11:53",
-      "tepe_f": 5.17,
-      "lotlar": 3868,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "smc_score": 5.5,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ]
-    },
     "UFUK": {
       "giris_f": 1732.0,
       "giris_t": "03.08.2026 13:43",
@@ -96,26 +82,25 @@
       "signals": [
         "Bullish FVG"
       ]
-    }
-  },
-  "nakit": 12022.672440261842,
-  "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "INFO",
-      "score": 9.5,
-      "final_score": 9.5,
-      "verdict": "GÜÇLÜ AL",
+    },
+    "INFO": {
+      "giris_f": 7.41,
+      "giris_t": "06.08.2026 12:04",
+      "tepe_f": 7.41,
+      "lotlar": 2699,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 9.5,
+      "teyit_skoru": 0,
       "signals": [
         "Bullish OB",
         "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "05.08.2026 20:50",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
+      ]
+    }
+  },
+  "nakit": 11020.764440261843,
+  "baslangic": 100000,
+  "bekleyen_al": [
     {
       "symbol": "CWENE",
       "score": 8.0,
@@ -591,5 +576,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "06.08.2026 09:41"
+  "last_hourly_check_time": "06.08.2026 12:04"
 }
