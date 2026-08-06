@@ -1,5 +1,36 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "AKSA": {
+      "symbol": "AKSA",
+      "giris_fiyat": 12.44,
+      "guncel_fiyat": 12.41,
+      "lotlar": 1607,
+      "pnl_pct": -0.24,
+      "gun": 9,
+      "giris_tarih": "2026-07-27",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    },
+    "GRSEL": {
+      "symbol": "GRSEL",
+      "giris_fiyat": 344.0,
+      "guncel_fiyat": 339.5,
+      "lotlar": 58,
+      "pnl_pct": -1.31,
+      "gun": 9,
+      "giris_tarih": "2026-07-27",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    }
+  },
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -76,28 +107,6 @@
       "neden": "STOP",
       "giris_tarih": "2026-07-29",
       "cikis_tarih": "2026-08-04",
-      "strateji": "P5"
-    },
-    {
-      "symbol": "AKSA",
-      "giris_fiyat": 12.44,
-      "cikis_fiyat": 12.73,
-      "pnl_pct": 2.33,
-      "gun": 10,
-      "neden": "MAX_GUN",
-      "giris_tarih": "2026-07-27",
-      "cikis_tarih": "2026-08-06",
-      "strateji": "P5"
-    },
-    {
-      "symbol": "GRSEL",
-      "giris_fiyat": 344.0,
-      "cikis_fiyat": 346.5,
-      "pnl_pct": 0.73,
-      "gun": 10,
-      "neden": "MAX_GUN",
-      "giris_tarih": "2026-07-27",
-      "cikis_tarih": "2026-08-06",
       "strateji": "P5"
     }
   ],
@@ -420,5 +429,5 @@
   ],
   "last_run": "2026-07-30T16:29:44.504050",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 98566
+  "sermaye_mevcut": 97644
 }

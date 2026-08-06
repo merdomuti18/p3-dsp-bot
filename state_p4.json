@@ -3,9 +3,9 @@
     "UFUK": {
       "symbol": "UFUK",
       "giris_fiyat": 1750.0,
-      "guncel_fiyat": 1762.0,
+      "guncel_fiyat": 1758.0,
       "lotlar": 5,
-      "pnl_pct": 0.69,
+      "pnl_pct": 0.46,
       "gun": 7,
       "giris_tarih": "2026-07-30",
       "meta_score": 0.3666666666666667,
@@ -19,9 +19,9 @@
     "AKSA": {
       "symbol": "AKSA",
       "giris_fiyat": 13.0,
-      "guncel_fiyat": 12.66,
+      "guncel_fiyat": 12.73,
       "lotlar": 769,
-      "pnl_pct": -2.62,
+      "pnl_pct": -2.08,
       "gun": 6,
       "giris_tarih": "2026-07-31",
       "meta_score": 0.6111111111111112,
@@ -35,9 +35,9 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 75.45,
-      "guncel_fiyat": 75.3,
+      "guncel_fiyat": 76.9,
       "lotlar": 132,
-      "pnl_pct": -0.2,
+      "pnl_pct": 1.92,
       "gun": 3,
       "giris_tarih": "2026-08-03",
       "meta_score": 0.3666666666666667,
@@ -51,9 +51,9 @@
     "INFO": {
       "symbol": "INFO",
       "giris_fiyat": 6.89,
-      "guncel_fiyat": 7.33,
+      "guncel_fiyat": 7.29,
       "lotlar": 1451,
-      "pnl_pct": 6.39,
+      "pnl_pct": 5.81,
       "gun": 1,
       "giris_tarih": "2026-08-05",
       "meta_score": 1.0,
@@ -66,9 +66,9 @@
     "MOGAN": {
       "symbol": "MOGAN",
       "giris_fiyat": 20.2,
-      "guncel_fiyat": 19.96,
+      "guncel_fiyat": 20.02,
       "lotlar": 495,
-      "pnl_pct": -1.19,
+      "pnl_pct": -0.89,
       "gun": 1,
       "giris_tarih": "2026-08-05",
       "meta_score": 0.8461538461538463,
@@ -532,5 +532,5 @@
   ],
   "last_run": "2026-08-05T17:51:36.510516",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 91312
+  "sermaye_mevcut": 91742
 }
