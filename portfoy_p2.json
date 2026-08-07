@@ -83,11 +83,11 @@
         "Bullish FVG"
       ]
     },
-    "CWENE": {
-      "giris_f": 46.8,
-      "giris_t": "07.08.2026 07:06",
-      "tepe_f": 48.08000183105469,
-      "lotlar": 357,
+    "MOGAN": {
+      "giris_f": 20.88,
+      "giris_t": "07.08.2026 10:02",
+      "tepe_f": 20.88,
+      "lotlar": 761,
       "gun": 0,
       "tp1_yapildi": false,
       "smc_score": 8.0,
@@ -99,25 +99,9 @@
       ]
     }
   },
-  "nakit": 37.80448542785962,
+  "nakit": 20.34448542786231,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "MOGAN",
-      "score": 8.0,
-      "final_score": 8.0,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "05.08.2026 20:50",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "RUZYE",
       "score": 6.5,
@@ -561,5 +545,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "07.08.2026 08:15"
+  "last_hourly_check_time": "07.08.2026 10:02"
 }
