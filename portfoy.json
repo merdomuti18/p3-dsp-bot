@@ -3,7 +3,7 @@
     "UFUK": {
       "giris_f": 1765.0,
       "giris_t": "31.07.2026 08:41",
-      "tepe_f": 1765.0,
+      "tepe_f": 1777.0,
       "lotlar": 11,
       "gun": 0,
       "tp1_yapildi": false,
@@ -24,7 +24,7 @@
     "TRMET": {
       "giris_f": 136.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 136.5,
+      "tepe_f": 138.3000030517578,
       "lotlar": 138,
       "gun": 0,
       "tp1_yapildi": false,
@@ -116,7 +116,7 @@
     "TUPRS": {
       "giris_f": 314.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 323.25,
+      "tepe_f": 332.0,
       "lotlar": 12,
       "gun": 0,
       "tp1_yapildi": false,
@@ -137,7 +137,7 @@
     "CWENE": {
       "giris_f": 46.8,
       "giris_t": "07.08.2026 07:06",
-      "tepe_f": 46.8,
+      "tepe_f": 48.08000183105469,
       "lotlar": 427,
       "gun": 0,
       "tp1_yapildi": false,
@@ -185,8 +185,8 @@
       "queued_at": "07.08.2026 05:50",
       "valid_for_date": "2026-08-10",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "07.08.2026 07:06",
+      "attempt_count": 2,
+      "last_attempt_time": "07.08.2026 08:15",
       "last_attempt_reason": ""
     }
   ],
@@ -199,15 +199,22 @@
       ],
       "alinmayan": [],
       "nedenler": {}
+    },
+    {
+      "saat": "08:15",
+      "tarih": "2026-08-07",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
     }
   ],
   "last_open_attempt_summary": {
-    "pending": 2,
-    "bought": 1,
+    "pending": 1,
+    "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "07.08.2026 07:06"
+    "time": "07.08.2026 08:15"
   },
-  "last_hourly_check_time": "07.08.2026 07:06"
+  "last_hourly_check_time": "07.08.2026 08:15"
 }
