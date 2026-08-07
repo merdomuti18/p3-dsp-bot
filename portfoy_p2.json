@@ -86,7 +86,7 @@
     "MOGAN": {
       "giris_f": 20.88,
       "giris_t": "07.08.2026 10:02",
-      "tepe_f": 20.88,
+      "tepe_f": 20.940000534057617,
       "lotlar": 761,
       "gun": 0,
       "tp1_yapildi": false,
@@ -545,5 +545,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "07.08.2026 10:02"
+  "last_hourly_check_time": "07.08.2026 11:47"
 }
