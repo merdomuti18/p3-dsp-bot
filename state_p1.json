@@ -1,107 +1,48 @@
 {
   "tarama": {
-    "scan_time": "05.08.2026 20:50",
-    "scan_label": "20:50 Kapanış",
+    "scan_time": "07.08.2026 18:57",
+    "scan_label": "Gün İçi Manuel Tetikleme",
     "signals": [
       {
-        "symbol": "TRMET",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GT",
-          "ALPHA",
-          "ZT3",
-          "MR",
-          "KBM"
-        ],
-        "score_count": 5,
-        "rsi": 61.57,
-        "rel_vol": 1.35,
-        "change_pct": 7.21,
-        "close": 135.3,
-        "adx": 35.46,
-        "cmf": 0.0236,
-        "alpha_bull": true,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "TUPRS",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GT",
-          "ALPHA"
-        ],
-        "score_count": 2,
-        "rsi": 59.56,
-        "rel_vol": 1.96,
-        "change_pct": 4.65,
-        "close": 303.75,
-        "adx": 48.33,
-        "cmf": 0.0997,
-        "alpha_bull": true,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "CELHA",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
+        "symbol": "AYGAZ",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
           "GT"
         ],
         "score_count": 1,
-        "rsi": 58.59,
-        "rel_vol": 1.22,
-        "change_pct": -3.76,
-        "close": 25.6,
-        "adx": 34.39,
-        "cmf": 0.079,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "ENTRA",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GT",
-          "ALPHA",
-          "MR"
-        ],
-        "score_count": 3,
-        "rsi": 55.86,
-        "rel_vol": 1.36,
-        "change_pct": 2.07,
-        "close": 4.93,
-        "adx": 22.66,
-        "cmf": 0.1311,
-        "alpha_bull": true,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "MOGAN",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GTD",
-          "ZT3",
-          "MR",
-          "KBM"
-        ],
-        "score_count": 4,
-        "rsi": 70.53,
-        "rel_vol": 3.78,
-        "change_pct": 7.56,
-        "close": 20.2,
-        "adx": 38.17,
-        "cmf": 0.136,
+        "rsi": 59.02,
+        "rel_vol": 1.15,
+        "change_pct": -2.32,
+        "close": 284.5,
+        "adx": 42.28,
+        "cmf": 0.0885,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "KCHOL",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "GT",
+          "ALPHA",
+          "ZKN"
+        ],
+        "score_count": 3,
+        "rsi": 51.59,
+        "rel_vol": 1.88,
+        "change_pct": 1.33,
+        "close": 198.5,
+        "adx": 22.65,
+        "cmf": 0.0085,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "TUPRS",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
           "GTD",
           "ZT3",
@@ -109,205 +50,275 @@
           "KBM"
         ],
         "score_count": 4,
-        "rsi": 68.4,
-        "rel_vol": 1.62,
-        "change_pct": 3.57,
-        "close": 206.0,
-        "adx": 25.88,
-        "cmf": 0.0791,
+        "rsi": 67.34,
+        "rel_vol": 1.28,
+        "change_pct": 0.62,
+        "close": 323.5,
+        "adx": 48.61,
+        "cmf": 0.159,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "AYGAZ",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
+        "symbol": "FADE",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 57.26,
-        "rel_vol": 1.16,
-        "change_pct": 4.39,
-        "close": 267.5,
-        "adx": 42.57,
-        "cmf": -0.0043,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
-      },
-      {
-        "symbol": "EFOR",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 56.77,
-        "rel_vol": 1.62,
-        "change_pct": 1.94,
-        "close": 18.35,
-        "adx": 47.58,
-        "cmf": 0.1092,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
-      },
-      {
-        "symbol": "KRDMD",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 50.56,
-        "rel_vol": 0.81,
-        "change_pct": 1.96,
-        "close": 42.6,
-        "adx": 23.24,
-        "cmf": 0.0946,
-        "alpha_bull": true,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "ASTOR",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 49.37,
-        "rel_vol": 0.94,
-        "change_pct": 2.73,
-        "close": 311.0,
-        "adx": 19.66,
-        "cmf": -0.0008,
-        "alpha_bull": true,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "KARTN",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 44.49,
-        "rel_vol": 1.27,
-        "change_pct": -2.86,
-        "close": 187.0,
-        "adx": 58.52,
-        "cmf": 0.0601,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
-      },
-      {
-        "symbol": "CWENE",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZT3",
+          "GTD",
           "MR"
         ],
         "score_count": 2,
-        "rsi": 61.39,
-        "rel_vol": 3.17,
-        "change_pct": 7.44,
-        "close": 44.2,
-        "adx": 27.01,
-        "cmf": -0.0916,
+        "rsi": 67.18,
+        "rel_vol": 5.96,
+        "change_pct": 3.57,
+        "close": 17.43,
+        "adx": 25.44,
+        "cmf": 0.0743,
         "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "MGROS",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ALPHA"
+        ],
+        "score_count": 1,
+        "rsi": 57.04,
+        "rel_vol": 1.26,
+        "change_pct": 4.55,
+        "close": 654.5,
+        "adx": 20.36,
+        "cmf": 0.1262,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "CCOLA",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 53.95,
+        "rel_vol": 0.86,
+        "change_pct": 1.48,
+        "close": 89.0,
+        "adx": 29.52,
+        "cmf": 0.1031,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "BIMAS",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 49.85,
+        "rel_vol": 0.89,
+        "change_pct": 0.92,
+        "close": 385.75,
+        "adx": 24.62,
+        "cmf": 0.02,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "DEVA",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 44.7,
+        "rel_vol": 1.02,
+        "change_pct": 3.78,
+        "close": 71.45,
+        "adx": 26.04,
+        "cmf": 0.1045,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "INTEM",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZT3"
+        ],
+        "score_count": 1,
+        "rsi": 52.6,
+        "rel_vol": 1.59,
+        "change_pct": 9.93,
+        "close": 267.25,
+        "adx": 31.85,
+        "cmf": -0.1773,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "YIGIT",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "ZT3"
+        ],
+        "score_count": 1,
+        "rsi": 52.24,
+        "rel_vol": 3.5,
+        "change_pct": 5.92,
+        "close": 22.2,
+        "adx": 40.91,
+        "cmf": -0.4056,
+        "alpha_bull": true,
         "alpha_trend_bull": true
       },
       {
         "symbol": "TKFEN",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 94.13,
-        "rel_vol": 2.25,
-        "change_pct": 9.98,
-        "close": 185.1,
-        "adx": 39.66,
-        "cmf": 0.2893,
+        "rsi": 95.98,
+        "rel_vol": 1.53,
+        "change_pct": 7.79,
+        "close": 209.0,
+        "adx": 48.6,
+        "cmf": 0.3334,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "TABGD",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 77.19,
-        "rel_vol": 1.27,
-        "change_pct": 2.25,
-        "close": 254.5,
-        "adx": 30.33,
-        "cmf": 0.2426,
+        "rsi": 83.54,
+        "rel_vol": 1.16,
+        "change_pct": 4.36,
+        "close": 263.5,
+        "adx": 36.73,
+        "cmf": 0.307,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "KMPUR",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 64.1,
-        "rel_vol": 1.8,
-        "change_pct": 0.1,
-        "close": 21.0,
-        "adx": 49.07,
-        "cmf": -0.0064,
+        "rsi": 70.96,
+        "rel_vol": 1.17,
+        "change_pct": 3.35,
+        "close": 22.82,
+        "adx": 58.88,
+        "cmf": 0.0658,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "DOAS",
-        "scan_time": "05.08.2026 20:50",
-        "scan_label": "20:50 Kapanış",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 59.49,
-        "rel_vol": 1.26,
-        "change_pct": 2.02,
-        "close": 191.8,
-        "adx": 30.84,
-        "cmf": -0.1524,
+        "rsi": 68.53,
+        "rel_vol": 1.36,
+        "change_pct": 2.16,
+        "close": 194.3,
+        "adx": 33.38,
+        "cmf": -0.1601,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "TRMET",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 67.49,
+        "rel_vol": 1.16,
+        "change_pct": 2.65,
+        "close": 139.5,
+        "adx": 40.12,
+        "cmf": 0.0569,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "INFO",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR",
+          "KBM"
+        ],
+        "score_count": 2,
+        "rsi": 63.3,
+        "rel_vol": 1.53,
+        "change_pct": 0.41,
+        "close": 7.37,
+        "adx": 15.75,
+        "cmf": 0.0609,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "ANSGR",
+        "scan_time": "07.08.2026 18:57",
+        "scan_label": "Gün İçi Manuel Tetikleme",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 58.76,
+        "rel_vol": 1.88,
+        "change_pct": 1.35,
+        "close": 28.6,
+        "adx": 25.22,
+        "cmf": 0.3315,
         "alpha_bull": false,
         "alpha_trend_bull": true
       }
     ],
     "semboller": [
-      "TRMET",
-      "TUPRS",
-      "CELHA",
-      "ENTRA",
-      "MOGAN",
-      "KCHOL",
       "AYGAZ",
-      "EFOR",
-      "KRDMD",
-      "ASTOR",
-      "KARTN",
-      "CWENE",
+      "KCHOL",
+      "TUPRS",
+      "FADE",
+      "MGROS",
+      "CCOLA",
+      "BIMAS",
+      "DEVA",
+      "INTEM",
+      "YIGIT",
       "TKFEN",
       "TABGD",
       "KMPUR",
-      "DOAS"
+      "DOAS",
+      "TRMET",
+      "INFO",
+      "ANSGR"
     ]
   },
-  "last_scan": "05.08.2026 20:50"
+  "last_scan": "07.08.2026 18:57"
 }
