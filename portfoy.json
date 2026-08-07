@@ -94,7 +94,7 @@
     "TUPRS": {
       "giris_f": 314.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 324.0,
+      "tepe_f": 325.25,
       "lotlar": 12,
       "gun": 0,
       "tp1_yapildi": false,
@@ -135,5 +135,5 @@
     "failed_reasons": [],
     "time": "07.08.2026 07:06"
   },
-  "last_hourly_check_time": "07.08.2026 10:02"
+  "last_hourly_check_time": "07.08.2026 11:47"
 }
