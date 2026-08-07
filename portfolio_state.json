@@ -620,6 +620,20 @@
       "exits": [
         "SOKM"
       ]
+    },
+    {
+      "date": "2026-08-07",
+      "scanned": 79,
+      "long_signals": 18,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "ENJSA"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1156,6 +1170,14 @@
       },
       {
         "date": "2026-08-05",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-07",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
