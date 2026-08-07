@@ -17,7 +17,7 @@
     "IEYHO": {
       "giris_f": 165.7,
       "giris_t": "29.07.2026 12:02",
-      "tepe_f": 171.8000030517578,
+      "tepe_f": 175.39999389648438,
       "lotlar": 120,
       "gun": 0,
       "tp1_yapildi": false,
@@ -59,7 +59,7 @@
     "ASTOR": {
       "giris_f": 288.0,
       "giris_t": "03.08.2026 13:43",
-      "tepe_f": 319.75,
+      "tepe_f": 325.5,
       "lotlar": 7,
       "gun": 0,
       "tp1_yapildi": true,
@@ -72,7 +72,7 @@
     "INFO": {
       "giris_f": 7.41,
       "giris_t": "06.08.2026 12:04",
-      "tepe_f": 7.570000171661377,
+      "tepe_f": 7.599999904632568,
       "lotlar": 2699,
       "gun": 0,
       "tp1_yapildi": false,
@@ -86,7 +86,7 @@
     "CWENE": {
       "giris_f": 46.8,
       "giris_t": "07.08.2026 07:06",
-      "tepe_f": 46.8,
+      "tepe_f": 48.08000183105469,
       "lotlar": 357,
       "gun": 0,
       "tp1_yapildi": false,
@@ -561,5 +561,5 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "07.08.2026 07:06"
+  "last_hourly_check_time": "07.08.2026 08:15"
 }
