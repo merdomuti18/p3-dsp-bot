@@ -80,31 +80,41 @@ def analiz_p4() -> dict:
     }
 
 
+def _portfoy_analiz(dosya: str, strateji: str) -> dict | None:
+    """portfoy.json / portfoy_p2.json: trade_history + açık pozisyon özeti."""
+    path = BASE / dosya
+    if not path.exists():
+        return None
+    p = json.loads(path.read_text(encoding="utf-8"))
+    trades = p.get("trade_history", [])
+    closed = [t for t in trades if isinstance(t.get("pnl_pct"), (int, float))]
+    wins = [t for t in closed if t["pnl_pct"] > 0]
+    acik = []
+    for sym, pos in p.get("pozisyonlar", {}).items():
+        ep = pos.get("giris_f")
+        cp = get_price(sym)
+        pnl = round((cp - ep) / ep * 100, 2) if ep and cp else None
+        acik.append({"symbol": sym, "entry": ep, "now": cp, "pnl_pct": pnl})
+    return {
+        "strateji": strateji,
+        "nakit": round(p.get("nakit", 0), 2),
+        "baslangic": p.get("baslangic", SERMAYE),
+        "kapanan": len(closed),
+        "kapanan_wr": round(sum(1 for t in closed if t["pnl_pct"] > 0) / len(closed) * 100, 1) if closed else None,
+        "sum_pnl_pct": round(sum(t["pnl_pct"] for t in closed), 2),
+        "acik": acik,
+        "closed_detail": closed,
+    }
+
+
 def analiz_p1_p2() -> list[dict]:
     out = []
-    p1 = BASE / "state_p1.json"
-    if p1.exists():
-        s = json.loads(p1.read_text(encoding="utf-8"))
-        sigs = s.get("tarama", {}).get("signals", [])
-        out.append({
-            "strateji": "P1 Momentum",
-            "durum": "Sadece tarama kaydı — portfoy.json yok",
-            "son_tarama": s.get("last_scan"),
-            "sinyal_sayisi": len(sigs),
-            "getiri_pct": None,
-        })
-    p2 = BASE / "state_p2.json"
-    if p2.exists():
-        s = json.loads(p2.read_text(encoding="utf-8"))
-        sigs = s.get("tarama", {}).get("signals", [])
-        out.append({
-            "strateji": "P2 SMC",
-            "durum": "Sadece tarama kaydı — portfoy işlemi yok",
-            "son_tarama": s.get("last_scan"),
-            "sinyal_sayisi": len(sigs),
-            "guclu_al": sum(1 for x in sigs if x.get("verdict") == "GÜÇLÜ AL"),
-            "getiri_pct": None,
-        })
+    r = _portfoy_analiz("portfoy.json", "P1 Momentum")
+    if r:
+        out.append(r)
+    r = _portfoy_analiz("portfoy_p2.json", "P2 SMC")
+    if r:
+        out.append(r)
     return out
 
 

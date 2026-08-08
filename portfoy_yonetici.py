@@ -35,6 +35,8 @@ except ImportError:
 
 warnings.filterwarnings("ignore")
 
+import mott_risk
+
 try:
     _tz_cache = Path(os.environ.get("TMPDIR", "/tmp")) / "yf_tz"
     yf.set_tz_cache_location(str(_tz_cache))
@@ -120,6 +122,32 @@ def _elde_tutma_gunu(giris_t: str) -> int:
         return (date.today() - giris_tarih).days
     except Exception:
         return 0
+
+
+def _trade_kaydet(portfoy: dict, sym: str, pos: dict, cikis_f: float,
+                  neden: str, lotlar: int | None = None):
+    """Kapanan (veya kısmi kapanan) işlemi portföy JSON'ındaki trade_history'ye
+    yaz — P4/P5 şemasıyla uyumlu. Audit JSONL'e ek olarak tutulur; kalıcı
+    performans raporu ve cooldown kontrolü bu listeden beslenir."""
+    giris_f = pos.get("giris_f", 0) or 0
+    pnl = (cikis_f - giris_f) / giris_f * 100 if giris_f else 0.0
+    giris_t = str(pos.get("giris_t", ""))
+    giris_iso = ""
+    try:
+        giris_iso = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date().isoformat()
+    except Exception:
+        giris_iso = giris_t[:10]
+    portfoy.setdefault("trade_history", []).append({
+        "symbol":       sym,
+        "giris_fiyat":  giris_f,
+        "cikis_fiyat":  round(float(cikis_f), 4),
+        "lotlar":       lotlar if lotlar is not None else pos.get("lotlar", 0),
+        "pnl_pct":      round(pnl, 2),
+        "gun":          _elde_tutma_gunu(giris_t),
+        "neden":        neden,
+        "giris_tarih":  giris_iso,
+        "cikis_tarih":  date.today().isoformat(),
+    })
 
 # ── LGBM global (uygulama başında bir kez yüklenir) ──────────────────────────
 _LGBM_MODEL: object  = None
@@ -266,6 +294,7 @@ def p2_portfoy_yukle() -> dict:
     data.setdefault("bekleyen_al", [])
     data.setdefault("open_attempts_today", [])
     data.setdefault("last_hourly_check_time", "")
+    data.setdefault("trade_history", [])
     return data
 
 
@@ -296,6 +325,9 @@ def p2_yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str) -> tuple
     mevcut   = portfoy["pozisyonlar"]
     nakit    = portfoy["nakit"]
     bos_slot = max(0, P2_MAX_HISSE - len(mevcut))
+    rejim_limit = mott_risk.rejim_slot_limiti(makro_karar)
+    if rejim_limit is not None:
+        bos_slot = min(bos_slot, rejim_limit)
     if bos_slot == 0 or not adaylar:
         return portfoy, [], [], []
     adaylar_s  = sorted(adaylar, key=lambda x: -x.get("final_score", 0))
@@ -305,6 +337,14 @@ def p2_yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str) -> tuple
         sym = aday["symbol"]
         if sym in mevcut:
             alinmayan.append({"symbol": sym, "reason": "already_open"})
+            continue
+        if mott_risk.cooldown_da(portfoy.get("trade_history"), sym):
+            alinmayan.append({"symbol": sym, "reason": "cooldown"})
+            append_jsonl(PORTFOY_AUDIT_P2_FILE, {"event": "buy_failed", "symbol": sym, "reason": "cooldown"})
+            continue
+        if mott_risk.kitap_limiti_asildi(sym, haric="P2"):
+            alinmayan.append({"symbol": sym, "reason": "kitap_limiti"})
+            append_jsonl(PORTFOY_AUDIT_P2_FILE, {"event": "buy_failed", "symbol": sym, "reason": "kitap_limiti"})
             continue
         try:
             giris_f = guncel_fiyat(sym)
@@ -361,6 +401,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
             if (low - giris_f) / giris_f <= P2_STOP_PCT:
                 cikis_f = round(giris_f * (1 + P2_STOP_PCT), 4)
                 portfoy["nakit"] += lotlar * cikis_f
+                _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP")
                 kapatilacak.append(sym)
                 mesajlar.append(f"\U0001f6d1 <b>P2-STOP - {sym}</b>\n   {giris_f:.2f} \u2192 {cikis_f:.2f}")
                 append_jsonl(PORTFOY_AUDIT_P2_FILE, {"event": "stop", "symbol": sym,
@@ -371,6 +412,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
                 portfoy["nakit"] += yari * close
                 pos["lotlar"]    -= yari
                 pos["tp1_yapildi"] = True
+                _trade_kaydet(portfoy, sym, pos, close, "TP1", lotlar=yari)
                 mesajlar.append(f"\U0001f3af <b>P2-TP1 - {sym}</b>\n   {yari} lot @ {close:.2f} (+{P2_TP1_PCT*100:.0f}%)")
                 append_jsonl(PORTFOY_AUDIT_P2_FILE, {"event": "tp1", "symbol": sym,
                                                       "price": close, "remaining": pos["lotlar"]})
@@ -379,6 +421,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
                 if trail_ret <= P2_TRAILING_PCT:
                     cikis_f = round(pos["tepe_f"] * (1 + P2_TRAILING_PCT), 4)
                     portfoy["nakit"] += pos["lotlar"] * cikis_f
+                    _trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING")
                     kapatilacak.append(sym)
                     ret_g = (cikis_f - giris_f) / giris_f
                     mesajlar.append(f"\U0001f4c9 <b>P2-TRAIL - {sym}</b>\n   {cikis_f:.2f} | {ret_g*100:+.1f}%")
@@ -387,6 +430,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
                     continue
             if _elde_tutma_gunu(pos.get("giris_t", "")) >= P2_MAX_GUN:
                 portfoy["nakit"] += pos["lotlar"] * close
+                _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
                 kapatilacak.append(sym)
                 gun_ret = (close - giris_f) / giris_f
                 mesajlar.append(f"\u23f0 <b>P2-MAXGUN - {sym}</b>\n   {close:.2f} | {gun_ret*100:+.1f}%")
@@ -582,6 +626,7 @@ def portfoy_yukle() -> dict:
     data.setdefault("open_attempts_today", [])
     data.setdefault("last_open_attempt_summary", {})
     data.setdefault("last_hourly_check_time", "")
+    data.setdefault("trade_history", [])
     return data
 
 
@@ -1242,6 +1287,9 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
     mevcut   = portfoy["pozisyonlar"]
     nakit    = portfoy["nakit"]
     bos_slot = max(0, MAX_HISSE - len(mevcut))
+    rejim_limit = mott_risk.rejim_slot_limiti(makro_karar)
+    if rejim_limit is not None:
+        bos_slot = min(bos_slot, rejim_limit)
     if bos_slot == 0 or not adaylar:
         return portfoy, [], [], []
     secilenler  = [a for a in adaylar if a["final_score"] >= 30][:bos_slot]
@@ -1251,6 +1299,14 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
         sym = aday["symbol"]
         if sym in mevcut:
             alinmayan.append({"symbol": sym, "reason": "already_open"})
+            continue
+        if mott_risk.cooldown_da(portfoy.get("trade_history"), sym):
+            alinmayan.append({"symbol": sym, "reason": "cooldown"})
+            append_jsonl(PORTFOY_AUDIT_FILE, {"event": "buy_failed", "symbol": sym, "reason": "cooldown"})
+            continue
+        if mott_risk.kitap_limiti_asildi(sym, haric="P1"):
+            alinmayan.append({"symbol": sym, "reason": "kitap_limiti"})
+            append_jsonl(PORTFOY_AUDIT_FILE, {"event": "buy_failed", "symbol": sym, "reason": "kitap_limiti"})
             continue
         try:
             giris_f = guncel_fiyat(sym)
@@ -1310,6 +1366,7 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
             if (low - giris_f) / giris_f <= STOP_PCT:
                 cikis_f = round(giris_f * (1 + STOP_PCT), 4)
                 portfoy["nakit"] += lotlar * cikis_f
+                _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP")
                 kapatilacak.append(sym)
                 mesajlar.append(f"\U0001f6d1 <b>STOP - {sym}</b>\n   Giri\u015f: {giris_f:.2f} \u2192 \u00c7\u0131k\u0131\u015f: {cikis_f:.2f}")
                 append_jsonl(PORTFOY_AUDIT_FILE, {"event":"stop","symbol":sym,"exit_price":cikis_f,"return_pct":STOP_PCT*100})
@@ -1320,6 +1377,7 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
                 portfoy["nakit"] += yari * close
                 pos["lotlar"] -= yari
                 pos["tp1_yapildi"] = True
+                _trade_kaydet(portfoy, sym, pos, close, "TP1", lotlar=yari)
                 mesajlar.append(f"\U0001f3af <b>TP1 - {sym}</b>\n   {yari} lot @ {close:.2f} sat\u0131ld\u0131 (+{TP1_PCT*100:.0f}%)")
                 append_jsonl(PORTFOY_AUDIT_FILE, {"event":"tp1","symbol":sym,"price":close,"remaining":pos["lotlar"]})
             # TRAILING
@@ -1328,6 +1386,7 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
                 if trail_ret <= TRAILING_PCT:
                     cikis_f = round(pos["tepe_f"] * (1 + TRAILING_PCT), 4)
                     portfoy["nakit"] += pos["lotlar"] * cikis_f
+                    _trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING")
                     kapatilacak.append(sym)
                     ret_g = (cikis_f - giris_f) / giris_f
                     mesajlar.append(f"\U0001f4c9 <b>TRAILING - {sym}</b>\n   \u00c7\u0131k\u0131\u015f: {cikis_f:.2f} | Getiri: {ret_g*100:+.1f}%")
@@ -1336,6 +1395,7 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
             # MAX GUN
             if _elde_tutma_gunu(pos.get("giris_t", "")) >= MAX_GUN:
                 portfoy["nakit"] += pos["lotlar"] * close
+                _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
                 kapatilacak.append(sym)
                 gun_ret = (close - giris_f) / giris_f
                 mesajlar.append(f"\u23f0 <b>MAX G\u00dcN - {sym}</b>\n   \u00c7\u0131k\u0131\u015f: {close:.2f} | Getiri: {gun_ret*100:+.1f}%")
@@ -1352,6 +1412,7 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
             pos = portfoy["pozisyonlar"].pop(sym)
             f   = guncel_fiyat(sym) or pos["giris_f"]
             portfoy["nakit"] += pos["lotlar"] * f
+            _trade_kaydet(portfoy, sym, pos, f, "ACIL_NAKIT")
         mesajlar.append(f"\U0001f6a8 <b>AC\u0130L NAK\u0130T</b>\n   Makro skor {makro_skor:.1f} \u2192 {len(semboller)} pozisyon kapat\u0131ld\u0131")
         append_jsonl(PORTFOY_AUDIT_FILE, {"event":"risk_off_liquidation","symbols":semboller,"makro_skor":makro_skor})
     return portfoy, mesajlar

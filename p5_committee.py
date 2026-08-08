@@ -23,6 +23,8 @@ from pathlib import Path
 import numpy as np
 import yfinance as yf
 
+import mott_risk
+
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
@@ -325,11 +327,21 @@ def yeni_pozisyon_ac(state: dict, adaylar: list[dict], fiyat_cache: dict) -> lis
     acilan = []
     mevcut = set(state.get("pozisyonlar", {}).keys())
     bos = MAX_POS - len(mevcut)
+    # Rejim kapısı: DIKKATLI -> en fazla 2 yeni pozisyon (GIRME zaten komitede eleniyor)
+    rejim_limit = mott_risk.rejim_slot_limiti(makro_karar())
+    if rejim_limit is not None:
+        bos = min(bos, rejim_limit)
     for ad in adaylar:
         if bos <= 0:
             break
         sym = ad["symbol"]
         if sym in mevcut:
+            continue
+        if mott_risk.cooldown_da(state.get("trade_history"), sym):
+            log.info("P5 %s: cooldown (%d gün) — yeniden alınmayacak",
+                     sym, mott_risk.COOLDOWN_GUN)
+            continue
+        if mott_risk.kitap_limiti_asildi(sym, haric="P5"):
             continue
         if sym not in fiyat_cache:
             continue

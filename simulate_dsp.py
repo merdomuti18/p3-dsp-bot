@@ -32,6 +32,8 @@ from dsp_strategies import XoverParams
 from nonstationarity_monitor import NonstationarityMonitor, fetch_prices_for_monitor
 from correlation_analysis import PortfolioCorrelation, run_portfolio_correlation
 
+import mott_risk
+
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
@@ -45,6 +47,11 @@ HISTORY_DIR  = REPORT_DIR / "history"
 MAX_POS      = 5
 POS_SIZE_PCT = 20.0   # her pozisyon %20
 EMERGENCY_STOP_PCT = -8.0   # tek pozisyon acil durdurma eşiği (%)
+
+# Giriş kalite eşiği: Tem-Ağu 2026 döneminde WR %13'e düştüğü için
+# "her gün top5'i doldur" yerine yalnızca güçlü sinyal alınır.
+# P3_MIN_SCORE env ile ayarlanabilir (0 -> eski davranış).
+MIN_ENTRY_SCORE = float(os.environ.get("P3_MIN_SCORE", "0.15"))
 
 PARAMS = XoverParams(fast_period=15, slow_period=40, order=3)
 
@@ -119,6 +126,19 @@ def update_portfolio(state: dict, scan: ScanResult) -> dict:
         if sym in positions:
             continue
         if len(positions) >= MAX_POS:
+            actions["skipped"].append(sym)
+            continue
+        if sc.score < MIN_ENTRY_SCORE:
+            logger.info("P3 %s: skor %.4f < eşik %.2f — alınmadı", sym, sc.score, MIN_ENTRY_SCORE)
+            actions["skipped"].append(sym)
+            continue
+        # Cooldown: yakın zamanda kapanan hisseyi hemen geri alma
+        # (P3 history'sinde neden alanı yok — tüm çıkışlar sayılır)
+        if mott_risk.cooldown_da(state.get("history"), sym, nedenler=None):
+            logger.info("P3 %s: cooldown — yeniden alınmadı", sym)
+            actions["skipped"].append(sym)
+            continue
+        if mott_risk.kitap_limiti_asildi(sym, haric="P3"):
             actions["skipped"].append(sym)
             continue
         price = _get_price(sym)

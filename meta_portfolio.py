@@ -34,6 +34,8 @@ import pandas as pd
 import pytz
 import yfinance as yf
 
+import mott_risk
+
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
@@ -582,6 +584,15 @@ def yeni_pozisyon_ac(
     mevcut   = set(state["pozisyonlar"].keys())
     bos_slot = MAX_POS - len(mevcut)
 
+    # Rejim kapısı: makro GIRME -> yeni alım yok, DIKKATLI -> en fazla 2
+    makro = mott_risk.makro_karar_oku()
+    rejim_limit = mott_risk.rejim_slot_limiti(makro)
+    if rejim_limit is not None:
+        if rejim_limit == 0:
+            log.info("P4: makro %s — yeni pozisyon açılmayacak", makro)
+            return []
+        bos_slot = min(bos_slot, rejim_limit)
+
     if bos_slot <= 0:
         return []
 
@@ -605,6 +616,12 @@ def yeni_pozisyon_ac(
             continue
         if sym in (stop_kapanan_bugun or set()):
             log.info("P4 %s: bugün STOP ile kapandı — aynı turda yeniden alınmayacak", sym)
+            continue
+        if mott_risk.cooldown_da(state.get("trade_history"), sym):
+            log.info("P4 %s: cooldown (%d gün) — STOP/TP sonrası yeniden alınmayacak",
+                     sym, mott_risk.COOLDOWN_GUN)
+            continue
+        if mott_risk.kitap_limiti_asildi(sym, haric="P4"):
             continue
 
         fiyat = float(fiyat_cache[sym][-1]) if sym in fiyat_cache else 0
