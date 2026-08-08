@@ -1,10 +1,10 @@
 {
-  "scan_time": "07.08.2026 20:02",
+  "scan_time": "08.08.2026 11:16",
   "scan_label": "20:50 Akşam Tarama",
   "signals": [
     {
       "symbol": "BUCIM",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.5,
@@ -21,12 +21,12 @@
     },
     {
       "symbol": "CWENE",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.5,
       "pd_zone": "Premium",
-      "rvol": 3.67,
+      "rvol": 3.65,
       "rsi": 55.74,
       "htf_aligned": true,
       "htf_trend": "Bullish",
@@ -39,7 +39,7 @@
     },
     {
       "symbol": "DOFER",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.5,
@@ -56,7 +56,7 @@
     },
     {
       "symbol": "GLCVY",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.5,
@@ -73,7 +73,7 @@
     },
     {
       "symbol": "TUPRS",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.0,
@@ -92,7 +92,7 @@
     },
     {
       "symbol": "YIGIT",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 5.0,
@@ -109,7 +109,7 @@
     },
     {
       "symbol": "AKSEN",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -126,12 +126,12 @@
     },
     {
       "symbol": "ARCLK",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
       "pd_zone": "Discount",
-      "rvol": 0.67,
+      "rvol": 0.66,
       "rsi": 45.06,
       "htf_aligned": true,
       "htf_trend": "Bearish",
@@ -143,7 +143,7 @@
     },
     {
       "symbol": "BERA",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -160,7 +160,7 @@
     },
     {
       "symbol": "CEMTS",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -177,7 +177,7 @@
     },
     {
       "symbol": "DOKTA",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -194,7 +194,7 @@
     },
     {
       "symbol": "FENER",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -211,7 +211,7 @@
     },
     {
       "symbol": "GEDZA",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -228,7 +228,7 @@
     },
     {
       "symbol": "INFO",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -246,7 +246,7 @@
     },
     {
       "symbol": "KARSN",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -263,7 +263,7 @@
     },
     {
       "symbol": "KNFRT",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -280,7 +280,7 @@
     },
     {
       "symbol": "LINK",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -297,7 +297,7 @@
     },
     {
       "symbol": "VAKKO",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -314,7 +314,7 @@
     },
     {
       "symbol": "YATAS",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -331,7 +331,7 @@
     },
     {
       "symbol": "FADE",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
@@ -348,7 +348,7 @@
     },
     {
       "symbol": "GUBRF",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
@@ -366,7 +366,7 @@
     },
     {
       "symbol": "ERSU",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.0,
@@ -383,7 +383,7 @@
     },
     {
       "symbol": "GESAN",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.0,
@@ -401,7 +401,7 @@
     },
     {
       "symbol": "GLYHO",
-      "scan_time": "07.08.2026 20:02",
+      "scan_time": "08.08.2026 11:16",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.0,
