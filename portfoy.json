@@ -50,10 +50,10 @@
     "MOGAN": {
       "giris_f": 19.96,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 21.399999618530273,
-      "lotlar": 448,
+      "tepe_f": 21.579999923706055,
+      "lotlar": 224,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "final_score": 66,
       "ma_score": 0.0,
       "lgbm_score": null,
@@ -73,7 +73,7 @@
     "TUPRS": {
       "giris_f": 314.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 329.25,
+      "tepe_f": 336.5,
       "lotlar": 12,
       "gun": 0,
       "tp1_yapildi": false,
@@ -94,7 +94,7 @@
     "AYGAZ": {
       "giris_f": 287.5,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 289.0,
+      "tepe_f": 294.0,
       "lotlar": 69,
       "gun": 0,
       "tp1_yapildi": false,
@@ -158,7 +158,7 @@
       }
     }
   },
-  "nakit": 19797.721477569557,
+  "nakit": 24542.041545928932,
   "baslangic": 100000,
   "bekleyen_al": [],
   "open_attempts_today": [
@@ -182,7 +182,7 @@
     "failed_reasons": [],
     "time": "10.08.2026 07:20"
   },
-  "last_hourly_check_time": "10.08.2026 08:28",
+  "last_hourly_check_time": "10.08.2026 11:48",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -193,6 +193,17 @@
       "gun": 10,
       "neden": "MAX_GUN",
       "giris_tarih": "2026-07-31",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "MOGAN",
+      "giris_fiyat": 19.96,
+      "cikis_fiyat": 21.18,
+      "lotlar": 224,
+      "pnl_pct": 6.11,
+      "gun": 4,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-06",
       "cikis_tarih": "2026-08-10"
     }
   ]
