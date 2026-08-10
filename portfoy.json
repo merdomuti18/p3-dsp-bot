@@ -1,30 +1,9 @@
 {
   "pozisyonlar": {
-    "UFUK": {
-      "giris_f": 1765.0,
-      "giris_t": "31.07.2026 08:41",
-      "tepe_f": 1765.0,
-      "lotlar": 11,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 37,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "ALPHA"
-        ],
-        "viop_bias": "Küçük boyut / nakit ağırlık",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "TRMET": {
       "giris_f": 136.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 139.10000610351562,
+      "tepe_f": 141.10000610351562,
       "lotlar": 138,
       "gun": 0,
       "tp1_yapildi": false,
@@ -111,107 +90,77 @@
         "alpha_tag": "",
         "alpha_trend_bonus": 0
       }
+    },
+    "AYGAZ": {
+      "giris_f": 287.5,
+      "giris_t": "10.08.2026 07:20",
+      "tepe_f": 287.5,
+      "lotlar": 69,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 86,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 5,
+        "strategies": [
+          "GT",
+          "ALPHA",
+          "ZT3",
+          "MR",
+          "KBM"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "FADE": {
+      "giris_f": 17.69,
+      "giris_t": "10.08.2026 07:20",
+      "tepe_f": 17.69,
+      "lotlar": 428,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 36,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "KBM"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "AT↑",
+        "alpha_trend_bonus": 4
+      }
+    },
+    "KMPUR": {
+      "giris_f": 23.1,
+      "giris_t": "10.08.2026 07:20",
+      "tepe_f": 23.1,
+      "lotlar": 238,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 34,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GTD",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "AT+",
+        "alpha_trend_bonus": 2
+      }
     }
   },
-  "nakit": 33817.34147756956,
+  "nakit": 19797.721477569557,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "AYGAZ",
-      "score_count": 5,
-      "strategies": [
-        "GT",
-        "ALPHA",
-        "ZT3",
-        "MR",
-        "KBM"
-      ],
-      "tarama_score": 70,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 86,
-      "change_pct": 8.88,
-      "rsi": 62.22,
-      "rel_vol": 2.28,
-      "cmf": 0.1568,
-      "islem_tl": 0,
-      "scan_time": "08.08.2026 11:16",
-      "scan_label": "11:05 Sabah Taraması",
-      "queued_at": "10.08.2026 07:05",
-      "valid_for_date": "2026-08-11",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "FADE",
-      "score_count": 2,
-      "strategies": [
-        "ALPHA",
-        "KBM"
-      ],
-      "tarama_score": 24,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": true,
-      "alpha_trend_bonus": 4,
-      "alpha_tag": "AT↑",
-      "final_score": 36,
-      "change_pct": 8.93,
-      "rsi": 62.86,
-      "rel_vol": 2.17,
-      "cmf": 0.0592,
-      "islem_tl": 0,
-      "scan_time": "08.08.2026 11:16",
-      "scan_label": "11:05 Sabah Taraması",
-      "queued_at": "10.08.2026 07:05",
-      "valid_for_date": "2026-08-11",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KMPUR",
-      "score_count": 2,
-      "strategies": [
-        "GTD",
-        "MR"
-      ],
-      "tarama_score": 24,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 2,
-      "alpha_tag": "AT+",
-      "final_score": 34,
-      "change_pct": 5.14,
-      "rsi": 66.7,
-      "rel_vol": 1.61,
-      "cmf": 0.0549,
-      "islem_tl": 0,
-      "scan_time": "08.08.2026 11:16",
-      "scan_label": "11:05 Sabah Taraması",
-      "queued_at": "10.08.2026 07:05",
-      "valid_for_date": "2026-08-11",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "CELHA",
       "score_count": 1,
@@ -238,20 +187,44 @@
       "queued_at": "10.08.2026 07:05",
       "valid_for_date": "2026-08-11",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "10.08.2026 07:20",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "07:20",
+      "tarih": "2026-08-10",
+      "alinan": [
+        "AYGAZ",
+        "FADE",
+        "KMPUR"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 2,
-    "bought": 1,
+    "pending": 4,
+    "bought": 3,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "07.08.2026 07:06"
+    "time": "10.08.2026 07:20"
   },
-  "last_hourly_check_time": "07.08.2026 10:02",
-  "trade_history": []
+  "last_hourly_check_time": "10.08.2026 07:20",
+  "trade_history": [
+    {
+      "symbol": "UFUK",
+      "giris_fiyat": 1765.0,
+      "cikis_fiyat": 1717.0,
+      "lotlar": 11,
+      "pnl_pct": -2.72,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-31",
+      "cikis_tarih": "2026-08-10"
+    }
+  ]
 }
