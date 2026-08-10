@@ -31,10 +31,10 @@
     "INFO": {
       "giris_f": 7.41,
       "giris_t": "06.08.2026 12:04",
-      "tepe_f": 7.599999904632568,
-      "lotlar": 2699,
+      "tepe_f": 8.100000381469727,
+      "lotlar": 1350,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "smc_score": 9.5,
       "teyit_skoru": 0,
       "signals": [
@@ -42,25 +42,10 @@
         "Bullish FVG"
       ]
     },
-    "MOGAN": {
-      "giris_f": 20.88,
-      "giris_t": "07.08.2026 10:02",
-      "tepe_f": 21.239999771118164,
-      "lotlar": 761,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "smc_score": 8.0,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish OB",
-        "Bullish FVG"
-      ]
-    },
     "BUCIM": {
       "giris_f": 5.09,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 5.09,
+      "tepe_f": 5.119999885559082,
       "lotlar": 2805,
       "gun": 0,
       "tp1_yapildi": false,
@@ -73,7 +58,7 @@
     "CWENE": {
       "giris_f": 40.08,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 40.08,
+      "tepe_f": 40.70000076293945,
       "lotlar": 237,
       "gun": 0,
       "tp1_yapildi": false,
@@ -87,8 +72,21 @@
     "DOFER": {
       "giris_f": 29.1,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 29.1,
+      "tepe_f": 30.059999465942383,
       "lotlar": 218,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 6.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish MACD Cross"
+      ]
+    },
+    "GLCVY": {
+      "giris_f": 53.1,
+      "giris_t": "10.08.2026 08:28",
+      "tepe_f": 53.1,
+      "lotlar": 376,
       "gun": 0,
       "tp1_yapildi": false,
       "smc_score": 6.5,
@@ -98,23 +96,9 @@
       ]
     }
   },
-  "nakit": 12719.309598342905,
+  "nakit": 18195.735701263435,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "GLCVY",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish MACD Cross"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "08.08.2026 11:16",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "TUPRS",
       "score": 6.0,
@@ -388,7 +372,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "10.08.2026 07:20",
+  "last_hourly_check_time": "10.08.2026 08:28",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -421,6 +405,28 @@
       "gun": 7,
       "neden": "TRAILING",
       "giris_tarih": "2026-08-03",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "INFO",
+      "giris_fiyat": 7.41,
+      "cikis_fiyat": 7.67,
+      "lotlar": 1349,
+      "pnl_pct": 3.51,
+      "gun": 4,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-06",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "MOGAN",
+      "giris_fiyat": 20.88,
+      "cikis_fiyat": 19.836,
+      "lotlar": 761,
+      "pnl_pct": -5.0,
+      "gun": 3,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-07",
       "cikis_tarih": "2026-08-10"
     }
   ]
