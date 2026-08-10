@@ -3,7 +3,7 @@
     "TRMET": {
       "giris_f": 136.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 141.10000610351562,
+      "tepe_f": 141.89999389648438,
       "lotlar": 138,
       "gun": 0,
       "tp1_yapildi": false,
@@ -73,7 +73,7 @@
     "TUPRS": {
       "giris_f": 314.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 324.0,
+      "tepe_f": 329.25,
       "lotlar": 12,
       "gun": 0,
       "tp1_yapildi": false,
@@ -94,7 +94,7 @@
     "AYGAZ": {
       "giris_f": 287.5,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 287.5,
+      "tepe_f": 289.0,
       "lotlar": 69,
       "gun": 0,
       "tp1_yapildi": false,
@@ -118,7 +118,7 @@
     "FADE": {
       "giris_f": 17.69,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 17.69,
+      "tepe_f": 17.799999237060547,
       "lotlar": 428,
       "gun": 0,
       "tp1_yapildi": false,
@@ -139,7 +139,7 @@
     "KMPUR": {
       "giris_f": 23.1,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 23.1,
+      "tepe_f": 23.360000610351562,
       "lotlar": 238,
       "gun": 0,
       "tp1_yapildi": false,
@@ -160,38 +160,7 @@
   },
   "nakit": 19797.721477569557,
   "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "CELHA",
-      "score_count": 1,
-      "strategies": [
-        "ZKN"
-      ],
-      "tarama_score": 14,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 16,
-      "change_pct": -3.05,
-      "rsi": 49.4,
-      "rel_vol": 1.09,
-      "cmf": -0.0112,
-      "islem_tl": 0,
-      "scan_time": "08.08.2026 11:16",
-      "scan_label": "11:05 Sabah Taraması",
-      "queued_at": "10.08.2026 07:05",
-      "valid_for_date": "2026-08-11",
-      "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "10.08.2026 07:20",
-      "last_attempt_reason": ""
-    }
-  ],
+  "bekleyen_al": [],
   "open_attempts_today": [
     {
       "saat": "07:20",
@@ -213,7 +182,7 @@
     "failed_reasons": [],
     "time": "10.08.2026 07:20"
   },
-  "last_hourly_check_time": "10.08.2026 07:20",
+  "last_hourly_check_time": "10.08.2026 08:28",
   "trade_history": [
     {
       "symbol": "UFUK",
