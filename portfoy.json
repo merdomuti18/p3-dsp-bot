@@ -73,7 +73,7 @@
     "TUPRS": {
       "giris_f": 314.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 329.25,
+      "tepe_f": 337.75,
       "lotlar": 12,
       "gun": 0,
       "tp1_yapildi": false,
@@ -94,7 +94,7 @@
     "AYGAZ": {
       "giris_f": 287.5,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 289.0,
+      "tepe_f": 295.25,
       "lotlar": 69,
       "gun": 0,
       "tp1_yapildi": false,
@@ -182,7 +182,7 @@
     "failed_reasons": [],
     "time": "10.08.2026 07:20"
   },
-  "last_hourly_check_time": "10.08.2026 08:28",
+  "last_hourly_check_time": "10.08.2026 13:11",
   "trade_history": [
     {
       "symbol": "UFUK",
