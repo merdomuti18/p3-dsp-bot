@@ -28,20 +28,6 @@
         "Bullish OB"
       ]
     },
-    "INFO": {
-      "giris_f": 7.41,
-      "giris_t": "06.08.2026 12:04",
-      "tepe_f": 8.100000381469727,
-      "lotlar": 1350,
-      "gun": 0,
-      "tp1_yapildi": true,
-      "smc_score": 9.5,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ]
-    },
     "BUCIM": {
       "giris_f": 5.09,
       "giris_t": "10.08.2026 07:20",
@@ -58,7 +44,7 @@
     "CWENE": {
       "giris_f": 40.08,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 40.70000076293945,
+      "tepe_f": 42.47999954223633,
       "lotlar": 237,
       "gun": 0,
       "tp1_yapildi": false,
@@ -85,7 +71,7 @@
     "GLCVY": {
       "giris_f": 53.1,
       "giris_t": "10.08.2026 08:28",
-      "tepe_f": 53.1,
+      "tepe_f": 53.5,
       "lotlar": 376,
       "gun": 0,
       "tp1_yapildi": false,
@@ -96,7 +82,7 @@
       ]
     }
   },
-  "nakit": 18195.735701263435,
+  "nakit": 28583.985701263435,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -372,7 +358,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "10.08.2026 08:28",
+  "last_hourly_check_time": "10.08.2026 10:17",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -427,6 +413,17 @@
       "gun": 3,
       "neden": "STOP",
       "giris_tarih": "2026-08-07",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "INFO",
+      "giris_fiyat": 7.41,
+      "cikis_fiyat": 7.695,
+      "lotlar": 1350,
+      "pnl_pct": 3.85,
+      "gun": 4,
+      "neden": "TRAILING",
+      "giris_tarih": "2026-08-06",
       "cikis_tarih": "2026-08-10"
     }
   ]
