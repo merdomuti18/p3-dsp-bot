@@ -1,20 +1,5 @@
 {
   "pozisyonlar": {
-    "UFUK": {
-      "giris_f": 1732.0,
-      "giris_t": "03.08.2026 13:43",
-      "tepe_f": 1895.0,
-      "lotlar": 3,
-      "gun": 0,
-      "tp1_yapildi": true,
-      "smc_score": 6.0,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish OB",
-        "Bullish FVG"
-      ]
-    },
     "AKSA": {
       "giris_f": 12.59,
       "giris_t": "03.08.2026 13:43",
@@ -93,26 +78,25 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ]
-    }
-  },
-  "nakit": 22395.277701263432,
-  "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "BORSK",
-      "score": 6.0,
-      "final_score": 6.0,
-      "verdict": "GÜÇLÜ AL",
+    },
+    "BORSK": {
+      "giris_f": 5.88,
+      "giris_t": "11.08.2026 11:45",
+      "tepe_f": 5.88,
+      "lotlar": 3401,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 6.0,
+      "teyit_skoru": 0,
       "signals": [
         "Bullish MACD Cross",
         "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.08.2026 20:02",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
+      ]
+    }
+  },
+  "nakit": 7798.147701263431,
+  "baslangic": 100000,
+  "bekleyen_al": [
     {
       "symbol": "PATEK",
       "score": 6.0,
@@ -428,7 +412,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "11.08.2026 10:01",
+  "last_hourly_check_time": "11.08.2026 11:44",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -526,6 +510,17 @@
       "pnl_pct": 5.2,
       "gun": 8,
       "neden": "TP1",
+      "giris_tarih": "2026-08-03",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "UFUK",
+      "giris_fiyat": 1732.0,
+      "cikis_fiyat": 1800.25,
+      "lotlar": 3,
+      "pnl_pct": 3.94,
+      "gun": 8,
+      "neden": "TRAILING",
       "giris_tarih": "2026-08-03",
       "cikis_tarih": "2026-08-11"
     }
