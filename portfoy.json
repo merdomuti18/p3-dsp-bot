@@ -1,5 +1,29 @@
 {
   "pozisyonlar": {
+    "TRMET": {
+      "giris_f": 136.5,
+      "giris_t": "06.08.2026 08:25",
+      "tepe_f": 141.89999389648438,
+      "lotlar": 138,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 86,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 5,
+        "strategies": [
+          "GT",
+          "ALPHA",
+          "ZT3",
+          "MR",
+          "KBM"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
     "KCHOL": {
       "giris_f": 199.7,
       "giris_t": "06.08.2026 08:25",
@@ -49,10 +73,10 @@
     "TUPRS": {
       "giris_f": 314.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 344.75,
-      "lotlar": 6,
+      "tepe_f": 337.75,
+      "lotlar": 12,
       "gun": 0,
-      "tp1_yapildi": true,
+      "tp1_yapildi": false,
       "final_score": 42,
       "ma_score": 0.0,
       "lgbm_score": null,
@@ -70,7 +94,7 @@
     "AYGAZ": {
       "giris_f": 287.5,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 298.75,
+      "tepe_f": 295.25,
       "lotlar": 69,
       "gun": 0,
       "tp1_yapildi": false,
@@ -94,10 +118,10 @@
     "FADE": {
       "giris_f": 17.69,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 19.75,
-      "lotlar": 214,
+      "tepe_f": 17.799999237060547,
+      "lotlar": 428,
       "gun": 0,
-      "tp1_yapildi": true,
+      "tp1_yapildi": false,
       "final_score": 36,
       "ma_score": 0.0,
       "lgbm_score": null,
@@ -134,7 +158,7 @@
       }
     }
   },
-  "nakit": 43802.93167349241,
+  "nakit": 19797.721477569557,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -164,9 +188,9 @@
       "queued_at": "11.08.2026 07:05",
       "valid_for_date": "2026-08-12",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "11.08.2026 08:10",
-      "last_attempt_reason": "kitap_limiti"
+      "attempt_count": 0,
+      "last_attempt_time": "",
+      "last_attempt_reason": ""
     },
     {
       "symbol": "BRSAN",
@@ -195,8 +219,8 @@
       "queued_at": "11.08.2026 07:05",
       "valid_for_date": "2026-08-12",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "11.08.2026 08:10",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -225,38 +249,21 @@
       "queued_at": "11.08.2026 07:05",
       "valid_for_date": "2026-08-12",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "11.08.2026 08:10",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [
-    {
-      "saat": "08:10",
-      "tarih": "2026-08-11",
-      "alinan": [],
-      "alinmayan": [
-        "UFUK"
-      ],
-      "nedenler": {
-        "UFUK": "kitap_limiti"
-      }
-    }
-  ],
+  "open_attempts_today": [],
   "last_open_attempt_summary": {
-    "pending": 3,
-    "bought": 0,
-    "failed": 1,
+    "pending": 4,
+    "bought": 3,
+    "failed": 0,
     "expired": 0,
-    "failed_reasons": [
-      {
-        "symbol": "UFUK",
-        "reason": "kitap_limiti"
-      }
-    ],
-    "time": "11.08.2026 08:10"
+    "failed_reasons": [],
+    "time": "10.08.2026 07:20"
   },
-  "last_hourly_check_time": "11.08.2026 08:10",
+  "last_hourly_check_time": "10.08.2026 13:11",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -268,39 +275,6 @@
       "neden": "MAX_GUN",
       "giris_tarih": "2026-07-31",
       "cikis_tarih": "2026-08-10"
-    },
-    {
-      "symbol": "TRMET",
-      "giris_fiyat": 136.5,
-      "cikis_fiyat": 129.675,
-      "lotlar": 138,
-      "pnl_pct": -5.0,
-      "gun": 5,
-      "neden": "STOP",
-      "giris_tarih": "2026-08-06",
-      "cikis_tarih": "2026-08-11"
-    },
-    {
-      "symbol": "TUPRS",
-      "giris_fiyat": 314.5,
-      "cikis_fiyat": 339.25,
-      "lotlar": 6,
-      "pnl_pct": 7.87,
-      "gun": 5,
-      "neden": "TP1",
-      "giris_tarih": "2026-08-06",
-      "cikis_tarih": "2026-08-11"
-    },
-    {
-      "symbol": "FADE",
-      "giris_fiyat": 17.69,
-      "cikis_fiyat": 19.04,
-      "lotlar": 214,
-      "pnl_pct": 7.63,
-      "gun": 1,
-      "neden": "TP1",
-      "giris_tarih": "2026-08-10",
-      "cikis_tarih": "2026-08-11"
     }
   ]
 }
