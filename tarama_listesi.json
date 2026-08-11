@@ -1,10 +1,10 @@
 {
-  "scan_time": "11.08.2026 19:06",
+  "scan_time": "11.08.2026 20:07",
   "scan_label": "20:50 Kapanış",
   "signals": [
     {
       "symbol": "TUPRS",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "GT"
@@ -21,7 +21,7 @@
     },
     {
       "symbol": "ANSGR",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "GT"
@@ -38,7 +38,7 @@
     },
     {
       "symbol": "KMPUR",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "GTD",
@@ -56,7 +56,7 @@
     },
     {
       "symbol": "BRSAN",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "GTD",
@@ -74,7 +74,7 @@
     },
     {
       "symbol": "AKSA",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"
@@ -91,7 +91,7 @@
     },
     {
       "symbol": "AYGAZ",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"
@@ -108,7 +108,7 @@
     },
     {
       "symbol": "CELHA",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"
@@ -125,7 +125,7 @@
     },
     {
       "symbol": "KCHOL",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"
@@ -142,7 +142,7 @@
     },
     {
       "symbol": "ALARK",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"
@@ -159,7 +159,7 @@
     },
     {
       "symbol": "DEVA",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"
@@ -176,7 +176,7 @@
     },
     {
       "symbol": "MOGAN",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
@@ -193,7 +193,7 @@
     },
     {
       "symbol": "EREGL",
-      "scan_time": "11.08.2026 19:06",
+      "scan_time": "11.08.2026 20:07",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "DIP"
