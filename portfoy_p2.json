@@ -3,10 +3,10 @@
     "UFUK": {
       "giris_f": 1732.0,
       "giris_t": "03.08.2026 13:43",
-      "tepe_f": 1820.0,
-      "lotlar": 6,
+      "tepe_f": 1895.0,
+      "lotlar": 3,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "smc_score": 6.0,
       "teyit_skoru": 0,
       "signals": [
@@ -57,7 +57,7 @@
     "INTEM": {
       "giris_f": 253.25,
       "giris_t": "11.08.2026 08:10",
-      "tepe_f": 253.25,
+      "tepe_f": 257.0,
       "lotlar": 76,
       "gun": 0,
       "tp1_yapildi": false,
@@ -95,7 +95,7 @@
       ]
     }
   },
-  "nakit": 16929.277701263432,
+  "nakit": 22395.277701263432,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -428,7 +428,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "11.08.2026 08:10",
+  "last_hourly_check_time": "11.08.2026 10:01",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -516,6 +516,17 @@
       "gun": 1,
       "neden": "STOP",
       "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "UFUK",
+      "giris_fiyat": 1732.0,
+      "cikis_fiyat": 1822.0,
+      "lotlar": 3,
+      "pnl_pct": 5.2,
+      "gun": 8,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-03",
       "cikis_tarih": "2026-08-11"
     }
   ]
