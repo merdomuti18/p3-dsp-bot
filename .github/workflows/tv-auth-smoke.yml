@@ -20,17 +20,24 @@ jobs:
         env:
           TV_USERNAME: ${{ secrets.TV_USERNAME }}
           TV_PASSWORD: ${{ secrets.TV_PASSWORD }}
+          TV_AUTH_TOKEN: ${{ secrets.TV_AUTH_TOKEN }}
         run: |
           python - <<'PY'
-          import os
-          from tvDatafeed import TvDatafeed, Interval
+          from tv_auth import UNAUTHORIZED, is_authenticated, make_tv_client, resolve_auth_token
+          from tvDatafeed import Interval
 
-          u = os.environ.get("TV_USERNAME") or ""
-          p = os.environ.get("TV_PASSWORD") or ""
-          assert u and p, "TV_USERNAME/TV_PASSWORD secrets missing"
-          print(f"secrets_present user_len={len(u)} pass_len={len(p)}")
+          token, diag = resolve_auth_token()
+          print("diag=", {k: diag.get(k) for k in (
+              "ok", "source", "http_status", "error", "code",
+              "has_user", "user_len", "pass_len",
+          )})
+          assert token, f"TV auth token missing: {diag}"
 
-          tv = TvDatafeed(username=u, password=p)
+          tv, diag2 = make_tv_client(require_auth=True)
+          assert is_authenticated(tv), f"still anonymous: token={tv.token!r} diag={diag2}"
+          assert tv.token != UNAUTHORIZED
+          print(f"auth_ok source={diag2.get('source')} token_len={len(tv.token)}")
+
           df = tv.get_hist("ASELS", "BIST", interval=Interval.in_daily, n_bars=5)
           assert df is not None and len(df) > 0, "empty hist"
           print(f"OK bars={len(df)} last_close={float(df['close'].iloc[-1]):.4f}")
