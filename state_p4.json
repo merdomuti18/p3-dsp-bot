@@ -3,9 +3,9 @@
     "MOGAN": {
       "symbol": "MOGAN",
       "giris_fiyat": 20.2,
-      "guncel_fiyat": 21.2,
+      "guncel_fiyat": 20.7,
       "lotlar": 495,
-      "pnl_pct": 4.95,
+      "pnl_pct": 2.48,
       "gun": 7,
       "giris_tarih": "2026-08-05",
       "meta_score": 0.8461538461538463,
@@ -36,9 +36,9 @@
     "UFUK": {
       "symbol": "UFUK",
       "giris_fiyat": 1813.0,
-      "guncel_fiyat": 1868.0,
+      "guncel_fiyat": 1915.0,
       "lotlar": 5,
-      "pnl_pct": 3.03,
+      "pnl_pct": 5.63,
       "gun": 2,
       "giris_tarih": "2026-08-10",
       "meta_score": 0.7333333333333334,
@@ -593,5 +593,5 @@
   ],
   "last_run": "2026-08-11T17:09:22.718088",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 98190
+  "sermaye_mevcut": 98216
 }
