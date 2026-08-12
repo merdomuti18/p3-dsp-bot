@@ -49,7 +49,7 @@
     "TUPRS": {
       "giris_f": 314.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 344.75,
+      "tepe_f": 349.75,
       "lotlar": 6,
       "gun": 0,
       "tp1_yapildi": true,
@@ -136,98 +136,7 @@
   },
   "nakit": 28140.955640838598,
   "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "ANSGR",
-      "score_count": 1,
-      "strategies": [
-        "GT"
-      ],
-      "tarama_score": 18,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Temkinli long",
-      "viop_score": -2,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": true,
-      "alpha_trend_bonus": 4,
-      "alpha_tag": "AT↑",
-      "final_score": 22,
-      "change_pct": -4.02,
-      "rsi": 56.67,
-      "rel_vol": 1.16,
-      "cmf": 0.3074,
-      "islem_tl": 0,
-      "scan_time": "11.08.2026 20:07",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "12.08.2026 07:05",
-      "valid_for_date": "2026-08-13",
-      "expires_at_hour": 17,
-      "attempt_count": 2,
-      "last_attempt_time": "12.08.2026 08:19",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ALARK",
-      "score_count": 1,
-      "strategies": [
-        "ZKN"
-      ],
-      "tarama_score": 14,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Temkinli long",
-      "viop_score": -2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 14,
-      "change_pct": -2.15,
-      "rsi": 43.29,
-      "rel_vol": 1.34,
-      "cmf": 0.2149,
-      "islem_tl": 0,
-      "scan_time": "11.08.2026 20:07",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "12.08.2026 07:05",
-      "valid_for_date": "2026-08-13",
-      "expires_at_hour": 17,
-      "attempt_count": 2,
-      "last_attempt_time": "12.08.2026 08:19",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "CELHA",
-      "score_count": 1,
-      "strategies": [
-        "ZKN"
-      ],
-      "tarama_score": 14,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Temkinli long",
-      "viop_score": -2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 14,
-      "change_pct": 2.17,
-      "rsi": 50.0,
-      "rel_vol": 1.24,
-      "cmf": -0.036,
-      "islem_tl": 0,
-      "scan_time": "11.08.2026 20:07",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "12.08.2026 07:05",
-      "valid_for_date": "2026-08-13",
-      "expires_at_hour": 17,
-      "attempt_count": 2,
-      "last_attempt_time": "12.08.2026 08:19",
-      "last_attempt_reason": ""
-    }
-  ],
+  "bekleyen_al": [],
   "open_attempts_today": [
     {
       "saat": "07:16",
@@ -254,7 +163,7 @@
     "failed_reasons": [],
     "time": "12.08.2026 08:19"
   },
-  "last_hourly_check_time": "12.08.2026 08:19",
+  "last_hourly_check_time": "12.08.2026 11:47",
   "trade_history": [
     {
       "symbol": "UFUK",
