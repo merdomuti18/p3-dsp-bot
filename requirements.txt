@@ -8,4 +8,5 @@ yfinance==1.5.1
 requests==2.32.5
 pytz==2025.2
 tradingview-screener==3.2.1
+tradingview-datafeed>=2.1.0
 smartmoneyconcepts==0.0.27

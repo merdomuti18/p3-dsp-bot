@@ -202,17 +202,64 @@ class MockDataAdapter:
 
 class RealDataAdapter:
     """
-    VM'deki gerçek veri pipeline'ına adaptör.
-    P2-SMC'nin mevcut fetch fonksiyonunu wrap eder.
+    Gerçek OHLC kapanış adaptörü.
 
-    VM'de kullanım:
-        from dsp_data_adapter import get_ohlc   # P2-SMC pipeline
-        adapter = RealDataAdapter()
-        prices = adapter.fetch("GARAN.IS", 300)
+    Öncelik:
+      1) tvDatafeed — TV_USERNAME / TV_PASSWORD varsa oturumlu (Essential)
+      2) yfinance   — yedek
     """
+
+    def __init__(self) -> None:
+        self._tv = None
+        self._tv_tried = False
+
+    def _tv_client(self):
+        if self._tv_tried:
+            return self._tv
+        self._tv_tried = True
+        user = os.environ.get("TV_USERNAME") or os.environ.get("TRADINGVIEW_USERNAME")
+        pw = os.environ.get("TV_PASSWORD") or os.environ.get("TRADINGVIEW_PASSWORD")
+        if not user or not pw:
+            logger.info("TV credentials yok — RealDataAdapter yfinance kullanacak")
+            return None
+        try:
+            from tvDatafeed import TvDatafeed
+
+            self._tv = TvDatafeed(username=user, password=pw)
+            logger.info("TV oturumu açıldı (Essential)")
+        except Exception as e:
+            logger.warning(f"TV login başarısız, yfinance'e düşülecek: {e}")
+            self._tv = None
+        return self._tv
+
+    def _fetch_tv(self, symbol: str, lookback_days: int) -> Optional[np.ndarray]:
+        tv = self._tv_client()
+        if tv is None:
+            return None
+        try:
+            from tvDatafeed import Interval
+
+            sym = symbol.replace(".IS", "").upper()
+            # günlük bar; biraz fazla çek
+            n = max(lookback_days + 20, 80)
+            df = tv.get_hist(sym, "BIST", interval=Interval.in_daily, n_bars=n)
+            if df is None or getattr(df, "empty", True):
+                return None
+            prices = df["close"].dropna().astype(float).values
+            if len(prices) >= lookback_days:
+                return prices[-lookback_days:]
+            return prices if len(prices) >= 60 else None
+        except Exception as e:
+            logger.warning(f"{symbol} TV hist hatası: {e}")
+            return None
+
     def fetch(self, symbol: str, lookback_days: int) -> Optional[np.ndarray]:
+        prices = self._fetch_tv(symbol, lookback_days)
+        if prices is not None:
+            return prices
         try:
             import yfinance as yf
+
             ticker = f"{symbol}.IS" if not symbol.endswith(".IS") else symbol
             df = yf.Ticker(ticker).history(period="max")
             prices = df["Close"].dropna().values
