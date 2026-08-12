@@ -24,12 +24,6 @@
       "entry_price": 75.45,
       "score": 0.0935,
       "margin": 0.057
-    },
-    "ENJSA": {
-      "entry_date": "2026-08-05",
-      "entry_price": 113.0,
-      "score": 0.0592,
-      "margin": 0.0386
     }
   },
   "history": [
@@ -169,6 +163,15 @@
       "exit_price": 51.3,
       "pnl_pct": -1.35,
       "holding_days": 9
+    },
+    {
+      "symbol": "ENJSA",
+      "entry_date": "2026-08-05",
+      "exit_date": "2026-08-12",
+      "entry_price": 113.0,
+      "exit_price": 108.4,
+      "pnl_pct": -4.07,
+      "holding_days": 7
     }
   ],
   "scan_log": [
@@ -718,6 +721,22 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-08-12",
+      "scanned": 79,
+      "long_signals": 25,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "CWENE"
+      ],
+      "entries": [],
+      "exits": [
+        "ENJSA"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -1037,14 +1056,6 @@
     },
     "log": [
       {
-        "date": "2026-07-09",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-07-10",
         "total": 78,
         "reliable": 0,
@@ -1270,6 +1281,14 @@
       },
       {
         "date": "2026-08-11",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-12",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
