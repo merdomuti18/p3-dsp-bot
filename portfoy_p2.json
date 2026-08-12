@@ -69,7 +69,7 @@
     "BORSK": {
       "giris_f": 5.88,
       "giris_t": "11.08.2026 11:45",
-      "tepe_f": 5.900000095367432,
+      "tepe_f": 5.920000076293945,
       "lotlar": 3401,
       "gun": 0,
       "tp1_yapildi": false,
@@ -107,7 +107,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -121,7 +121,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -135,7 +135,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -149,7 +149,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -163,7 +163,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -177,7 +177,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -192,7 +192,7 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -206,7 +206,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -220,7 +220,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -234,7 +234,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -248,7 +248,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -262,7 +262,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -277,7 +277,7 @@
         "Bullish MACD Cross",
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -291,7 +291,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -305,7 +305,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -319,7 +319,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -333,7 +333,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "11.08.2026 20:07",
       "attempt_count": 0,
@@ -341,7 +341,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "11.08.2026 13:09",
+  "last_hourly_check_time": "12.08.2026 07:16",
   "trade_history": [
     {
       "symbol": "BFREN",
