@@ -49,7 +49,7 @@
     "TUPRS": {
       "giris_f": 314.5,
       "giris_t": "06.08.2026 08:25",
-      "tepe_f": 337.75,
+      "tepe_f": 338.0,
       "lotlar": 12,
       "gun": 0,
       "tp1_yapildi": false,
@@ -94,7 +94,7 @@
     "FADE": {
       "giris_f": 17.69,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 19.15999984741211,
+      "tepe_f": 19.479999542236328,
       "lotlar": 214,
       "gun": 0,
       "tp1_yapildi": true,
@@ -132,42 +132,32 @@
         "alpha_tag": "AT+",
         "alpha_trend_bonus": 2
       }
-    }
-  },
-  "nakit": 41694.6716408386,
-  "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "BRSAN",
-      "score_count": 2,
-      "strategies": [
-        "GTD",
-        "MR"
-      ],
-      "tarama_score": 24,
+    },
+    "BRSAN": {
+      "giris_f": 631.5,
+      "giris_t": "12.08.2026 07:16",
+      "tepe_f": 631.5,
+      "lotlar": 31,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 34,
       "ma_score": 0.0,
       "lgbm_score": null,
-      "viop_bias": "Temkinli long",
-      "viop_score": -2,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": true,
-      "alpha_trend_bonus": 4,
-      "alpha_tag": "AT↑",
-      "final_score": 34,
-      "change_pct": 0.48,
-      "rsi": 65.88,
-      "rel_vol": 3.16,
-      "cmf": 0.1593,
-      "islem_tl": 0,
-      "scan_time": "11.08.2026 20:07",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "12.08.2026 07:05",
-      "valid_for_date": "2026-08-13",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GTD",
+          "MR"
+        ],
+        "viop_bias": "Temkinli long",
+        "alpha_tag": "AT↑",
+        "alpha_trend_bonus": 4
+      }
+    }
+  },
+  "nakit": 22118.1716408386,
+  "baslangic": 100000,
+  "bekleyen_al": [
     {
       "symbol": "ANSGR",
       "score_count": 1,
@@ -194,8 +184,8 @@
       "queued_at": "12.08.2026 07:05",
       "valid_for_date": "2026-08-13",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "12.08.2026 07:16",
       "last_attempt_reason": ""
     },
     {
@@ -224,8 +214,8 @@
       "queued_at": "12.08.2026 07:05",
       "valid_for_date": "2026-08-13",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "12.08.2026 07:16",
       "last_attempt_reason": ""
     },
     {
@@ -254,26 +244,31 @@
       "queued_at": "12.08.2026 07:05",
       "valid_for_date": "2026-08-13",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "12.08.2026 07:16",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "07:16",
+      "tarih": "2026-08-12",
+      "alinan": [
+        "BRSAN"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 3,
-    "bought": 0,
-    "failed": 1,
+    "pending": 4,
+    "bought": 1,
+    "failed": 0,
     "expired": 0,
-    "failed_reasons": [
-      {
-        "symbol": "UFUK",
-        "reason": "kitap_limiti"
-      }
-    ],
-    "time": "11.08.2026 11:44"
+    "failed_reasons": [],
+    "time": "12.08.2026 07:16"
   },
-  "last_hourly_check_time": "11.08.2026 11:44",
+  "last_hourly_check_time": "12.08.2026 07:16",
   "trade_history": [
     {
       "symbol": "UFUK",
