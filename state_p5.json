@@ -469,9 +469,60 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-08-12",
+      "secilen": [
+        "TKFEN"
+      ],
+      "elenen": [
+        {
+          "symbol": "AYGAZ",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "YIGIT",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ASTOR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "IMASM",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "DOAS",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TTRAK",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "SILVR",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KONYA",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-08-10T17:04:32.431932",
+  "last_run": "2026-08-12T12:57:59.223387",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 98292
 }
