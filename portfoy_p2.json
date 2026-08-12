@@ -55,7 +55,7 @@
     "PKENT": {
       "giris_f": 127.2,
       "giris_t": "11.08.2026 08:10",
-      "tepe_f": 127.2,
+      "tepe_f": 127.30000305175781,
       "lotlar": 60,
       "gun": 0,
       "tp1_yapildi": false,
@@ -69,7 +69,7 @@
     "BORSK": {
       "giris_f": 5.88,
       "giris_t": "11.08.2026 11:45",
-      "tepe_f": 5.920000076293945,
+      "tepe_f": 5.940000057220459,
       "lotlar": 3401,
       "gun": 0,
       "tp1_yapildi": false,
@@ -341,7 +341,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "12.08.2026 08:19",
+  "last_hourly_check_time": "12.08.2026 10:07",
   "trade_history": [
     {
       "symbol": "BFREN",
