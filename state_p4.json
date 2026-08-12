@@ -3,9 +3,9 @@
     "MOGAN": {
       "symbol": "MOGAN",
       "giris_fiyat": 20.2,
-      "guncel_fiyat": 20.7,
+      "guncel_fiyat": 20.72,
       "lotlar": 495,
-      "pnl_pct": 2.48,
+      "pnl_pct": 2.57,
       "gun": 7,
       "giris_tarih": "2026-08-05",
       "meta_score": 0.8461538461538463,
@@ -36,12 +36,44 @@
     "UFUK": {
       "symbol": "UFUK",
       "giris_fiyat": 1813.0,
-      "guncel_fiyat": 1915.0,
+      "guncel_fiyat": 1933.0,
       "lotlar": 5,
-      "pnl_pct": 5.63,
+      "pnl_pct": 6.62,
       "gun": 2,
       "giris_tarih": "2026-08-10",
       "meta_score": 0.7333333333333334,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "FADE": {
+      "symbol": "FADE",
+      "giris_fiyat": 17.72,
+      "guncel_fiyat": 17.72,
+      "lotlar": 564,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-08-12",
+      "meta_score": 0.41904761904761906,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "BRSAN": {
+      "symbol": "BRSAN",
+      "giris_fiyat": 628.5,
+      "guncel_fiyat": 628.5,
+      "lotlar": 15,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-08-12",
+      "meta_score": 0.41904761904761906,
       "kaynaklar": [
         "P1",
         "P2"
@@ -589,9 +621,15 @@
       "ic_p1": 0.0,
       "ic_p2": -0.0674,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-12",
+      "ic_p1": 0.0,
+      "ic_p2": -0.0459,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-08-11T17:09:22.718088",
+  "last_run": "2026-08-12T13:32:47.687738",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 98216
+  "sermaye_mevcut": 98432
 }
