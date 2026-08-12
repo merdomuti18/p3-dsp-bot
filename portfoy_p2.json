@@ -106,9 +106,9 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -121,9 +121,9 @@
         "Bullish MACD Cross",
         "Bullish OB"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -136,9 +136,24 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "KGYO",
+      "score": 5.5,
+      "final_score": 5.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -151,9 +166,24 @@
         "Bullish OB",
         "Bearish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ALARK",
+      "score": 5.5,
+      "final_score": 5.5,
+      "verdict": "AL",
+      "signals": [
+        "Bearish MACD Cross",
+        "Bullish OB"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -166,9 +196,9 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -180,9 +210,9 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -194,9 +224,9 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -208,9 +238,9 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -222,9 +252,9 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -236,9 +266,9 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -250,9 +280,9 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -264,9 +294,9 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -278,24 +308,23 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "ALARK",
+      "symbol": "UNLU",
       "score": 4.5,
       "final_score": 4.5,
       "verdict": "AL",
       "signals": [
-        "Bearish MACD Cross",
-        "Bullish OB"
+        "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -308,9 +337,23 @@
         "Bullish MACD Cross",
         "Bearish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "BRSAN",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -322,9 +365,9 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -336,9 +379,9 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -350,9 +393,9 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -365,9 +408,9 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -380,9 +423,9 @@
         "Bullish MACD Cross",
         "Bearish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "12.08.2026 15:55",
+      "queued_at": "12.08.2026 16:30",
       "attempt_count": 0,
       "last_attempt_reason": ""
     }
