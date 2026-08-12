@@ -226,6 +226,13 @@ class RealDataAdapter:
             from tvDatafeed import TvDatafeed
 
             self._tv = TvDatafeed(username=user, password=pw)
+            # tvDatafeed signin failure leaves client usable as anonymous;
+            # probe with a tiny hist to confirm authenticated session.
+            from tvDatafeed import Interval
+
+            probe = self._tv.get_hist("ASELS", "BIST", interval=Interval.in_daily, n_bars=1)
+            if probe is None or getattr(probe, "empty", True):
+                raise RuntimeError("TV hist empty after login")
             logger.info("TV oturumu açıldı (Essential)")
         except Exception as e:
             logger.warning(f"TV login başarısız, yfinance'e düşülecek: {e}")
