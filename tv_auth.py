@@ -5,21 +5,23 @@ tvDatafeed varsayılan login'i User-Agent göndermez; TradingView sıkça
 reddedip `error while signin` basar, client ise anonymous token ile devam eder.
 
 Öncelik:
-  1) TV_AUTH_TOKEN (tarayıcıdan kopyalanan auth_token) — 2FA/CAPTCHA için şart
-  2) TV_USERNAME + TV_PASSWORD ile signin (doğru UA + Referer)
+  1) TV_AUTH_TOKEN
+  2) TV_SESSIONID (+ isteğe bağlı TV_SESSIONID_SIGN) — Application → Cookies
+  3) TV_USERNAME + TV_PASSWORD (2FA açıksa çalışmaz)
 
-2FA açıksa password login `2FA_required` döner; CI için TV_AUTH_TOKEN kullanın:
-
-  1. Chrome'da tradingview.com'a giriş yapın (2FA dahil)
-  2. F12 → Elements/Search → "auth_token" (veya Network'te user payload)
-  3. Token'ı secret olarak koyun (sohbete yapıştırmayın):
-       gh secret set TV_AUTH_TOKEN -R merdomuti18/p3-dsp-bot
+En kolay yol (2FA ile):
+  DevTools → Uygulama → Çerezler → https://www.tradingview.com
+  → `sessionid` ve varsa `sessionid_sign` değerlerini kopyala
+  → sohbete yapıştırma; secret set et:
+       gh secret set TV_SESSIONID -R merdomuti18/p3-dsp-bot
+       gh secret set TV_SESSIONID_SIGN -R merdomuti18/p3-dsp-bot
 """
 
 from __future__ import annotations
 
 import logging
 import os
+import re
 from typing import Any
 
 import requests
@@ -28,6 +30,7 @@ logger = logging.getLogger(__name__)
 
 SIGNIN_URL = "https://www.tradingview.com/accounts/signin/"
 UNAUTHORIZED = "unauthorized_user_token"
+_AUTH_TOKEN_RE = re.compile(r'"auth_token"\s*:\s*"([^"]+)"')
 _SIGNIN_HEADERS = {
     "Referer": "https://www.tradingview.com",
     "Origin": "https://www.tradingview.com",
@@ -92,8 +95,52 @@ def signin_password(username: str, password: str) -> tuple[str | None, dict[str,
         return None, diag
 
 
+def token_from_sessionid(
+    sessionid: str,
+    sessionid_sign: str = "",
+) -> tuple[str | None, dict[str, Any]]:
+    """Use browser sessionid cookie(s) to pull auth_token from TradingView HTML."""
+    diag: dict[str, Any] = {
+        "ok": False,
+        "source": "sessionid",
+        "http_status": None,
+        "error": None,
+        "code": None,
+        "has_user": False,
+        "user_len": 0,
+        "pass_len": 0,
+        "sessionid_len": len(sessionid),
+        "sessionid_sign_len": len(sessionid_sign),
+    }
+    try:
+        sess = requests.Session()
+        sess.cookies.set("sessionid", sessionid, domain=".tradingview.com", path="/")
+        if sessionid_sign:
+            sess.cookies.set(
+                "sessionid_sign",
+                sessionid_sign,
+                domain=".tradingview.com",
+                path="/",
+            )
+        resp = sess.get(
+            "https://www.tradingview.com/",
+            headers=_SIGNIN_HEADERS,
+            timeout=60,
+        )
+        diag["http_status"] = resp.status_code
+        match = _AUTH_TOKEN_RE.search(resp.text or "")
+        if not match:
+            diag["error"] = "auth_token_not_in_page"
+            return None, diag
+        diag["ok"] = True
+        return match.group(1), diag
+    except Exception as exc:
+        diag["error"] = f"request_failed:{type(exc).__name__}"
+        return None, diag
+
+
 def resolve_auth_token() -> tuple[str | None, dict[str, Any]]:
-    """Resolve token from TV_AUTH_TOKEN or username/password login."""
+    """Resolve token: TV_AUTH_TOKEN → sessionid → username/password."""
     direct = _env("TV_AUTH_TOKEN", "TRADINGVIEW_AUTH_TOKEN")
     if direct:
         return direct, {
@@ -107,13 +154,19 @@ def resolve_auth_token() -> tuple[str | None, dict[str, Any]]:
             "has_user": False,
         }
 
+    sessionid = _env("TV_SESSIONID", "TRADINGVIEW_SESSIONID")
+    if sessionid:
+        sign = _env("TV_SESSIONID_SIGN", "TRADINGVIEW_SESSIONID_SIGN")
+        token, diag = token_from_sessionid(sessionid, sign)
+        return token, diag
+
     user = _env("TV_USERNAME", "TRADINGVIEW_USERNAME")
     pw = _env("TV_PASSWORD", "TRADINGVIEW_PASSWORD")
     if not user or not pw:
         return None, {
             "ok": False,
             "source": "missing",
-            "error": "TV_USERNAME/TV_PASSWORD or TV_AUTH_TOKEN required",
+            "error": "Set TV_SESSIONID (easiest) or TV_AUTH_TOKEN or TV_USERNAME/PASSWORD",
             "user_len": len(user),
             "pass_len": len(pw),
             "http_status": None,

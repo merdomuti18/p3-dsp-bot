@@ -21,6 +21,8 @@ jobs:
           TV_USERNAME: ${{ secrets.TV_USERNAME }}
           TV_PASSWORD: ${{ secrets.TV_PASSWORD }}
           TV_AUTH_TOKEN: ${{ secrets.TV_AUTH_TOKEN }}
+          TV_SESSIONID: ${{ secrets.TV_SESSIONID }}
+          TV_SESSIONID_SIGN: ${{ secrets.TV_SESSIONID_SIGN }}
         run: |
           python - <<'PY'
           from tv_auth import UNAUTHORIZED, is_authenticated, make_tv_client, resolve_auth_token
@@ -30,6 +32,7 @@ jobs:
           print("diag=", {k: diag.get(k) for k in (
               "ok", "source", "http_status", "error", "code",
               "has_user", "user_len", "pass_len",
+              "sessionid_len", "sessionid_sign_len",
           )})
           assert token, f"TV auth token missing: {diag}"
 
