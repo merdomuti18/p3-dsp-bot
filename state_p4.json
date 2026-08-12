@@ -3,9 +3,9 @@
     "MOGAN": {
       "symbol": "MOGAN",
       "giris_fiyat": 20.2,
-      "guncel_fiyat": 20.72,
+      "guncel_fiyat": 20.84,
       "lotlar": 495,
-      "pnl_pct": 2.57,
+      "pnl_pct": 3.17,
       "gun": 7,
       "giris_tarih": "2026-08-05",
       "meta_score": 0.8461538461538463,
@@ -19,9 +19,9 @@
     "TKFEN": {
       "symbol": "TKFEN",
       "giris_fiyat": 221.9,
-      "guncel_fiyat": 243.7,
+      "guncel_fiyat": 242.7,
       "lotlar": 45,
-      "pnl_pct": 9.82,
+      "pnl_pct": 9.37,
       "gun": 2,
       "giris_tarih": "2026-08-10",
       "meta_score": 0.857142857142857,
@@ -36,9 +36,9 @@
     "UFUK": {
       "symbol": "UFUK",
       "giris_fiyat": 1813.0,
-      "guncel_fiyat": 1933.0,
+      "guncel_fiyat": 1935.0,
       "lotlar": 5,
-      "pnl_pct": 6.62,
+      "pnl_pct": 6.73,
       "gun": 2,
       "giris_tarih": "2026-08-10",
       "meta_score": 0.7333333333333334,
@@ -52,9 +52,9 @@
     "FADE": {
       "symbol": "FADE",
       "giris_fiyat": 17.72,
-      "guncel_fiyat": 17.72,
+      "guncel_fiyat": 17.0,
       "lotlar": 564,
-      "pnl_pct": 0.0,
+      "pnl_pct": -4.06,
       "gun": 0,
       "giris_tarih": "2026-08-12",
       "meta_score": 0.41904761904761906,
@@ -68,9 +68,9 @@
     "BRSAN": {
       "symbol": "BRSAN",
       "giris_fiyat": 628.5,
-      "guncel_fiyat": 628.5,
+      "guncel_fiyat": 628.0,
       "lotlar": 15,
-      "pnl_pct": 0.0,
+      "pnl_pct": -0.08,
       "gun": 0,
       "giris_tarih": "2026-08-12",
       "meta_score": 0.41904761904761906,
@@ -631,5 +631,5 @@
   ],
   "last_run": "2026-08-12T13:32:47.687738",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 98432
+  "sermaye_mevcut": 97656
 }
