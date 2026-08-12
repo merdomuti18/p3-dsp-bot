@@ -5,8 +5,15 @@ tvDatafeed varsayılan login'i User-Agent göndermez; TradingView sıkça
 reddedip `error while signin` basar, client ise anonymous token ile devam eder.
 
 Öncelik:
-  1) TV_AUTH_TOKEN (tarayıcıdan kopyalanan auth_token) — CAPTCHA/rate-limit bypass
+  1) TV_AUTH_TOKEN (tarayıcıdan kopyalanan auth_token) — 2FA/CAPTCHA için şart
   2) TV_USERNAME + TV_PASSWORD ile signin (doğru UA + Referer)
+
+2FA açıksa password login `2FA_required` döner; CI için TV_AUTH_TOKEN kullanın:
+
+  1. Chrome'da tradingview.com'a giriş yapın (2FA dahil)
+  2. F12 → Elements/Search → "auth_token" (veya Network'te user payload)
+  3. Token'ı secret olarak koyun (sohbete yapıştırmayın):
+       gh secret set TV_AUTH_TOKEN -R merdomuti18/p3-dsp-bot
 """
 
 from __future__ import annotations
