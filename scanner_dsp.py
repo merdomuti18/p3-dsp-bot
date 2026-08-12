@@ -217,23 +217,21 @@ class RealDataAdapter:
         if self._tv_tried:
             return self._tv
         self._tv_tried = True
-        user = os.environ.get("TV_USERNAME") or os.environ.get("TRADINGVIEW_USERNAME")
-        pw = os.environ.get("TV_PASSWORD") or os.environ.get("TRADINGVIEW_PASSWORD")
-        if not user or not pw:
-            logger.info("TV credentials yok — RealDataAdapter yfinance kullanacak")
-            return None
         try:
-            from tvDatafeed import TvDatafeed
-
-            self._tv = TvDatafeed(username=user, password=pw)
-            # tvDatafeed signin failure leaves client usable as anonymous;
-            # probe with a tiny hist to confirm authenticated session.
+            from tv_auth import is_authenticated, make_tv_client
             from tvDatafeed import Interval
 
-            probe = self._tv.get_hist("ASELS", "BIST", interval=Interval.in_daily, n_bars=1)
+            client, diag = make_tv_client(require_auth=True)
+            if not is_authenticated(client):
+                raise RuntimeError(f"TV anonymous token: {diag}")
+            probe = client.get_hist("ASELS", "BIST", interval=Interval.in_daily, n_bars=1)
             if probe is None or getattr(probe, "empty", True):
                 raise RuntimeError("TV hist empty after login")
-            logger.info("TV oturumu açıldı (Essential)")
+            self._tv = client
+            logger.info(
+                "TV oturumu açıldı (Essential) source=%s",
+                diag.get("source"),
+            )
         except Exception as e:
             logger.warning(f"TV login başarısız, yfinance'e düşülecek: {e}")
             self._tv = None

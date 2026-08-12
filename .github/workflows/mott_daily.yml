@@ -36,6 +36,9 @@ env:
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
   TV_USERNAME: ${{ secrets.TV_USERNAME }}
   TV_PASSWORD: ${{ secrets.TV_PASSWORD }}
+  TV_AUTH_TOKEN: ${{ secrets.TV_AUTH_TOKEN }}
+  TV_SESSIONID: ${{ secrets.TV_SESSIONID }}
+  TV_SESSIONID_SIGN: ${{ secrets.TV_SESSIONID_SIGN }}
   DSP_USE_TV: "1"
 
 jobs:
