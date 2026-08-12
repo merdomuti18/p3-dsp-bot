@@ -1,0 +1,38 @@
+name: TV auth smoke
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Prove TV login + hist
+        env:
+          TV_USERNAME: ${{ secrets.TV_USERNAME }}
+          TV_PASSWORD: ${{ secrets.TV_PASSWORD }}
+        run: |
+          python - <<'PY'
+          import os
+          from tvDatafeed import TvDatafeed, Interval
+
+          u = os.environ.get("TV_USERNAME") or ""
+          p = os.environ.get("TV_PASSWORD") or ""
+          assert u and p, "TV_USERNAME/TV_PASSWORD secrets missing"
+          print(f"secrets_present user_len={len(u)} pass_len={len(p)}")
+
+          tv = TvDatafeed(username=u, password=p)
+          df = tv.get_hist("ASELS", "BIST", interval=Interval.in_daily, n_bars=5)
+          assert df is not None and len(df) > 0, "empty hist"
+          print(f"OK bars={len(df)} last_close={float(df['close'].iloc[-1]):.4f}")
+          print(df.tail(2).to_string())
+          PY

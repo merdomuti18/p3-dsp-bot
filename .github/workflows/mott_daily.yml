@@ -90,7 +90,8 @@ jobs:
         run: python simulate_dsp.py
         env:
           MOTT_MODE: aksam
-          DSP_USE_TV: ${{ secrets.DSP_USE_TV || '0' }}
+          # workflow-level DSP_USE_TV=1; do not override with missing secret → 0
+          DSP_USE_TV: "1"
       - name: Eski raporları temizle (30 gün sakla)
         run: |
           if [ -d reports/history ]; then
