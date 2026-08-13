@@ -16,7 +16,7 @@
     "DOFER": {
       "giris_f": 29.1,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 30.299999237060547,
+      "tepe_f": 30.719999313354492,
       "lotlar": 218,
       "gun": 0,
       "tp1_yapildi": false,
@@ -29,7 +29,7 @@
     "INTEM": {
       "giris_f": 253.25,
       "giris_t": "11.08.2026 08:10",
-      "tepe_f": 258.75,
+      "tepe_f": 260.0,
       "lotlar": 76,
       "gun": 0,
       "tp1_yapildi": false,
@@ -84,10 +84,10 @@
     "HOROZ": {
       "giris_f": 59.25,
       "giris_t": "12.08.2026 13:12",
-      "tepe_f": 59.25,
-      "lotlar": 106,
+      "tepe_f": 65.9000015258789,
+      "lotlar": 53,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "smc_score": 8.0,
       "teyit_skoru": 0,
       "signals": [
@@ -95,7 +95,7 @@
       ]
     }
   },
-  "nakit": 6.057701263427589,
+  "nakit": 3429.8576203918456,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -107,7 +107,7 @@
         "Bullish MACD Cross",
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -121,7 +121,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -135,7 +135,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -150,7 +150,7 @@
         "Bullish MACD Cross",
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -165,7 +165,7 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -180,7 +180,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -195,7 +195,7 @@
         "Bullish OB",
         "Bearish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -210,7 +210,7 @@
         "Bearish MACD Cross",
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -225,7 +225,7 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -240,7 +240,7 @@
         "Bullish MACD Cross",
         "Bearish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -254,7 +254,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -268,7 +268,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -282,7 +282,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -296,7 +296,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -310,7 +310,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -324,7 +324,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -338,7 +338,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -352,7 +352,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -366,7 +366,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -380,7 +380,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -394,7 +394,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -409,7 +409,7 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "12.08.2026 20:06",
       "attempt_count": 0,
@@ -417,7 +417,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "12.08.2026 13:12",
+  "last_hourly_check_time": "13.08.2026 11:48",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -550,6 +550,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-08-03",
       "cikis_tarih": "2026-08-12"
+    },
+    {
+      "symbol": "HOROZ",
+      "giris_fiyat": 59.25,
+      "cikis_fiyat": 64.6,
+      "lotlar": 53,
+      "pnl_pct": 9.03,
+      "gun": 1,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-12",
+      "cikis_tarih": "2026-08-13"
     }
   ]
 }
