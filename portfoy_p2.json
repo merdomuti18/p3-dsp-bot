@@ -16,10 +16,10 @@
     "DOFER": {
       "giris_f": 29.1,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 30.579999923706055,
-      "lotlar": 218,
+      "tepe_f": 31.84000015258789,
+      "lotlar": 109,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "smc_score": 6.5,
       "teyit_skoru": 0,
       "signals": [
@@ -29,7 +29,7 @@
     "INTEM": {
       "giris_f": 253.25,
       "giris_t": "11.08.2026 08:10",
-      "tepe_f": 262.0,
+      "tepe_f": 264.0,
       "lotlar": 76,
       "gun": 0,
       "tp1_yapildi": false,
@@ -95,7 +95,7 @@
       ]
     }
   },
-  "nakit": 3406.0077821350096,
+  "nakit": 6774.107740554809,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -643,7 +643,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "17.08.2026 07:54",
+  "last_hourly_check_time": "17.08.2026 09:43",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -787,6 +787,17 @@
       "neden": "TP1",
       "giris_tarih": "2026-08-12",
       "cikis_tarih": "2026-08-13"
+    },
+    {
+      "symbol": "DOFER",
+      "giris_fiyat": 29.1,
+      "cikis_fiyat": 30.9,
+      "lotlar": 109,
+      "pnl_pct": 6.19,
+      "gun": 7,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-17"
     }
   ]
 }
