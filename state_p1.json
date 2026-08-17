@@ -1,302 +1,270 @@
 {
   "tarama": {
-    "scan_time": "14.08.2026 20:02",
+    "scan_time": "17.08.2026 19:38",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
-        "symbol": "GRSEL",
-        "scan_time": "14.08.2026 20:02",
+        "symbol": "KRDMD",
+        "scan_time": "17.08.2026 19:38",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GT",
-          "ZKN"
+          "ALPHA",
+          "MR",
+          "KBM"
         ],
-        "score_count": 2,
-        "rsi": 53.31,
-        "rel_vol": 1.09,
-        "change_pct": -0.64,
-        "close": 348.0,
-        "adx": 45.36,
-        "cmf": 0.1729,
-        "alpha_bull": false,
+        "score_count": 4,
+        "rsi": 61.52,
+        "rel_vol": 2.2,
+        "change_pct": 9.98,
+        "close": 45.62,
+        "adx": 23.41,
+        "cmf": 0.0128,
+        "alpha_bull": true,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "BRSAN",
-        "scan_time": "14.08.2026 20:02",
+        "symbol": "ARDYZ",
+        "scan_time": "17.08.2026 19:38",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GTD",
           "MR"
         ],
         "score_count": 2,
-        "rsi": 71.36,
-        "rel_vol": 2.55,
-        "change_pct": 5.57,
-        "close": 663.0,
-        "adx": 36.34,
-        "cmf": 0.2218,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "AYGAZ",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GTD",
-          "MR"
-        ],
-        "score_count": 2,
-        "rsi": 68.26,
-        "rel_vol": 1.27,
-        "change_pct": 7.12,
-        "close": 312.0,
-        "adx": 33.23,
-        "cmf": 0.1428,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "ORGE",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ALPHA"
-        ],
-        "score_count": 1,
-        "rsi": 50.27,
-        "rel_vol": 1.81,
-        "change_pct": 9.93,
-        "close": 110.7,
-        "adx": 24.5,
-        "cmf": -0.047,
-        "alpha_bull": true,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "CELHA",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 56.47,
-        "rel_vol": 1.45,
-        "change_pct": 4.94,
-        "close": 24.66,
-        "adx": 19.86,
-        "cmf": -0.0978,
-        "alpha_bull": true,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "RALYH",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 52.52,
-        "rel_vol": 0.92,
-        "change_pct": 6.8,
-        "close": 267.0,
-        "adx": 16.62,
-        "cmf": -0.0206,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "KCAER",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 52.51,
-        "rel_vol": 0.99,
-        "change_pct": 1.14,
-        "close": 15.99,
-        "adx": 32.1,
-        "cmf": 0.0075,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "EFOR",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 48.02,
-        "rel_vol": 1.11,
-        "change_pct": -9.99,
-        "close": 18.74,
-        "adx": 31.87,
-        "cmf": 0.0287,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
-      },
-      {
-        "symbol": "KRDMD",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 46.48,
-        "rel_vol": 0.92,
-        "change_pct": -0.67,
-        "close": 41.48,
-        "adx": 20.1,
-        "cmf": -0.0786,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
-      },
-      {
-        "symbol": "TRMET",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
-        ],
-        "score_count": 1,
-        "rsi": 43.0,
-        "rel_vol": 1.3,
-        "change_pct": -3.95,
-        "close": 126.6,
-        "adx": 25.59,
-        "cmf": 0.0131,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
-      },
-      {
-        "symbol": "TKFEN",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "MR"
-        ],
-        "score_count": 1,
-        "rsi": 87.72,
-        "rel_vol": 1.58,
-        "change_pct": 2.16,
-        "close": 236.0,
-        "adx": 73.21,
-        "cmf": 0.3121,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "TUPRS",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "MR"
-        ],
-        "score_count": 1,
-        "rsi": 79.83,
-        "rel_vol": 1.13,
-        "change_pct": 4.55,
-        "close": 361.75,
-        "adx": 42.63,
-        "cmf": 0.1749,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "KRGYO",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "MR"
-        ],
-        "score_count": 1,
-        "rsi": 75.32,
-        "rel_vol": 3.06,
+        "rsi": 77.48,
+        "rel_vol": 3.46,
         "change_pct": 9.96,
-        "close": 2.87,
-        "adx": 42.74,
-        "cmf": 0.3902,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "KORDS",
-        "scan_time": "14.08.2026 20:02",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "MR"
-        ],
-        "score_count": 1,
-        "rsi": 71.2,
-        "rel_vol": 2.06,
-        "change_pct": 9.95,
-        "close": 91.75,
-        "adx": 26.94,
-        "cmf": -0.0356,
+        "close": 91.6,
+        "adx": 54.09,
+        "cmf": 0.1904,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
         "symbol": "KGYO",
-        "scan_time": "14.08.2026 20:02",
+        "scan_time": "17.08.2026 19:38",
         "scan_label": "20:50 Kapanış",
         "strategies": [
+          "GTD",
           "MR"
         ],
-        "score_count": 1,
-        "rsi": 69.7,
-        "rel_vol": 2.27,
-        "change_pct": 2.02,
-        "close": 12.65,
-        "adx": 26.53,
-        "cmf": 0.3336,
+        "score_count": 2,
+        "rsi": 77.24,
+        "rel_vol": 2.81,
+        "change_pct": 7.91,
+        "close": 13.65,
+        "adx": 27.71,
+        "cmf": 0.3421,
         "alpha_bull": false,
         "alpha_trend_bull": true
       },
       {
-        "symbol": "KCHOL",
-        "scan_time": "14.08.2026 20:02",
+        "symbol": "GUBRF",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ALPHA"
+        ],
+        "score_count": 1,
+        "rsi": 57.86,
+        "rel_vol": 1.44,
+        "change_pct": 6.2,
+        "close": 445.25,
+        "adx": 21.87,
+        "cmf": 0.1041,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "GRSEL",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 49.24,
+        "rel_vol": 0.89,
+        "change_pct": -1.44,
+        "close": 343.0,
+        "adx": 43.7,
+        "cmf": 0.1756,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "BIMAS",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 49.0,
+        "rel_vol": 0.97,
+        "change_pct": 1.93,
+        "close": 382.0,
+        "adx": 13.73,
+        "cmf": -0.0718,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "EFOR",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 45.89,
+        "rel_vol": 0.84,
+        "change_pct": -2.88,
+        "close": 18.2,
+        "adx": 29.79,
+        "cmf": 0.0344,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "TRMET",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZKN"
+        ],
+        "score_count": 1,
+        "rsi": 44.49,
+        "rel_vol": 1.12,
+        "change_pct": 1.18,
+        "close": 128.1,
+        "adx": 25.04,
+        "cmf": 0.016,
+        "alpha_bull": false,
+        "alpha_trend_bull": false
+      },
+      {
+        "symbol": "NETAS",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "ZT3",
+          "MR"
+        ],
+        "score_count": 2,
+        "rsi": 58.12,
+        "rel_vol": 1.54,
+        "change_pct": 9.98,
+        "close": 68.3,
+        "adx": 26.77,
+        "cmf": -0.1855,
+        "alpha_bull": true,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "CATES",
+        "scan_time": "17.08.2026 19:38",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "MR"
         ],
         "score_count": 1,
-        "rsi": 59.33,
-        "rel_vol": 1.13,
-        "change_pct": 2.37,
-        "close": 207.2,
-        "adx": 18.75,
-        "cmf": 0.0439,
+        "rsi": 83.27,
+        "rel_vol": 1.37,
+        "change_pct": 4.43,
+        "close": 54.25,
+        "adx": 43.22,
+        "cmf": -0.1108,
         "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KRGYO",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 75.95,
+        "rel_vol": 2.26,
+        "change_pct": 0.7,
+        "close": 2.89,
+        "adx": 43.81,
+        "cmf": 0.3719,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KORDS",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 72.96,
+        "rel_vol": 3.18,
+        "change_pct": 3.38,
+        "close": 94.85,
+        "adx": 30.11,
+        "cmf": -0.0419,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "GLYHO",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "MR"
+        ],
+        "score_count": 1,
+        "rsi": 64.31,
+        "rel_vol": 1.27,
+        "change_pct": 2.28,
+        "close": 17.52,
+        "adx": 25.32,
+        "cmf": -0.0181,
+        "alpha_bull": false,
+        "alpha_trend_bull": true
+      },
+      {
+        "symbol": "KRDMA",
+        "scan_time": "17.08.2026 19:38",
+        "scan_label": "20:50 Kapanış",
+        "strategies": [
+          "MR",
+          "KBM"
+        ],
+        "score_count": 2,
+        "rsi": 57.95,
+        "rel_vol": 1.58,
+        "change_pct": 10.0,
+        "close": 46.44,
+        "adx": 16.38,
+        "cmf": 0.1299,
+        "alpha_bull": true,
         "alpha_trend_bull": true
       }
     ],
     "semboller": [
-      "GRSEL",
-      "BRSAN",
-      "AYGAZ",
-      "ORGE",
-      "CELHA",
-      "RALYH",
-      "KCAER",
-      "EFOR",
       "KRDMD",
+      "ARDYZ",
+      "KGYO",
+      "GUBRF",
+      "GRSEL",
+      "BIMAS",
+      "EFOR",
       "TRMET",
-      "TKFEN",
-      "TUPRS",
+      "NETAS",
+      "CATES",
       "KRGYO",
       "KORDS",
-      "KGYO",
-      "KCHOL"
+      "GLYHO",
+      "KRDMA"
     ]
   },
-  "last_scan": "14.08.2026 20:02"
+  "last_scan": "17.08.2026 19:38"
 }
