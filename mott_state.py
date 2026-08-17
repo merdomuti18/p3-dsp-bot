@@ -25,8 +25,20 @@ Ortak şema:
          "giris_tarih", "cikis_tarih"}
       ],
       "nakit": float | None,
-      "equity": float | None,   # P4/P5: sermaye_mevcut (equity tahmini); P1/P2/P3: None
+      "equity": float | None,   # P4/P5: sermaye_mevcut; P1/P2/P3: None
+      "baslangic_sermayesi": 100_000,  # paper modeli — 5 portföyde de 100.000 TL
+      "realized_pnl": float,           # Σ(pnl_pct × POS_TL/100) — deterministik
+      "unrealized_pnl": float | None,  # P4/P5: state pozisyon pnl'lerinden;
+                                        # P1/P2/P3: None (açık pozisyon fiyatı state'te yok)
     }
+
+Paper equity modeli (FAZ 3.2):
+  * POS_TL = 20_000 (POS_SIZE_PCT %20 × 100_000 başlangıç) — canonical sabit.
+  * P1/P2/P3 equity=None "sermaye yok" DEĞİLDİR; anlamı "current equity
+    deterministik state'ten hesaplanamıyor; canlı fiyat enrichment'ı gerekir".
+    Baslangic_sermayesi + realized_pnl bunun yanında açıkça taşınır.
+  * normalize() ASLA canlı fiyat / yfinance / network kullanmaz — deterministik.
+    Canlı fiyat enrichment yalnız raporlama katmanında yapılır.
 """
 
 from __future__ import annotations
@@ -40,6 +52,11 @@ from pathlib import Path
 from mott_risk import _KITAP_DOSYALARI
 
 BASE = Path(os.environ.get("MOTT_BASE_DIR", "."))
+
+# Paper modeli canonical sabiti: POS_SIZE_PCT %20 × 100_000 başlangıç sermayesi.
+# (FAZ 3.2: ayrı single-source refactor YOK — mevcut POS_SIZE_PCT/SERMAYE ile uyumlu.)
+POS_TL = 20_000
+BASLANGIC_SERMAYESI = 100_000
 
 DOSYALAR = {kod: dosya for kod, (dosya, _poz_anahtari) in _KITAP_DOSYALARI.items()}
 
@@ -106,8 +123,11 @@ def _p1_p2(kod: str) -> dict:
         "dosya": DOSYALAR[kod],
         "pozisyonlar": pozlar,
         "islem_gecmisi": gecmis,
-        "nakit": _sayi(d.get("nakit")),  # gerçek nakit (P1/P2)
-        "equity": None,                   # P1/P2 için equity hesabı yok
+        "nakit": _sayi(d.get("nakit")),  # gerçek nakit (P1/P2) — mevcut davranış korunur
+        "equity": None,                   # current equity: state'ten hesaplanamaz (enrichment)
+        "baslangic_sermayesi": BASLANGIC_SERMAYESI,
+        "realized_pnl": round(sum((t["pnl_pct"] or 0) * POS_TL / 100 for t in gecmis), 2),
+        "unrealized_pnl": None,           # açık pozisyon fiyatı state'te yok
     }
 
 
@@ -147,8 +167,11 @@ def _p3() -> dict:
         "dosya": DOSYALAR["P3"],
         "pozisyonlar": pozlar,
         "islem_gecmisi": gecmis,
-        "nakit": None,   # P3'te nakit/equity izlenmiyor
-        "equity": None,
+        "nakit": None,   # P3'te nakit izlenmiyor
+        "equity": None,  # current equity: canlı fiyat enrichment'ı gerekir (None ≠ sermaye yok)
+        "baslangic_sermayesi": BASLANGIC_SERMAYESI,
+        "realized_pnl": round(sum(t["pnl_pct"] * POS_TL / 100 for t in gecmis), 2),
+        "unrealized_pnl": None,  # açık pozisyon fiyatı state'te yok
     }
 
 
@@ -182,8 +205,12 @@ def _p4_p5(kod: str) -> dict:
         "islem_gecmisi": gecmis,
         # Mevcut davranış korunuyor: nakit hâlâ sermaye_mevcut taşıyor (karar yok).
         "nakit": _sayi(d.get("sermaye_mevcut")),
-        # FAZ 3.1: equity semantiği — sermaye_mevcut bir equity tahminidir.
+        # FAZ 3.1/3.2: equity = sermaye_mevcut — mevcut sözleşme KORUNUR.
         "equity": _sayi(d.get("sermaye_mevcut")),
+        "baslangic_sermayesi": BASLANGIC_SERMAYESI,
+        "realized_pnl": round(sum((t["pnl_pct"] or 0) * POS_TL / 100 for t in gecmis), 2),
+        # State pozisyon pnl'lerinden deterministik (canlı fiyat gerekmez).
+        "unrealized_pnl": round(sum((p["pnl_pct"] or 0) * POS_TL / 100 for p in pozlar), 2),
     }
 
 

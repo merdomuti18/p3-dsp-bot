@@ -59,7 +59,7 @@ PRODUCTION_SHA256 = {
     "scanner_dsp.py": "311ae33ae94a675dfe87c2a19b8f6e8ed6ab78b658bc616314331492b0d14ef6",
     "simulate_dsp.py": "8739aa36da43adc3159bf50a037d953f8fb7fbcdcbfa650367e1798f4251e372",
     "meta_portfolio.py": "8f42f8fdfaf2b8802cb2409878bfcf7d718eae9365fec96106c72c569a816446",
-    "mott_state.py": "6ba583bccd17bc7d5b2c427e8832bd99c645eaaa4e5bbf70d39343d511ba4668",
+    "mott_state.py": "4a96ef715b9fd7caf72408505005702cba503340207f9b81efef8fd4bc8bb737",
     "mott_risk.py": "de5decc19316d80d1e524df708b60e0f2235a1c642b23947dd9efb1068fd546c",
     "mott_telegram.py": "53fab3e86fb9ed5f012f12c9abcf0d9ee5e42266424b6b75bff687e557a2b935",
     "mott_fiyat.py": "4016830abdb040c1d83115583c6c9a1b42683a771303343e1951196970bf685e",
@@ -80,10 +80,10 @@ REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a
 # beklenen değerleridir.
 # ---------------------------------------------------------------------------
 ARTEFAKT_SHA256 = {
-    "manifest.json": "f4f50bbf8beb5a40da7f99ca95e132beb4ada65e41e2316466ccb1dd78951975",
+    "manifest.json": "170f4208d694c6a16e67ac0e283a0e3b9453d11bc916df5f5cfe5f885672ccf9",
     "p4_ic_baseline.txt": "512e6d741ea250b9fec2d4bcbc8fc19480e8947bddff486b0d831f44bf7578e9",
     "state_sha256.txt": "82c8c4771463ba75bfe13b749cbf380ffef23ae4bf77c17740d2c8c2348f0098",
-    "mott_state_normalize_output.txt": "ed252d0cbea8430c6b9b17725b5293342737e0bf73dbfcf8dec9ab95aae2c755",
+    "mott_state_normalize_output.txt": "1b898e9aa36404c64724e95bc9e6c04a2731422056801c6de2022b6487f4b693",
     "mott_performans_analiz_output.txt": "5d41c287ab4c22fc849d06b7ddf9bdb675b8beba38ca10cf2881c8cae9cf51a0",
     "mott_aylik_rapor_output.txt": "7f95555439cf128bad8486c896cf39da953efbc19c112f35e826ce257b365f34",
 }

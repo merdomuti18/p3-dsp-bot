@@ -18,7 +18,10 @@ from mott_state import (
     normalize,
 )
 
-_ORTAK_ANAHTARLAR = {"strateji", "dosya", "pozisyonlar", "islem_gecmisi", "nakit", "equity"}
+_ORTAK_ANAHTARLAR = {
+    "strateji", "dosya", "pozisyonlar", "islem_gecmisi", "nakit", "equity",
+    "baslangic_sermayesi", "realized_pnl", "unrealized_pnl",
+}
 _POZ_ANAHTARLAR = {"symbol", "giris_fiyat", "guncel_fiyat", "pnl_pct", "giris_tarih", "lot"}
 
 
