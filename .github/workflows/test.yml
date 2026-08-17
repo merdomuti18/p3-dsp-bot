@@ -1,0 +1,46 @@
+# DSP-P3 FAZ 2 — Test Gate (pytest)
+# =================================
+# Amaç: unit / contract / golden / integrity / smoke testlerini CI'da çalıştırır.
+#   * Test execution sırasında NETWORK = OFF (tests/conftest.py socket engeli).
+#   * Production 17/17 + state 9/9 immutability, tests/baseline_constants.py
+#     içindeki FAZ 0 sertifikalı frozen hash sabitlerine karşı doğrulanır
+#     (dsp-p3-baseline/ repo dışındadır; CI'a kopyalanmaz).
+#   * Herhangi bir test FAIL olursa workflow FAIL olur (merge engeli).
+# NOT: Bu workflow production workflow'larına (mott_daily.yml vb.) DOKUNMAZ.
+
+name: test-gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: pytest (unit / contract / golden / integrity / smoke)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies (requirements + pytest)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run test harness (NETWORK=OFF, immutability gates)
+        run: pytest -v
+        env:
+          PYTHONIOENCODING: utf-8
