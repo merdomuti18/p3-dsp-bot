@@ -6,19 +6,19 @@ DSP-P3 FAZ 1/2 — Production bütünlük testleri
 
 FAZ 2 (CI-güvenli): hash doğrulaması, baseline dizini (repo dışı) olmadan da
 çalışır — beklenen değerler baseline_constants.py içine gömülüdür.
-HEAD sabitlemesi yalnızca yerel FAZ 0 ortamında anlamlıdır (CI'da HEAD,
-test edilen commit'tir); baseline yoksa açık nedenle skip edilir.
 
-SADECE okuma (subprocess: yalnızca salt-okunur `git rev-parse HEAD`).
+FAZ 3.1: HEAD kontrolü SHA eşitliği yerine SÜRDÜRÜLEBİLİR invariant kullanır:
+FAZ 0 baseline commit'i, mevcut HEAD'in ancestor'ı olmalıdır (baseline
+korunmuştur, HEAD onun üzerine inşa edilmiştir). Yerelde ve CI'da çalışır.
+
+SADECE okuma (subprocess: salt-okunur `git merge-base --is-ancestor`).
 """
 
 from __future__ import annotations
 
 import subprocess
 
-import pytest
-
-from conftest import BASELINE_AVAILABLE, REPO_ROOT, sha256_of  # type: ignore
+from conftest import REPO_ROOT, sha256_of  # type: ignore
 from baseline_constants import (
     HEAD_AT_FAZ0,
     KRITIK_MODULLER,
@@ -36,22 +36,21 @@ def test_17_modul_hash_frozen_sabitlerle_eslesir():
         assert gercek == beklenen, f"{fname}: frozen {beklenen} != disk {gercek}"
 
 
-def test_head_commit_degismedi():
-    """Yerel (baseline mevcut) ortamda HEAD, FAZ 0 commit'ine sabitlenir."""
-    if not BASELINE_AVAILABLE:
-        pytest.skip(
-            "dsp-p3-baseline CI'da yok: HEAD sabitlemesi yalnızca FAZ 0 yerel "
-            "ortamında anlamlıdır; CI'da production/state frozen hash kapıları "
-            "çalışır (test_17_modul_hash... / test_state_hashleri_9_9_eslesir)."
-        )
+def test_head_faz0_baseline_commitini_iceriyor():
+    """Sürdürülebilir invariant: FAZ 0 baseline commit'i mevcut HEAD'in
+    ancestor'ı olmalıdır (SHA eşitliği değil — her yeni commit'te geçerli).
+    Production/state bütünlüğü, commit SHA'sından bağımsız olarak frozen
+    hash testleriyle (17/17, 9/9) doğrulanır."""
     cikti = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
+        ["git", "merge-base", "--is-ancestor", HEAD_AT_FAZ0, "HEAD"],
         cwd=str(REPO_ROOT),
         capture_output=True,
         text=True,
     )
-    assert cikti.returncode == 0, cikti.stderr
-    assert cikti.stdout.strip() == HEAD_AT_FAZ0
+    assert cikti.returncode == 0, (
+        f"FAZ 0 baseline commit'i ({HEAD_AT_FAZ0}) mevcut HEAD'in ancestor'ı "
+        f"değil! {cikti.stderr}"
+    )
 
 
 def test_workflowlar_yerinde():

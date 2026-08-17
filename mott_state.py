@@ -25,6 +25,7 @@ Ortak şema:
          "giris_tarih", "cikis_tarih"}
       ],
       "nakit": float | None,
+      "equity": float | None,   # P4/P5: sermaye_mevcut (equity tahmini); P1/P2/P3: None
     }
 """
 
@@ -34,15 +35,13 @@ import json
 import os
 from pathlib import Path
 
+# Tek kaynak: mott_risk._KITAP_DOSYALARI (tüm kitapların dosya haritası).
+# DOSYALAR yalnızca dosya adlarını taşır; pozisyon anahtarı bilgisi mott_risk'te.
+from mott_risk import _KITAP_DOSYALARI
+
 BASE = Path(os.environ.get("MOTT_BASE_DIR", "."))
 
-DOSYALAR = {
-    "P1": "portfoy.json",
-    "P2": "portfoy_p2.json",
-    "P3": "portfolio_state.json",
-    "P4": "state_p4.json",
-    "P5": "state_p5.json",
-}
+DOSYALAR = {kod: dosya for kod, (dosya, _poz_anahtari) in _KITAP_DOSYALARI.items()}
 
 
 def _yukle(fname: str) -> dict:
@@ -107,7 +106,8 @@ def _p1_p2(kod: str) -> dict:
         "dosya": DOSYALAR[kod],
         "pozisyonlar": pozlar,
         "islem_gecmisi": gecmis,
-        "nakit": _sayi(d.get("nakit")),
+        "nakit": _sayi(d.get("nakit")),  # gerçek nakit (P1/P2)
+        "equity": None,                   # P1/P2 için equity hesabı yok
     }
 
 
@@ -147,7 +147,8 @@ def _p3() -> dict:
         "dosya": DOSYALAR["P3"],
         "pozisyonlar": pozlar,
         "islem_gecmisi": gecmis,
-        "nakit": None,
+        "nakit": None,   # P3'te nakit/equity izlenmiyor
+        "equity": None,
     }
 
 
@@ -179,7 +180,10 @@ def _p4_p5(kod: str) -> dict:
         "dosya": DOSYALAR[kod],
         "pozisyonlar": pozlar,
         "islem_gecmisi": gecmis,
+        # Mevcut davranış korunuyor: nakit hâlâ sermaye_mevcut taşıyor (karar yok).
         "nakit": _sayi(d.get("sermaye_mevcut")),
+        # FAZ 3.1: equity semantiği — sermaye_mevcut bir equity tahminidir.
+        "equity": _sayi(d.get("sermaye_mevcut")),
     }
 
 
