@@ -1,26 +1,11 @@
 {
   "pozisyonlar": {
-    "KGYO": {
-      "symbol": "KGYO",
-      "giris_fiyat": 12.4,
-      "guncel_fiyat": 13.55,
-      "lotlar": 1612,
-      "pnl_pct": 9.27,
-      "gun": 4,
-      "giris_tarih": "2026-08-13",
-      "komite_skor": 75,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "strateji": "P5"
-    },
     "ASTOR": {
       "symbol": "ASTOR",
       "giris_fiyat": 345.5,
-      "guncel_fiyat": 337.5,
+      "guncel_fiyat": 339.5,
       "lotlar": 57,
-      "pnl_pct": -2.32,
+      "pnl_pct": -1.74,
       "gun": 4,
       "giris_tarih": "2026-08-13",
       "komite_skor": 60,
@@ -136,6 +121,17 @@
       "giris_fiyat": 50.05,
       "cikis_fiyat": 55.6,
       "pnl_pct": 11.09,
+      "gun": 4,
+      "neden": "TP",
+      "giris_tarih": "2026-08-13",
+      "cikis_tarih": "2026-08-17",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "KGYO",
+      "giris_fiyat": 12.4,
+      "cikis_fiyat": 13.77,
+      "pnl_pct": 11.05,
       "gun": 4,
       "neden": "TP",
       "giris_tarih": "2026-08-13",
@@ -623,5 +619,5 @@
   ],
   "last_run": "2026-08-13T16:07:00.006436",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 101900
+  "sermaye_mevcut": 102372
 }
