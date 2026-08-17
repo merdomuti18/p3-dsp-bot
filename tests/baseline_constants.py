@@ -59,13 +59,13 @@ PRODUCTION_SHA256 = {
     "scanner_dsp.py": "311ae33ae94a675dfe87c2a19b8f6e8ed6ab78b658bc616314331492b0d14ef6",
     "simulate_dsp.py": "8739aa36da43adc3159bf50a037d953f8fb7fbcdcbfa650367e1798f4251e372",
     "meta_portfolio.py": "8f42f8fdfaf2b8802cb2409878bfcf7d718eae9365fec96106c72c569a816446",
-    "mott_state.py": "4a96ef715b9fd7caf72408505005702cba503340207f9b81efef8fd4bc8bb737",
+    "mott_state.py": "078398246937a464d4aac33ea566b379c5482fea1335b33ae3ab26662b1e1756",
     "mott_risk.py": "de5decc19316d80d1e524df708b60e0f2235a1c642b23947dd9efb1068fd546c",
     "mott_telegram.py": "53fab3e86fb9ed5f012f12c9abcf0d9ee5e42266424b6b75bff687e557a2b935",
     "mott_fiyat.py": "4016830abdb040c1d83115583c6c9a1b42683a771303343e1951196970bf685e",
     "mott_portfoy_deger.py": "818f19c582123d5816918f8cfd7f47380f05ccc0c96bf9eb76c091c056fce4e4",
     "mott_performans_analiz.py": "0268b9ac8bb70b5a7029b2308e5b58c01bb134102a0c84653ab986fe64251752",
-    "mott_aylik_rapor.py": "abe7237612dc910ba16430184dead43f2b585dd6543b03bc0bf4bc071dffdf9e",
+    "mott_aylik_rapor.py": "6793f0dbb2138fe5fd5eba831bc7460c550a04d7f8a109557d5dd5574993d12e",
     "p5_committee.py": "5b0bef77b3873f86e0a5a338199a2aec50c0cac9e30011c7c29b8fde88a894eb",
     "portfoy_yonetici.py": "f64d59ba43b02adc3ae57ba6f70e8b7fe6ab1e5d62c3ec95af7bbd523f4f84e4",
     "scanner_p1.py": "59b8a427bb77b2d17468df4bb0c4e2c2027248d78e51c442fab2d2ffeace035d",
@@ -80,10 +80,10 @@ REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a
 # beklenen değerleridir.
 # ---------------------------------------------------------------------------
 ARTEFAKT_SHA256 = {
-    "manifest.json": "170f4208d694c6a16e67ac0e283a0e3b9453d11bc916df5f5cfe5f885672ccf9",
+    "manifest.json": "7be9fe8408546fb5e205d9bd257efde4a6fb72ad1688cd82c13999973c7fbfbe",
     "p4_ic_baseline.txt": "512e6d741ea250b9fec2d4bcbc8fc19480e8947bddff486b0d831f44bf7578e9",
     "state_sha256.txt": "82c8c4771463ba75bfe13b749cbf380ffef23ae4bf77c17740d2c8c2348f0098",
-    "mott_state_normalize_output.txt": "1b898e9aa36404c64724e95bc9e6c04a2731422056801c6de2022b6487f4b693",
+    "mott_state_normalize_output.txt": "d7a85409f8bb96e4d61324e0ce730a2d0d945d8f6988778ef3abdbc655ab5dc4",
     "mott_performans_analiz_output.txt": "5d41c287ab4c22fc849d06b7ddf9bdb675b8beba38ca10cf2881c8cae9cf51a0",
     "mott_aylik_rapor_output.txt": "7f95555439cf128bad8486c896cf39da953efbc19c112f35e826ce257b365f34",
 }

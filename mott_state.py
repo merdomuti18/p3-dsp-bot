@@ -108,7 +108,10 @@ def _p1_p2(kod: str) -> dict:
             "lot": p.get("lotlar"),
         })
     gecmis = []
-    for t in d.get("islem_gecmisi", []):
+    # FAZ 3.2 T10 (onaylı contract evolution): P1/P2 üreticileri (portfoy_yonetici)
+    # geçmişi `trade_history` anahtarında yazar. `islem_gecmisi` anahtarıyla birlikte
+    # tolere eden fallback — yalnız container anahtar adı; alan eşlemesi değişmez.
+    for t in d.get("trade_history", d.get("islem_gecmisi", [])):
         gecmis.append({
             "symbol": t.get("symbol", t.get("sym", "")),
             "giris_fiyat": _sayi(t.get("giris_f", t.get("giris_fiyat"))),
