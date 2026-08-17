@@ -29,7 +29,7 @@
     "INTEM": {
       "giris_f": 253.25,
       "giris_t": "11.08.2026 08:10",
-      "tepe_f": 264.0,
+      "tepe_f": 264.5,
       "lotlar": 76,
       "gun": 0,
       "tp1_yapildi": false,
@@ -643,7 +643,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "17.08.2026 09:43",
+  "last_hourly_check_time": "17.08.2026 12:46",
   "trade_history": [
     {
       "symbol": "BFREN",
