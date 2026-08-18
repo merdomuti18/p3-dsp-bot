@@ -45,27 +45,6 @@
         "alpha_trend_bonus": 4
       }
     },
-    "ASTOR": {
-      "giris_f": 343.0,
-      "giris_t": "13.08.2026 10:08",
-      "tepe_f": 347.0,
-      "lotlar": 58,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 39,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "ALPHA",
-          "MR"
-        ],
-        "viop_bias": "Long bias güçlü",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "TRMET": {
       "giris_f": 124.8,
       "giris_t": "14.08.2026 11:44",
@@ -153,7 +132,7 @@
       }
     }
   },
-  "nakit": 2987.6052709655564,
+  "nakit": 21886.90527096556,
   "baslangic": 100000,
   "bekleyen_al": [],
   "open_attempts_today": [
@@ -176,7 +155,7 @@
     "failed_reasons": [],
     "time": "18.08.2026 07:39"
   },
-  "last_hourly_check_time": "18.08.2026 09:35",
+  "last_hourly_check_time": "18.08.2026 10:30",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -287,6 +266,17 @@
       "neden": "TP1",
       "giris_tarih": "2026-08-10",
       "cikis_tarih": "2026-08-17"
+    },
+    {
+      "symbol": "ASTOR",
+      "giris_fiyat": 343.0,
+      "cikis_fiyat": 325.85,
+      "lotlar": 58,
+      "pnl_pct": -5.0,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-13",
+      "cikis_tarih": "2026-08-18"
     }
   ]
 }
