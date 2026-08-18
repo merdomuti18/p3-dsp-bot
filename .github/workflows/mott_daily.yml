@@ -110,7 +110,7 @@ jobs:
             git fetch origin main || true
             git checkout origin/main -- $KORUMA 2>/dev/null || true
             git restore --staged $KORUMA 2>/dev/null || true
-            git add reports/ portfolio_state.json
+            git add reports/ portfolio_state.json scan_history_p3.jsonl
             if git diff --cached --quiet; then echo "Degisiklik yok."; break; fi
             git commit -m "P3-DSP: $(date +'%Y-%m-%d %H:%M')" || true
             if git push origin HEAD:main; then echo "Push basarili (deneme $i)."; break; fi
@@ -177,7 +177,7 @@ jobs:
         run: |
           git config user.name "MOTT Bot"
           git config user.email "bot@mott"
-          FILES="state_p1.json tarama_listesi.json portfoy.json"
+          FILES="state_p1.json tarama_listesi.json portfoy.json scan_history_p1.jsonl"
           KORUMA="state_p2.json tarama_listesi_p2.json portfoy_p2.json portfolio_state.json state_p4.json state_p5.json"
           for i in 1 2 3 4 5; do
             git fetch origin main || true
@@ -238,7 +238,7 @@ jobs:
         run: |
           git config user.name "MOTT Bot"
           git config user.email "bot@mott"
-          FILES="state_p2.json tarama_listesi_p2.json portfoy_p2.json"
+          FILES="state_p2.json tarama_listesi_p2.json portfoy_p2.json scan_smc_history.jsonl"
           KORUMA="state_p1.json tarama_listesi.json portfoy.json portfolio_state.json state_p4.json state_p5.json"
           for i in 1 2 3 4 5; do
             git fetch origin main || true

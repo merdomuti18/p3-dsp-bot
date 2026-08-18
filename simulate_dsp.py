@@ -42,6 +42,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 STATE_FILE   = PROJECT_ROOT / "portfolio_state.json"
+SINYAL_LOG   = PROJECT_ROOT / "scan_history_p3.jsonl"  # FAZ 4 Paket 2 (B4)
 REPORT_DIR   = PROJECT_ROOT / "reports"
 HISTORY_DIR  = REPORT_DIR / "history"
 MAX_POS      = 5
@@ -79,6 +80,27 @@ def save_state(state: dict) -> None:
         json.dumps(state, indent=2, ensure_ascii=False),
         encoding="utf-8"
     )
+
+
+def _append_sinyal_log(top_longs) -> None:
+    """Bugünkü P3 sinyal skorlarını repo-içi JSONL'ye ekle (kanonik: symbol/score/tarih).
+    Hesaplama yok — scan.top_longs'taki mevcut sc.score taşınır (FAZ 4 Paket 2 / B4).
+    Skor üretimi/düzeltmesi (B6) Paket 3'e aittir."""
+    bugun = date.today().isoformat()
+    try:
+        with open(SINYAL_LOG, "a", encoding="utf-8") as fh:
+            for sc in top_longs:
+                try:
+                    skor = round(float(sc.score), 4)
+                except (AttributeError, TypeError, ValueError):
+                    continue
+                fh.write(json.dumps({
+                    "symbol": sc.symbol,
+                    "score": skor,
+                    "tarih": bugun,
+                }, ensure_ascii=False) + "\n")
+    except Exception as e:
+        logger.warning("P3 sinyal log yazılamadı: %s", e)
 
 
 # ---------------------------------------------------------------------------
@@ -560,6 +582,7 @@ def main():
     # 3. State yükle + güncelle
     state   = load_state()
     actions = update_portfolio(state, scan)
+    _append_sinyal_log(scan.top_longs)
     perf    = calc_performance(state)
 
     # 3b. Non-stationarity monitör — her günlük taramada çalışır

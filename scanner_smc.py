@@ -40,8 +40,8 @@ CHAT_ID    = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 # GitHub Actions'ta state dosyası repo kök dizininde
 BASE_DIR   = Path(os.environ.get("MOTT_BASE_DIR", "."))
-TMP_BASE   = Path(os.environ.get("TMPDIR") or os.environ.get("TEMP") or "/tmp")
-SIGNAL_LOG = TMP_BASE / "scan_smc_history.jsonl"
+# FAZ 4 Paket 2 (B4): sinyal geçmişi repo içinde kalıcı (JSONL).
+SIGNAL_LOG = BASE_DIR / "scan_smc_history.jsonl"
 
 # SMC parametreleri
 SWING_LENGTH    = 3

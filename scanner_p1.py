@@ -32,8 +32,8 @@ CHAT_ID   = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 # GitHub Actions'ta state dosyası repo kök dizininde
 BASE_DIR  = Path(os.environ.get("MOTT_BASE_DIR", "."))
-TMP_BASE  = Path(os.environ.get("TMPDIR") or os.environ.get("TEMP") or "/tmp")
-SIGNAL_LOG= TMP_BASE / "scan_history_p1.jsonl"
+# FAZ 4 Paket 2 (B4): sinyal geçmişi /tmp'de değil repo içinde kalıcı tutulur.
+SIGNAL_LOG = BASE_DIR / "scan_history_p1.jsonl"
 
 try:
     yf.set_tz_cache_location("/tmp/yf_tz")
@@ -302,6 +302,9 @@ def _build_signal_records(scan_time, scan_label, strategy_results):
         records.append({
             "symbol": sym, "scan_time": scan_time, "scan_label": scan_label,
             "strategies": data["strategies"], "score_count": len(data["strategies"]),
+            # FAZ 4 Paket 3 (B5): kanonik IC skoru = tetiklenen strateji sayısı.
+            # Yeni hesaplama değil — mevcut score_count değerinin taşınması.
+            "score": len(data["strategies"]),
             "rsi": round(ind["rsi"], 2), "rel_vol": round(ind["rel_vol"], 2),
             "change_pct": round(ind["change_pct"], 2), "close": round(ind["close"], 4),
             "adx": round(ind["adx"], 2), "cmf": round(ind["cmf"], 4),

@@ -72,17 +72,65 @@ def compute_ic(
     return float(ic) if not np.isnan(ic) else 0.0
 
 
+def _sinyal_tarihi(kayit: dict):
+    """Sinyal kaydından tarih çöz: ISO (2026-07-10) veya DD.MM.YYYY (scan_time).
+    Çözülemezse None — hizalanamayan kayıt IC'den çıkar."""
+    raw = (kayit.get("tarih") or kayit.get("scan_time") or "").strip()
+    if not raw:
+        return None
+    if len(raw) >= 10 and raw[4] == "-":
+        try:
+            return date.fromisoformat(raw[:10])
+        except ValueError:
+            return None
+    try:
+        return datetime.strptime(raw[:10], "%d.%m.%Y").date()
+    except ValueError:
+        return None
+
+
+def _fwd_return_hesapla(seri, tarih, period: int) -> float | None:
+    """Sinyal tarihinden SONRAKİ period bar getirisi (FAZ 4 contract):
+
+        fwd_return(t) = log(close[t+period] / close[t+1])
+
+    Sinyal günü t ve ÖNCESİNDEKİ hiçbir fiyat kullanılmaz (look-ahead yok).
+    t+period seride yoksa veya fiyat ≤ 0 ise None döner — kayıt hizalanamaz.
+    """
+    if not isinstance(seri, pd.Series) or len(seri) < period + 2:
+        return None
+    try:
+        ts = pd.Timestamp(tarih)
+    except Exception:
+        return None
+    konumlar = seri.index.get_indexer([ts], method=None)
+    if len(konumlar) == 0 or konumlar[0] < 0:
+        return None
+    konum = int(konumlar[0])
+    if konum + period >= len(seri):
+        return None
+    kapanis_t1 = float(seri.iloc[konum + 1])
+    kapanis_tp = float(seri.iloc[konum + period])
+    if kapanis_t1 <= 0 or kapanis_tp <= 0:
+        return None
+    return float(np.log(kapanis_tp / kapanis_t1))
+
+
 def strateji_ic_hesapla(
     strateji: str,
     signal_log: list[dict],
-    fiyat_cache: dict[str, np.ndarray],
+    fiyat_cache: dict[str, pd.Series],
     period: int = 5,
 ) -> float:
     """
-    Bir stratejinin geçmiş sinyal logunu kullanarak IC hesaplar.
+    Bir stratejinin geçmiş sinyal logunu kullanarak IC hesaplar (FAZ 4).
 
     signal_log: [{"symbol": "GARAN", "score": 0.05, "tarih": "2026-01-15"}, ...]
-    fiyat_cache: {symbol: prices_array}
+    fiyat_cache: {symbol: tarih eksenli kapanış serisi (pd.Series, DatetimeIndex)}
+
+    Her sinyal KENDİ tarihinden itibaren hizalanır:
+        fwd_return(t) = log(close[t+period] / close[t+1])
+    t+period seride yoksa kayıt hizalanmış örneklerden çıkar.
 
     Returns: IC değeri (-1 ile +1 arası)
     """
@@ -96,21 +144,14 @@ def strateji_ic_hesapla(
     for kayit in signal_log:
         sym   = kayit.get("symbol", "")
         skor  = float(kayit.get("score", kayit.get("final_score", 0)))
-        tarih = kayit.get("tarih", kayit.get("scan_time", ""))[:10]
+        tarih = _sinyal_tarihi(kayit)
 
-        if sym not in fiyat_cache or not tarih:
+        if sym not in fiyat_cache or tarih is None:
             continue
 
-        prices = fiyat_cache[sym]
-
-        # Tarihten itibaren period bar sonraki getiri
-        # Basitleştirilmiş: son N bar üzerinden
-        if len(prices) < period + 2:
+        fwd_return = _fwd_return_hesapla(fiyat_cache[sym], tarih, period)
+        if fwd_return is None:
             continue
-
-        fwd_return = float(
-            np.log(prices[-1] / prices[-period]) if prices[-period] > 0 else 0.0
-        )
 
         sinyal_skorlar.append(skor)
         ileriki_getiriler.append(fwd_return)
@@ -121,12 +162,68 @@ def strateji_ic_hesapla(
 
 
 # ---------------------------------------------------------------------------
+# Sinyal Geçmişi Kalıcılığı — repo-içi JSONL (FAZ 4 Paket 2 / B4)
+# ---------------------------------------------------------------------------
+
+def _sinyal_log_yolu(strateji: str) -> Path:
+    """Repo-içi JSONL sinyal geçmişi yolu. State schema'ya dokunmaz (9/9 korunur)."""
+    adlar = {
+        "P1": "scan_history_p1.jsonl",
+        "P2": "scan_smc_history.jsonl",
+        "P3": "scan_history_p3.jsonl",
+    }
+    return BASE_DIR / adlar[strateji]
+
+
+def _persisted_sinyal_logu(strateji: str, sinir: int = 200) -> list[dict]:
+    """Repo-içi JSONL'den kanonik sinyal kayıtları okur: {symbol, score, tarih}.
+
+    Dosya yoksa/okunamazsa [] döner — çağıran mevcut state fallback'ini kullanır
+    (persisted log önceliklidir; fallback yalnız log yokken devreye girer).
+    Son `sinir` kayıt döner (bellek/hesap sınırı).
+    """
+    yol = _sinyal_log_yolu(strateji)
+    if not yol.exists():
+        return []
+    kayitlar: list[dict] = []
+    try:
+        with open(yol, encoding="utf-8") as fh:
+            for satir in fh:
+                satir = satir.strip()
+                if not satir:
+                    continue
+                try:
+                    ham = json.loads(satir)
+                except Exception:
+                    continue
+                sym = ham.get("symbol", "")
+                skor = ham.get("score", ham.get("final_score", 0))
+                tarih = _sinyal_tarihi(ham)
+                if not sym or tarih is None:
+                    continue
+                try:
+                    skor_f = float(skor)
+                except (TypeError, ValueError):
+                    continue
+                kayitlar.append({
+                    "symbol": sym,
+                    "score": skor_f,
+                    "tarih": tarih.isoformat(),
+                })
+    except Exception as e:
+        log.warning("Sinyal log okunamadı (%s): %s", yol, e)
+        return []
+    return kayitlar[-sinir:]
+
+
+# ---------------------------------------------------------------------------
 # Fiyat Çekici
 # ---------------------------------------------------------------------------
 
-def fiyat_cek(semboller: list[str], bars: int = 30) -> dict[str, np.ndarray]:
+def fiyat_cek(semboller: list[str], bars: int = 30) -> dict[str, pd.Series]:
     """
     Semboller için son N bar kapanış fiyatı (yfinance geçmişi).
+    Tarih ekseni (DatetimeIndex) KORUNUR — IC hizalaması (FAZ 4) buna dayanır.
     Son bar, TradingView canlı fiyatıyla üzerine yazılır — yfinance BIST
     verisi gecikmeli/TV ile uyumsuz olabildiğinden karar fiyatı TV'dir.
     """
@@ -135,9 +232,9 @@ def fiyat_cek(semboller: list[str], bars: int = 30) -> dict[str, np.ndarray]:
         try:
             ticker = f"{sym}.IS" if not sym.endswith(".IS") else sym
             df = yf.Ticker(ticker).history(period="3mo")
-            prices = df["Close"].dropna().values
-            if len(prices) >= bars:
-                cache[sym] = prices[-bars:].copy()
+            seri = df["Close"].dropna().astype(float)
+            if len(seri) >= bars:
+                cache[sym] = seri.iloc[-bars:].copy()
         except Exception as e:
             log.debug("%s fiyat hatası: %s", sym, e)
 
@@ -146,9 +243,13 @@ def fiyat_cek(semboller: list[str], bars: int = 30) -> dict[str, np.ndarray]:
         canli = tv_fiyatlar(semboller)
         for sym, p in canli.items():
             if sym in cache:
-                cache[sym][-1] = p
+                cache[sym].iloc[-1] = p
             else:
-                cache[sym] = np.array([p])
+                cache[sym] = pd.Series(
+                    [float(p)],
+                    index=pd.DatetimeIndex([pd.Timestamp(bugun_tsi())]),
+                    dtype=float,
+                )
     except Exception as e:
         log.warning("TV canlı fiyat alınamadı, yfinance değerleri kullanılacak: %s", e)
     return cache
@@ -291,11 +392,20 @@ def p3_sinyalleri_yukle() -> tuple[list[dict], dict]:
                 bugun_tsi().isoformat(),
             )
             return [], state
+        # FAZ 4 Paket 3 (B6): skor kanonik persisted JSONL'den (Paket 2),
+        # yoksa 0.0 fallback'i — yeni hesaplama yok, sc.score taşınır.
+        bugun = bugun_tsi().isoformat()
+        bugun_skorlar = {
+            k["symbol"]: k["score"]
+            for k in _persisted_sinyal_logu("P3")
+            if k.get("tarih") == bugun
+        }
         for sym in son_tarama.get("top5", son_tarama.get("top_longs", [])):
+            skor = bugun_skorlar.get(sym, 0.0)
             sinyaller.append({
                 "symbol":       sym,
-                "score":        0.0,
-                "final_score":  0.0,
+                "score":        skor,
+                "final_score":  skor,
                 "strateji":     "P3",
             })
         log.info("P3: bugünkü tarama — %d sinyal kullanılacak", len(sinyaller))
@@ -486,7 +596,7 @@ def portfoy_guncelle(
 
         # Güncel fiyat
         if sym in fiyat_cache and len(fiyat_cache[sym]) > 0:
-            guncel = float(fiyat_cache[sym][-1])
+            guncel = float(fiyat_cache[sym].iloc[-1])
         else:
             guncel = giris_fiy
 
@@ -624,7 +734,7 @@ def yeni_pozisyon_ac(
         if mott_risk.kitap_limiti_asildi(sym, haric="P4"):
             continue
 
-        fiyat = float(fiyat_cache[sym][-1]) if sym in fiyat_cache else 0
+        fiyat = float(fiyat_cache[sym].iloc[-1]) if sym in fiyat_cache else 0
         if fiyat <= 0:
             continue
 
@@ -686,10 +796,11 @@ def calistir():
     fiyat_cache = fiyat_cek(tum_semboller)
 
     # 3. Her stratejinin IC'sini hesapla
-    # Sinyal logunu state'den çek (geçmiş sinyaller varsa)
-    p1_log = p1_state.get("signal_log", p1_sig)
-    p2_log = p2_state.get("signal_log", p2_sig)
-    p3_log = p3_state.get("signal_log", p3_sig)
+    # Sinyal geçmişi: repo-içi JSONL ÖNCELİKLİDİR (FAZ 4 Paket 2 — B4);
+    # log yoksa mevcut state fallback'i kullanılır.
+    p1_log = _persisted_sinyal_logu("P1") or p1_state.get("signal_log", p1_sig)
+    p2_log = _persisted_sinyal_logu("P2") or p2_state.get("signal_log", p2_sig)
+    p3_log = _persisted_sinyal_logu("P3") or p3_state.get("signal_log", p3_sig)
 
     ic_p1 = strateji_ic_hesapla("P1", p1_log, fiyat_cache)
     ic_p2 = strateji_ic_hesapla("P2", p2_log, fiyat_cache)
