@@ -1,51 +1,5 @@
 {
-  "pozisyonlar": {
-    "BIMAS": {
-      "symbol": "BIMAS",
-      "giris_fiyat": 405.0,
-      "guncel_fiyat": 405.0,
-      "lotlar": 49,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-08-18",
-      "komite_skor": 75,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "strateji": "P5"
-    },
-    "BORSK": {
-      "symbol": "BORSK",
-      "giris_fiyat": 6.37,
-      "guncel_fiyat": 6.37,
-      "lotlar": 3139,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-08-18",
-      "komite_skor": 75,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "strateji": "P5"
-    },
-    "NETAS": {
-      "symbol": "NETAS",
-      "giris_fiyat": 75.1,
-      "guncel_fiyat": 75.1,
-      "lotlar": 266,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-08-18",
-      "komite_skor": 60,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "strateji": "P5"
-    }
-  },
+  "pozisyonlar": {},
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -656,66 +610,9 @@
       ],
       "kapanan": [],
       "makro": "NORMAL"
-    },
-    {
-      "tarih": "2026-08-18",
-      "secilen": [
-        "BIMAS",
-        "BORSK",
-        "NETAS"
-      ],
-      "elenen": [
-        {
-          "symbol": "DOKTA",
-          "neden": "tek kaynak (P2)"
-        },
-        {
-          "symbol": "ALARK",
-          "neden": "tek kaynak (P1)"
-        },
-        {
-          "symbol": "CATES",
-          "neden": "tek kaynak (P1)"
-        },
-        {
-          "symbol": "ARSAN",
-          "neden": "tek kaynak (P1)"
-        },
-        {
-          "symbol": "HATEK",
-          "neden": "tek kaynak (P2)"
-        },
-        {
-          "symbol": "PETKM",
-          "neden": "tek kaynak (P2)"
-        },
-        {
-          "symbol": "KGYO",
-          "neden": "tek kaynak (P1)"
-        },
-        {
-          "symbol": "AKGRT",
-          "neden": "tek kaynak (P2)"
-        },
-        {
-          "symbol": "ASTOR",
-          "neden": "tek kaynak (P3)"
-        },
-        {
-          "symbol": "KLGYO",
-          "neden": "tek kaynak (P2)"
-        }
-      ],
-      "acilan": [
-        "BIMAS",
-        "BORSK",
-        "NETAS"
-      ],
-      "kapanan": [],
-      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-08-18T15:35:04.648897",
+  "last_run": "2026-08-13T16:07:00.006436",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 101460
 }
