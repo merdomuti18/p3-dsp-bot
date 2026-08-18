@@ -240,8 +240,8 @@ def fiyat_cek(semboller: list[str], bars: int = 30) -> dict[str, pd.Series]:
             log.debug("%s fiyat hatası: %s", sym, e)
 
     try:
-        from mott_fiyat import tv_fiyatlar
-        canli = tv_fiyatlar(semboller)
+        from mott_fiyat import canli_fiyatlar
+        canli = canli_fiyatlar(semboller, use_cache=True)
         for sym, p in canli.items():
             if sym in cache:
                 cache[sym].iloc[-1] = p

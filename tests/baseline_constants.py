@@ -58,15 +58,15 @@ PRODUCTION_SHA256 = {
     "dsp_trend.py": "dea1c9ad7f86158205322ac6fbef0e58bc14b111ece8d4ec9be232d6b00e143b",
     "scanner_dsp.py": "311ae33ae94a675dfe87c2a19b8f6e8ed6ab78b658bc616314331492b0d14ef6",
     "simulate_dsp.py": "cdc631342500a22a2ba55ee46694a1564809f67f8f05f22fca75c98f91115929",
-    "meta_portfolio.py": "80d4eb55f630348d4c7c6f3d46a97dfe51c836005fc948039c1e61386038c855",
+    "meta_portfolio.py": "89b8e005e9dd98d2f658fa492ff59994597cfca58dd54e8c899e8b0c65c6887d",
     "mott_state.py": "078398246937a464d4aac33ea566b379c5482fea1335b33ae3ab26662b1e1756",
     "mott_risk.py": "de5decc19316d80d1e524df708b60e0f2235a1c642b23947dd9efb1068fd546c",
     "mott_telegram.py": "53fab3e86fb9ed5f012f12c9abcf0d9ee5e42266424b6b75bff687e557a2b935",
-    "mott_fiyat.py": "4016830abdb040c1d83115583c6c9a1b42683a771303343e1951196970bf685e",
+    "mott_fiyat.py": "9f598f015666619030c8aafef651e424f4df2fb3e168f26cba73577cd7227fa1",
     "mott_portfoy_deger.py": "818f19c582123d5816918f8cfd7f47380f05ccc0c96bf9eb76c091c056fce4e4",
     "mott_performans_analiz.py": "0268b9ac8bb70b5a7029b2308e5b58c01bb134102a0c84653ab986fe64251752",
     "mott_aylik_rapor.py": "6793f0dbb2138fe5fd5eba831bc7460c550a04d7f8a109557d5dd5574993d12e",
-    "p5_committee.py": "cc3bb1159b83ed53bf80440e4ce6deceaa836a57af5c15c2e02075bee9bfc51b",
+    "p5_committee.py": "33f3e00c9c56b51130c5a9648cdce8fe0a9d057571fb7eba726954bfc084b1b6",
     "portfoy_yonetici.py": "004d260f09764093c09c49742da1e90098bd5594896eb4cdf0f96015b5942d12",
     "scanner_p1.py": "00a77fe798c6ed7639ef3c1ebebeacc431e14bdfcaaae8bc0bc6e5d1fef71e63",
     "scanner_smc.py": "7a19de2765c8823c64085eaebbc74469bab49ef9f5daebbfd076a77bcf0ce7d7",
@@ -80,7 +80,7 @@ REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a
 # beklenen değerleridir.
 # ---------------------------------------------------------------------------
 ARTEFAKT_SHA256 = {
-    "manifest.json": "9b0f6c9aa2a38d59c6d933685c1b15203fe4c2c87bb60bf93c17983cd9b19be5",
+    "manifest.json": "b29cc41acd0dbb49d601d4d883fa3c7df3b05fa1ea2f3bd03ef20aacce8fa4ac",
     "p4_ic_baseline.txt": "5b6658ecfe4f61f794ada2b046bdce0e78ff28df9feaf5fe45c297525bc21543",
     "state_sha256.txt": "285979cead461f61741e8eed4358811f677f2d733848071f72582f30c5c74808",
     "mott_state_normalize_output.txt": "045a55b0cb5dc40f9be8123f68316b1c47442418ab746e4bff20d0c587eca67d",

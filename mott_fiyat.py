@@ -5,6 +5,9 @@ mott_fiyat.py — Ortak canlı fiyat modülü
 birebir uyumlu). Yedek: yfinance (BIST'te ~15 dk gecikmeli ve zaman zaman
 TV'den sapıyor — bu yüzden yalnızca TV erişilemezse kullanılır).
 
+FAZ 6.1: In-memory price cache — aynı sembol grubu için tekrarlı API
+cagrilarini onler. Cache TTL = 60 saniye.
+
 Kullanım:
     from mott_fiyat import canli_fiyat, canli_fiyatlar, tv_fiyatlar
 
@@ -16,8 +19,29 @@ Kullanım:
 from __future__ import annotations
 
 import logging
+import time
 
 log = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# FAZ 6.1 — In-Memory Price Cache
+# ---------------------------------------------------------------------------
+
+CACHE_TTL = 60  # saniye — fiyat cache süresi
+_PRICE_CACHE: dict[str, dict] = {}  # {symbol: {price, timestamp, source}}
+
+
+def clear_cache() -> None:
+    """Tüm fiyat cache'ini temizle."""
+    _PRICE_CACHE.clear()
+
+
+def cache_stats() -> dict:
+    """Cache durumu — test/debug için."""
+    now = time.time()
+    fresh = sum(1 for v in _PRICE_CACHE.values() if now - v["timestamp"] < CACHE_TTL)
+    stale = len(_PRICE_CACHE) - fresh
+    return {"total": len(_PRICE_CACHE), "fresh": fresh, "stale": stale}
 
 
 def _temiz(sym: str) -> str:
@@ -65,21 +89,64 @@ def _yf_fiyat(sym: str) -> float | None:
     return None
 
 
-def canli_fiyatlar(semboller: list[str]) -> dict[str, float]:
-    """TV öncelikli toplu fiyat; TV'de bulunamayanlar yfinance ile tamamlanır."""
+def canli_fiyatlar(semboller: list[str], *, use_cache: bool = True) -> dict[str, float]:
+    """TV öncelikli toplu fiyat; TV'de bulunamayanlar yfinance ile tamamlanır.
+
+    FAZ 6.1: use_cache=True ise in-memory cache kullanılır (TTL = CACHE_TTL).
+    use_cache=False ise her zaman raw API çağrısı yapılır.
+    """
     semboller = [_temiz(s) for s in semboller]
-    fiyatlar = tv_fiyatlar(semboller)
-    for s in semboller:
-        if s not in fiyatlar:
-            p = _yf_fiyat(s)
-            if p is not None:
-                fiyatlar[s] = p
+    if not semboller:
+        return {}
+
+    now = time.time()
+    fiyatlar: dict[str, float] = {}
+    to_fetch: list[str] = []
+
+    # 1. Cache'den okunabilenleri al
+    if use_cache:
+        for s in semboller:
+            entry = _PRICE_CACHE.get(s)
+            if entry and (now - entry["timestamp"]) < CACHE_TTL:
+                fiyatlar[s] = entry["price"]
+            else:
+                to_fetch.append(s)
+    else:
+        to_fetch = list(semboller)
+
+    # 2. Eksik sembolleri raw fetch ile çek
+    if to_fetch:
+        tv_fiyatlari = tv_fiyatlar(to_fetch)
+        for s in to_fetch:
+            if s in tv_fiyatlari:
+                fiyatlar[s] = tv_fiyatlari[s]
+                if use_cache:
+                    _PRICE_CACHE[s] = {
+                        "price": tv_fiyatlari[s],
+                        "timestamp": now,
+                        "source": "tv",
+                    }
+            else:
+                p = _yf_fiyat(s)
+                if p is not None:
+                    fiyatlar[s] = p
+                    if use_cache:
+                        _PRICE_CACHE[s] = {
+                            "price": p,
+                            "timestamp": now,
+                            "source": "yf",
+                        }
+
     return fiyatlar
 
 
-def canli_fiyat(sym: str) -> float | None:
-    """Tek sembol için canlı fiyat (TV → yfinance)."""
-    return canli_fiyatlar([sym]).get(_temiz(sym))
+def canli_fiyat(sym: str, *, use_cache: bool = True) -> float | None:
+    """Tek sembol için canlı fiyat (TV → yfinance).
+
+    FAZ 6.1: use_cache parametresi ile cache kontrolü.
+    """
+    result = canli_fiyatlar([sym], use_cache=use_cache)
+    return result.get(_temiz(sym))
 
 
 if __name__ == "__main__":

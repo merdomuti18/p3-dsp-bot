@@ -23,6 +23,15 @@ import numpy as np
 import pandas as pd
 import pytest
 
+
+@pytest.fixture(autouse=True)
+def _clean_cache():
+    """FAZ 6.1: Her test öncesi fiyat cache'ini temizle."""
+    import mott_fiyat
+    mott_fiyat.clear_cache()
+    yield
+    mott_fiyat.clear_cache()
+
 import meta_portfolio
 
 
