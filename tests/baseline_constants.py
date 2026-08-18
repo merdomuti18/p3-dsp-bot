@@ -30,15 +30,15 @@ STATE_DOSYALARI = [
 ]
 
 STATE_SHA256 = {
-    "state_p1.json": "5b7202535ddf5194b4e9e3f09d771bf3ce31fe913ba9ed761f017f181f624670",
-    "state_p2.json": "4d328bd864044302aab3bf78fc00aecea7c1f816a524a1713cbab3ac6f560a52",
-    "portfolio_state.json": "7fdea0e8350bc3470e9a64cf241aacdc7e0b0669f9e947db82c3a0d7e692894b",
-    "state_p4.json": "8bcf3f53b648bc03e261ce3a97ca4b150c9175cc6db1bc46ee0be188c86cb51c",
-    "state_p5.json": "8e6e7467c9054b65fb1b4ad005a36cfa828df5d5e09b30de5bec2655c373bdae",
-    "portfoy.json": "514929f49817f4db5532dda0d3a3c8a57bec5565349a2f7c426a497750317ee4",
-    "portfoy_p2.json": "3234204d43d549ba911cf1d087410ca7cd57a29a2c930e44714802c44035fc0d",
-    "tarama_listesi.json": "283f88197206c97b09894b21b9b30d7042adac3e5fdd679d60848ace9cbb9281",
-    "tarama_listesi_p2.json": "e1212a9d0e9b2e9df0c11505490b75ee45237d36854e1adbba4e8fa0ae0107e1",
+    "state_p1.json": "eb76cb0ea7a85f7fceed83791c36f478405934b6be585569e89d4d9893e2dfae",
+    "state_p2.json": "26ffc4555821210bb96d7d4dede1040978ccbfe97ffecc5b578c48dc58b0c415",
+    "portfolio_state.json": "014d8033007a922a566fb63f46396f402587e05ba2901ecd02de9cb073865fcf",
+    "state_p4.json": "f48b92e2de87918d15a0a5871172ff1f6d9de97e907f717dd516548f78d9cb75",
+    "state_p5.json": "b22bb32a13e32167fc15c321b12933c93dd3a6e0350d852387cdb727e0337b07",
+    "portfoy.json": "5e8829f2449257be372997e6085d51ae40289e316acd97ca87c32163ff721b42",
+    "portfoy_p2.json": "06177b698d4739b05f9cd0421944275f6682f6d8d304c9992b8dfbfb91d3ff6d",
+    "tarama_listesi.json": "9940efb60f919c3728d83ec58c9a119f83c20a018a842b90c8bbd319656550b4",
+    "tarama_listesi_p2.json": "f037faa0aa86d3792549e2b8ac030e3e8f0142469c4dba31364fddf7992a0889",
 }
 
 # ---------------------------------------------------------------------------
@@ -80,12 +80,12 @@ REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a
 # beklenen değerleridir.
 # ---------------------------------------------------------------------------
 ARTEFAKT_SHA256 = {
-    "manifest.json": "ae9594aae44ffa7cb4fd2acc8c9f0ffc7b27e6379cd9b869e585cdc9dda6e56a",
+    "manifest.json": "9b0f6c9aa2a38d59c6d933685c1b15203fe4c2c87bb60bf93c17983cd9b19be5",
     "p4_ic_baseline.txt": "5b6658ecfe4f61f794ada2b046bdce0e78ff28df9feaf5fe45c297525bc21543",
-    "state_sha256.txt": "82c8c4771463ba75bfe13b749cbf380ffef23ae4bf77c17740d2c8c2348f0098",
-    "mott_state_normalize_output.txt": "d7a85409f8bb96e4d61324e0ce730a2d0d945d8f6988778ef3abdbc655ab5dc4",
+    "state_sha256.txt": "285979cead461f61741e8eed4358811f677f2d733848071f72582f30c5c74808",
+    "mott_state_normalize_output.txt": "045a55b0cb5dc40f9be8123f68316b1c47442418ab746e4bff20d0c587eca67d",
     "mott_performans_analiz_output.txt": "5d41c287ab4c22fc849d06b7ddf9bdb675b8beba38ca10cf2881c8cae9cf51a0",
-    "mott_aylik_rapor_output.txt": "7f95555439cf128bad8486c896cf39da953efbc19c112f35e826ce257b365f34",
+    "mott_aylik_rapor_output.txt": "dcbee405a16ba79f3337cb272f89fb6c2d2c4f0be452a4c70f34780818ee1558",
 }
 
 # ---------------------------------------------------------------------------

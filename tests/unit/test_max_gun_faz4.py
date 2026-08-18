@@ -60,20 +60,28 @@ class TestP3AlimListesiHelper:
     def test_p3_alim_listesi_bos_scan_log(self):
         """Boş scan_log → boş küme."""
         import simulate_dsp
-        mock_state = {"positions": {}, "scan_log": []}
-        with patch.object(simulate_dsp, "load_state", return_value=mock_state):
+        import json as _json
+        mock_data = {"positions": {}, "scan_log": []}
+        mock_path = MagicMock()
+        mock_path.exists.return_value = True
+        mock_path.read_text.return_value = _json.dumps(mock_data)
+        with patch.object(simulate_dsp, "STATE_FILE", mock_path):
             result = simulate_dsp._p3_alim_listesi()
         assert result == set()
 
     def test_p3_alim_listesi_stale_scan_log(self):
         """Dünkü scan_log → bugünün tarihiyle uyuşmuyorsa boş küme."""
         import simulate_dsp
+        import json as _json
         dün = (date.today() - timedelta(days=1)).isoformat()
-        mock_state = {
+        mock_data = {
             "positions": {},
             "scan_log": [{"date": dün, "top5": ["SYM1"]}],
         }
-        with patch.object(simulate_dsp, "load_state", return_value=mock_state):
+        mock_path = MagicMock()
+        mock_path.exists.return_value = True
+        mock_path.read_text.return_value = _json.dumps(mock_data)
+        with patch.object(simulate_dsp, "STATE_FILE", mock_path):
             result = simulate_dsp._p3_alim_listesi()
         assert result == set()
 

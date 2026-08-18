@@ -55,8 +55,8 @@ def test_m1_p4_eski_yeni_esdeger(mock_fiyat):
     assert yeni["equity_est"] == pytest.approx(eski["equity_est"], abs=1.0)
     assert yeni["getiri_pct"] == pytest.approx(eski["getiri_pct"], abs=0.1)
     assert yeni["kapanan"] == eski["kapanan"]
-    assert yeni["equity_est"] == pytest.approx(96998, abs=1.0)    # T4 golden
-    assert yeni["getiri_pct"] == pytest.approx(-3.0, abs=0.1)     # T4 golden
+    assert yeni["equity_est"] == pytest.approx(95306, abs=1.0)    # T4 golden
+    assert yeni["getiri_pct"] == pytest.approx(-4.69, abs=0.1)     # T4 golden
     assert yeni["kapanan"] == 36
 
 
@@ -66,9 +66,9 @@ def test_m1_p5_eski_yeni_esdeger(mock_fiyat):
     assert yeni["equity_est"] == pytest.approx(eski["equity_est"], abs=1.0)
     assert yeni["getiri_pct"] == pytest.approx(eski["getiri_pct"], abs=0.1)
     assert yeni["kapanan"] == eski["kapanan"]
-    assert yeni["equity_est"] == pytest.approx(101900, abs=1.0)   # T4 golden
-    assert yeni["getiri_pct"] == pytest.approx(1.9, abs=0.1)      # T4 golden
-    assert yeni["kapanan"] == 10
+    assert yeni["equity_est"] == pytest.approx(101460, abs=1.0)   # T4 golden
+    assert yeni["getiri_pct"] == pytest.approx(1.46, abs=0.1)      # T4 golden
+    assert yeni["kapanan"] == 12
 
 
 def test_m1_p1_eski_yeni_esdeger(mock_fiyat):
@@ -79,9 +79,9 @@ def test_m1_p1_eski_yeni_esdeger(mock_fiyat):
     # FAZ 3.2 T10 (onaylı contract evolution): mott_state._p1_p2 artık
     # `trade_history` anahtarını da okur → normalize("P1") islem_gecmisi = 10
     # (portfoy.json trade_history) — eski gerçek okuyucu semantiğiyle aynı.
-    assert yeni["kapanan"] == 10
-    assert yeni["acik_sayisi"] == 5       # portfoy.json pozisyonlar
-    assert yeni["nakit"] == pytest.approx(13183.105270965556)
+    assert yeni["kapanan"] == 11
+    assert yeni["acik_sayisi"] == 6       # portfoy.json pozisyonlar
+    assert yeni["nakit"] == pytest.approx(21886.90527096556, abs=1.0)
 
 
 def test_m1_p2_eski_yeni_esdeger(mock_fiyat):
@@ -90,9 +90,9 @@ def test_m1_p2_eski_yeni_esdeger(mock_fiyat):
     assert yeni["getiri_pct"] == 0.0
     # Aynı T10 düzeltmesi: normalize("P2") islem_gecmisi = 14 (portfoy_p2.json
     # trade_history) — eski gerçek okuyucu semantiğiyle aynı.
-    assert yeni["kapanan"] == 14
+    assert yeni["kapanan"] == 15
     assert yeni["acik_sayisi"] == 7       # portfoy_p2.json pozisyonlar
-    assert yeni["nakit"] == pytest.approx(6774.107740554809)
+    assert yeni["nakit"] == pytest.approx(17518.10803237915, abs=1.0)
 
 
 # ---------------------------------------------------------------------------

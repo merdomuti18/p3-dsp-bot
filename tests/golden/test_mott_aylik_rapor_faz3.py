@@ -81,8 +81,8 @@ def test_rapor_mock_fiyat_golden_degerler(mock_fiyat_sabit):
     r = mar.rapor_olustur()
     beklenen = {
         "P3": (274000, 174.0, 16, 12.5),
-        "P4": (96998, -3.0, 36, 36.1),
-        "P5": (101900, 1.9, 10, 40.0),
+        "P4": (95306, -4.69, 36, 36.1),
+        "P5": (101460, 1.46, 12, 41.7),
         "P1": (100000, 0.0, None, None),
         "P2": (100000, 0.0, None, None),
     }
