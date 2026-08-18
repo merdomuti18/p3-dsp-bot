@@ -18,7 +18,7 @@ import json
 import os
 import sys
 import logging
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent
@@ -48,6 +48,8 @@ HISTORY_DIR  = REPORT_DIR / "history"
 MAX_POS      = 5
 POS_SIZE_PCT = 20.0   # her pozisyon %20
 EMERGENCY_STOP_PCT = -8.0   # tek pozisyon acil durdurma eşiği (%)
+MAX_GUN = 10                # Maksimum elde tutma süresi (rolling extension ile)
+MAX_GUN_EXTENSION = 5
 
 # Giriş kalite eşiği: Tem-Ağu 2026 döneminde WR %13'e düştüğü için
 # "her gün top5'i doldur" yerine yalnızca güçlü sinyal alınır.
@@ -60,6 +62,36 @@ PARAMS = XoverParams(fast_period=15, slow_period=40, order=3)
 # ---------------------------------------------------------------------------
 # State Yönetimi
 # ---------------------------------------------------------------------------
+
+def _max_gun_date_hesapla_p3(entry_date_str: str, max_gun: int = MAX_GUN) -> str:
+    """P3: Entry tarihinden MAX_GUN deadline hesapla."""
+    try:
+        giris = date.fromisoformat(entry_date_str[:10])
+        return (giris + timedelta(days=max_gun)).isoformat()
+    except Exception:
+        return (date.today() + timedelta(days=max_gun)).isoformat()
+
+
+def _p3_alim_listesi() -> set[str]:
+    """P3 canonical ALIM listesi — bugünkü scan_log top5.
+    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+    try:
+        if not STATE_FILE.exists():
+            return set()
+        data = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        log_items = data.get("scan_log", [])
+        if not log_items:
+            return set()
+        son_tarama = log_items[-1]
+        tarih = son_tarama.get("date", "")
+        bugun = date.today().isoformat()
+        if not tarih or tarih != bugun:
+            return set()  # stale
+        top5 = son_tarama.get("top5", [])
+        return set(top5)
+    except Exception:
+        return set()
+
 
 def load_state() -> dict:
     if STATE_FILE.exists():
@@ -117,7 +149,10 @@ def update_portfolio(state: dict, scan: ScanResult) -> dict:
     positions  = state["positions"]
     actions    = {"entries": [], "exits": [], "holds": [], "skipped": []}
 
-    # Çıkışlar
+    # Canonical ALIM listesi (dosya tabanlı — tarih doğrulanmış)
+    p3_alim = _p3_alim_listesi()
+
+    # Çıkışlar + MAX_GUN rolling extension
     for sym in list(positions.keys()):
         if sym not in long_set:
             pos = positions.pop(sym)
@@ -140,6 +175,36 @@ def update_portfolio(state: dict, scan: ScanResult) -> dict:
             })
             actions["exits"].append(sym)
         else:
+            # ALIM listesinde — MAX_GUN rolling extension kontrolü
+            pos = positions[sym]
+            entry_date = pos.get("entry_date", today)
+            mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla_p3(entry_date)
+            try:
+                mgd = date.fromisoformat(mgd_str[:10])
+            except Exception:
+                mgd = date.today() + timedelta(days=MAX_GUN)
+            if date.today() >= mgd:
+                # MAX_GUN triggered — canonical ALIM listesinde mi?
+                if sym in p3_alim:
+                    pos["max_gun_date"] = (date.today() + timedelta(days=MAX_GUN_EXTENSION)).isoformat()
+                else:
+                    # Canonical listede değil → EXIT
+                    pos_exit = positions.pop(sym)
+                    exit_price = _get_price(sym)
+                    pnl = 0.0
+                    if exit_price and pos_exit.get("entry_price"):
+                        pnl = (exit_price - pos_exit["entry_price"]) / pos_exit["entry_price"] * 100
+                    state["history"].append({
+                        "symbol":      sym,
+                        "entry_date":  pos_exit["entry_date"],
+                        "exit_date":   today,
+                        "entry_price": pos_exit.get("entry_price"),
+                        "exit_price":  exit_price,
+                        "pnl_pct":     round(pnl, 2),
+                        "holding_days": (date.today() - date.fromisoformat(pos_exit["entry_date"])).days,
+                    })
+                    actions["exits"].append(sym)
+                    continue
             actions["holds"].append(sym)
 
     # Girişler
@@ -169,6 +234,7 @@ def update_portfolio(state: dict, scan: ScanResult) -> dict:
             "entry_price": price,
             "score":       round(sc.score, 4),
             "margin":      round(sc.crossover_margin, 4),
+            "max_gun_date": _max_gun_date_hesapla_p3(today),
         }
         actions["entries"].append(sym)
 

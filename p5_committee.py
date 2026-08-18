@@ -23,6 +23,8 @@ from pathlib import Path
 import numpy as np
 import yfinance as yf
 
+from datetime import timedelta
+
 import mott_risk
 
 log = logging.getLogger(__name__)
@@ -35,6 +37,7 @@ POS_TL = SERMAYE / MAX_POS
 STOP_PCT = -0.05
 TP_PCT = 0.10
 MAX_GUN = 10
+MAX_GUN_EXTENSION = 5
 MIN_KAYNAK = 2
 MAX_SEKTOR = 2
 
@@ -61,8 +64,38 @@ def _json_yukle(path: Path) -> dict:
     return {}
 
 
+def _parse_tarih(state: dict, key_path: list[str]) -> date | None:
+    """Nested state dict'ten tarih parse et. DD.MM.YYYY veya YYYY-MM-DD destekler."""
+    raw = state
+    for k in key_path:
+        if isinstance(raw, dict):
+            raw = raw.get(k, "")
+        else:
+            return None
+    raw = str(raw).strip()
+    if not raw:
+        return None
+    if len(raw) >= 10 and raw[4] == "-":
+        try:
+            return date.fromisoformat(raw[:10])
+        except ValueError:
+            pass
+    try:
+        return datetime.strptime(raw[:10], "%d.%m.%Y").date()
+    except ValueError:
+        return None
+
+
+def _taze_mi(state: dict, key_path: list[str]) -> bool:
+    """State içindeki tarih bugün mü?"""
+    t = _parse_tarih(state, key_path)
+    return t == date.today() if t else False
+
+
 def p1_top_set(limit: int = 15) -> set[str]:
     s = _json_yukle(BASE_DIR / "state_p1.json")
+    if not _taze_mi(s, ["tarama", "scan_time"]):
+        return set()  # stale
     sigs = s.get("tarama", {}).get("signals", [])
     ranked = sorted(sigs, key=lambda x: -x.get("score_count", 0))
     return {x["symbol"] for x in ranked[:limit]}
@@ -70,6 +103,8 @@ def p1_top_set(limit: int = 15) -> set[str]:
 
 def p2_top_set(limit: int = 15) -> set[str]:
     s = _json_yukle(BASE_DIR / "state_p2.json")
+    if not _taze_mi(s, ["tarama", "scan_time"]):
+        return set()  # stale
     sigs = s.get("tarama", {}).get("signals", [])
     ranked = sorted(sigs, key=lambda x: -float(x.get("score", 0)))
     return {x["symbol"] for x in ranked[:limit]}
@@ -79,9 +114,13 @@ def p3_top_set(limit: int = 15) -> set[str]:
     s = _json_yukle(BASE_DIR / "portfolio_state.json")
     log_items = s.get("scan_log", [])
     if log_items:
-        top = log_items[-1].get("top5", [])
+        son_tarama = log_items[-1]
+        tarih = son_tarama.get("date", "")
+        if tarih != date.today().isoformat():
+            return set()  # stale
+        top = son_tarama.get("top5", [])
         return set(top[:limit])
-    return {p for p in s.get("positions", {})}
+    return set()
 
 
 def p1_detay() -> dict[str, dict]:
@@ -148,6 +187,25 @@ def fiyat_cek(semboller: list[str]) -> dict[str, np.ndarray]:
 # ---------------------------------------------------------------------------
 # Komite skorlama
 # ---------------------------------------------------------------------------
+
+def _max_gun_date_hesapla(giris_tarih_str: str, max_gun: int = MAX_GUN) -> str:
+    """Entry tarihinden MAX_GUN deadline hesapla."""
+    try:
+        giris = date.fromisoformat(giris_tarih_str[:10])
+        return (giris + timedelta(days=max_gun)).isoformat()
+    except Exception:
+        return (date.today() + timedelta(days=max_gun)).isoformat()
+
+
+def _p5_alim_listesi() -> set[str]:
+    """P5 canonical ALIM listesi — bugünkü komite adayları.
+    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+    try:
+        secilen, _ = komite_adaylari()
+        return {a["symbol"] for a in secilen}
+    except Exception:
+        return set()
+
 
 def komite_adaylari() -> tuple[list[dict], list[dict]]:
     """
@@ -298,7 +356,23 @@ def portfoy_guncelle(state: dict, fiyat_cache: dict) -> dict:
         elif pnl >= TP_PCT:
             neden = "TP"
         elif gun >= MAX_GUN:
-            neden = "MAX_GUN"
+            # Rolling extension: MAX_GUN gününde ALIM listesi kontrolü
+            mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla(pos.get("giris_tarih", ""))
+            try:
+                mgd = date.fromisoformat(mgd_str[:10])
+            except Exception:
+                mgd = date.today()
+            if date.today() >= mgd:
+                alim = _p5_alim_listesi()
+                if sym in alim:
+                    pos["max_gun_date"] = (date.today() + timedelta(days=MAX_GUN_EXTENSION)).isoformat()
+                    pos["gun"] = gun
+                    pos["guncel_fiyat"] = guncel
+                    pos["pnl_pct"] = round(pnl * 100, 2)
+                    devam[sym] = pos
+                    continue
+                else:
+                    neden = "MAX_GUN"
         if neden:
             trade = {
                 "symbol": sym,
@@ -359,6 +433,7 @@ def yeni_pozisyon_ac(state: dict, adaylar: list[dict], fiyat_cache: dict) -> lis
             "pnl_pct": 0.0,
             "gun": 0,
             "giris_tarih": bugun,
+            "max_gun_date": _max_gun_date_hesapla(bugun),
             "komite_skor": ad.get("komite_skor", 0),
             "kaynaklar": ad.get("kaynaklar", []),
             "strateji": "P5",

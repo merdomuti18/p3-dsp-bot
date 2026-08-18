@@ -25,7 +25,7 @@ from __future__ import annotations
 import json
 import logging
 import os
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Optional
 
@@ -48,6 +48,7 @@ STOP_PCT   = -0.05      # %5 stop-loss (normal)
 STOP_PCT_COKLU_ONAY = -0.10  # bugünkü P1+P2 onayı varsa (BIST günlük limiti)
 TP_PCT     = 0.10       # %10 take-profit
 MAX_GUN    = 10         # Maksimum elde tutma süresi
+MAX_GUN_EXTENSION = 5
 IC_WINDOW  = 60         # Rolling IC penceresi (bar)
 IC_PERIODS = [1, 5, 10] # IC hesabı için ileriye bakış dönemleri
 
@@ -575,6 +576,15 @@ def _elde_tutma_gunu(giris_tarih: str) -> int:
         return 0
 
 
+def _max_gun_date_hesapla(giris_tarih_str: str, max_gun: int = MAX_GUN) -> str:
+    """Entry tarihinden MAX_GUN deadline hesapla."""
+    try:
+        giris = date.fromisoformat(giris_tarih_str[:10])
+        return (giris + timedelta(days=max_gun)).isoformat()
+    except Exception:
+        return (date.today() + timedelta(days=max_gun)).isoformat()
+
+
 def portfoy_guncelle(
     state: dict,
     fiyat_cache: dict[str, np.ndarray],
@@ -655,7 +665,28 @@ def portfoy_guncelle(
         elif pnl_pct >= TP_PCT:
             neden = "TP"
         elif gun >= MAX_GUN:
-            neden = "MAX_GUN"
+            # Rolling extension: MAX_GUN gününde P4 ALIM listesi kontrolü
+            mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla(pos.get("giris_tarih", ""))
+            try:
+                mgd = date.fromisoformat(mgd_str[:10])
+            except Exception:
+                mgd = date.today()
+            if date.today() >= mgd:
+                # P4 canonical ALIM listesi: P1 ∪ P2 (∪ P3 varsa)
+                p4_alim = set()
+                if p1_syms is not None:
+                    p4_alim |= p1_syms
+                if p2_syms is not None:
+                    p4_alim |= p2_syms
+                if sym in p4_alim:
+                    pos["max_gun_date"] = (date.today() + timedelta(days=MAX_GUN_EXTENSION)).isoformat()
+                    pos["gun"]           = gun
+                    pos["guncel_fiyat"]  = guncel
+                    pos["pnl_pct"]       = round(pnl_pct * 100, 2)
+                    devam[sym]           = pos
+                    continue
+                else:
+                    neden = "MAX_GUN"
 
         if neden:
             trade = {
@@ -750,6 +781,7 @@ def yeni_pozisyon_ac(
             "pnl_pct":      0.0,
             "gun":          0,
             "giris_tarih":  bugun,
+            "max_gun_date": _max_gun_date_hesapla(bugun),
             "meta_score":   aday.get("meta_score", 0),
             "kaynaklar":    aday.get("kaynaklar", []),
             "coklu_onay":   aday.get("coklu_onay", False),

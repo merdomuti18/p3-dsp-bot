@@ -57,8 +57,8 @@ PRODUCTION_SHA256 = {
     "dsp_strategies.py": "ae108ff65769d69b30b6a46c416fdfebd35cab0c20b34f5d0fe0ff6adcc44200",
     "dsp_trend.py": "dea1c9ad7f86158205322ac6fbef0e58bc14b111ece8d4ec9be232d6b00e143b",
     "scanner_dsp.py": "311ae33ae94a675dfe87c2a19b8f6e8ed6ab78b658bc616314331492b0d14ef6",
-    "simulate_dsp.py": "36150a842e5de2b4d81a2dce5e0949af7561fe2a6d0d1665e38783b379f39508",
-    "meta_portfolio.py": "3f378a75ff3378710c1c72aed53774b2c9ffa83b6c774fb46a9089c94fa4a790",
+    "simulate_dsp.py": "cdc631342500a22a2ba55ee46694a1564809f67f8f05f22fca75c98f91115929",
+    "meta_portfolio.py": "80d4eb55f630348d4c7c6f3d46a97dfe51c836005fc948039c1e61386038c855",
     "mott_state.py": "078398246937a464d4aac33ea566b379c5482fea1335b33ae3ab26662b1e1756",
     "mott_risk.py": "de5decc19316d80d1e524df708b60e0f2235a1c642b23947dd9efb1068fd546c",
     "mott_telegram.py": "53fab3e86fb9ed5f012f12c9abcf0d9ee5e42266424b6b75bff687e557a2b935",
@@ -66,8 +66,8 @@ PRODUCTION_SHA256 = {
     "mott_portfoy_deger.py": "818f19c582123d5816918f8cfd7f47380f05ccc0c96bf9eb76c091c056fce4e4",
     "mott_performans_analiz.py": "0268b9ac8bb70b5a7029b2308e5b58c01bb134102a0c84653ab986fe64251752",
     "mott_aylik_rapor.py": "6793f0dbb2138fe5fd5eba831bc7460c550a04d7f8a109557d5dd5574993d12e",
-    "p5_committee.py": "5b0bef77b3873f86e0a5a338199a2aec50c0cac9e30011c7c29b8fde88a894eb",
-    "portfoy_yonetici.py": "f64d59ba43b02adc3ae57ba6f70e8b7fe6ab1e5d62c3ec95af7bbd523f4f84e4",
+    "p5_committee.py": "cc3bb1159b83ed53bf80440e4ce6deceaa836a57af5c15c2e02075bee9bfc51b",
+    "portfoy_yonetici.py": "004d260f09764093c09c49742da1e90098bd5594896eb4cdf0f96015b5942d12",
     "scanner_p1.py": "00a77fe798c6ed7639ef3c1ebebeacc431e14bdfcaaae8bc0bc6e5d1fef71e63",
     "scanner_smc.py": "7a19de2765c8823c64085eaebbc74469bab49ef9f5daebbfd076a77bcf0ce7d7",
 }
@@ -80,7 +80,7 @@ REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a
 # beklenen değerleridir.
 # ---------------------------------------------------------------------------
 ARTEFAKT_SHA256 = {
-    "manifest.json": "35d8edc15735a22c5c2c64a9297002dabb5ff58b9a7cb77cc25a6259657c8e01",
+    "manifest.json": "ae9594aae44ffa7cb4fd2acc8c9f0ffc7b27e6379cd9b869e585cdc9dda6e56a",
     "p4_ic_baseline.txt": "5b6658ecfe4f61f794ada2b046bdce0e78ff28df9feaf5fe45c297525bc21543",
     "state_sha256.txt": "82c8c4771463ba75bfe13b749cbf380ffef23ae4bf77c17740d2c8c2348f0098",
     "mott_state_normalize_output.txt": "d7a85409f8bb96e4d61324e0ce730a2d0d945d8f6988778ef3abdbc655ab5dc4",

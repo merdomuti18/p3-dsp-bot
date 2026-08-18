@@ -102,6 +102,7 @@ STOP_PCT                 = -0.05
 TP1_PCT                  = 0.08
 TRAILING_PCT             = -0.05
 MAX_GUN                  = 10
+MAX_GUN_EXTENSION        = 5
 LGBM_MIN_SKOR            = 60
 WAITING_EXPIRES_HOUR     = 17
 EMERGENCY_LIQUIDATION_SCORE = 80
@@ -122,6 +123,54 @@ def _elde_tutma_gunu(giris_t: str) -> int:
         return (date.today() - giris_tarih).days
     except Exception:
         return 0
+
+
+def _max_gun_date_hesapla_p1(giris_t: str, max_gun: int = MAX_GUN) -> str:
+    """P1: Entry tarihinden MAX_GUN deadline hesapla (DD.MM.YYYY format)."""
+    try:
+        giris = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date()
+        return (giris + timedelta(days=max_gun)).strftime("%d.%m.%Y")
+    except Exception:
+        return (date.today() + timedelta(days=max_gun)).strftime("%d.%m.%Y")
+
+
+def _p1_alim_listesi() -> set[str]:
+    """P1 canonical ALIM listesi — bugünkü tarama.
+    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+    try:
+        tarama = tarama_listesi_yukle()
+        scan_time = tarama.get("scan_time", "")
+        bugun = date.today().isoformat()
+        if scan_time and scan_time[:10] != bugun:
+            return set()
+        return {s["symbol"] for s in tarama.get("signals", [])}
+    except Exception:
+        return set()
+
+
+def _p2_alim_listesi() -> set[str]:
+    """P2 canonical ALIM listesi — bugünkü tarama.
+    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+    try:
+        p2_tarama = BASE_DIR / "tarama_listesi_p2.json"
+        if not p2_tarama.exists():
+            return set()
+        with open(p2_tarama, encoding="utf-8") as fh:
+            data = json.load(fh)
+        scan_time = data.get("scan_time", "")
+        bugun = date.today().isoformat()
+        if isinstance(data, list):
+            return set(data) if scan_time and scan_time[:10] == bugun else set()
+        if scan_time and scan_time[:10] != bugun:
+            return set()
+        signals = data.get("signals", [])
+        if isinstance(signals, list) and signals:
+            if isinstance(signals[0], str):
+                return set(signals)
+            return {s["symbol"] for s in signals}
+        return set()
+    except Exception:
+        return set()
 
 
 def _trade_kaydet(portfoy: dict, sym: str, pos: dict, cikis_f: float,
@@ -367,6 +416,7 @@ def p2_yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str) -> tuple
             mevcut[sym] = {
                 "giris_f": round(giris_f, 4), "giris_t": datetime.now().strftime("%d.%m.%Y %H:%M"),
                 "tepe_f": round(giris_f, 4), "lotlar": lotlar, "gun": 0, "tp1_yapildi": False,
+                "max_gun_date": (date.today() + timedelta(days=P2_MAX_GUN)).strftime("%d.%m.%Y"),
                 "smc_score": aday.get("score", 0), "teyit_skoru": aday.get("teyit_skoru", 0),
                 "signals": aday.get("signals", []),
             }
@@ -429,6 +479,18 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
                                                           "exit_price": cikis_f, "return_pct": ret_g * 100})
                     continue
             if _elde_tutma_gunu(pos.get("giris_t", "")) >= P2_MAX_GUN:
+                # Rolling extension: MAX_GUN gününde P2 ALIM listesi kontrolü
+                mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla_p1(pos.get("giris_t", ""), P2_MAX_GUN)
+                try:
+                    mgd = datetime.strptime(mgd_str, "%d.%m.%Y").date()
+                except Exception:
+                    mgd = date.today()
+                if date.today() >= mgd:
+                    alim = _p2_alim_listesi()
+                    if sym in alim:
+                        pos["max_gun_date"] = (date.today() + timedelta(days=MAX_GUN_EXTENSION)).strftime("%d.%m.%Y")
+                        continue
+                    # else: EXIT below
                 portfoy["nakit"] += pos["lotlar"] * close
                 _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
                 kapatilacak.append(sym)
@@ -1329,6 +1391,7 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
             mevcut[sym] = {
                 "giris_f": round(giris_f, 4), "giris_t": datetime.now().strftime("%d.%m.%Y %H:%M"),
                 "tepe_f": round(giris_f, 4), "lotlar": lotlar, "gun": 0, "tp1_yapildi": False,
+                "max_gun_date": (date.today() + timedelta(days=MAX_GUN)).strftime("%d.%m.%Y"),
                 "final_score": aday["final_score"], "ma_score": aday["ma_score"],
                 "lgbm_score": aday["lgbm_score"],
                 "source_signal": {"score_count": aday["score_count"], "strategies": aday["strategies"],
@@ -1394,6 +1457,18 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
                     continue
             # MAX GUN
             if _elde_tutma_gunu(pos.get("giris_t", "")) >= MAX_GUN:
+                # Rolling extension: MAX_GUN gününde P1 ALIM listesi kontrolü
+                mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla_p1(pos.get("giris_t", ""))
+                try:
+                    mgd = datetime.strptime(mgd_str, "%d.%m.%Y").date()
+                except Exception:
+                    mgd = date.today()
+                if date.today() >= mgd:
+                    alim = _p1_alim_listesi()
+                    if sym in alim:
+                        pos["max_gun_date"] = (date.today() + timedelta(days=MAX_GUN_EXTENSION)).strftime("%d.%m.%Y")
+                        continue
+                    # else: EXIT below
                 portfoy["nakit"] += pos["lotlar"] * close
                 _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
                 kapatilacak.append(sym)
