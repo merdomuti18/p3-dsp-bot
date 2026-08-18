@@ -56,7 +56,7 @@
     "BORSK": {
       "giris_f": 5.88,
       "giris_t": "11.08.2026 11:45",
-      "tepe_f": 6.179999828338623,
+      "tepe_f": 6.199999809265137,
       "lotlar": 3401,
       "gun": 0,
       "tp1_yapildi": false,
@@ -84,7 +84,7 @@
     "HOROZ": {
       "giris_f": 59.25,
       "giris_t": "12.08.2026 13:12",
-      "tepe_f": 68.94999694824219,
+      "tepe_f": 71.0,
       "lotlar": 53,
       "gun": 0,
       "tp1_yapildi": true,
@@ -799,7 +799,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "18.08.2026 07:39",
+  "last_hourly_check_time": "18.08.2026 10:30",
   "trade_history": [
     {
       "symbol": "BFREN",
