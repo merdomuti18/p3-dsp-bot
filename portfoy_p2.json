@@ -16,7 +16,7 @@
     "DOFER": {
       "giris_f": 29.1,
       "giris_t": "10.08.2026 07:20",
-      "tepe_f": 32.20000076293945,
+      "tepe_f": 31.84000015258789,
       "lotlar": 109,
       "gun": 0,
       "tp1_yapildi": true,
@@ -29,7 +29,7 @@
     "INTEM": {
       "giris_f": 253.25,
       "giris_t": "11.08.2026 08:10",
-      "tepe_f": 265.0,
+      "tepe_f": 264.5,
       "lotlar": 76,
       "gun": 0,
       "tp1_yapildi": false,
@@ -84,7 +84,7 @@
     "HOROZ": {
       "giris_f": 59.25,
       "giris_t": "12.08.2026 13:12",
-      "tepe_f": 69.55000305175781,
+      "tepe_f": 68.94999694824219,
       "lotlar": 53,
       "gun": 0,
       "tp1_yapildi": true,
@@ -799,7 +799,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "18.08.2026 08:38",
+  "last_hourly_check_time": "18.08.2026 07:39",
   "trade_history": [
     {
       "symbol": "BFREN",
