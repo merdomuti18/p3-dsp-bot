@@ -56,10 +56,10 @@
     "BORSK": {
       "giris_f": 5.88,
       "giris_t": "11.08.2026 11:45",
-      "tepe_f": 6.340000152587891,
-      "lotlar": 3401,
+      "tepe_f": 6.389999866485596,
+      "lotlar": 1701,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "smc_score": 6.0,
       "teyit_skoru": 0,
       "signals": [
@@ -95,7 +95,7 @@
       ]
     }
   },
-  "nakit": 6774.107740554809,
+  "nakit": 17518.10803237915,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -799,7 +799,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "18.08.2026 11:26",
+  "last_hourly_check_time": "18.08.2026 12:49",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -954,6 +954,17 @@
       "neden": "TP1",
       "giris_tarih": "2026-08-10",
       "cikis_tarih": "2026-08-17"
+    },
+    {
+      "symbol": "BORSK",
+      "giris_fiyat": 5.88,
+      "cikis_fiyat": 6.32,
+      "lotlar": 1700,
+      "pnl_pct": 7.48,
+      "gun": 7,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-11",
+      "cikis_tarih": "2026-08-18"
     }
   ]
 }
