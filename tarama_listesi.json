@@ -1,11 +1,11 @@
 {
-  "scan_time": "18.08.2026 18:33",
-  "scan_label": "Gün İçi Manuel Tetikleme",
+  "scan_time": "18.08.2026 19:41",
+  "scan_label": "20:50 Kapanış",
   "signals": [
     {
       "symbol": "ALARK",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "GT",
         "MR",
@@ -23,8 +23,8 @@
     },
     {
       "symbol": "KGYO",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "GTD"
       ],
@@ -40,8 +40,8 @@
     },
     {
       "symbol": "KRGYO",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "GTD"
       ],
@@ -57,8 +57,8 @@
     },
     {
       "symbol": "CATES",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
@@ -74,8 +74,8 @@
     },
     {
       "symbol": "TKNSA",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
@@ -91,8 +91,8 @@
     },
     {
       "symbol": "DEVA",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
@@ -108,8 +108,8 @@
     },
     {
       "symbol": "NETAS",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
@@ -125,8 +125,8 @@
     },
     {
       "symbol": "ARSAN",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
@@ -142,8 +142,8 @@
     },
     {
       "symbol": "BIMAS",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
@@ -159,8 +159,8 @@
     },
     {
       "symbol": "ULUSE",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
@@ -176,8 +176,8 @@
     },
     {
       "symbol": "BORSK",
-      "scan_time": "18.08.2026 18:33",
-      "scan_label": "Gün İçi Manuel Tetikleme",
+      "scan_time": "18.08.2026 19:41",
+      "scan_label": "20:50 Kapanış",
       "strategies": [
         "MR"
       ],
