@@ -3,9 +3,9 @@
     "TKFEN": {
       "symbol": "TKFEN",
       "giris_fiyat": 221.9,
-      "guncel_fiyat": 230.9,
+      "guncel_fiyat": 231.7,
       "lotlar": 45,
-      "pnl_pct": 4.06,
+      "pnl_pct": 4.42,
       "gun": 8,
       "giris_tarih": "2026-08-10",
       "meta_score": 0.857142857142857,
@@ -20,9 +20,9 @@
     "UFUK": {
       "symbol": "UFUK",
       "giris_fiyat": 1813.0,
-      "guncel_fiyat": 1806.0,
+      "guncel_fiyat": 1801.0,
       "lotlar": 5,
-      "pnl_pct": -0.39,
+      "pnl_pct": -0.66,
       "gun": 8,
       "giris_tarih": "2026-08-10",
       "meta_score": 0.7333333333333334,
@@ -36,9 +36,9 @@
     "BRSAN": {
       "symbol": "BRSAN",
       "giris_fiyat": 628.5,
-      "guncel_fiyat": 645.5,
+      "guncel_fiyat": 640.5,
       "lotlar": 15,
-      "pnl_pct": 2.7,
+      "pnl_pct": 1.91,
       "gun": 6,
       "giris_tarih": "2026-08-12",
       "meta_score": 0.41904761904761906,
@@ -52,9 +52,9 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 91.6,
-      "guncel_fiyat": 90.8,
+      "guncel_fiyat": 89.9,
       "lotlar": 109,
-      "pnl_pct": -0.87,
+      "pnl_pct": -1.86,
       "gun": 1,
       "giris_tarih": "2026-08-17",
       "meta_score": 0.8444444444444444,
@@ -69,9 +69,9 @@
     "KRDMA": {
       "symbol": "KRDMA",
       "giris_fiyat": 46.44,
-      "guncel_fiyat": 46.1,
+      "guncel_fiyat": 45.94,
       "lotlar": 215,
-      "pnl_pct": -0.73,
+      "pnl_pct": -1.08,
       "gun": 1,
       "giris_tarih": "2026-08-17",
       "meta_score": 0.5296296296296297,
@@ -701,5 +701,5 @@
   ],
   "last_run": "2026-08-17T16:40:25.744539",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 96036
+  "sermaye_mevcut": 95628
 }
