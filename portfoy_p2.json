@@ -84,7 +84,7 @@
     "HOROZ": {
       "giris_f": 59.25,
       "giris_t": "12.08.2026 13:12",
-      "tepe_f": 68.94999694824219,
+      "tepe_f": 69.9000015258789,
       "lotlar": 53,
       "gun": 0,
       "tp1_yapildi": true,
@@ -799,7 +799,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "18.08.2026 07:39",
+  "last_hourly_check_time": "18.08.2026 09:35",
   "trade_history": [
     {
       "symbol": "BFREN",
