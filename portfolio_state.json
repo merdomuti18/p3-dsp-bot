@@ -907,6 +907,20 @@
         "TKFEN",
         "ARDYZ"
       ]
+    },
+    {
+      "date": "2026-08-19",
+      "scanned": 79,
+      "long_signals": 33,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "TUPRS",
+        "IZMDC",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1226,14 +1240,6 @@
     },
     "log": [
       {
-        "date": "2026-07-27",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-07-28",
         "total": 78,
         "reliable": 0,
@@ -1451,6 +1457,14 @@
       },
       {
         "date": "2026-08-18",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-19",
         "total": 78,
         "reliable": 0,
         "drifted": 0,
