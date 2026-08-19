@@ -461,3 +461,77 @@ class TestL1bConcurrencyGuard:
         assert any("senkronize" in n.lower() for n in step_names), (
             "p5-komite state_sync adimi eksik"
         )
+
+
+# ── L2: Defensive Regression Tests ──────────────────────────────────────────
+
+
+# Her state dosyasının tek writer job'ı — workflow'dan çıkarıldı
+_STATE_OWNERSHIP = {
+    "state_p1.json":       "p1-momentum",
+    "state_p2.json":       "p2-smc",
+    "portfolio_state.json": "p3-dsp",
+    "state_p4.json":       "p4-meta",
+    "state_p5.json":       "p5-komite",
+}
+
+
+class TestL2Defensive:
+    """L2: Defensive regression testleri — state ownership ve P4/P5 ayrımı."""
+
+    def _extract_committed_files(self, job_def: dict) -> set[str]:
+        """Bir job'un commit ettiği state dosyalarını çıkar."""
+        committed = set()
+        for step in job_def.get("steps", []):
+            run_cmd = step.get("run", "")
+            if not isinstance(run_cmd, str):
+                continue
+            # FILES="..." satırından
+            for line in run_cmd.split("\n"):
+                line = line.strip()
+                if line.startswith("FILES="):
+                    raw = line.split("FILES=", 1)[1]
+                    for token in raw.split():
+                        committed.add(token.strip('"'))
+            # git add ... satırından (FILES kullanmayan job'lar için)
+            for line in run_cmd.split("\n"):
+                line = line.strip()
+                if line.startswith("git add ") and "FILES=" not in line:
+                    for token in line.split()[2:]:  # git add <files...>
+                        committed.add(token.strip('"'))
+        return committed
+
+    def test_state_file_ownership_no_overlap(self):
+        """Her state dosyasının yalnızca bir writer job'ı olmalı."""
+        wf = _load_workflow()
+        writer_map: dict[str, list[str]] = {f: [] for f in _STATE_OWNERSHIP}
+        for job_name, job_def in wf["jobs"].items():
+            committed = self._extract_committed_files(job_def)
+            for state_file in _STATE_OWNERSHIP:
+                if state_file in committed:
+                    writer_map[state_file].append(job_name)
+        # Her dosya en az bir writer'a sahip olmalı
+        for state_file, expected_job in _STATE_OWNERSHIP.items():
+            writers = writer_map[state_file]
+            assert len(writers) >= 1, (
+                f"{state_file} icin hicbir writer bulunamadi"
+            )
+            assert expected_job in writers, (
+                f"{state_file} beklenen writer {expected_job} ama {writers} bulundu"
+            )
+
+    def test_p4_p5_different_state_files(self):
+        """P4 ve P5 farklı state dosyalarına yazmali — dogrudan invariant kontrolu."""
+        wf = _load_workflow()
+        # Dogrudan invariant
+        assert _STATE_OWNERSHIP["state_p4.json"] == "p4-meta"
+        assert _STATE_OWNERSHIP["state_p5.json"] == "p5-komite"
+        assert _STATE_OWNERSHIP["state_p4.json"] != _STATE_OWNERSHIP["state_p5.json"]
+        # Workflow'da p4-meta ve p5-komite'in commit dosyaları farklı olmalı
+        p4_files = self._extract_committed_files(wf["jobs"]["p4-meta"])
+        p5_files = self._extract_committed_files(wf["jobs"]["p5-komite"])
+        assert p4_files != p5_files, (
+            f"p4-meta ve p5-komite ayni dosyalari commit ediyor: {p4_files}"
+        )
+        assert "state_p4.json" in p4_files, "p4-meta state_p4.json commit etmeli"
+        assert "state_p5.json" in p5_files, "p5-komite state_p5.json commit etmeli"
