@@ -1,31 +1,6 @@
 {
   "created": "2026-07-02",
-  "positions": {
-    "IZMDC": {
-      "entry_date": "2026-07-07",
-      "entry_price": 9.25,
-      "score": 0.0758,
-      "margin": 0.0567
-    },
-    "TUPRS": {
-      "entry_date": "2026-07-09",
-      "entry_price": 264.25,
-      "score": 0.0709,
-      "margin": 0.0556
-    },
-    "TKFEN": {
-      "entry_date": "2026-07-30",
-      "entry_price": 152.7,
-      "score": 0.0844,
-      "margin": 0.0677
-    },
-    "ARDYZ": {
-      "entry_date": "2026-08-03",
-      "entry_price": 75.45,
-      "score": 0.0935,
-      "margin": 0.057
-    }
-  },
+  "positions": {},
   "history": [
     {
       "symbol": "ODAS",
@@ -172,6 +147,42 @@
       "exit_price": 108.4,
       "pnl_pct": -4.07,
       "holding_days": 7
+    },
+    {
+      "symbol": "IZMDC",
+      "entry_date": "2026-07-07",
+      "exit_date": "2026-08-19",
+      "entry_price": 9.25,
+      "exit_price": 13.05,
+      "pnl_pct": 41.08,
+      "holding_days": 43
+    },
+    {
+      "symbol": "TUPRS",
+      "entry_date": "2026-07-09",
+      "exit_date": "2026-08-19",
+      "entry_price": 264.25,
+      "exit_price": 395.5,
+      "pnl_pct": 49.67,
+      "holding_days": 41
+    },
+    {
+      "symbol": "TKFEN",
+      "entry_date": "2026-07-30",
+      "exit_date": "2026-08-19",
+      "entry_price": 152.7,
+      "exit_price": 231.0,
+      "pnl_pct": 51.28,
+      "holding_days": 20
+    },
+    {
+      "symbol": "ARDYZ",
+      "entry_date": "2026-08-03",
+      "exit_date": "2026-08-19",
+      "entry_price": 75.45,
+      "exit_price": 91.9,
+      "pnl_pct": 21.8,
+      "holding_days": 16
     }
   ],
   "scan_log": [
@@ -877,6 +888,25 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-08-19",
+      "scanned": 79,
+      "long_signals": 33,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "TUPRS",
+        "IZMDC",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": [
+        "IZMDC",
+        "TUPRS",
+        "TKFEN",
+        "ARDYZ"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -1204,14 +1234,6 @@
         "alert_symbols": []
       },
       {
-        "date": "2026-07-27",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-07-28",
         "total": 78,
         "reliable": 0,
@@ -1429,6 +1451,14 @@
       },
       {
         "date": "2026-08-18",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-19",
         "total": 78,
         "reliable": 0,
         "drifted": 0,

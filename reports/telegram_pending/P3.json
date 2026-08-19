@@ -1,10 +1,13 @@
 {
   "strateji": "P3",
-  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 12.08.2026 | 15:57 TSİ\n\n⬜ *Satım:* `ENJSA`\n\n📈 *Sinyaller:*\n  • `TKFEN   ` skor=+0.282  _marj=+0.219_\n  • `IZMDC   ` skor=+0.108  _marj=+0.085_\n  • `ARDYZ   ` skor=+0.106  _marj=+0.082_\n  • `TUPRS   ` skor=+0.076  _marj=+0.031_\n  • `CWENE   ` skor=+0.029  _marj=+0.050_\n\n💼 *Açık pozisyon (4):*\n  • `IZMDC`\n  • `TUPRS`\n  • `TKFEN`\n  • `ARDYZ`\n📊 *WR:* 12%  |  *P&L:* -46.9%\n🔴 *Portföy değeri:* `90,610 TL` (-9.4%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 19.08.2026 | 18:34 TSİ\n\n⬜ *Satım:* `IZMDC`, `TUPRS`, `TKFEN`, `ARDYZ`\n\n📈 *Sinyaller:*\n  • `TKFEN   ` skor=+0.346  _marj=+0.350_\n  • `ARDYZ   ` skor=+0.169  _marj=+0.115_\n  • `TUPRS   ` skor=+0.164  _marj=+0.116_\n  • `IZMDC   ` skor=+0.111  _marj=+0.076_\n  • `ASTOR   ` skor=+0.093  _marj=+0.079_\n\n💼 *Açık pozisyon (0):*\n  _Açık pozisyon yok_\n📊 *WR:* 30%  |  *P&L:* +116.9%\n🟢 *Portföy değeri:* `123,376 TL` (+23.4%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
   "meta": {
     "giris": [],
     "cikis": [
-      "ENJSA"
+      "IZMDC",
+      "TUPRS",
+      "TKFEN",
+      "ARDYZ"
     ]
   }
 }
