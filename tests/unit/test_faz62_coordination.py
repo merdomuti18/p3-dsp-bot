@@ -389,3 +389,75 @@ class TestAtomicWriteJSON:
             loaded = json.load(f)
         assert loaded == {"new": True}
         assert "old" not in loaded
+
+
+# ── L1b: Concurrency Guard Static Tests ────────────────────────────────────
+
+
+import yaml as _yaml
+from pathlib import Path as _Path
+
+_WORKFLOW = _Path(__file__).resolve().parent.parent.parent / ".github" / "workflows" / "mott_daily.yml"
+
+
+def _load_workflow():
+    with open(_WORKFLOW, encoding="utf-8") as f:
+        return _yaml.safe_load(f)
+
+
+# Tüm state-writing job'lar
+_STATE_WRITING_JOBS = [
+    "p3-dsp", "p1-momentum", "p2-smc",      # aksam modu writer'lari
+    "p3-monitor", "p4-monitor", "p5-monitor", # canli takip writer'lari
+    "p4-meta", "p5-komite",                    # aksam downstream writer'lari
+]
+
+
+class TestL1bConcurrencyGuard:
+    """L1b: concurrency guard dogrulama testleri."""
+
+    def test_all_state_writers_have_concurrency(self):
+        """Tum state-writing job'larinda concurrency blogu olmali."""
+        wf = _load_workflow()
+        for job in _STATE_WRITING_JOBS:
+            assert "concurrency" in wf["jobs"][job], (
+                f"{job} concurrency blogu eksik"
+            )
+
+    def test_all_writers_share_same_group(self):
+        """Tum writer'lar ayni concurrency group'a sahip olmali (state-writer)."""
+        wf = _load_workflow()
+        groups = set()
+        for job in _STATE_WRITING_JOBS:
+            group = wf["jobs"][job].get("concurrency", {}).get("group")
+            groups.add(group)
+        assert len(groups) == 1, f"Birden fazla group bulundu: {groups}"
+        assert groups.pop() == "state-writer", "Group adi 'state-writer' olmali"
+
+    def test_cancel_in_progress_false(self):
+        """Tum writer'larda cancel-in-progress: false olmali."""
+        wf = _load_workflow()
+        for job in _STATE_WRITING_JOBS:
+            cip = wf["jobs"][job]["concurrency"].get("cancel-in-progress")
+            assert cip is False, (
+                f"{job} cancel-in-progress: {cip} — False olmali"
+            )
+
+    def test_workflow_level_guard_preserved(self):
+        """Workflow-level concurrency: group=mott-daily korunmali."""
+        wf = _load_workflow()
+        assert wf["concurrency"]["group"] == "mott-daily"
+        assert wf["concurrency"]["cancel-in-progress"] is False
+
+    def test_l1a_mechanisms_preserved(self):
+        """L1a mekanizmalari (p5-komite needs p4-meta, state_sync) korunmali."""
+        wf = _load_workflow()
+        # p5-komite needs: p4-meta olmali
+        p5_needs = wf["jobs"]["p5-komite"]["needs"]
+        assert "p4-meta" in p5_needs, "p5-komite needs: p4-meta eksik"
+        # p5-komite state_sync adimi hala mevcut olmali
+        p5_steps = wf["jobs"]["p5-komite"]["steps"]
+        step_names = [s.get("name", "") for s in p5_steps]
+        assert any("senkronize" in n.lower() for n in step_names), (
+            "p5-komite state_sync adimi eksik"
+        )

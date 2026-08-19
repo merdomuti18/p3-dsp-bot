@@ -73,6 +73,9 @@ jobs:
     name: P3 — DSP
     needs: gate
     if: needs.gate.outputs.mode == 'aksam'
+    concurrency:
+      group: state-writer
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -141,6 +144,9 @@ jobs:
     name: P1 — Momentum
     needs: gate
     if: contains(fromJSON('["aksam","sabah","alim","takip","kapani"]'), needs.gate.outputs.mode)
+    concurrency:
+      group: state-writer
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -207,6 +213,9 @@ jobs:
     name: P2 — SMC
     needs: gate
     if: contains(fromJSON('["aksam","alim","takip"]'), needs.gate.outputs.mode)
+    concurrency:
+      group: state-writer
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -271,6 +280,9 @@ jobs:
       always() &&
       needs.gate.outputs.mode == 'aksam' &&
       needs.p3-dsp.result == 'success'
+    concurrency:
+      group: state-writer
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -340,6 +352,9 @@ jobs:
       always() &&
       needs.gate.outputs.mode == 'aksam' &&
       needs.p3-dsp.result == 'success'
+    concurrency:
+      group: state-writer
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -449,6 +464,9 @@ jobs:
     name: P3 — Canlı Takip
     needs: gate
     if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    concurrency:
+      group: state-writer
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -499,6 +517,9 @@ jobs:
     name: P4 — Canlı Takip
     needs: gate
     if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    concurrency:
+      group: state-writer
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -549,6 +570,9 @@ jobs:
     name: P5 — Canlı Takip
     needs: gate
     if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    concurrency:
+      group: state-writer
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
