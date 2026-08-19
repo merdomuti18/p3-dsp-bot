@@ -345,9 +345,20 @@ def state_kaydet(state: dict):
         state["sermaye_mevcut"] = equity_hesapla("P4", state)["equity"]
     except Exception:
         pass
+    # FAZ 6.2: generation counter + timestamp ekle
+    try:
+        from mott_state_coordination import stamp_state
+        stamp_state(state)
+    except ImportError:
+        pass
+    # FAZ 6.2: atomik yazma (crash-safe)
     path = BASE_DIR / "state_p4.json"
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(state, f, indent=2, ensure_ascii=False)
+    try:
+        from mott_state_coordination import atomic_write_json
+        atomic_write_json(path, state)
+    except ImportError:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(state, f, indent=2, ensure_ascii=False)
     log.info("P4 state kaydedildi")
 
 

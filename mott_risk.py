@@ -127,3 +127,49 @@ def makro_karar_oku() -> str:
     """son_durum.json'dan güncel makro kararı (yoksa NORMAL)."""
     d = _json_oku(BASE_DIR / "son_durum.json")
     return d.get("makro_karar", "NORMAL")
+
+
+# ── FAZ 6.2 — Taze (stale-safe) çapraz kitap okuma ─────────────────────────
+
+def kitaplar_arasi_taze_sayi(
+    symbol: str,
+    haric: str | None = None,
+    threshold_hours: int | None = None,
+) -> tuple[int, list[str]]:
+    """Sembolün kaçı taze (fresh) kitapta açık pozisyon olduğu (FAZ 6.2).
+
+    Konservatif yaklaşım: bayat bir kitapta sembol açıksa, o kitap
+    sayılır (bilinmeyen risk = dolu varsayılır). Eksik dosya/dosya
+    yoksa sayılmaz. Bu davranış N1 invariant'ı (MAX_KITAP) korur.
+
+    Returns:
+        (taze_sayi, bayat_kitaplar): (kitap sayisi, bayat olanlarin listesi)
+    """
+    try:
+        from mott_state_coordination import kitaplar_arasi_taze_sayi as _taze
+        return _taze(symbol, _KITAP_DOSYALARI, haric=haric,
+                     threshold_hours=threshold_hours)
+    except ImportError:
+        # mott_state_coordination mevcut degilse geri donusu: tum kitaplar sayilir
+        return kitaplar_arasi_sayi(symbol, haric=haric), []
+
+
+def kitap_limiti_taze_asildi(symbol: str, haric: str | None = None) -> bool:
+    """Sembol zaten MAX_KITAP taze kitapta açıksa True (FAZ 6.2).
+
+    Bayat kitaplar sayilmaz — bayat state uzerinden kilit koymaz.
+    """
+    sayi, bayat = kitaplar_arasi_taze_sayi(symbol, haric=haric)
+    if sayi >= MAX_KITAP:
+        log.info(
+            "mott_risk taze: %s zaten %d taze kitapta acik (limit %d)%s — atlaniyor",
+            symbol, sayi, MAX_KITAP,
+            f" (bayat: {','.join(bayat)})" if bayat else "",
+        )
+        return True
+    if bayat:
+        log.info(
+            "mott_risk taze: %s taze kitap sayisi %d < limit %d, ancak bayat kitaplar mevcut: %s",
+            symbol, sayi, MAX_KITAP, ",".join(bayat),
+        )
+    return False

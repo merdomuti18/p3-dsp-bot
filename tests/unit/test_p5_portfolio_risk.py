@@ -195,7 +195,7 @@ class TestPOS_TL:
         s = _state()
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 250})
             )
@@ -207,7 +207,7 @@ class TestPOS_TL:
         s = _state()
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 20_001})
             )
@@ -218,7 +218,7 @@ class TestPOS_TL:
         s = _state()
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 42.5})
             )
@@ -237,7 +237,7 @@ class TestMaxPos:
         s = _state(poz=poz)
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("NEW")], _cache({"NEW": 100})
             )
@@ -249,7 +249,7 @@ class TestMaxPos:
         s = _state(poz=poz)
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("NEW")], _cache({"NEW": 100})
             )
@@ -260,7 +260,7 @@ class TestMaxPos:
         s = _state(poz={"A": _pos("A", 100)})
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 100})
             )
@@ -277,7 +277,7 @@ class TestCooldown:
         s = _state()
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=True), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 100})
             )
@@ -288,7 +288,7 @@ class TestCooldown:
         s = _state()
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 100})
             )
@@ -306,7 +306,7 @@ class TestCooldown:
         s = _state(hist=hist)
         # mott_risk.cooldown_da naturally returns False for MAX_GUN
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 100})
             )
@@ -323,7 +323,7 @@ class TestExposure:
         s = _state()
         with patch("mott_risk.rejim_slot_limiti", return_value=None), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=True):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=True):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 100})
             )
@@ -334,7 +334,7 @@ class TestExposure:
         s = _state()
         with patch("mott_risk.rejim_slot_limiti", return_value=0), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(
                 s, [_aday("A")], _cache({"A": 100})
             )
@@ -347,7 +347,7 @@ class TestExposure:
         cache = {f"S{i}": [100.0] for i in range(5)}
         with patch("mott_risk.rejim_slot_limiti", return_value=2), \
              patch("mott_risk.cooldown_da", return_value=False), \
-             patch("mott_risk.kitap_limiti_asildi", return_value=False):
+             patch("mott_risk.kitap_limiti_taze_asildi", return_value=False):
             acilan = p5_committee.yeni_pozisyon_ac(s, adaylar, cache)
         assert len(acilan) == 2
 

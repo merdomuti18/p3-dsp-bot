@@ -584,8 +584,14 @@ def vm_gonder_p2(payload: dict | list, scan_time: str, scan_label: str, mod: str
             existing["tarama"]      = {"scan_time": scan_time, "scan_label": scan_label, "signals": signals, "mod": mod}
             existing["bekleyen_al"] = signals
             existing["last_scan"]   = scan_time
-        with open(state_file, "w", encoding="utf-8") as fh:
-            json.dump(existing, fh, indent=2, ensure_ascii=False)
+        # FAZ 6.2: generation counter + timestamp ekle + atomik yazma
+        try:
+            from mott_state_coordination import stamp_state, atomic_write_json
+            stamp_state(existing)
+            atomic_write_json(state_file, existing)
+        except ImportError:
+            with open(state_file, "w", encoding="utf-8") as fh:
+                json.dump(existing, fh, indent=2, ensure_ascii=False)
         n = len(payload) if isinstance(payload, list) else len(payload.get("signals", []))
         
         # tarama_listesi_p2.json — portfoy_yonetici.py için

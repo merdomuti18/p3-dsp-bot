@@ -21,11 +21,20 @@ from datetime import date, datetime
 from pathlib import Path
 
 import numpy as np
+import pytz
 import yfinance as yf
 
 from datetime import timedelta
 
 import mott_risk
+
+# ── FAZ 6.2 — TSI (Europe/Istanbul) sabit ──────────────────────────────────
+IST = pytz.timezone("Europe/Istanbul")
+
+
+def bugun_tsi() -> date:
+    """Bugunun tarihi Europe/Istanbul (TSI) zaman diliminde."""
+    return datetime.now(IST).date()
 
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -87,9 +96,9 @@ def _parse_tarih(state: dict, key_path: list[str]) -> date | None:
 
 
 def _taze_mi(state: dict, key_path: list[str]) -> bool:
-    """State içindeki tarih bugün mü?"""
+    """State içindeki tarih bugün (TSI) mü?"""
     t = _parse_tarih(state, key_path)
-    return t == date.today() if t else False
+    return t == bugun_tsi() if t else False
 
 
 def p1_top_set(limit: int = 15) -> set[str]:
@@ -116,7 +125,7 @@ def p3_top_set(limit: int = 15) -> set[str]:
     if log_items:
         son_tarama = log_items[-1]
         tarih = son_tarama.get("date", "")
-        if tarih != date.today().isoformat():
+        if tarih != bugun_tsi().isoformat():
             return set()  # stale
         top = son_tarama.get("top5", [])
         return set(top[:limit])
@@ -304,20 +313,31 @@ def state_kaydet(state: dict) -> None:
         state["sermaye_mevcut"] = equity_hesapla("P5", state)["equity"]
     except Exception:
         pass
-    with open(BASE_DIR / "state_p5.json", "w", encoding="utf-8") as f:
-        json.dump(state, f, indent=2, ensure_ascii=False)
+    # FAZ 6.2: generation counter + timestamp ekle
+    try:
+        from mott_state_coordination import stamp_state
+        stamp_state(state)
+    except ImportError:
+        pass
+    # FAZ 6.2: atomik yazma (crash-safe)
+    try:
+        from mott_state_coordination import atomic_write_json
+        atomic_write_json(BASE_DIR / "state_p5.json", state)
+    except ImportError:
+        with open(BASE_DIR / "state_p5.json", "w", encoding="utf-8") as f:
+            json.dump(state, f, indent=2, ensure_ascii=False)
 
 
 def _elde_tutma_gunu(giris_tarih: str) -> int:
-    """Giriş tarihinden bugüne kadar geçen takvim günü (bkz. meta_portfolio.py)."""
+    """Giriş tarihinden bugüne kadar geçen takvim günü (TSI, bkz. meta_portfolio.py)."""
     try:
-        return (date.today() - date.fromisoformat(giris_tarih)).days
+        return (bugun_tsi() - date.fromisoformat(giris_tarih)).days
     except Exception:
         return 0
 
 
 def portfoy_guncelle(state: dict, fiyat_cache: dict) -> dict:
-    bugun = date.today().isoformat()
+    bugun = bugun_tsi().isoformat()
     kapananlar = []
     devam = {}
     for sym, pos in list(state.get("pozisyonlar", {}).items()):
@@ -361,11 +381,11 @@ def portfoy_guncelle(state: dict, fiyat_cache: dict) -> dict:
             try:
                 mgd = date.fromisoformat(mgd_str[:10])
             except Exception:
-                mgd = date.today()
-            if date.today() >= mgd:
+                mgd = bugun_tsi()
+            if bugun_tsi() >= mgd:
                 alim = _p5_alim_listesi()
                 if sym in alim:
-                    pos["max_gun_date"] = (date.today() + timedelta(days=MAX_GUN_EXTENSION)).isoformat()
+                    pos["max_gun_date"] = (bugun_tsi() + timedelta(days=MAX_GUN_EXTENSION)).isoformat()
                     pos["gun"] = gun
                     pos["guncel_fiyat"] = guncel
                     pos["pnl_pct"] = round(pnl * 100, 2)
@@ -397,7 +417,7 @@ def portfoy_guncelle(state: dict, fiyat_cache: dict) -> dict:
 
 
 def yeni_pozisyon_ac(state: dict, adaylar: list[dict], fiyat_cache: dict) -> list[dict]:
-    bugun = date.today().isoformat()
+    bugun = bugun_tsi().isoformat()
     acilan = []
     mevcut = set(state.get("pozisyonlar", {}).keys())
     bos = MAX_POS - len(mevcut)
@@ -415,7 +435,7 @@ def yeni_pozisyon_ac(state: dict, adaylar: list[dict], fiyat_cache: dict) -> lis
             log.info("P5 %s: cooldown (%d gün) — yeniden alınmayacak",
                      sym, mott_risk.COOLDOWN_GUN)
             continue
-        if mott_risk.kitap_limiti_asildi(sym, haric="P5"):
+        if mott_risk.kitap_limiti_taze_asildi(sym, haric="P5"):
             continue
         if sym not in fiyat_cache:
             continue
@@ -466,7 +486,7 @@ def calistir() -> dict:
     acilan = yeni_pozisyon_ac(state, secilen, fiyat_cache)
 
     state.setdefault("komite_log", []).append({
-        "tarih": date.today().isoformat(),
+        "tarih": bugun_tsi().isoformat(),
         "secilen": [s["symbol"] for s in secilen],
         "elenen": elenen[:10],
         "acilan": [p["symbol"] for p in acilan],

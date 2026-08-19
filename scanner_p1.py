@@ -360,8 +360,14 @@ def vm_gonder(signal_records, scan_time, scan_label):
                 existing = json.load(fh)
         existing["tarama"] = payload
         existing["last_scan"] = scan_time
-        with open(state_file, "w", encoding="utf-8") as fh:
-            json.dump(existing, fh, indent=2, ensure_ascii=False)
+        # FAZ 6.2: generation counter + timestamp ekle + atomik yazma
+        try:
+            from mott_state_coordination import stamp_state, atomic_write_json
+            stamp_state(existing)
+            atomic_write_json(state_file, existing)
+        except ImportError:
+            with open(state_file, "w", encoding="utf-8") as fh:
+                json.dump(existing, fh, indent=2, ensure_ascii=False)
         log.info("P1 tarama state_p1.json'a yazıldı: %d sinyal", len(signal_records))
     except Exception as exc:
         log.warning("state_p1.json yazma hatası: %s", exc)

@@ -108,10 +108,16 @@ def load_state() -> dict:
 
 
 def save_state(state: dict) -> None:
-    STATE_FILE.write_text(
-        json.dumps(state, indent=2, ensure_ascii=False),
-        encoding="utf-8"
-    )
+    # FAZ 6.2: generation counter + timestamp ekle + atomik yazma
+    try:
+        from mott_state_coordination import stamp_state, atomic_write_json
+        stamp_state(state)
+        atomic_write_json(STATE_FILE, state)
+    except ImportError:
+        STATE_FILE.write_text(
+            json.dumps(state, indent=2, ensure_ascii=False),
+            encoding="utf-8"
+        )
 
 
 def _append_sinyal_log(top_longs) -> None:
