@@ -53,7 +53,7 @@ def baseline():
 def test_frozen_sabitler_boyutlari_gecerli():
     assert len(STATE_SHA256) == 9
     assert set(STATE_SHA256) == set(STATE_DOSYALARI)
-    assert len(PRODUCTION_SHA256) == 17
+    assert len(PRODUCTION_SHA256) == 18
     assert set(PRODUCTION_SHA256) == {f.replace(".py", ".py") for f in KRITIK_MODULLER}
     assert len(ARTEFAKT_SHA256) == 6
     assert BASELINE_ID.startswith("DSP-P3-FAZ0-")

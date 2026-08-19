@@ -82,7 +82,7 @@ REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a
 # beklenen değerleridir.
 # ---------------------------------------------------------------------------
 ARTEFAKT_SHA256 = {
-    "manifest.json": "fe61528bc546eec599bfb4ae866e158fbce5e8fad8cf4098eb815bcd7015b8c1",
+    "manifest.json": "8017b3689c897ca81ea5b73cf3671dc109ae54725b7ec2812f5282fdd5505c1e",
     "p4_ic_baseline.txt": "5b6658ecfe4f61f794ada2b046bdce0e78ff28df9feaf5fe45c297525bc21543",
     "state_sha256.txt": "285979cead461f61741e8eed4358811f677f2d733848071f72582f30c5c74808",
     "mott_state_normalize_output.txt": "045a55b0cb5dc40f9be8123f68316b1c47442418ab746e4bff20d0c587eca67d",
