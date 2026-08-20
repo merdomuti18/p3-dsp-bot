@@ -97,8 +97,8 @@ def load_state() -> dict:
     if STATE_FILE.exists():
         try:
             return json.loads(STATE_FILE.read_text(encoding="utf-8"))
-        except Exception:
-            pass
+        except (json.JSONDecodeError, OSError) as exc:
+            logger.warning("portfolio_state.json okunamadi (corrupt/missing): %s — bos state ile devam", exc)
     return {
         "created": date.today().isoformat(),
         "positions": {},       # {symbol: {entry_date, entry_price, score}}

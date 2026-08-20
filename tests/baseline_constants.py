@@ -58,8 +58,8 @@ PRODUCTION_SHA256 = {
     "dsp_strategies.py": "ae108ff65769d69b30b6a46c416fdfebd35cab0c20b34f5d0fe0ff6adcc44200",
     "dsp_trend.py": "dea1c9ad7f86158205322ac6fbef0e58bc14b111ece8d4ec9be232d6b00e143b",
     "scanner_dsp.py": "311ae33ae94a675dfe87c2a19b8f6e8ed6ab78b658bc616314331492b0d14ef6",
-    "simulate_dsp.py": "64314e2989be612fb05f8f66b9b64e7b7ece045970d52365a1414b7e31754f3b",
-    "meta_portfolio.py": "2836563a08784de5003cc2a94c9089db52760c457db279c30d858a5d94defa98",
+    "simulate_dsp.py": "11870fbedf0c96be8246cc2865e1d92a5204ffb1b435459e4f1b8a8bca24c5bb",
+    "meta_portfolio.py": "6fbdbccde94bf8adc057cc915de9cf31e6a53202ea6d4a3d881f3e943ec66ee0",
     "mott_state.py": "078398246937a464d4aac33ea566b379c5482fea1335b33ae3ab26662b1e1756",
     "mott_risk.py": "0d03197b313ed3cf78b259a7eea8b108fccdf16d1cc862cf345c9f6aeac2758f",
     "mott_telegram.py": "53fab3e86fb9ed5f012f12c9abcf0d9ee5e42266424b6b75bff687e557a2b935",
@@ -67,7 +67,7 @@ PRODUCTION_SHA256 = {
     "mott_portfoy_deger.py": "818f19c582123d5816918f8cfd7f47380f05ccc0c96bf9eb76c091c056fce4e4",
     "mott_performans_analiz.py": "0268b9ac8bb70b5a7029b2308e5b58c01bb134102a0c84653ab986fe64251752",
     "mott_aylik_rapor.py": "6793f0dbb2138fe5fd5eba831bc7460c550a04d7f8a109557d5dd5574993d12e",
-    "p5_committee.py": "3cbe43eac6164ee2b3aa1b160b1224a40b64b619f9585e7a03831b1feb98ebb3",
+    "p5_committee.py": "7f9b48f93c560fe8269304c9b09237456e9c0f2b010787c055273cd022b06074",
     "portfoy_yonetici.py": "004d260f09764093c09c49742da1e90098bd5594896eb4cdf0f96015b5942d12",
     "scanner_p1.py": "a50c1469f24b365dcbd957d3ac3ff3a4bff7873a9bb497cf13447df997654fb2",
     "scanner_smc.py": "add62c77066d1ca92e1ab80277cb13bd9bc3a671ad93f5b5c54685147e232fe8",
@@ -82,7 +82,7 @@ REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a
 # beklenen değerleridir.
 # ---------------------------------------------------------------------------
 ARTEFAKT_SHA256 = {
-    "manifest.json": "8017b3689c897ca81ea5b73cf3671dc109ae54725b7ec2812f5282fdd5505c1e",
+    "manifest.json": "d77ed5cfc963bcdee5781fd5350e96d67017ce47b03d98bdf9ffb34941815eef",
     "p4_ic_baseline.txt": "5b6658ecfe4f61f794ada2b046bdce0e78ff28df9feaf5fe45c297525bc21543",
     "state_sha256.txt": "285979cead461f61741e8eed4358811f677f2d733848071f72582f30c5c74808",
     "mott_state_normalize_output.txt": "045a55b0cb5dc40f9be8123f68316b1c47442418ab746e4bff20d0c587eca67d",

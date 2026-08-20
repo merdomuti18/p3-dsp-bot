@@ -327,8 +327,8 @@ def state_yukle() -> dict:
         try:
             with open(path, encoding="utf-8") as f:
                 return json.load(f)
-        except Exception:
-            pass
+        except (json.JSONDecodeError, OSError) as exc:
+            log.warning("state_p4.json okunamadi (corrupt/missing): %s — bos state ile devam", exc)
     return {
         "pozisyonlar": {},
         "trade_history": [],
@@ -337,7 +337,6 @@ def state_yukle() -> dict:
         "sermaye_baslangic": SERMAYE,
         "sermaye_mevcut": SERMAYE,
     }
-
 
 def state_kaydet(state: dict):
     try:
@@ -349,8 +348,8 @@ def state_kaydet(state: dict):
     try:
         from mott_state_coordination import stamp_state
         stamp_state(state)
-    except ImportError:
-        pass
+    except ImportError as exc:
+        log.warning("stamp_state import edilemedi: %s — _gen eklenmeyecek", exc)
     # FAZ 6.2: atomik yazma (crash-safe)
     path = BASE_DIR / "state_p4.json"
     try:
