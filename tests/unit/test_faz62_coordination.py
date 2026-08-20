@@ -12,6 +12,7 @@ import json
 import os
 from datetime import datetime, timedelta
 from pathlib import Path
+import unittest
 from unittest.mock import patch, MagicMock
 
 import pytest
@@ -603,3 +604,134 @@ class TestF3StateSafety:
         from datetime import datetime, timezone, timedelta
         fresh_ts = (datetime.now(timezone(timedelta(hours=3))) - timedelta(hours=1)).isoformat()
         assert is_state_fresh({"_gen": 1, "_updated_at": fresh_ts}, 14) is True
+
+
+class TestPositionLifecycle(unittest.TestCase):
+    """FAZ 6.5 — Position lifecycle defensive guards.
+
+    These tests lock in core invariants without touching production code:
+    - STOP triggers position removal from pozisyonlar
+    - Trade history entry is created on close
+    - Duplicate position opening is prevented
+    """
+
+    def test_position_removed_from_pozisyonlar_after_stop(self):
+        """STOP-triggered position is removed from pozisyonlar and logged."""
+        import sys, importlib
+        from unittest.mock import patch
+        from datetime import date
+
+        sys.path.insert(0, ".")
+        import meta_portfolio as mp
+
+        # Fixed date for deterministic test
+        fixed_date = date(2026, 8, 20)
+
+        # State: one open position that will hit STOP
+        state = {
+            "pozisyonlar": {
+                "SYM_A": {
+                    "symbol": "SYM_A",
+                    "giris_fiyat": 100.0,
+                    "guncel_fiyat": 95.0,
+                    "lotlar": 100,
+                    "pnl_pct": -5.0,
+                    "gun": 1,
+                    "giris_tarih": "2026-08-19",
+                    "max_gun_date": "2026-08-29",
+                    "strateji": "P4",
+                }
+            },
+            "trade_history": [],
+        }
+
+        # Price cache: SYM_A at 90 → pnl = -10% → triggers STOP (-5%)
+        import pandas as pd
+        import numpy as np
+        fiyat_cache = {
+            "SYM_A": pd.Series([90.0], index=pd.DatetimeIndex([pd.Timestamp(fixed_date)])),
+        }
+
+        # Mock dependencies
+        with patch.object(mp, "bugun_tsi", return_value=fixed_date), \
+             patch.object(mp, "gunluk_coklu_onay", return_value=False):
+            result = mp.portfoy_guncelle(state, fiyat_cache, p1_syms=set(), p2_syms=set())
+
+        # Position REMOVED from pozisyonlar
+        assert "SYM_A" not in state["pozisyonlar"], \
+            "SYM_A should be removed from pozisyonlar after STOP"
+
+        # Trade history entry created
+        assert len(state["trade_history"]) == 1, \
+            "trade_history should have exactly 1 entry"
+        trade = state["trade_history"][0]
+        assert trade["symbol"] == "SYM_A"
+        assert trade["neden"] == "STOP"
+        assert trade["cikis_fiyat"] == 90.0
+        assert trade["giris_fiyat"] == 100.0
+
+        # Result contains SYM_A in kapanan
+        assert "SYM_A" in [t["symbol"] for t in result["kapanan"]]
+        assert "SYM_A" not in result["devam_eden"]
+
+    def test_yeni_pozisyon_ac_prevents_duplicate(self):
+        """Symbol already in pozisyonlar is not opened again."""
+        import sys
+        from unittest.mock import patch
+        from datetime import date
+
+        sys.path.insert(0, ".")
+        import meta_portfolio as mp
+        import mott_risk
+
+        fixed_date = date(2026, 8, 20)
+
+        # State: SYM_A already open
+        state = {
+            "pozisyonlar": {
+                "SYM_A": {
+                    "symbol": "SYM_A",
+                    "giris_fiyat": 100.0,
+                    "guncel_fiyat": 100.0,
+                    "lotlar": 100,
+                    "pnl_pct": 0.0,
+                    "gun": 0,
+                    "giris_tarih": "2026-08-20",
+                    "strateji": "P4",
+                }
+            },
+            "trade_history": [],
+        }
+
+        # Candidates: SYM_A (already open) + SYM_B (new)
+        adaylar = [
+            {"symbol": "SYM_A", "meta_score": 80, "kaynaklar": ["P1", "P2"], "coklu_onay": True},
+            {"symbol": "SYM_B", "meta_score": 70, "kaynaklar": ["P1"], "coklu_onay": False},
+        ]
+
+        import pandas as pd
+        fiyat_cache = {
+            "SYM_A": pd.Series([100.0], index=pd.DatetimeIndex([pd.Timestamp(fixed_date)])),
+            "SYM_B": pd.Series([50.0], index=pd.DatetimeIndex([pd.Timestamp(fixed_date)])),
+        }
+
+        with patch.object(mp, "bugun_tsi", return_value=fixed_date), \
+             patch.object(mott_risk, "makro_karar_oku", return_value="NORMAL"), \
+             patch.object(mott_risk, "rejim_slot_limiti", return_value=None), \
+             patch.object(mott_risk, "cooldown_da", return_value=False), \
+             patch.object(mott_risk, "kitap_limiti_asildi", return_value=False):
+            acilan = mp.yeni_pozisyon_ac(state, adaylar, fiyat_cache)
+
+        acilan_syms = [p["symbol"] for p in acilan]
+
+        # SYM_A NOT opened again (already in pozisyonlar)
+        assert "SYM_A" not in acilan_syms, \
+            "SYM_A should NOT be opened again — it's already in pozisyonlar"
+
+        # SYM_B IS opened (new candidate, slot available)
+        assert "SYM_B" in acilan_syms, \
+            "SYM_B should be opened (new candidate)"
+
+        # Total positions: 2 (SYM_A original + SYM_B new)
+        assert len(state["pozisyonlar"]) == 2, \
+            "pozisyonlar should have 2 entries (SYM_A original + SYM_B new)"
