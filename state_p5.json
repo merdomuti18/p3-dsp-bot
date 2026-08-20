@@ -3,9 +3,9 @@
     "TUPRS": {
       "symbol": "TUPRS",
       "giris_fiyat": 395.5,
-      "guncel_fiyat": 396.5,
+      "guncel_fiyat": 395.25,
       "lotlar": 50,
-      "pnl_pct": 0.25,
+      "pnl_pct": -0.06,
       "gun": 1,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
@@ -19,12 +19,44 @@
     "DEVA": {
       "symbol": "DEVA",
       "giris_fiyat": 85.2,
-      "guncel_fiyat": 89.0,
+      "guncel_fiyat": 89.15,
       "lotlar": 234,
-      "pnl_pct": 4.46,
+      "pnl_pct": 4.64,
       "gun": 1,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    },
+    "EFOR": {
+      "symbol": "EFOR",
+      "giris_fiyat": 19.25,
+      "guncel_fiyat": 19.25,
+      "lotlar": 1038,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-08-20",
+      "max_gun_date": "2026-08-30",
+      "komite_skor": 75,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "strateji": "P5"
+    },
+    "KCHOL": {
+      "symbol": "KCHOL",
+      "giris_fiyat": 218.0,
+      "guncel_fiyat": 218.0,
+      "lotlar": 91,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-08-20",
+      "max_gun_date": "2026-08-30",
       "komite_skor": 60,
       "kaynaklar": [
         "P1",
@@ -712,9 +744,65 @@
       ],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-08-20",
+      "secilen": [
+        "EFOR",
+        "NETAS",
+        "KCHOL"
+      ],
+      "elenen": [
+        {
+          "symbol": "KRDMA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "AKBNK",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "GESAN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "BALSU",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ASUZU",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "SNICA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "BRSAN",
+          "neden": "tek kaynak (P1)"
+        }
+      ],
+      "acilan": [
+        "EFOR",
+        "KCHOL"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-08-19T16:42:40.945192",
+  "last_run": "2026-08-20T16:47:32.317781",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 101288
+  "sermaye_mevcut": 101262
 }
