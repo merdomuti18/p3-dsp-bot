@@ -1,29 +1,12 @@
 {
   "pozisyonlar": {
-    "TKFEN": {
-      "symbol": "TKFEN",
-      "giris_fiyat": 221.9,
-      "guncel_fiyat": 231.0,
-      "lotlar": 45,
-      "pnl_pct": 4.1,
-      "gun": 9,
-      "giris_tarih": "2026-08-10",
-      "meta_score": 0.857142857142857,
-      "kaynaklar": [
-        "P1",
-        "P2",
-        "P3"
-      ],
-      "coklu_onay": true,
-      "strateji": "P4"
-    },
     "BRSAN": {
       "symbol": "BRSAN",
       "giris_fiyat": 628.5,
-      "guncel_fiyat": 679.0,
+      "guncel_fiyat": 689.0,
       "lotlar": 15,
-      "pnl_pct": 8.04,
-      "gun": 7,
+      "pnl_pct": 9.63,
+      "gun": 8,
       "giris_tarih": "2026-08-12",
       "meta_score": 0.41904761904761906,
       "kaynaklar": [
@@ -36,10 +19,10 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 91.6,
-      "guncel_fiyat": 91.9,
+      "guncel_fiyat": 95.7,
       "lotlar": 109,
-      "pnl_pct": 0.33,
-      "gun": 2,
+      "pnl_pct": 4.48,
+      "gun": 3,
       "giris_tarih": "2026-08-17",
       "meta_score": 0.8444444444444444,
       "kaynaklar": [
@@ -53,10 +36,10 @@
     "KRDMA": {
       "symbol": "KRDMA",
       "giris_fiyat": 46.44,
-      "guncel_fiyat": 48.52,
+      "guncel_fiyat": 48.7,
       "lotlar": 215,
-      "pnl_pct": 4.48,
-      "gun": 2,
+      "pnl_pct": 4.87,
+      "gun": 3,
       "giris_tarih": "2026-08-17",
       "meta_score": 0.5296296296296297,
       "kaynaklar": [
@@ -69,10 +52,10 @@
     "ALARK": {
       "symbol": "ALARK",
       "giris_fiyat": 113.1,
-      "guncel_fiyat": 113.1,
+      "guncel_fiyat": 109.2,
       "lotlar": 88,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -3.45,
+      "gun": 1,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
       "meta_score": 0.55,
@@ -491,6 +474,17 @@
       "giris_tarih": "2026-08-10",
       "cikis_tarih": "2026-08-19",
       "strateji": "P4"
+    },
+    {
+      "symbol": "TKFEN",
+      "giris_fiyat": 221.9,
+      "cikis_fiyat": 231.3,
+      "pnl_pct": 4.24,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-20",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -731,5 +725,5 @@
   ],
   "last_run": "2026-08-19T15:34:48.166328",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 97436
+  "sermaye_mevcut": 98000
 }
