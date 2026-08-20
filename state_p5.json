@@ -3,9 +3,9 @@
     "TUPRS": {
       "symbol": "TUPRS",
       "giris_fiyat": 395.5,
-      "guncel_fiyat": 395.75,
+      "guncel_fiyat": 395.5,
       "lotlar": 50,
-      "pnl_pct": 0.06,
+      "pnl_pct": 0.0,
       "gun": 1,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
@@ -19,9 +19,9 @@
     "DEVA": {
       "symbol": "DEVA",
       "giris_fiyat": 85.2,
-      "guncel_fiyat": 88.7,
+      "guncel_fiyat": 88.75,
       "lotlar": 234,
-      "pnl_pct": 4.11,
+      "pnl_pct": 4.17,
       "gun": 1,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
