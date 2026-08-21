@@ -3,9 +3,9 @@
     "TUPRS": {
       "symbol": "TUPRS",
       "giris_fiyat": 395.5,
-      "guncel_fiyat": 402.5,
+      "guncel_fiyat": 406.75,
       "lotlar": 50,
-      "pnl_pct": 1.77,
+      "pnl_pct": 2.84,
       "gun": 2,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
@@ -19,9 +19,9 @@
     "DEVA": {
       "symbol": "DEVA",
       "giris_fiyat": 85.2,
-      "guncel_fiyat": 83.8,
+      "guncel_fiyat": 84.0,
       "lotlar": 234,
-      "pnl_pct": -1.64,
+      "pnl_pct": -1.41,
       "gun": 2,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
@@ -712,11 +712,60 @@
       ],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-08-21",
+      "secilen": [],
+      "elenen": [
+        {
+          "symbol": "BERA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "NTGAZ",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "PNLSN",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "BORLS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KONYA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TRMET",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "MAKIM",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "HATSN",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-08-19T16:42:40.945192",
+  "last_run": "2026-08-21T15:38:26.012212",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 100372,
-  "_gen": 4,
-  "_updated_at": "2026-08-21T17:37:18.242803+03:00"
+  "sermaye_mevcut": 100632,
+  "_gen": 5,
+  "_updated_at": "2026-08-21T18:38:26.885576+03:00"
 }
