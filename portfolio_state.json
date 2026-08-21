@@ -977,6 +977,20 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-08-21",
+      "scanned": 79,
+      "long_signals": 40,
+      "top5": [
+        "TKFEN",
+        "TUPRS",
+        "ARDYZ",
+        "NETAS",
+        "IZMDC"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1296,14 +1310,6 @@
     },
     "log": [
       {
-        "date": "2026-07-30",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-07-31",
         "total": 78,
         "reliable": 0,
@@ -1534,9 +1540,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-08-21",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 1,
-  "_updated_at": "2026-08-21T11:45:55.653454+03:00"
+  "_gen": 2,
+  "_updated_at": "2026-08-21T18:37:08.451842+03:00"
 }
