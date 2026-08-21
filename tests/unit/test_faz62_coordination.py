@@ -735,3 +735,124 @@ class TestPositionLifecycle(unittest.TestCase):
         # Total positions: 2 (SYM_A original + SYM_B new)
         assert len(state["pozisyonlar"]) == 2, \
             "pozisyonlar should have 2 entries (SYM_A original + SYM_B new)"
+
+
+# =====================================================================
+# FAZ 7.7 — _p3_alim_listesi stale-read bug regression tests
+# =====================================================================
+
+
+class TestP3AlimListesiStaleRead(unittest.TestCase):
+    """FAZ 7.7: _p3_alim_listesi() in-memory state testleri."""
+
+    def test_alim_listesi_uses_inmemory_not_disk(self):
+        """In-memory state'deki scan_log kullanilmali, disk'teki degil."""
+        from datetime import date
+        from simulate_dsp import _p3_alim_listesi
+
+        # In-memory: today's scan_log with 5 symbols
+        in_memory_state = {
+            "scan_log": [
+                {"date": date.today().isoformat(),
+                 "top5": ["IZMDC", "TUPRS", "TKFEN", "ARDYZ", "ASTOR"]},
+            ]
+        }
+
+        # Simulate: in-memory has today, disk has yesterday
+        # _p3_alim_listesi(state) should use in-memory → return today's top5
+        result = _p3_alim_listesi(in_memory_state)
+        assert result == {"IZMDC", "TUPRS", "TKFEN", "ARDYZ", "ASTOR"}, \
+            f"Should return in-memory top5, got: {result}"
+
+    def test_max_gun_position_held_when_in_alim_list(self):
+        """MAX_GUN-expired position should get EXTENSION when in p3_alim."""
+        from datetime import date, timedelta
+        from unittest.mock import patch, MagicMock
+        from simulate_dsp import update_portfolio, MAX_GUN
+
+        today = date.today().isoformat()
+        entry_date = (date.today() - timedelta(days=MAX_GUN + 5)).isoformat()
+
+        state = {
+            "positions": {
+                "SYM_HOLD": {
+                    "entry_date": entry_date,
+                    "entry_price": 100.0,
+                    "score": 0.20,
+                    "margin": 0.10,
+                }
+            },
+            "history": [],
+            "scan_log": [
+                {"date": today, "top5": ["SYM_HOLD", "NEW_SYM"],
+                 "entries": [], "exits": []}
+            ],
+        }
+
+        scan = MagicMock()
+        scan.top_longs = [MagicMock(symbol="SYM_HOLD", score=0.20,
+                                     crossover_margin=0.10)]
+        scan.scanned = 79
+        scan.long_signals = 30
+
+        with patch("simulate_dsp._get_price", return_value=110.0), \
+             patch("simulate_dsp.mott_risk") as mock_risk:
+            mock_risk.cooldown_da.return_value = False
+            mock_risk.kitap_limiti_asildi.return_value = False
+            actions = update_portfolio(state, scan)
+
+        # SYM_HOLD should be in 'holds' (not exits)
+        assert "SYM_HOLD" in actions["holds"], \
+            f"SYM_HOLD should be HELD (extended), got actions={actions}"
+        assert "SYM_HOLD" not in actions["exits"], \
+            f"SYM_HOLD should NOT be exited"
+        assert len(state["positions"]) == 1, \
+            "Position should still exist after extension"
+
+    def test_max_gun_position_exited_when_not_in_alim_list(self):
+        """MAX_GUN-expired position should EXIT when NOT in p3_alim."""
+        from datetime import date, timedelta
+        from unittest.mock import patch, MagicMock
+        from simulate_dsp import update_portfolio, MAX_GUN
+
+        today = date.today().isoformat()
+        entry_date = (date.today() - timedelta(days=MAX_GUN + 5)).isoformat()
+
+        state = {
+            "positions": {
+                "SYM_EXIT": {
+                    "entry_date": entry_date,
+                    "entry_price": 100.0,
+                    "score": 0.20,
+                    "margin": 0.10,
+                }
+            },
+            "history": [],
+            "scan_log": [
+                {"date": today, "top5": ["OTHER_SYM"],
+                 "entries": [], "exits": []}
+            ],
+        }
+
+        # SYM_EXIT is NOT in today's top_longs → immediate exit (not MAX_GUN path)
+        scan = MagicMock()
+        scan.top_longs = [MagicMock(symbol="OTHER_SYM", score=0.20,
+                                     crossover_margin=0.10)]
+        scan.scanned = 79
+        scan.long_signals = 30
+
+        with patch("simulate_dsp._get_price", return_value=90.0), \
+             patch("simulate_dsp.mott_risk") as mock_risk:
+            mock_risk.cooldown_da.return_value = False
+            mock_risk.kitap_limiti_asildi.return_value = False
+            actions = update_portfolio(state, scan)
+
+        # SYM_EXIT should be in exits (not in long_set)
+        assert "SYM_EXIT" in actions["exits"], \
+            f"SYM_EXIT should be EXITED (not in long_set), got actions={actions}"
+        # SYM_EXIT was removed from positions by exit loop
+        assert "SYM_EXIT" not in state["positions"], \
+            "SYM_EXIT should be removed from positions after exit"
+        assert len(state["history"]) == 1, \
+            "History should have 1 exit entry"
+        assert state["history"][0]["symbol"] == "SYM_EXIT"

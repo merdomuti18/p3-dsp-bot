@@ -58,7 +58,7 @@ PRODUCTION_SHA256 = {
     "dsp_strategies.py": "ae108ff65769d69b30b6a46c416fdfebd35cab0c20b34f5d0fe0ff6adcc44200",
     "dsp_trend.py": "dea1c9ad7f86158205322ac6fbef0e58bc14b111ece8d4ec9be232d6b00e143b",
     "scanner_dsp.py": "311ae33ae94a675dfe87c2a19b8f6e8ed6ab78b658bc616314331492b0d14ef6",
-    "simulate_dsp.py": "11870fbedf0c96be8246cc2865e1d92a5204ffb1b435459e4f1b8a8bca24c5bb",
+    "simulate_dsp.py": "37faf55571fe19664e4215fd91cbf8a7a473962efdd667b130ad631f1f588ff7",
     "meta_portfolio.py": "6fbdbccde94bf8adc057cc915de9cf31e6a53202ea6d4a3d881f3e943ec66ee0",
     "mott_state.py": "078398246937a464d4aac33ea566b379c5482fea1335b33ae3ab26662b1e1756",
     "mott_risk.py": "0d03197b313ed3cf78b259a7eea8b108fccdf16d1cc862cf345c9f6aeac2758f",
@@ -71,7 +71,7 @@ PRODUCTION_SHA256 = {
     "portfoy_yonetici.py": "004d260f09764093c09c49742da1e90098bd5594896eb4cdf0f96015b5942d12",
     "scanner_p1.py": "a50c1469f24b365dcbd957d3ac3ff3a4bff7873a9bb497cf13447df997654fb2",
     "scanner_smc.py": "add62c77066d1ca92e1ab80277cb13bd9bc3a671ad93f5b5c54685147e232fe8",
-    "mott_state_coordination.py": "0c557e9b7846c12df349cdd2aca626dbcb274aa72422cacf771833ce30db557a",
+    "mott_state_coordination.py": "f50023ab93ed285fc827d642cff2cf4a61021ec0d2d4a7223317bd3c62837b3a",
 }
 
 REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a8b302fc"
@@ -82,7 +82,7 @@ REQUIREMENTS_SHA256 = "ee81e5bd95bfb034beaf62bc7234abaf150dfcff372ebbe17a1ebb87a
 # beklenen değerleridir.
 # ---------------------------------------------------------------------------
 ARTEFAKT_SHA256 = {
-    "manifest.json": "d77ed5cfc963bcdee5781fd5350e96d67017ce47b03d98bdf9ffb34941815eef",
+    "manifest.json": "7587c20f6b97b8a0c17a8377fb310ddb53c76eba885809898d2a14577b694848",
     "p4_ic_baseline.txt": "5b6658ecfe4f61f794ada2b046bdce0e78ff28df9feaf5fe45c297525bc21543",
     "state_sha256.txt": "285979cead461f61741e8eed4358811f677f2d733848071f72582f30c5c74808",
     "mott_state_normalize_output.txt": "045a55b0cb5dc40f9be8123f68316b1c47442418ab746e4bff20d0c587eca67d",

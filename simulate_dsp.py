@@ -72,14 +72,19 @@ def _max_gun_date_hesapla_p3(entry_date_str: str, max_gun: int = MAX_GUN) -> str
         return (date.today() + timedelta(days=max_gun)).isoformat()
 
 
-def _p3_alim_listesi() -> set[str]:
+def _p3_alim_listesi(state: dict | None = None) -> set[str]:
     """P3 canonical ALIM listesi — bugünkü scan_log top5.
-    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+    Stale veya hata durumunda boş küme döner (güvenli EXIT).
+    FAZ 7.7: in-memory state dict kullanır (disk stale-read fix)."""
     try:
-        if not STATE_FILE.exists():
-            return set()
-        data = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-        log_items = data.get("scan_log", [])
+        if state is not None:
+            log_items = state.get("scan_log", [])
+        else:
+            # Fallback: state sağlanmazsa dosyadan oku (eski davranış)
+            if not STATE_FILE.exists():
+                return set()
+            data = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+            log_items = data.get("scan_log", [])
         if not log_items:
             return set()
         son_tarama = log_items[-1]
@@ -155,8 +160,8 @@ def update_portfolio(state: dict, scan: ScanResult) -> dict:
     positions  = state["positions"]
     actions    = {"entries": [], "exits": [], "holds": [], "skipped": []}
 
-    # Canonical ALIM listesi (dosya tabanlı — tarih doğrulanmış)
-    p3_alim = _p3_alim_listesi()
+    # Canonical ALIM listesi (FAZ 7.7: in-memory state kullanır)
+    p3_alim = _p3_alim_listesi(state)
 
     # Çıkışlar + MAX_GUN rolling extension
     for sym in list(positions.keys()):
