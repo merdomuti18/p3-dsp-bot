@@ -3,9 +3,9 @@
     "TUPRS": {
       "symbol": "TUPRS",
       "giris_fiyat": 395.5,
-      "guncel_fiyat": 399.5,
+      "guncel_fiyat": 402.5,
       "lotlar": 50,
-      "pnl_pct": 1.01,
+      "pnl_pct": 1.77,
       "gun": 2,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
@@ -19,9 +19,9 @@
     "DEVA": {
       "symbol": "DEVA",
       "giris_fiyat": 85.2,
-      "guncel_fiyat": 83.65,
+      "guncel_fiyat": 83.8,
       "lotlar": 234,
-      "pnl_pct": -1.82,
+      "pnl_pct": -1.64,
       "gun": 2,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
@@ -716,7 +716,7 @@
   ],
   "last_run": "2026-08-19T16:42:40.945192",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 100184,
-  "_gen": 3,
-  "_updated_at": "2026-08-21T15:50:41.374866+03:00"
+  "sermaye_mevcut": 100372,
+  "_gen": 4,
+  "_updated_at": "2026-08-21T17:37:18.242803+03:00"
 }
