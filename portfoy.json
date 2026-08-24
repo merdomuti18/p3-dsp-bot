@@ -1,92 +1,5 @@
 {
   "pozisyonlar": {
-    "AYGAZ": {
-      "giris_f": 287.5,
-      "giris_t": "10.08.2026 07:20",
-      "tepe_f": 317.0,
-      "lotlar": 35,
-      "gun": 0,
-      "tp1_yapildi": true,
-      "final_score": 86,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 5,
-        "strategies": [
-          "GT",
-          "ALPHA",
-          "ZT3",
-          "MR",
-          "KBM"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
-    "BRSAN": {
-      "giris_f": 631.5,
-      "giris_t": "12.08.2026 07:16",
-      "tepe_f": 665.0,
-      "lotlar": 31,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 34,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GTD",
-          "MR"
-        ],
-        "viop_bias": "Temkinli long",
-        "alpha_tag": "AT↑",
-        "alpha_trend_bonus": 4
-      }
-    },
-    "TRMET": {
-      "giris_f": 124.8,
-      "giris_t": "14.08.2026 11:44",
-      "tepe_f": 129.6999969482422,
-      "lotlar": 107,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 38,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "ALPHA",
-          "ZKN"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
-    "GRSEL": {
-      "giris_f": 352.25,
-      "giris_t": "17.08.2026 09:43",
-      "tepe_f": 355.0,
-      "lotlar": 56,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "final_score": 40,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "ZKN"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "KRDMD": {
       "giris_f": 45.36,
       "giris_t": "18.08.2026 07:39",
@@ -113,10 +26,10 @@
     "NETAS": {
       "giris_f": 75.1,
       "giris_t": "18.08.2026 07:39",
-      "tepe_f": 75.1,
-      "lotlar": 21,
+      "tepe_f": 98.75,
+      "lotlar": 11,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "final_score": 36,
       "ma_score": 0.0,
       "lgbm_score": null,
@@ -130,135 +43,99 @@
         "alpha_tag": "",
         "alpha_trend_bonus": 0
       }
+    },
+    "PAGYO": {
+      "giris_f": 162.4,
+      "giris_t": "24.08.2026 08:58",
+      "tepe_f": 162.4,
+      "lotlar": 123,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "03.09.2026",
+      "final_score": 40,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "ZKN"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "MNDRS": {
+      "giris_f": 11.31,
+      "giris_t": "24.08.2026 08:58",
+      "tepe_f": 11.31,
+      "lotlar": 1564,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "03.09.2026",
+      "final_score": 36,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "KLYPV": {
+      "giris_f": 66.95,
+      "giris_t": "24.08.2026 08:58",
+      "tepe_f": 66.95,
+      "lotlar": 193,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "03.09.2026",
+      "final_score": 35,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "AT+",
+        "alpha_trend_bonus": 2
+      }
+    },
+    "GLRMK": {
+      "giris_f": 180.0,
+      "giris_t": "24.08.2026 08:58",
+      "tepe_f": 180.0,
+      "lotlar": 52,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "03.09.2026",
+      "final_score": 34,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GTD",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
     }
   },
-  "nakit": 21886.90527096556,
+  "nakit": 31288.06556698608,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "PAGYO",
-      "score_count": 2,
-      "strategies": [
-        "ALPHA",
-        "ZKN"
-      ],
-      "tarama_score": 30,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 40,
-      "change_pct": 9.77,
-      "rsi": 57.97,
-      "rel_vol": 3.91,
-      "cmf": 0.1146,
-      "islem_tl": 0,
-      "scan_time": "21.08.2026 19:46",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.08.2026 07:05",
-      "valid_for_date": "2026-08-25",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "MNDRS",
-      "score_count": 2,
-      "strategies": [
-        "ALPHA",
-        "MR"
-      ],
-      "tarama_score": 26,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 36,
-      "change_pct": 1.54,
-      "rsi": 69.91,
-      "rel_vol": 1.91,
-      "cmf": 0.0345,
-      "islem_tl": 0,
-      "scan_time": "21.08.2026 19:46",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.08.2026 07:05",
-      "valid_for_date": "2026-08-25",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KLYPV",
-      "score_count": 2,
-      "strategies": [
-        "ALPHA",
-        "MR"
-      ],
-      "tarama_score": 26,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 2,
-      "alpha_tag": "AT+",
-      "final_score": 35,
-      "change_pct": 9.95,
-      "rsi": 75.77,
-      "rel_vol": 2.16,
-      "cmf": 0.0509,
-      "islem_tl": 0,
-      "scan_time": "21.08.2026 19:46",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.08.2026 07:05",
-      "valid_for_date": "2026-08-25",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "GLRMK",
-      "score_count": 2,
-      "strategies": [
-        "GTD",
-        "MR"
-      ],
-      "tarama_score": 24,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 34,
-      "change_pct": 5.48,
-      "rsi": 74.76,
-      "rel_vol": 1.83,
-      "cmf": 0.0841,
-      "islem_tl": 0,
-      "scan_time": "21.08.2026 19:46",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.08.2026 07:05",
-      "valid_for_date": "2026-08-25",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "GLYHO",
       "score_count": 1,
@@ -285,8 +162,8 @@
       "queued_at": "24.08.2026 07:05",
       "valid_for_date": "2026-08-25",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.08.2026 08:58",
       "last_attempt_reason": ""
     },
     {
@@ -315,21 +192,34 @@
       "queued_at": "24.08.2026 07:05",
       "valid_for_date": "2026-08-25",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.08.2026 08:58",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "08:58",
+      "tarih": "2026-08-24",
+      "alinan": [
+        "PAGYO",
+        "MNDRS",
+        "KLYPV",
+        "GLRMK"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 6,
-    "bought": 2,
+    "bought": 4,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "18.08.2026 07:39"
+    "time": "24.08.2026 08:58"
   },
-  "last_hourly_check_time": "18.08.2026 13:43",
+  "last_hourly_check_time": "24.08.2026 08:58",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -451,6 +341,83 @@
       "neden": "STOP",
       "giris_tarih": "2026-08-13",
       "cikis_tarih": "2026-08-18"
+    },
+    {
+      "symbol": "AYGAZ",
+      "giris_fiyat": 287.5,
+      "cikis_fiyat": 331.25,
+      "lotlar": 35,
+      "pnl_pct": 15.22,
+      "gun": 14,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-24"
+    },
+    {
+      "symbol": "BRSAN",
+      "giris_fiyat": 631.5,
+      "cikis_fiyat": 727.5,
+      "lotlar": 15,
+      "pnl_pct": 15.2,
+      "gun": 12,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-12",
+      "cikis_tarih": "2026-08-24"
+    },
+    {
+      "symbol": "BRSAN",
+      "giris_fiyat": 631.5,
+      "cikis_fiyat": 727.5,
+      "lotlar": 16,
+      "pnl_pct": 15.2,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-12",
+      "cikis_tarih": "2026-08-24"
+    },
+    {
+      "symbol": "TRMET",
+      "giris_fiyat": 124.8,
+      "cikis_fiyat": 144.8,
+      "lotlar": 53,
+      "pnl_pct": 16.03,
+      "gun": 10,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-14",
+      "cikis_tarih": "2026-08-24"
+    },
+    {
+      "symbol": "TRMET",
+      "giris_fiyat": 124.8,
+      "cikis_fiyat": 144.8,
+      "lotlar": 54,
+      "pnl_pct": 16.03,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-14",
+      "cikis_tarih": "2026-08-24"
+    },
+    {
+      "symbol": "GRSEL",
+      "giris_fiyat": 352.25,
+      "cikis_fiyat": 334.6375,
+      "lotlar": 56,
+      "pnl_pct": -5.0,
+      "gun": 7,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-17",
+      "cikis_tarih": "2026-08-24"
+    },
+    {
+      "symbol": "NETAS",
+      "giris_fiyat": 75.1,
+      "cikis_fiyat": 96.7,
+      "lotlar": 10,
+      "pnl_pct": 28.76,
+      "gun": 6,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-18",
+      "cikis_tarih": "2026-08-24"
     }
   ]
 }
