@@ -1,6 +1,28 @@
 {
   "created": "2026-07-02",
-  "positions": {},
+  "positions": {
+    "TKFEN": {
+      "entry_date": "2026-08-24",
+      "entry_price": 217.2,
+      "score": 0.2732,
+      "margin": 0.2709,
+      "max_gun_date": "2026-09-03"
+    },
+    "TUPRS": {
+      "entry_date": "2026-08-24",
+      "entry_price": 400.5,
+      "score": 0.1958,
+      "margin": 0.1556,
+      "max_gun_date": "2026-09-03"
+    },
+    "ARDYZ": {
+      "entry_date": "2026-08-24",
+      "entry_price": 90.95,
+      "score": 0.152,
+      "margin": 0.146,
+      "max_gun_date": "2026-09-03"
+    }
+  },
   "history": [
     {
       "symbol": "ODAS",
@@ -991,6 +1013,24 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-08-24",
+      "scanned": 79,
+      "long_signals": 42,
+      "top5": [
+        "TKFEN",
+        "NETAS",
+        "TUPRS",
+        "ARDYZ",
+        "ASTOR"
+      ],
+      "entries": [
+        "TKFEN",
+        "TUPRS",
+        "ARDYZ"
+      ],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1310,14 +1350,6 @@
     },
     "log": [
       {
-        "date": "2026-07-31",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-03",
         "total": 78,
         "reliable": 0,
@@ -1548,9 +1580,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-08-24",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 2,
-  "_updated_at": "2026-08-21T18:37:08.451842+03:00"
+  "_gen": 3,
+  "_updated_at": "2026-08-24T18:41:34.572479+03:00"
 }
