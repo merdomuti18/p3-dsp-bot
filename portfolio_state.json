@@ -1031,6 +1031,20 @@
         "ARDYZ"
       ],
       "exits": []
+    },
+    {
+      "date": "2026-08-24",
+      "scanned": 79,
+      "long_signals": 42,
+      "top5": [
+        "TKFEN",
+        "NETAS",
+        "TUPRS",
+        "ARDYZ",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1358,14 +1372,6 @@
         "alert_symbols": []
       },
       {
-        "date": "2026-08-03",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-04",
         "total": 78,
         "reliable": 0,
@@ -1588,9 +1594,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-08-24",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 3,
-  "_updated_at": "2026-08-24T18:41:34.572479+03:00"
+  "_gen": 4,
+  "_updated_at": "2026-08-24T19:50:32.706029+03:00"
 }
