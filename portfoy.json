@@ -69,7 +69,7 @@
     "MNDRS": {
       "giris_f": 11.31,
       "giris_t": "24.08.2026 08:58",
-      "tepe_f": 11.31,
+      "tepe_f": 11.3100004196167,
       "lotlar": 1564,
       "gun": 0,
       "tp1_yapildi": false,
@@ -91,7 +91,7 @@
     "KLYPV": {
       "giris_f": 66.95,
       "giris_t": "24.08.2026 08:58",
-      "tepe_f": 66.95,
+      "tepe_f": 70.8499984741211,
       "lotlar": 193,
       "gun": 0,
       "tp1_yapildi": false,
@@ -135,68 +135,7 @@
   },
   "nakit": 31288.06556698608,
   "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "GLYHO",
-      "score_count": 1,
-      "strategies": [
-        "GT"
-      ],
-      "tarama_score": 18,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 22,
-      "change_pct": -1.45,
-      "rsi": 56.29,
-      "rel_vol": 1.03,
-      "cmf": 0.0521,
-      "islem_tl": 0,
-      "scan_time": "21.08.2026 19:46",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.08.2026 07:05",
-      "valid_for_date": "2026-08-25",
-      "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "24.08.2026 08:58",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "UFUK",
-      "score_count": 1,
-      "strategies": [
-        "GT"
-      ],
-      "tarama_score": 18,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 22,
-      "change_pct": 1.27,
-      "rsi": 60.89,
-      "rel_vol": 4.35,
-      "cmf": 0.081,
-      "islem_tl": 0,
-      "scan_time": "21.08.2026 19:46",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "24.08.2026 07:05",
-      "valid_for_date": "2026-08-25",
-      "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "24.08.2026 08:58",
-      "last_attempt_reason": ""
-    }
-  ],
+  "bekleyen_al": [],
   "open_attempts_today": [
     {
       "saat": "08:58",
@@ -219,7 +158,7 @@
     "failed_reasons": [],
     "time": "24.08.2026 08:58"
   },
-  "last_hourly_check_time": "24.08.2026 08:58",
+  "last_hourly_check_time": "24.08.2026 11:30",
   "trade_history": [
     {
       "symbol": "UFUK",
