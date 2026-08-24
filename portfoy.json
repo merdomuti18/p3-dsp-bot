@@ -26,7 +26,7 @@
     "NETAS": {
       "giris_f": 75.1,
       "giris_t": "18.08.2026 07:39",
-      "tepe_f": 98.75,
+      "tepe_f": 100.5999984741211,
       "lotlar": 11,
       "gun": 0,
       "tp1_yapildi": true,
@@ -69,7 +69,7 @@
     "MNDRS": {
       "giris_f": 11.31,
       "giris_t": "24.08.2026 08:58",
-      "tepe_f": 11.3100004196167,
+      "tepe_f": 11.369999885559082,
       "lotlar": 1564,
       "gun": 0,
       "tp1_yapildi": false,
@@ -158,7 +158,7 @@
     "failed_reasons": [],
     "time": "24.08.2026 08:58"
   },
-  "last_hourly_check_time": "24.08.2026 11:30",
+  "last_hourly_check_time": "24.08.2026 12:53",
   "trade_history": [
     {
       "symbol": "UFUK",
