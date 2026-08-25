@@ -61,7 +61,7 @@
     "RAYSG": {
       "giris_f": 163.0,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 164.39999389648438,
+      "tepe_f": 164.60000610351562,
       "lotlar": 46,
       "gun": 0,
       "tp1_yapildi": false,
@@ -409,7 +409,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "25.08.2026 08:43",
+  "last_hourly_check_time": "25.08.2026 09:36",
   "trade_history": [
     {
       "symbol": "BFREN",
