@@ -963,11 +963,60 @@
         "TUPRS"
       ],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-08-25",
+      "secilen": [],
+      "elenen": [
+        {
+          "symbol": "SASA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KONYA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ASUZU",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "MNDRS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "MAKIM",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TKFEN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "OBAMS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "HEKTS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TARKM",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-08-25T15:47:05.576211",
+  "last_run": "2026-08-25T16:52:26.832862",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 97066,
-  "_gen": 17,
-  "_updated_at": "2026-08-25T18:47:06.878450+03:00"
+  "_gen": 18,
+  "_updated_at": "2026-08-25T19:52:27.744809+03:00"
 }
