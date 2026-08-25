@@ -1,13 +1,10 @@
 {
   "strateji": "P3",
-  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 19.08.2026 | 18:34 TSİ\n\n⬜ *Satım:* `IZMDC`, `TUPRS`, `TKFEN`, `ARDYZ`\n\n📈 *Sinyaller:*\n  • `TKFEN   ` skor=+0.346  _marj=+0.350_\n  • `ARDYZ   ` skor=+0.169  _marj=+0.115_\n  • `TUPRS   ` skor=+0.164  _marj=+0.116_\n  • `IZMDC   ` skor=+0.111  _marj=+0.076_\n  • `ASTOR   ` skor=+0.093  _marj=+0.079_\n\n💼 *Açık pozisyon (0):*\n  _Açık pozisyon yok_\n📊 *WR:* 30%  |  *P&L:* +116.9%\n🟢 *Portföy değeri:* `123,376 TL` (+23.4%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 25.08.2026 | 18:45 TSİ\n\n🟢 *Alım:* `NETAS`\n\n📈 *Sinyaller:*\n  • `TKFEN   ` skor=+0.247  _marj=+0.225_\n  • `NETAS   ` skor=+0.215  _marj=+0.182_\n  • `TUPRS   ` skor=+0.181  _marj=+0.164_\n  • `ARDYZ   ` skor=+0.158  _marj=+0.153_\n  • `AYDEM   ` skor=+0.097  _marj=+0.097_\n\n💼 *Açık pozisyon (4):*\n  • `TKFEN`\n  • `TUPRS`\n  • `ARDYZ`\n  • `NETAS`\n📊 *WR:* 30%  |  *P&L:* +116.9%\n🟢 *Portföy değeri:* `123,376 TL` (+23.4%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
   "meta": {
-    "giris": [],
-    "cikis": [
-      "IZMDC",
-      "TUPRS",
-      "TKFEN",
-      "ARDYZ"
-    ]
+    "giris": [
+      "NETAS"
+    ],
+    "cikis": []
   }
 }

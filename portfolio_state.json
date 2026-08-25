@@ -21,6 +21,13 @@
       "score": 0.152,
       "margin": 0.146,
       "max_gun_date": "2026-09-03"
+    },
+    "NETAS": {
+      "entry_date": "2026-08-25",
+      "entry_price": 96.6,
+      "score": 0.2149,
+      "margin": 0.182,
+      "max_gun_date": "2026-09-04"
     }
   },
   "history": [
@@ -1045,6 +1052,22 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-08-25",
+      "scanned": 79,
+      "long_signals": 43,
+      "top5": [
+        "TKFEN",
+        "NETAS",
+        "TUPRS",
+        "ARDYZ",
+        "AYDEM"
+      ],
+      "entries": [
+        "NETAS"
+      ],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1364,14 +1387,6 @@
     },
     "log": [
       {
-        "date": "2026-08-03",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-04",
         "total": 78,
         "reliable": 0,
@@ -1602,9 +1617,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-08-25",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 4,
-  "_updated_at": "2026-08-24T19:50:32.706029+03:00"
+  "_gen": 5,
+  "_updated_at": "2026-08-25T18:45:36.910003+03:00"
 }
