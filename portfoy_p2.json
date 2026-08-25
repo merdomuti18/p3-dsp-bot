@@ -3,7 +3,7 @@
     "KONYA": {
       "giris_f": 4007.5,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 4007.5,
+      "tepe_f": 4077.5,
       "lotlar": 3,
       "gun": 0,
       "tp1_yapildi": false,
@@ -18,7 +18,7 @@
     "MNDRS": {
       "giris_f": 11.87,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 11.87,
+      "tepe_f": 11.930000305175781,
       "lotlar": 1139,
       "gun": 0,
       "tp1_yapildi": false,
@@ -33,7 +33,7 @@
     "PAGYO": {
       "giris_f": 155.4,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 155.4,
+      "tepe_f": 157.0,
       "lotlar": 73,
       "gun": 0,
       "tp1_yapildi": false,
@@ -47,7 +47,7 @@
     "VAKKO": {
       "giris_f": 67.3,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 67.3,
+      "tepe_f": 68.5,
       "lotlar": 145,
       "gun": 0,
       "tp1_yapildi": false,
@@ -61,7 +61,7 @@
     "RAYSG": {
       "giris_f": 163.0,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 163.0,
+      "tepe_f": 164.39999389648438,
       "lotlar": 46,
       "gun": 0,
       "tp1_yapildi": false,
@@ -75,7 +75,7 @@
     "MAKIM": {
       "giris_f": 16.82,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 16.82,
+      "tepe_f": 17.190000534057617,
       "lotlar": 360,
       "gun": 0,
       "tp1_yapildi": false,
@@ -90,7 +90,7 @@
     "TARKM": {
       "giris_f": 516.0,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 516.0,
+      "tepe_f": 525.0,
       "lotlar": 10,
       "gun": 0,
       "tp1_yapildi": false,
@@ -409,7 +409,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "25.08.2026 07:45",
+  "last_hourly_check_time": "25.08.2026 08:43",
   "trade_history": [
     {
       "symbol": "BFREN",
