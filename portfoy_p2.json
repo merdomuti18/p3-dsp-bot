@@ -47,7 +47,7 @@
     "VAKKO": {
       "giris_f": 67.3,
       "giris_t": "25.08.2026 07:45",
-      "tepe_f": 68.5,
+      "tepe_f": 69.4000015258789,
       "lotlar": 145,
       "gun": 0,
       "tp1_yapildi": false,
@@ -409,7 +409,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "25.08.2026 11:29",
+  "last_hourly_check_time": "25.08.2026 12:50",
   "trade_history": [
     {
       "symbol": "BFREN",
