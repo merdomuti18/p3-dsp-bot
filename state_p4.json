@@ -3,9 +3,9 @@
     "ARDYZ": {
       "symbol": "ARDYZ",
       "giris_fiyat": 91.6,
-      "guncel_fiyat": 90.0,
+      "guncel_fiyat": 93.05,
       "lotlar": 109,
-      "pnl_pct": -1.75,
+      "pnl_pct": 1.58,
       "gun": 8,
       "giris_tarih": "2026-08-17",
       "meta_score": 0.8444444444444444,
@@ -20,9 +20,9 @@
     "EFOR": {
       "symbol": "EFOR",
       "giris_fiyat": 19.22,
-      "guncel_fiyat": 18.27,
+      "guncel_fiyat": 19.25,
       "lotlar": 520,
-      "pnl_pct": -4.94,
+      "pnl_pct": 0.16,
       "gun": 5,
       "giris_tarih": "2026-08-20",
       "max_gun_date": "2026-08-30",
@@ -37,9 +37,9 @@
     "RAYSG": {
       "symbol": "RAYSG",
       "giris_fiyat": 165.4,
-      "guncel_fiyat": 162.0,
+      "guncel_fiyat": 160.2,
       "lotlar": 60,
-      "pnl_pct": -2.06,
+      "pnl_pct": -3.14,
       "gun": 4,
       "giris_tarih": "2026-08-21",
       "max_gun_date": "2026-08-31",
@@ -53,9 +53,9 @@
     "TKFEN": {
       "symbol": "TKFEN",
       "giris_fiyat": 205.9,
-      "guncel_fiyat": 213.6,
+      "guncel_fiyat": 218.0,
       "lotlar": 48,
-      "pnl_pct": 3.74,
+      "pnl_pct": 5.88,
       "gun": 4,
       "giris_tarih": "2026-08-21",
       "max_gun_date": "2026-08-31",
@@ -69,9 +69,9 @@
     "ASTOR": {
       "symbol": "ASTOR",
       "giris_fiyat": 341.25,
-      "guncel_fiyat": 339.75,
+      "guncel_fiyat": 339.0,
       "lotlar": 29,
-      "pnl_pct": -0.44,
+      "pnl_pct": -0.66,
       "gun": 1,
       "giris_tarih": "2026-08-24",
       "max_gun_date": "2026-09-03",
@@ -818,11 +818,17 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-25",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-08-24T16:52:03.376655",
+  "last_run": "2026-08-25T15:46:26.343246",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 101514,
-  "_gen": 7,
-  "_updated_at": "2026-08-25T13:35:12.399318+03:00"
+  "sermaye_mevcut": 103368,
+  "_gen": 8,
+  "_updated_at": "2026-08-25T18:46:32.438716+03:00"
 }
