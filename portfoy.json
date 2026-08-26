@@ -45,32 +45,10 @@
         "alpha_trend_bonus": 0
       }
     },
-    "KLYPV": {
-      "giris_f": 66.95,
-      "giris_t": "24.08.2026 08:58",
-      "tepe_f": 70.8499984741211,
-      "lotlar": 193,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "03.09.2026",
-      "final_score": 35,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "ALPHA",
-          "MR"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "AT+",
-        "alpha_trend_bonus": 2
-      }
-    },
     "GLRMK": {
       "giris_f": 180.0,
       "giris_t": "24.08.2026 08:58",
-      "tepe_f": 180.0,
+      "tepe_f": 180.8000030517578,
       "lotlar": 52,
       "gun": 0,
       "tp1_yapildi": false,
@@ -92,7 +70,7 @@
     "GLYHO": {
       "giris_f": 17.0,
       "giris_t": "25.08.2026 08:44",
-      "tepe_f": 17.0,
+      "tepe_f": 17.1299991607666,
       "lotlar": 1008,
       "gun": 0,
       "tp1_yapildi": false,
@@ -114,10 +92,10 @@
     "HATSN": {
       "giris_f": 73.4,
       "giris_t": "25.08.2026 08:44",
-      "tepe_f": 75.75,
-      "lotlar": 155,
+      "tepe_f": 79.75,
+      "lotlar": 78,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "max_gun_date": "04.09.2026",
       "final_score": 36,
       "ma_score": 0.0,
@@ -134,7 +112,7 @@
       }
     }
   },
-  "nakit": 22896.82556698608,
+  "nakit": 41270.50783200073,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -164,9 +142,9 @@
       "queued_at": "26.08.2026 07:05",
       "valid_for_date": "2026-08-27",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
+      "attempt_count": 1,
+      "last_attempt_time": "26.08.2026 11:31",
+      "last_attempt_reason": "kitap_limiti"
     },
     {
       "symbol": "KNFRT",
@@ -194,8 +172,8 @@
       "queued_at": "26.08.2026 07:05",
       "valid_for_date": "2026-08-27",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "26.08.2026 11:31",
       "last_attempt_reason": ""
     },
     {
@@ -224,8 +202,8 @@
       "queued_at": "26.08.2026 07:05",
       "valid_for_date": "2026-08-27",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "26.08.2026 11:31",
       "last_attempt_reason": ""
     },
     {
@@ -254,8 +232,8 @@
       "queued_at": "26.08.2026 07:05",
       "valid_for_date": "2026-08-27",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "26.08.2026 11:31",
       "last_attempt_reason": ""
     },
     {
@@ -284,15 +262,27 @@
       "queued_at": "26.08.2026 07:05",
       "valid_for_date": "2026-08-27",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "26.08.2026 11:31",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:31",
+      "tarih": "2026-08-26",
+      "alinan": [],
+      "alinmayan": [
+        "ASTOR"
+      ],
+      "nedenler": {
+        "ASTOR": "kitap_limiti"
+      }
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 7,
-    "bought": 2,
+    "pending": 5,
+    "bought": 0,
     "failed": 1,
     "expired": 0,
     "failed_reasons": [
@@ -301,9 +291,9 @@
         "reason": "kitap_limiti"
       }
     ],
-    "time": "25.08.2026 08:44"
+    "time": "26.08.2026 11:31"
   },
-  "last_hourly_check_time": "25.08.2026 13:52",
+  "last_hourly_check_time": "26.08.2026 11:31",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -524,6 +514,28 @@
       "neden": "STOP",
       "giris_tarih": "2026-08-24",
       "cikis_tarih": "2026-08-25"
+    },
+    {
+      "symbol": "KLYPV",
+      "giris_fiyat": 66.95,
+      "cikis_fiyat": 63.6025,
+      "lotlar": 193,
+      "pnl_pct": -5.0,
+      "gun": 2,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-24",
+      "cikis_tarih": "2026-08-26"
+    },
+    {
+      "symbol": "HATSN",
+      "giris_fiyat": 73.4,
+      "cikis_fiyat": 79.2,
+      "lotlar": 77,
+      "pnl_pct": 7.9,
+      "gun": 1,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-25",
+      "cikis_tarih": "2026-08-26"
     }
   ]
 }
