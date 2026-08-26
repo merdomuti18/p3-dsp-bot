@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-P6 Etap 1 — Director altyapısı + ZKN (zkn-p1-birebir-v1)
+P6 Etap 1 — Director altyapısı + ZKN + WYC + SQZ-v1
 
 P1 scanner_p1.py / portfoy_yonetici.py DOKUNULMAZ.
-ZKN Boolean kopyalanır (import edilmez). WYC-v1 support + strategy_wyc(ind).
+ZKN Boolean kopyalanır. WYC-v1 support. SQZ-v1 recent_squeeze + close>bb_up.
 
-Bu modül SQZ / CRSI / MD strateji fonksiyonları içermez.
+Bu modül CRSI / MD strateji fonksiyonları içermez.
 """
 from __future__ import annotations
 
@@ -21,16 +21,26 @@ log = logging.getLogger(__name__)
 
 RULE_VERSION_ZKN = "zkn-p1-birebir-v1"
 RULE_VERSION_WYC = "wyc-v1"
+RULE_VERSION_SQZ = "sqz-kc20-1.5-v1"
 STRATEGY_ZKN = "ZKN"
 STRATEGY_WYC = "WYC"
+STRATEGY_SQZ = "SQZ"
 MC_MIN = 10_000_000
 MIN_BARS = 50
 SUPPORT_WINDOW = 10
+KC_EMA_SPAN = 20
+KC_ATR_PERIOD = 14
+KC_MULT = 1.5
+# squeeze_on.iloc[-6:-1] → t-5…t-1 (5 bar); t hariç. Başka dilim yok.
+SQZ_RECENT_START = -6
+SQZ_RECENT_END = -1
+SQZ_RECENT_MIN_BARS = 6
 ZKN_CRITICAL_KEYS = (
     "close", "ema50", "ema200", "rsi", "stochrsi", "cmf", "rel_vol",
 )
 WYC_CRITICAL_KEYS = ("open", "high", "low", "close", "support")
-# P1 get_indicators anahtarları + P6 OHLC + wyc-v1 support. Başka yeni gösterge yok.
+SQZ_CRITICAL_KEYS = ("close", "bb_up", "recent_squeeze")
+# P1 get_indicators + P6 OHLC + support + SQZ recent_squeeze.
 P6_INDICATOR_SCHEMA = (
     "close", "ema8", "ema21", "ema50", "ema200", "sma20", "rsi",
     "macd", "macd_sig", "macd_prev", "macd_sprev",
@@ -39,6 +49,7 @@ P6_INDICATOR_SCHEMA = (
     "alpha_bull", "alpha_trend_bull",
     "open", "high", "low",
     "support",
+    "recent_squeeze",
 )
 FORBIDDEN_RECORD_KEYS = frozenset(
     {"score", "weight", "rank", "final_score", "strategies", "mc"}
@@ -103,6 +114,50 @@ def _fill_support_from_df(out: dict, df: pd.DataFrame) -> None:
         out["support"] = _NAN
 
 
+def squeeze_on_bar(bb_up, kc_up, bb_lo, kc_lo) -> bool:
+    """Frozen: (bb_up < kc_up) AND (bb_lo > kc_lo). Eşitlik ve NaN → False."""
+    if any(pd.isna(x) for x in (bb_up, kc_up, bb_lo, kc_lo)):
+        return False
+    return bool(bb_up < kc_up and bb_lo > kc_lo)
+
+
+def squeeze_on_series(df: pd.DataFrame) -> pd.Series:
+    """BB = P1 _bbands; KC = EMA20 ± 1.5 * P1 _atr(h,l,c,14). bb_* overwrite yok."""
+    c = df["close"]
+    h = df["high"]
+    low = df["low"]
+    _bb_mid, bb_up, bb_lo = scanner_p1._bbands(c)
+    kc_mid = scanner_p1._ema(c, KC_EMA_SPAN)
+    atr14 = scanner_p1._atr(h, low, c, KC_ATR_PERIOD)
+    kc_up = kc_mid + KC_MULT * atr14
+    kc_lo = kc_mid - KC_MULT * atr14
+    valid = bb_up.notna() & bb_lo.notna() & kc_up.notna() & kc_lo.notna()
+    return valid & (bb_up < kc_up) & (bb_lo > kc_lo)
+
+
+def recent_squeeze_from_series(squeeze_on: pd.Series) -> bool:
+    """squeeze_on.iloc[-6:-1].any() — t-5…t-1; t yok. len<6 → False."""
+    if squeeze_on is None or len(squeeze_on) < SQZ_RECENT_MIN_BARS:
+        return False
+    window = squeeze_on.iloc[SQZ_RECENT_START:SQZ_RECENT_END]
+    return bool(window.fillna(False).any())
+
+
+def _fill_sqz_from_df(out: dict, df: pd.DataFrame) -> None:
+    """Yalnız recent_squeeze skaler. bb_*/ZKN/support üzerine yazılmaz."""
+    try:
+        if df is None or len(df) < 1:
+            return
+        cols = getattr(df, "columns", [])
+        if not all(k in cols for k in ("high", "low", "close")):
+            return
+        sq = squeeze_on_series(df)
+        out["recent_squeeze"] = recent_squeeze_from_series(sq)
+    except Exception as exc:
+        log.debug("P6 SQZ doldurulamadi: %s", exc)
+        out["recent_squeeze"] = _NAN
+
+
 def get_indicators_p6(df: pd.DataFrame) -> dict:
     """
     P6 gösterge sözleşmesi (Seçenek B):
@@ -120,6 +175,7 @@ def get_indicators_p6(df: pd.DataFrame) -> dict:
         out.update(base)
     _fill_ohlc_from_df(out, df)
     _fill_support_from_df(out, df)
+    _fill_sqz_from_df(out, df)
     return out
 
 
@@ -187,6 +243,35 @@ def wyc_trigger_conditions(ind: dict) -> dict[str, bool]:
     }
 
 
+def strategy_sqz(ind: dict) -> bool:
+    """sqz-kc20-1.5-v1 — recent_squeeze AND close > bb_up. mc/rel_vol/squeeze_on[t] yok."""
+    if not isinstance(ind, dict):
+        return False
+    try:
+        close = ind.get("close", _NAN)
+        bb_up = ind.get("bb_up", _NAN)
+        recent = ind.get("recent_squeeze", _NAN)
+        if any(pd.isna(x) for x in (close, bb_up, recent)):
+            return False
+        if not recent:
+            return False
+        return bool(close > bb_up)
+    except Exception:
+        return False
+
+
+def sqz_trigger_conditions(ind: dict) -> dict[str, bool]:
+    close = ind.get("close", _NAN)
+    bb_up = ind.get("bb_up", _NAN)
+    recent = ind.get("recent_squeeze", _NAN)
+    return {
+        "recent_squeeze": bool(not pd.isna(recent) and recent),
+        "close_gt_bb_up": bool(
+            not pd.isna(close) and not pd.isna(bb_up) and close > bb_up
+        ),
+    }
+
+
 def zkn_trigger_conditions(ind: dict) -> dict[str, bool]:
     ema200 = ind.get("ema200")
     return {
@@ -234,7 +319,7 @@ def universe_ok(df: pd.DataFrame, mc: Optional[float] = None) -> bool:
 
 
 def evaluate_symbol(symbol: str, df: pd.DataFrame, asof: Optional[Any] = None) -> list[dict]:
-    """Tek sembol, kapanmış barlar. Network yok. ZKN ve WYC bağımsız."""
+    """Tek sembol, kapanmış barlar. Network yok. ZKN, WYC, SQZ bağımsız."""
     df = truncate_to_asof(df, asof)
     if not universe_ok(df):
         return []
@@ -264,11 +349,23 @@ def evaluate_symbol(symbol: str, df: pd.DataFrame, asof: Optional[Any] = None) -
                 trigger_conditions=wyc_trigger_conditions(ind),
             )
         )
+    if strategy_sqz(ind):
+        sqz_keys = {k: ind[k] for k in SQZ_CRITICAL_KEYS if k in ind}
+        records.append(
+            build_signal_record(
+                symbol=symbol,
+                asof_date=asof_date_from_df(df),
+                strategy=STRATEGY_SQZ,
+                rule_version=RULE_VERSION_SQZ,
+                indicators=sqz_keys,
+                trigger_conditions=sqz_trigger_conditions(ind),
+            )
+        )
     return records
 
 
 def _assert_agent_signatures() -> None:
-    for fn in (strategy_zkn, strategy_wyc):
+    for fn in (strategy_zkn, strategy_wyc, strategy_sqz):
         params = list(inspect.signature(fn).parameters)
         if params != ["ind"]:
             raise RuntimeError(f"{fn.__name__} imzasi bozuk: {params}")

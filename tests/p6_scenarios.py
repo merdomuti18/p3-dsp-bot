@@ -2,17 +2,17 @@
 P6 Etap 1 — ZKN 5+5 sentetik ind senaryoları + ajan kayıt defteri.
 
 Boolean testleri doğrudan strategy_*(ind) çağırır (OHLCV yok).
-SQZ/CRSI/MD stratejisi henüz yok.
+CRSI/MD stratejisi henüz yok.
 """
 from __future__ import annotations
 
 import math
 
-# Ajan kodu: ZKN + WYC. SQZ/CRSI/MD yok.
+# Ajan kodu: ZKN + WYC + SQZ. CRSI/MD yok.
 AGENT_IMPLEMENTED = {
     "ZKN": True,
     "WYC": True,
-    "SQZ": False,
+    "SQZ": True,
     "CRSI": False,
     "MD": False,
 }
@@ -86,6 +86,35 @@ WYC_NO = [
     # ile low<support aynı anda mümkün değildir; kural range<=0 → False)
     ("NO-4", wyc_base_ind(open=100.0, high=100.0, low=100.0, close=100.0, support=99.0), False),
     ("NO-5", wyc_base_ind(support=float("nan")), False),
+]
+
+
+def sqz_base_ind(**overrides):
+    """Geçerli kırılım: recent_squeeze True, close > bb_up. squeeze_on[t] şart değil."""
+    ind = {
+        "close": 101.0,
+        "bb_up": 100.0,
+        "recent_squeeze": True,
+        "squeeze_on": False,
+    }
+    ind.update(overrides)
+    return ind
+
+
+SQZ_YES = [
+    ("YES-1", sqz_base_ind(), True),
+    ("YES-2", sqz_base_ind(close=100.0 + 1e-9, bb_up=100.0), True),
+    ("YES-3", sqz_base_ind(recent_squeeze=True, squeeze_on=False), True),
+    ("YES-4", sqz_base_ind(recent_squeeze=True, squeeze_on=False), True),
+    ("YES-5", sqz_base_ind(recent_squeeze=True, squeeze_on=False), True),
+]
+
+SQZ_NO = [
+    ("NO-1", sqz_base_ind(close=100.0, bb_up=100.0), False),
+    ("NO-2", sqz_base_ind(close=99.0, bb_up=100.0), False),
+    ("NO-3", sqz_base_ind(recent_squeeze=False, squeeze_on=True, close=101.0, bb_up=100.0), False),
+    ("NO-4", sqz_base_ind(bb_up=float("nan")), False),
+    ("NO-5", sqz_base_ind(recent_squeeze=False, squeeze_on=False), False),
 ]
 
 

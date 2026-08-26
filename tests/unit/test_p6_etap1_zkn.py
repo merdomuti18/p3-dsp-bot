@@ -59,12 +59,13 @@ def test_a1_strategy_zkn_imzasi_ind_only():
 
 
 def test_diger_ajan_stratejileri_yazilmamis():
-    for ad in ("strategy_sqz", "strategy_crsi", "strategy_md"):
+    for ad in ("strategy_crsi", "strategy_md"):
         assert not hasattr(scanner_p6, ad)
     assert hasattr(scanner_p6, "strategy_wyc")
+    assert hasattr(scanner_p6, "strategy_sqz")
     assert AGENT_IMPLEMENTED["ZKN"] is True
     assert AGENT_IMPLEMENTED["WYC"] is True
-    assert AGENT_IMPLEMENTED["SQZ"] is False
+    assert AGENT_IMPLEMENTED["SQZ"] is True
     assert AGENT_IMPLEMENTED["CRSI"] is False
     assert AGENT_IMPLEMENTED["MD"] is False
 
