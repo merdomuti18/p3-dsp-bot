@@ -56,7 +56,7 @@ EXPECTED_RULE_VERSIONS = {
     "ZKN": "zkn-p1-birebir-v1",
     "WYC": "wyc-v1",
 }
-BENCHMARK_TICKERS = (("^XU100", "yahoo_bist100_index"), ("XU100.IS", "yahoo_xu100_is"))
+BENCHMARK_TICKERS = (("XU100.IS", "yahoo_xu100_is"), ("^XU100", "yahoo_bist100_index"))
 BENCHMARK_CACHE = Path("/tmp/p6_etap20/xu100.pkl")
 
 
