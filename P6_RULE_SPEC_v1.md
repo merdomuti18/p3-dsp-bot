@@ -68,8 +68,10 @@ Sınır değerler açık. `mc` ajan NO’su değildir (orkestratör).
 
 ### 2.3 Warm-up
 
-`len(df) >= 50` **yalnızca orkestratör**. Ajan kendi NaN alanında `False` döner;
-diğer ajanları ve dict’in tamamını `None` yapmaz. Yeni eşik icat edilmez.
+`len(df) >= 50` **yalnızca orkestratör**. Ajan kendi NaN alanında `False` döner.
+
+`get_indicators_p6` (Seçenek B): her zaman complete-schema **dict**; `None` yok; `{}` yok.
+P1 `get_indicators` `None` dönerse P6 bunu NaN’lı şema dict’ine çevirir. P1 kodu değişmez.
 
 P1 kaynak (iki satır):
 
@@ -103,7 +105,7 @@ P1 formülleri (parity-kritik):
 - `ema200`: `len < 200` ise `NaN`, `pd.isna` kolu
 
 `get_indicators_p6` bu yedi alanı P1 `get_indicators` çıktısından alır
-(sarmalayıcı; P1 fonksiyonu değiştirilmez).
+(sarmalayıcı; P1 fonksiyonu değiştirilmez). P1 `None` ise alanlar dict içinde NaN kalır.
 
 ---
 
@@ -150,7 +152,7 @@ Aynı gün/sembol/farklı ajan = ayrı satırlar. Overlap yalnız log (bu PR’d
 | A1 | İmza | `strategy_xxx(ind) -> bool`; `mc` parametresi yok |
 | A2 | Dönüş | yalnızca `True`/`False` |
 | A3 | Runtime | 0 exception (geçerli ve NaN `ind`) |
-| A4 | Warm-up | zorunlu alan NaN → `False`; global dict `None` değil |
+| A4 | Warm-up | zorunlu alan NaN → `False`; `get_indicators_p6` asla `None`/`{}` değil |
 | A5 | `rule_version` | kayıtta mevcut |
 | A6 | `trigger_conditions` | kural kolları bool |
 | A7 | 5+5 | 5 YES True, 5 NO False (direkt `ind`) |
@@ -199,7 +201,7 @@ KPI yok: forward return, alpha, kota, 10–40 sinyal, ajan payı.
 **YOK:** score, STRATEGY_WEIGHTS, combo, Top-N, kota, 10–40 hedef, forward-return KPI,
 alpha KPI, Risk, Execution, LGBM, MA/VIOP, ADX ekleme, EMA5 giriş, MTF, yeni ajan,
 P1 scanner/portföy değişikliği, `tarama_listesi` parity kaynağı, SQZ-v1 `rel_vol`,
-global `get_indicators_p6() → None` (50–119 bar ZKN’yi öldürme).
+`get_indicators_p6` `None` veya `{}` (P1 `None` → NaN şema dict).
 
 **VAR:** `strategy_xxx(ind)->bool`, `mc` orkestratör, ayrı satır, `rule_version`,
 `asof_date`, `trigger_conditions`, 5+5 (direkt ind), gösterge testi (OHLCV).

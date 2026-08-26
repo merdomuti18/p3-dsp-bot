@@ -27,9 +27,19 @@ MIN_BARS = 50
 ZKN_CRITICAL_KEYS = (
     "close", "ema50", "ema200", "rsi", "stochrsi", "cmf", "rel_vol",
 )
+# Mevcut P1 get_indicators anahtarları + P6 iskelet OHLC. Yeni gösterge yok.
+P6_INDICATOR_SCHEMA = (
+    "close", "ema8", "ema21", "ema50", "ema200", "sma20", "rsi",
+    "macd", "macd_sig", "macd_prev", "macd_sprev",
+    "bb_mid", "bb_up", "bb_lo", "cmf", "adx", "di_p", "di_n",
+    "stochrsi", "atr", "rel_vol", "change_pct",
+    "alpha_bull", "alpha_trend_bull",
+    "open", "high", "low",
+)
 FORBIDDEN_RECORD_KEYS = frozenset(
     {"score", "weight", "rank", "final_score", "strategies", "mc"}
 )
+_NAN = float("nan")
 
 
 def aktif_hisse_listesi() -> list[str]:
@@ -59,38 +69,54 @@ def asof_date_from_df(df: pd.DataFrame) -> str:
     return str(idx)[:10]
 
 
-def get_indicators_p6(df: pd.DataFrame) -> Optional[dict]:
-    """
-    P1 get_indicators çıktısı + P6 iskelet alanları.
+def _empty_indicator_dict() -> dict:
+    """Complete-schema dict; değerler NaN. Asla {}."""
+    return {k: _NAN for k in P6_INDICATOR_SCHEMA}
 
-    P1 None dönerse (exception yolu) None. MD/CRSI ısınması için tüm dict
-    None yapılmaz — extras başarısız olsa bile ZKN alanları kalır.
-    """
-    base = scanner_p1.get_indicators(df)
-    if base is None:
-        return None
-    out = dict(base)
+
+def _fill_ohlc_from_df(out: dict, df: pd.DataFrame) -> None:
     try:
+        if df is None or len(df) < 1:
+            return
         out["open"] = float(df["open"].iloc[-1])
         out["high"] = float(df["high"].iloc[-1])
         out["low"] = float(df["low"].iloc[-1])
+        out["close"] = float(df["close"].iloc[-1])
     except Exception as exc:
-        log.debug("P6 OHLC iskeleti atlandi: %s", exc)
+        log.debug("P6 OHLC doldurulamadi: %s", exc)
+
+
+def get_indicators_p6(df: pd.DataFrame) -> dict:
+    """
+    P6 gösterge sözleşmesi (Seçenek B):
+    her zaman complete-schema dict; None yok; {} yok;
+    hesaplanamayan alan NaN. P1 değiştirilmez.
+    """
+    out = _empty_indicator_dict()
+    base = None
+    try:
+        base = scanner_p1.get_indicators(df)
+    except Exception as exc:
+        log.debug("P1 get_indicators exception (P6 NaN semaya duser): %s", exc)
+        base = None
+    if isinstance(base, dict) and base:
+        out.update(base)
+    _fill_ohlc_from_df(out, df)
     return out
 
 
 def strategy_zkn(ind: dict) -> bool:
-    """zkn-p1-birebir-v1 — P1 Boolean, mc yok."""
-    if not ind:
+    """zkn-p1-birebir-v1 — P1 Boolean, mc yok. Eksik/NaN zorunlu alan → False."""
+    if not isinstance(ind, dict):
         return False
     try:
-        rsi = ind["rsi"]
-        stochrsi = ind["stochrsi"]
-        cmf = ind["cmf"]
-        rel_vol = ind["rel_vol"]
-        close = ind["close"]
-        ema50 = ind["ema50"]
-        ema200 = ind["ema200"]
+        rsi = ind.get("rsi", _NAN)
+        stochrsi = ind.get("stochrsi", _NAN)
+        cmf = ind.get("cmf", _NAN)
+        rel_vol = ind.get("rel_vol", _NAN)
+        close = ind.get("close", _NAN)
+        ema50 = ind.get("ema50", _NAN)
+        ema200 = ind.get("ema200", _NAN)
         if any(pd.isna(x) for x in (rsi, stochrsi, cmf, rel_vol, close, ema50)):
             return False
         return bool(
@@ -157,8 +183,6 @@ def evaluate_symbol(symbol: str, df: pd.DataFrame, asof: Optional[Any] = None) -
     if not universe_ok(df):
         return []
     ind = get_indicators_p6(df)
-    if ind is None:
-        return []
     records: list[dict] = []
     if strategy_zkn(ind):
         zkn_keys = {k: ind[k] for k in ZKN_CRITICAL_KEYS if k in ind}

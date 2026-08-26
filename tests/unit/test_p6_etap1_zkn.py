@@ -221,8 +221,116 @@ def test_a8_lookahead_tplus1_mutasyonu():
     prefix_b = scanner_p6.truncate_to_asof(df_mut, asof)
     rec_b = scanner_p6.evaluate_symbol("Y", prefix_b)
     assert rec_a == rec_b
-    # Yanlış implementasyon son bara bakarsa t+1 değişir:
-    full_wrong = scanner_p6.evaluate_symbol("Y", df_mut)
-    # Bu assert spec'i değil, truncate kullanımını korur: asof kesilmezse
-    # sonuç farklı OLABİLİR. Sadece kesilmiş önek eşitliği zorunlu.
-    _ = full_wrong
+
+
+def _assert_p6_contract_dict(out):
+    assert out is not None
+    assert isinstance(out, dict)
+    assert out != {}
+    for key in scanner_p6.P6_INDICATOR_SCHEMA:
+        assert key in out
+
+
+# ---------------------------------------------------------------------------
+# Seçenek B — get_indicators_p6 contract
+# ---------------------------------------------------------------------------
+
+def test_contract_valid_df_dict_not_empty_not_none():
+    df = _ohlcv(n=80)
+    out = scanner_p6.get_indicators_p6(df)
+    _assert_p6_contract_dict(out)
+    p1 = scanner_p1.get_indicators(df)
+    for key in ZKN_KEYS:
+        assert _ind_close(p1, out, key), key
+
+
+def test_contract_short_df_still_dict():
+    df = _ohlcv(n=10)
+    out = scanner_p6.get_indicators_p6(df)
+    _assert_p6_contract_dict(out)
+
+
+def test_contract_empty_df_still_dict():
+    out = scanner_p6.get_indicators_p6(pd.DataFrame())
+    _assert_p6_contract_dict(out)
+    for key in ZKN_KEYS:
+        assert pd.isna(out[key])
+
+
+def test_contract_p1_none_simulation_dict_nan(monkeypatch):
+    monkeypatch.setattr(scanner_p1, "get_indicators", lambda df: None)
+    df = _ohlcv(n=80)
+    out = scanner_p6.get_indicators_p6(df)
+    _assert_p6_contract_dict(out)
+    assert pd.isna(out["rsi"])
+    assert pd.isna(out["ema50"])
+    assert pd.isna(out["stochrsi"])
+    assert pd.isna(out["cmf"])
+    assert pd.isna(out["rel_vol"])
+    assert scanner_p6.strategy_zkn(out) is False
+
+
+def test_contract_never_none_never_empty_on_paths(monkeypatch):
+    for df in (_ohlcv(n=80), _ohlcv(n=10), pd.DataFrame()):
+        out = scanner_p6.get_indicators_p6(df)
+        assert isinstance(out, dict)
+        assert out is not None
+        assert out != {}
+    monkeypatch.setattr(scanner_p1, "get_indicators", lambda df: None)
+    out = scanner_p6.get_indicators_p6(_ohlcv(n=50))
+    assert isinstance(out, dict)
+    assert out is not None
+    assert out != {}
+
+
+def test_strategy_zkn_return_is_python_bool():
+    assert type(scanner_p6.strategy_zkn(zkn_base_ind())) is bool
+    assert type(scanner_p6.strategy_zkn(zkn_base_ind(rsi=float("nan")))) is bool
+
+
+def test_c1_ema200_numeric_220_bar():
+    df = _ohlcv(n=220, seed=5)
+    p1 = scanner_p1.get_indicators(df)
+    p6 = scanner_p6.get_indicators_p6(df)
+    assert not pd.isna(p1["ema200"]) and not pd.isna(p6["ema200"])
+    for key in ZKN_KEYS:
+        assert _ind_close(p1, p6, key), key
+
+
+def test_c2_signal_parity_33_asof():
+    p1_true, p6_true = set(), set()
+    for seed in (0, 1):
+        df = _ohlcv(n=220, seed=100 + seed, vol_scale=8_000_000)
+        for asof in df.index[-33:]:
+            prefix = scanner_p6.truncate_to_asof(df, asof)
+            mc = scanner_p6.mc_hesapla(prefix)
+            if not scanner_p6.universe_ok(prefix, mc):
+                continue
+            p1i = scanner_p1.get_indicators(prefix)
+            p6i = scanner_p6.get_indicators_p6(prefix)
+            key = (seed, str(asof.date()))
+            if p1i is not None and bool(scanner_p1.strategy_zkn(p1i, mc)):
+                p1_true.add(key)
+            if bool(scanner_p6.strategy_zkn(p6i)):
+                p6_true.add(key)
+    assert p1_true == p6_true
+
+
+def test_runtime_zkn_bool_no_exception():
+    rng = np.random.default_rng(0)
+    for i in range(400):
+        if i % 10 == 0:
+            ind = zkn_base_ind(rsi=float("nan"))
+        else:
+            ind = zkn_base_ind(
+                close=float(rng.uniform(50, 150)),
+                ema50=float(rng.uniform(50, 150)),
+                ema200=float(rng.uniform(50, 150)),
+                rsi=float(rng.uniform(0, 100)),
+                stochrsi=float(rng.uniform(0, 100)),
+                cmf=float(rng.uniform(-0.5, 0.5)),
+                rel_vol=float(rng.uniform(0, 3)),
+            )
+        out = scanner_p6.strategy_zkn(ind)
+        assert type(out) is bool
+
