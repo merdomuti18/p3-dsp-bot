@@ -3,10 +3,9 @@
 P6 Etap 1 — Director altyapısı + ZKN (zkn-p1-birebir-v1)
 
 P1 scanner_p1.py / portfoy_yonetici.py DOKUNULMAZ.
-ZKN Boolean kopyalanır (import edilmez). Göstergeler P1 get_indicators
-sarmalayıcısından gelir (yedi kritik alan birebir).
+ZKN Boolean kopyalanır (import edilmez). WYC-v1 support + strategy_wyc(ind).
 
-Bu modül WYC / SQZ / CRSI / MD strateji fonksiyonları içermez.
+Bu modül SQZ / CRSI / MD strateji fonksiyonları içermez.
 """
 from __future__ import annotations
 
@@ -21,13 +20,17 @@ import scanner_p1
 log = logging.getLogger(__name__)
 
 RULE_VERSION_ZKN = "zkn-p1-birebir-v1"
+RULE_VERSION_WYC = "wyc-v1"
 STRATEGY_ZKN = "ZKN"
+STRATEGY_WYC = "WYC"
 MC_MIN = 10_000_000
 MIN_BARS = 50
+SUPPORT_WINDOW = 10
 ZKN_CRITICAL_KEYS = (
     "close", "ema50", "ema200", "rsi", "stochrsi", "cmf", "rel_vol",
 )
-# Mevcut P1 get_indicators anahtarları + P6 iskelet OHLC. Yeni gösterge yok.
+WYC_CRITICAL_KEYS = ("open", "high", "low", "close", "support")
+# P1 get_indicators anahtarları + P6 OHLC + wyc-v1 support. Başka yeni gösterge yok.
 P6_INDICATOR_SCHEMA = (
     "close", "ema8", "ema21", "ema50", "ema200", "sma20", "rsi",
     "macd", "macd_sig", "macd_prev", "macd_sprev",
@@ -35,6 +38,7 @@ P6_INDICATOR_SCHEMA = (
     "stochrsi", "atr", "rel_vol", "change_pct",
     "alpha_bull", "alpha_trend_bull",
     "open", "high", "low",
+    "support",
 )
 FORBIDDEN_RECORD_KEYS = frozenset(
     {"score", "weight", "rank", "final_score", "strategies", "mc"}
@@ -86,6 +90,19 @@ def _fill_ohlc_from_df(out: dict, df: pd.DataFrame) -> None:
         log.debug("P6 OHLC doldurulamadi: %s", exc)
 
 
+def _fill_support_from_df(out: dict, df: pd.DataFrame) -> None:
+    """support(t) = low.rolling(10, min_periods=10).min().shift(1) — pencere t-10…t-1."""
+    try:
+        if df is None or "low" not in getattr(df, "columns", []) or len(df) < 1:
+            return
+        series = df["low"].rolling(window=SUPPORT_WINDOW, min_periods=SUPPORT_WINDOW).min().shift(1)
+        val = series.iloc[-1]
+        out["support"] = float(val) if pd.notna(val) else _NAN
+    except Exception as exc:
+        log.debug("P6 support doldurulamadi: %s", exc)
+        out["support"] = _NAN
+
+
 def get_indicators_p6(df: pd.DataFrame) -> dict:
     """
     P6 gösterge sözleşmesi (Seçenek B):
@@ -102,6 +119,7 @@ def get_indicators_p6(df: pd.DataFrame) -> dict:
     if isinstance(base, dict) and base:
         out.update(base)
     _fill_ohlc_from_df(out, df)
+    _fill_support_from_df(out, df)
     return out
 
 
@@ -129,6 +147,44 @@ def strategy_zkn(ind: dict) -> bool:
         )
     except Exception:
         return False
+
+
+def strategy_wyc(ind: dict) -> bool:
+    """wyc-v1 — tek bar spring. mc yok. NaN/range<=0 → False."""
+    if not isinstance(ind, dict):
+        return False
+    try:
+        o = ind.get("open", _NAN)
+        h = ind.get("high", _NAN)
+        low = ind.get("low", _NAN)
+        c = ind.get("close", _NAN)
+        support = ind.get("support", _NAN)
+        if any(pd.isna(x) for x in (o, h, low, c, support)):
+            return False
+        rng = h - low
+        if rng <= 0:
+            return False
+        wick = (min(o, c) - low) / rng
+        return bool(low < support and c > support and wick >= 0.30)
+    except Exception:
+        return False
+
+
+def wyc_trigger_conditions(ind: dict) -> dict[str, bool]:
+    o = ind.get("open", _NAN)
+    h = ind.get("high", _NAN)
+    low = ind.get("low", _NAN)
+    c = ind.get("close", _NAN)
+    support = ind.get("support", _NAN)
+    rng = h - low if not any(pd.isna(x) for x in (h, low)) else _NAN
+    wick = (min(o, c) - low) / rng if (not pd.isna(rng) and rng > 0) else _NAN
+    return {
+        "support_finite": bool(not pd.isna(support)),
+        "range_positive": bool(not pd.isna(rng) and rng > 0),
+        "low_lt_support": bool(not pd.isna(support) and not pd.isna(low) and low < support),
+        "close_gt_support": bool(not pd.isna(support) and not pd.isna(c) and c > support),
+        "wick_ge_030": bool(not pd.isna(wick) and wick >= 0.30),
+    }
 
 
 def zkn_trigger_conditions(ind: dict) -> dict[str, bool]:
@@ -178,7 +234,7 @@ def universe_ok(df: pd.DataFrame, mc: Optional[float] = None) -> bool:
 
 
 def evaluate_symbol(symbol: str, df: pd.DataFrame, asof: Optional[Any] = None) -> list[dict]:
-    """Tek sembol, kapanmış barlar. Network yok. Yalnız ZKN ajanı."""
+    """Tek sembol, kapanmış barlar. Network yok. ZKN ve WYC bağımsız."""
     df = truncate_to_asof(df, asof)
     if not universe_ok(df):
         return []
@@ -196,13 +252,26 @@ def evaluate_symbol(symbol: str, df: pd.DataFrame, asof: Optional[Any] = None) -
                 trigger_conditions=zkn_trigger_conditions(ind),
             )
         )
+    if strategy_wyc(ind):
+        wyc_keys = {k: ind[k] for k in WYC_CRITICAL_KEYS if k in ind}
+        records.append(
+            build_signal_record(
+                symbol=symbol,
+                asof_date=asof_date_from_df(df),
+                strategy=STRATEGY_WYC,
+                rule_version=RULE_VERSION_WYC,
+                indicators=wyc_keys,
+                trigger_conditions=wyc_trigger_conditions(ind),
+            )
+        )
     return records
 
 
-def _assert_zkn_signature() -> None:
-    params = list(inspect.signature(strategy_zkn).parameters)
-    if params != ["ind"]:
-        raise RuntimeError(f"strategy_zkn imzasi bozuk: {params}")
+def _assert_agent_signatures() -> None:
+    for fn in (strategy_zkn, strategy_wyc):
+        params = list(inspect.signature(fn).parameters)
+        if params != ["ind"]:
+            raise RuntimeError(f"{fn.__name__} imzasi bozuk: {params}")
 
 
-_assert_zkn_signature()
+_assert_agent_signatures()

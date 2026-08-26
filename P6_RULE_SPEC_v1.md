@@ -1,7 +1,7 @@
-# P6_RULE_SPEC_v1 — Etap 1 (ZKN + altyapı)
+# P6_RULE_SPEC_v1 — Etap 1 (ZKN + WYC + altyapı)
 
 ```
-DURUM:       ETAP 1 UYGULAMA (ZKN parity kapısı)
+DURUM:       ETAP 1.3 UYGULAMA (WYC; ZKN parity korunur)
 CODE:        scanner_p6.py + tests (P1 dokunulmaz)
 PRODUCTION:  scanner_p1.py / portfoy_yonetici.py = 0 değişiklik
 ```
@@ -10,9 +10,10 @@ Bu belge onaylı pakettir: Uygulayıcı 1 başarı kriterleri (A/B/C/D) +
 Uygulayıcı 2 teknik yamaları. Freeze kararı uygulayıcıya ait değildir;
 uygulama kapısı spec sahibi tarafından açılmıştır.
 
-**Bu PR kapsamı:** spec + `get_indicators_p6` iskeleti + `strategy_zkn(ind)` +
-orkestratör evren kapısı + ZKN parity + 5+5 altyapısı (ZKN doldurulur).
-WYC / SQZ / CRSI / MD **strateji fonksiyonları yazılmaz**.
+**Bu PR kapsamı:** spec + `get_indicators_p6` + `strategy_zkn(ind)` +
+`strategy_wyc(ind)` + `ind["support"]` + orkestratör evren kapısı +
+ZKN parity + WYC 5+5 / gösterge / look-ahead.
+SQZ / CRSI / MD **strateji fonksiyonları yazılmaz**.
 
 ---
 
@@ -32,9 +33,10 @@ get_indicators_p6(df)                         # P1 get_indicators'i DEĞİŞTİR
         │
         ▼
 strategy_zkn(ind) -> bool                     # mc yok
+strategy_wyc(ind) -> bool                     # mc yok; ZKN'den bağımsız
         │
         ▼
-TRUE ise ayrı satır kaydı (score yok)
+TRUE ise ayrı satır kaydı (score yok; ajanlar combo değil)
 ```
 
 Director = kaydedici. Seçmez, sıralamaz, Top-N yok.
@@ -127,16 +129,46 @@ Zorunlu: `symbol, asof_date, strategy, rule_version, indicators, trigger_conditi
 Yasak: `score, weight, rank, final_score, strategies: [...]`.
 `mc` ajan girdisi ve (Etap 1) kayıt alanı değildir.
 
-Aynı gün/sembol/farklı ajan = ayrı satırlar. Overlap yalnız log (bu PR’de
-çoklu ajan olmadığı için overlap motoru yok).
+Aynı gün/sembol/farklı ajan = ayrı satırlar. Overlap motoru yok (Etap 1.3:
+ZKN ve WYC bağımsız satır üretir; birleştirme/skor yok).
 
 ---
 
-## 6. Henüz yazılmayan ajanlar (spek donuk, kod yok)
+## 6. WYC — `wyc-v1` (kod var) ve henüz yazılmayan ajanlar
+
+### 6.1 WYC Boolean (donuk)
+
+Tek-bar Spring. `strategy_wyc(ind) -> bool`. `mc` yok.
+
+```
+support(t) = low.rolling(10, min_periods=10).min().shift(1)
+# pencere yalnızca t-10 … t-1; bar t ve gelecek bar YOK
+range = high - low
+lower_wick_ratio = (min(open, close) - low) / range
+
+TRUE iff:
+  support sonlu
+  AND range > 0
+  AND low < support
+  AND close > support
+  AND lower_wick_ratio >= 0.30
+```
+
+Eşitlikler: `low == support` → False; `close == support` → False;
+`wick == 0.30` → True; `high == low` → False.
+
+P6 şemasına **yalnız** `support` eklenir. Wick ajan içinde hesaplanır; şema alanı değildir.
+
+WYC-v1’de **yok:** ADX, rel_vol, EMA, EMA5, hacim filtresi, score, ranking,
+kota, combo, Top-N, MTF, forward-return, alpha, risk, execution, exit.
+ZKN sonucu WYC’yi etkilemez.
+
+Matematik ısınma 11 bar (NaN support → False). Global `MIN_BARS = 50` değişmez.
+
+### 6.2 Henüz yazılmayan (spek donuk, kod yok)
 
 | Kural | Versiyon | Not |
 |-------|----------|-----|
-| WYC | wyc-v1 | tek bar spring; `support = low.rolling(10).min().shift(1)`; `range==0 → False` |
 | SQZ | sqz-kc20-1.5-v1 | BB⊂KC; `close>bb_up`; `iloc[-6:-1]`; **rel_vol yok** |
 | CRSI | crsi-1d-v1 | 4 AND tanh/ölçek; Stoch %K (14,3,3); Fisher/EMA5/ADX/MTF yok |
 | MD | md-v1 | `rsi<40` **ve** `rsi>rsi_ema10` **ve** `rsi<rsi_fib50` **ve** `rsi_mom` sıfır kesişimi **ve** `rel_vol>=1.2` |
@@ -145,7 +177,7 @@ Aynı gün/sembol/farklı ajan = ayrı satırlar. Overlap yalnız log (bu PR’d
 
 ## 7. Etap 1 başarı kriterleri (Uygulayıcı 1 — somut, soyut 5 başlık değil)
 
-### A — Ajan (ZKN bu PR; diğerleri ajan yazılınca)
+### A — Ajan (ZKN + WYC bu etap; SQZ/CRSI/MD ajan yazılınca)
 
 | ID | Kontrol | Hedef |
 |----|---------|-------|
@@ -188,7 +220,7 @@ C fail → WYC/SQZ/CRSI/MD kodlanmaz.
 | ID | Kontrol | Hedef |
 |----|---------|-------|
 | D1 | Bu spec dosyası | repoda |
-| D2 | Versiyon etiketleri | ZKN kilitli; diğerleri spekte |
+| D2 | Versiyon etiketleri | ZKN ve WYC kilitli; SQZ/CRSI/MD spekte |
 | D3 | Yasak / var listesi | bölüm 8 |
 | D4 | 5+5 + dual test yolu | bölüm 2.2 |
 
@@ -213,7 +245,7 @@ P1 scanner/portföy değişikliği, `tarama_listesi` parity kaynağı, SQZ-v1 `r
 1. Bu spec  
 2. `get_indicators_p6` + ZKN Boolean + orkestratör  
 3. **ZKN PARITY** — FAIL ise DUR  
-4. Sonraki PR’ler: WYC → SQZ → CRSI → MD (her biri 5+5 + look-ahead)  
+4. WYC (bu etap) → sonraki: SQZ → CRSI → MD (her biri 5+5 + look-ahead)  
 5. Director log tam seti, overlap, A/B/C/D kapısı  
 
 ---
@@ -234,3 +266,27 @@ Taban YES: `close=100, ema50=99, ema200=90, rsi=50, stochrsi=30, cmf=0, rel_vol=
 | NO-3 | stochrsi=40 | False (`<` sıkı) |
 | NO-4 | cmf=-0.1 | False (`>` sıkı) |
 | NO-5 | rel_vol=0.799 | False |
+
+---
+
+## 11. WYC 5+5 (direkt `ind`)
+
+Taban YES: `support=100, low=90, high=110, open=96, close=105`
+(`wick = 6/20 = 0.30`, yeşil spring).
+
+| ID | Değişiklik | Beklenen |
+|----|------------|----------|
+| YES-1 | taban (normal spring) | True |
+| YES-2 | low=99.99 (< support, eşitlik yok) | True |
+| YES-3 | wick == 0.30 | True |
+| YES-4 | yeşil mum | True |
+| YES-5 | kırmızı mum (open=110, close=101) | True |
+| NO-1 | low >= support | False |
+| NO-2 | close <= support | False |
+| NO-3 | wick < 0.30 | False |
+| NO-4 | high == low | False |
+| NO-5 | support = NaN | False |
+
+Look-ahead yöntemi: veriyi t’de kes → support/WYC(t) → t+1 ekle veya mutate et
+→ t önekini yeniden hesapla. Son barı mutate edip aynı son-bar sinyalini
+karşılaştırmak look-ahead testi değildir.

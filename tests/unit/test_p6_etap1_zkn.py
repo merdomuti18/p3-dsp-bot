@@ -59,10 +59,11 @@ def test_a1_strategy_zkn_imzasi_ind_only():
 
 
 def test_diger_ajan_stratejileri_yazilmamis():
-    for ad in ("strategy_wyc", "strategy_sqz", "strategy_crsi", "strategy_md"):
+    for ad in ("strategy_sqz", "strategy_crsi", "strategy_md"):
         assert not hasattr(scanner_p6, ad)
+    assert hasattr(scanner_p6, "strategy_wyc")
     assert AGENT_IMPLEMENTED["ZKN"] is True
-    assert AGENT_IMPLEMENTED["WYC"] is False
+    assert AGENT_IMPLEMENTED["WYC"] is True
     assert AGENT_IMPLEMENTED["SQZ"] is False
     assert AGENT_IMPLEMENTED["CRSI"] is False
     assert AGENT_IMPLEMENTED["MD"] is False
@@ -151,12 +152,12 @@ def test_c2_evaluate_p1_boolean_ile_uyumlu():
     p1_ind = scanner_p1.get_indicators(df)
     mc = scanner_p6.mc_hesapla(df)
     p1_hit = bool(scanner_p1.strategy_zkn(p1_ind, mc))
-    assert (len(recs) == 1) == p1_hit
-    if recs:
-        assert recs[0]["strategy"] == "ZKN"
-        assert recs[0]["rule_version"] == scanner_p6.RULE_VERSION_ZKN
-        assert "score" not in recs[0]
-        assert "mc" not in recs[0]
+    zkn_recs = [r for r in recs if r["strategy"] == "ZKN"]
+    assert (len(zkn_recs) == 1) == p1_hit
+    if zkn_recs:
+        assert zkn_recs[0]["rule_version"] == scanner_p6.RULE_VERSION_ZKN
+        assert "score" not in zkn_recs[0]
+        assert "mc" not in zkn_recs[0]
 
 
 # ---------------------------------------------------------------------------
