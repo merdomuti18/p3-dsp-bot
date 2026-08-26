@@ -1,8 +1,8 @@
 # P6_RULE_SPEC_v1 — Etap 1 (ZKN + WYC + altyapı)
 
 ```
-DURUM:       ETAP 1.3 UYGULAMA (WYC; ZKN parity korunur)
-CODE:        scanner_p6.py + tests (P1 dokunulmaz)
+DURUM:       ETAP 1.4c SPEC RESTORE (SQZ-v1 geçmiş freeze; kod yok)
+CODE:        scanner_p6.py ZKN+WYC (P1 dokunulmaz); strategy_sqz YOK
 PRODUCTION:  scanner_p1.py / portfoy_yonetici.py = 0 değişiklik
 ```
 
@@ -53,8 +53,36 @@ Onaylı kaynak **gösterilemedi**.
 - Açık kullanıcı kilidi: `sqz-v1 içinde rel_vol yok` (hacim ayrı deney).
 - `1.2` yalnızca donmamış taslakta vardı; sonraki metne uygulayıcı kaymasıyla girdi.
 
-**`sqz-kc20-1.5-v1` = BB⊂KC + `close > bb_up` + `squeeze_on.iloc[-6:-1].any()`.**
-`rel_vol` yok. Hacim = `sqz-v2` deneyi. Bu PR’de `strategy_sqz` zaten yazılmaz.
+`rel_vol` yok. Hacim = `sqz-v2` deneyi. `strategy_sqz` yazılmaz.
+
+**`sqz-kc20-1.5-v1` Boolean (Etap 1.4c restoration — yeni kural yok).**
+`f435a2a` committed satırı `BB⊂KC + close>bb_up + iloc[-6:-1]` KC formülünü,
+sıkı `<`/`>` operatörlerini ve “`squeeze_on[t]` sinyal AND’i değil” kararını
+düşürmüştü. Aşağısı geçmiş freeze’in geri yazımıdır (Etap 1.4b: üç A kararı).
+
+```
+kc_mid = ema(close, 20)
+atr14  = _atr(high, low, close, 14)    # P1; Yama 3 (close şart)
+kc_up  = kc_mid + 1.5 * atr14
+kc_lo  = kc_mid - 1.5 * atr14
+
+squeeze_on[t] =
+    (bb_up[t] < kc_up[t]) AND (bb_lo[t] > kc_lo[t])
+# eşitlik squeeze değil: bb_up == kc_up → False; bb_lo == kc_lo → False
+
+recent_squeeze = squeeze_on.iloc[-6:-1].any()
+# t-5, t-4, t-3, t-2, t-1  (5 bar); bar t dahil değil
+
+TRUE iff:
+  recent_squeeze
+  AND close > bb_up
+```
+
+`squeeze_on[t]` sinyal için ek AND değildir. `~squeeze_on[t]` yoktur.
+`close == bb_up` → False. Tam tanım: §6.2.
+
+Keltner: Chartist S4 / P1 bağımsız KC doğrulaması **yok**. Formül
+**kaynaksız ama frozen kullanıcı kararı** (FAZ 1 kilit + Yama 3 ATR).
 
 ### 2.2 5+5 veri üretimi — iki katman
 
@@ -134,7 +162,7 @@ ZKN ve WYC bağımsız satır üretir; birleştirme/skor yok).
 
 ---
 
-## 6. WYC — `wyc-v1` (kod var) ve henüz yazılmayan ajanlar
+## 6. WYC — `wyc-v1` (kod var); SQZ — spek restore (kod yok); CRSI/MD yazılmaz
 
 ### 6.1 WYC Boolean (donuk)
 
@@ -165,11 +193,61 @@ ZKN sonucu WYC’yi etkilemez.
 
 Matematik ısınma 11 bar (NaN support → False). Global `MIN_BARS = 50` değişmez.
 
-### 6.2 Henüz yazılmayan (spek donuk, kod yok)
+### 6.2 SQZ — `sqz-kc20-1.5-v1` (spek restore; kod yok)
+
+`strategy_sqz` yazılmaz. Bu alt bölüm Etap 1.4c restoration’dır:
+geçmişte kilitli üç karar committed dosyadan düşmüştü; yeni tasarım yoktur.
+
+`ema` = P1 `_ema` = `ewm(span=p, adjust=False)` (Yama 3 EMA kilidi).
+`_atr` = P1 `_atr(high, low, close, 14)` (Yama 3; ilk taslak close’suz
+`atr(high, low, 14)` düzeltilmiş kabul).
+
+```
+kc_mid = ema(close, 20)
+atr14  = _atr(high, low, close, 14)
+kc_up  = kc_mid + 1.5 * atr14
+kc_lo  = kc_mid - 1.5 * atr14
+
+squeeze_on[t] =
+    (bb_up[t] < kc_up[t])
+    AND
+    (bb_lo[t] > kc_lo[t])
+
+recent_squeeze[t] =
+    squeeze_on.iloc[-6:-1].any()
+    # barlar: t-5, t-4, t-3, t-2, t-1
+    # asof bar t dahil değil
+
+signal[t] =
+    recent_squeeze[t]
+    AND
+    close[t] > bb_up[t]
+```
+
+Eşitlikler (sıkı containment / sıkı kırılım):
+
+- `bb_up == kc_up` → o barda `squeeze_on` False
+- `bb_lo == kc_lo` → o barda `squeeze_on` False
+- `close == bb_up` → False
+
+Sinyal anında:
+
+- `squeeze_on[t]` şart değil (Yama 1: `bb_in_kc` skaleri kullanılmıyordu;
+  TRUE yalnız `prev_squeeze ∧ close>bb_up`; `rel_vol` sonraki v1 temizliğinde çıktı)
+- `~squeeze_on[t]` yok
+- `rel_vol` yok
+- volume / `vol_ma20` / surge yok
+
+`squeeze_on[t]==False` ve `recent_squeeze==True` ve `close>bb_up` → TRUE olabilir.
+
+Keltner etiketi: **kaynaksız ama frozen kullanıcı kararı.** Chartist S4
+EMA20/ATR14/1.5 yazmaz; P1’de Keltner yoktur. P1 yalnızca ATR ve EMA
+fonksiyonunu sağlar.
+
+### 6.3 Henüz yazılmayan (spek donuk, kod yok)
 
 | Kural | Versiyon | Not |
 |-------|----------|-----|
-| SQZ | sqz-kc20-1.5-v1 | BB⊂KC; `close>bb_up`; `iloc[-6:-1]`; **rel_vol yok** |
 | CRSI | crsi-1d-v1 | 4 AND tanh/ölçek; Stoch %K (14,3,3); Fisher/EMA5/ADX/MTF yok |
 | MD | md-v1 | `rsi<40` **ve** `rsi>rsi_ema10` **ve** `rsi<rsi_fib50` **ve** `rsi_mom` sıfır kesişimi **ve** `rel_vol>=1.2` |
 
@@ -220,7 +298,7 @@ C fail → WYC/SQZ/CRSI/MD kodlanmaz.
 | ID | Kontrol | Hedef |
 |----|---------|-------|
 | D1 | Bu spec dosyası | repoda |
-| D2 | Versiyon etiketleri | ZKN ve WYC kilitli; SQZ/CRSI/MD spekte |
+| D2 | Versiyon etiketleri | ZKN, WYC ve SQZ-v1 Boolean kilitli; SQZ kod yok; CRSI/MD spekte |
 | D3 | Yasak / var listesi | bölüm 8 |
 | D4 | 5+5 + dual test yolu | bölüm 2.2 |
 
@@ -245,7 +323,7 @@ P1 scanner/portföy değişikliği, `tarama_listesi` parity kaynağı, SQZ-v1 `r
 1. Bu spec  
 2. `get_indicators_p6` + ZKN Boolean + orkestratör  
 3. **ZKN PARITY** — FAIL ise DUR  
-4. WYC (bu etap) → sonraki: SQZ → CRSI → MD (her biri 5+5 + look-ahead)  
+4. WYC (kod var) → SQZ spek restore (1.4c; kod sonraki) → CRSI → MD  
 5. Director log tam seti, overlap, A/B/C/D kapısı  
 
 ---
