@@ -138,8 +138,8 @@ def test_no1_close_eq_bb_up_false():
 
 def test_window_tminus5_only_true():
     s = _squeeze_flags(n=12, true_at=(5,))
-    assert s.iloc[-6] is True
-    assert s.iloc[-1] is False
+    assert bool(s.iloc[-6]) is True
+    assert bool(s.iloc[-1]) is False
     assert scanner_p6.recent_squeeze_from_series(s) is True
     ind = sqz_base_ind(recent_squeeze=True, close=101.0, bb_up=100.0)
     assert scanner_p6.strategy_sqz(ind) is True
@@ -147,14 +147,14 @@ def test_window_tminus5_only_true():
 
 def test_window_tminus1_only_true():
     s = _squeeze_flags(n=12, true_at=(1,))
-    assert s.iloc[-2] is True
-    assert s.iloc[-1] is False
+    assert bool(s.iloc[-2]) is True
+    assert bool(s.iloc[-1]) is False
     assert scanner_p6.recent_squeeze_from_series(s) is True
 
 
 def test_window_t_only_false():
     s = _squeeze_flags(n=12, true_at=(0,))
-    assert s.iloc[-1] is True
+    assert bool(s.iloc[-1]) is True
     assert scanner_p6.recent_squeeze_from_series(s) is False
     ind = sqz_base_ind(recent_squeeze=False, squeeze_on=True, close=101.0, bb_up=100.0)
     assert scanner_p6.strategy_sqz(ind) is False
