@@ -408,6 +408,41 @@ def mfe_mae_table(
     return tab
 
 
+def benchmark_calendar_ok(
+    bench: pd.Series,
+    frames: Mapping[str, pd.DataFrame],
+) -> tuple[bool, dict]:
+    """
+    Reject a benchmark whose session calendar does not match BIST cash dates.
+    Do not silently shift dates. Weekend-heavy or low-overlap series are unreliable.
+    """
+    bench_dates = {str(pd.Timestamp(ts).normalize().date()) for ts in bench.index}
+    stock_dates: set[str] = set()
+    for df in frames.values():
+        stock_dates.update(str(pd.Timestamp(ts).normalize().date()) for ts in df.index)
+    weekend_n = int(sum(int(pd.Timestamp(ts).dayofweek) >= 5 for ts in bench.index))
+    overlap = len(stock_dates & bench_dates)
+    stock_n = len(stock_dates) or 1
+    overlap_frac = overlap / stock_n
+    weekend_frac = weekend_n / max(len(bench), 1)
+    info = {
+        "bench_n": int(len(bench)),
+        "bench_dates_n": len(bench_dates),
+        "stock_dates_n": len(stock_dates),
+        "overlap_n": overlap,
+        "overlap_frac_of_stock_dates": overlap_frac,
+        "weekend_bars": weekend_n,
+        "weekend_frac": weekend_frac,
+        "stock_only_n": len(stock_dates - bench_dates),
+        "bench_only_n": len(bench_dates - stock_dates),
+    }
+    if weekend_frac > 0.05:
+        return False, {**info, "reason": "benchmark has weekend bars; BIST cash calendar expected"}
+    if overlap_frac < 0.80:
+        return False, {**info, "reason": "benchmark date overlap with stock cache is too low"}
+    return True, info
+
+
 def try_download_xu100(cutoff: pd.Timestamp) -> tuple[Optional[pd.Series], dict]:
     """
     Analysis-only XU100 close series. Does not call scanner_p1.veri_hazirla.
@@ -604,6 +639,16 @@ def classify_sqz(payload: Mapping[str, Any]) -> dict:
     mixed_periods = len(set(period_signs)) > 1 if period_signs else True
     if mixed_periods:
         blockers.append("time_stability_mixed_or_thin")
+
+    late20 = ((time_stab.get("20") or {}).get("LATE")) or {}
+    early20 = ((time_stab.get("20") or {}).get("EARLY")) or {}
+    if (late20.get("n") or 0) > 0 and (early20.get("n") or 0) > 0:
+        if (late20["n"] * 2) < early20["n"]:
+            blockers.append("horizon_coverage_bias_20d")
+            reasons.append(
+                f"20D LATE N={late20['n']} vs EARLY N={early20['n']}; "
+                "longer-horizon stats overweight earlier as-of dates"
+            )
 
     # Symbol sensitivity: 5D mean sign flip after dropping top-3.
     s5 = (conc.get("5") or {})
@@ -854,17 +899,26 @@ def run_etap20(
         for name in ("SQZ_only", "SQZ_and_ZKN", "SQZ_and_WYC", "SQZ_and_ZKN_and_WYC")
     }
 
-    # Alpha
+    # Alpha — only if a reliable same-calendar benchmark series exists.
     alpha_block: dict[str, Any]
-    if benchmark is None or len(benchmark) < 40:
+    bench_meta = dict(benchmark_meta or {})
+    calendar_info = None
+    reliable_bench = False
+    if benchmark is not None and len(benchmark) >= 40:
+        reliable_bench, calendar_info = benchmark_calendar_ok(benchmark, frames)
+        bench_meta["calendar"] = calendar_info
+        if not reliable_bench:
+            bench_meta["reason"] = calendar_info.get("reason")
+            bench_meta["reliable"] = False
+    if not reliable_bench:
         alpha_block = {
             "computable": False,
             "status": "NOT COMPUTABLE",
-            "reason": (benchmark_meta or {}).get(
+            "reason": bench_meta.get(
                 "reason",
-                "no reliable XU100/BIST100 series (missing, too short, or duplicates)",
+                "no reliable XU100/BIST100 series (missing, too short, duplicates, or calendar mismatch)",
             ),
-            "benchmark": benchmark_meta,
+            "benchmark": bench_meta,
             "note": "raw stock forward returns are NOT labeled alpha",
         }
     else:
@@ -872,7 +926,7 @@ def run_etap20(
             "computable": True,
             "status": "COMPUTED",
             "formula": "alpha(t,period)=stock_fwd_return(t,period)-benchmark_fwd_return(t,period)",
-            "benchmark": benchmark_meta,
+            "benchmark": bench_meta,
             "horizons": {},
         }
         for period in HORIZONS:
@@ -963,8 +1017,50 @@ def run_etap20(
         "score_predictiveness": "NOT APPLICABLE",
         "top_k_selection_uplift": "NOT APPLICABLE",
     }
+    payload["final_tables"] = final_tables(payload)
     payload["classification"] = classify_sqz(payload)
     return payload
+
+
+def _fmt_ci(boot: Optional[Mapping[str, Any]]) -> Optional[str]:
+    if not boot or not boot.get("mean_ci95"):
+        return None
+    lo, hi = boot["mean_ci95"]
+    cross = boot.get("mean_ci_crosses_zero")
+    tag = "crosses 0" if cross else "excludes 0"
+    return f"[{lo:.6f}, {hi:.6f}] ({tag})"
+
+
+def final_tables(payload: Mapping[str, Any]) -> dict:
+    """Mandatory report tables, derived from already-computed stats."""
+    uplift = payload.get("selection_uplift") or {}
+    inc = payload.get("incremental_base_vs_base_plus_sqz") or {}
+    sqz_ctrl = []
+    for h in ("1", "3", "5", "10", "20"):
+        u = uplift.get(h) or {}
+        sqz_ctrl.append({
+            "horizon": f"{h}D",
+            "sqz_n": u.get("sqz_n"),
+            "sqz_mean": u.get("sqz_mean"),
+            "control_n": u.get("control_n"),
+            "control_mean": u.get("control_mean"),
+            "mean_uplift": u.get("mean_uplift"),
+            "median_uplift": u.get("median_uplift"),
+            "sqz_win_pct": u.get("sqz_win_pct"),
+            "bootstrap_mean_ci": _fmt_ci(u.get("bootstrap")),
+        })
+    incr = []
+    for h in ("3", "5", "10", "20"):
+        x = inc.get(h) or {}
+        incr.append({
+            "horizon": f"{h}D",
+            "base_n": x.get("base_n"),
+            "base_mean": x.get("base_mean"),
+            "base_plus_sqz_n": x.get("plus_n"),
+            "base_plus_sqz_mean": x.get("plus_mean"),
+            "incremental_delta_mean": x.get("delta_mean"),
+        })
+    return {"sqz_vs_control": sqz_ctrl, "base_vs_base_plus_sqz": incr}
 
 
 def compact_payload(payload: dict) -> dict:

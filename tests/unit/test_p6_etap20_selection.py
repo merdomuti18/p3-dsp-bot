@@ -38,6 +38,7 @@ from p6_selection import (
     seeded_bootstrap_diff_ci,
     split_date_thirds,
     symbol_concentration,
+    benchmark_calendar_ok,
 )
 
 
@@ -243,6 +244,21 @@ def test_effect_size_methods():
     assert d is not None and d > 0
     assert c > 0
     assert cohens_d([], [1.0]) is None
+
+
+def test_weekend_benchmark_is_not_computable():
+    idx = pd.bdate_range("2026-03-02", periods=80)
+    close = 100 + np.linspace(0, 10, 80)
+    df = pd.DataFrame(
+        {"open": close, "high": close, "low": close, "close": close, "volume": np.full(80, 1e6)},
+        index=idx,
+    )
+    frames = {"AAA": df}
+    sun = pd.date_range("2026-03-01", periods=80, freq="W-SUN")
+    bench = pd.Series(np.linspace(1000, 1100, 80), index=sun)
+    ok, info = benchmark_calendar_ok(bench, frames)
+    assert ok is False
+    assert info["weekend_frac"] > 0.05
 
 
 def test_alpha_formula_same_fwd_method():
