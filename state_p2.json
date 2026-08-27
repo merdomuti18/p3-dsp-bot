@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "27.08.2026 20:14",
+    "scan_time": "27.08.2026 21:08",
     "scan_label": "20:50 Akşam Tarama",
     "signals": [
       {
         "symbol": "OBASE",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "GÜÇLÜ AL",
         "score": 8.0,
@@ -22,7 +22,7 @@
       },
       {
         "symbol": "BURCE",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "GÜÇLÜ AL",
         "score": 7.5,
@@ -40,7 +40,7 @@
       },
       {
         "symbol": "SNICA",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "GÜÇLÜ AL",
         "score": 6.5,
@@ -58,7 +58,7 @@
       },
       {
         "symbol": "PAHOL",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 5.0,
@@ -75,7 +75,7 @@
       },
       {
         "symbol": "BVSAN",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -92,7 +92,7 @@
       },
       {
         "symbol": "DEVA",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -110,7 +110,7 @@
       },
       {
         "symbol": "DITAS",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -128,7 +128,7 @@
       },
       {
         "symbol": "KUYAS",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -145,7 +145,7 @@
       },
       {
         "symbol": "LIDFA",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -162,7 +162,7 @@
       },
       {
         "symbol": "MOBTL",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -179,7 +179,7 @@
       },
       {
         "symbol": "TSGYO",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -197,7 +197,7 @@
       },
       {
         "symbol": "BALSU",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
@@ -214,7 +214,7 @@
       },
       {
         "symbol": "VAKBN",
-        "scan_time": "27.08.2026 20:14",
+        "scan_time": "27.08.2026 21:08",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 3.5,
@@ -235,7 +235,7 @@
   "bekleyen_al": [
     {
       "symbol": "OBASE",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 8.0,
@@ -252,7 +252,7 @@
     },
     {
       "symbol": "BURCE",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 7.5,
@@ -270,7 +270,7 @@
     },
     {
       "symbol": "SNICA",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.5,
@@ -288,7 +288,7 @@
     },
     {
       "symbol": "PAHOL",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 5.0,
@@ -305,7 +305,7 @@
     },
     {
       "symbol": "BVSAN",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -322,7 +322,7 @@
     },
     {
       "symbol": "DEVA",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -340,7 +340,7 @@
     },
     {
       "symbol": "DITAS",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -358,7 +358,7 @@
     },
     {
       "symbol": "KUYAS",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -375,7 +375,7 @@
     },
     {
       "symbol": "LIDFA",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -392,7 +392,7 @@
     },
     {
       "symbol": "MOBTL",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -409,7 +409,7 @@
     },
     {
       "symbol": "TSGYO",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -427,7 +427,7 @@
     },
     {
       "symbol": "BALSU",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
@@ -444,7 +444,7 @@
     },
     {
       "symbol": "VAKBN",
-      "scan_time": "27.08.2026 20:14",
+      "scan_time": "27.08.2026 21:08",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
@@ -460,7 +460,7 @@
       "change_pct": 0.25
     }
   ],
-  "last_scan": "27.08.2026 20:14",
-  "_gen": 15,
-  "_updated_at": "2026-08-27T20:14:28.598204+03:00"
+  "last_scan": "27.08.2026 21:08",
+  "_gen": 16,
+  "_updated_at": "2026-08-27T21:08:38.979788+03:00"
 }
