@@ -3,10 +3,10 @@
     "DEVA": {
       "symbol": "DEVA",
       "giris_fiyat": 85.2,
-      "guncel_fiyat": 91.3,
+      "guncel_fiyat": 90.5,
       "lotlar": 234,
-      "pnl_pct": 7.16,
-      "gun": 7,
+      "pnl_pct": 6.22,
+      "gun": 8,
       "giris_tarih": "2026-08-19",
       "max_gun_date": "2026-08-29",
       "komite_skor": 60,
@@ -19,10 +19,10 @@
     "ASTOR": {
       "symbol": "ASTOR",
       "giris_fiyat": 341.25,
-      "guncel_fiyat": 338.75,
+      "guncel_fiyat": 349.0,
       "lotlar": 58,
-      "pnl_pct": -0.73,
-      "gun": 2,
+      "pnl_pct": 2.27,
+      "gun": 3,
       "giris_tarih": "2026-08-24",
       "max_gun_date": "2026-09-03",
       "komite_skor": 60,
@@ -32,29 +32,13 @@
       ],
       "strateji": "P5"
     },
-    "KONYA": {
-      "symbol": "KONYA",
-      "giris_fiyat": 4035.0,
-      "guncel_fiyat": 3850.0,
-      "lotlar": 4,
-      "pnl_pct": -4.58,
-      "gun": 2,
-      "giris_tarih": "2026-08-24",
-      "max_gun_date": "2026-09-03",
-      "komite_skor": 75,
-      "kaynaklar": [
-        "P1",
-        "P2"
-      ],
-      "strateji": "P5"
-    },
     "KRGYO": {
       "symbol": "KRGYO",
       "giris_fiyat": 3.21,
-      "guncel_fiyat": 3.21,
+      "guncel_fiyat": 3.2,
       "lotlar": 6230,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -0.31,
+      "gun": 1,
       "giris_tarih": "2026-08-26",
       "max_gun_date": "2026-09-05",
       "komite_skor": 75,
@@ -229,6 +213,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-08-19",
       "cikis_tarih": "2026-08-25",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "KONYA",
+      "giris_fiyat": 4035.0,
+      "cikis_fiyat": 3800.0,
+      "pnl_pct": -5.82,
+      "gun": 3,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-24",
+      "cikis_tarih": "2026-08-27",
       "strateji": "P5"
     }
   ],
@@ -1084,11 +1079,62 @@
       ],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-08-27",
+      "secilen": [],
+      "elenen": [
+        {
+          "symbol": "ORGE",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "MOBTL",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "OBASE",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "BVSAN",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "LIDFA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "NETAS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "BURCE",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "PAHOL",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "SNICA",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [
+        "KONYA"
+      ],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-08-26T16:58:22.975312",
+  "last_run": "2026-08-27T17:17:29.962451",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 97622,
-  "_gen": 23,
-  "_updated_at": "2026-08-26T19:58:25.828635+03:00"
+  "sermaye_mevcut": 97724,
+  "_gen": 24,
+  "_updated_at": "2026-08-27T20:17:30.997512+03:00"
 }
