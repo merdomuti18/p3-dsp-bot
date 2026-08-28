@@ -3,10 +3,10 @@
     "RAYSG": {
       "symbol": "RAYSG",
       "giris_fiyat": 165.4,
-      "guncel_fiyat": 160.5,
+      "guncel_fiyat": 161.8,
       "lotlar": 60,
-      "pnl_pct": -2.96,
-      "gun": 6,
+      "pnl_pct": -2.18,
+      "gun": 7,
       "giris_tarih": "2026-08-21",
       "max_gun_date": "2026-08-31",
       "meta_score": 0.3333333333333333,
@@ -19,10 +19,10 @@
     "TKFEN": {
       "symbol": "TKFEN",
       "giris_fiyat": 205.9,
-      "guncel_fiyat": 218.8,
+      "guncel_fiyat": 221.0,
       "lotlar": 48,
-      "pnl_pct": 6.27,
-      "gun": 6,
+      "pnl_pct": 7.33,
+      "gun": 7,
       "giris_tarih": "2026-08-21",
       "max_gun_date": "2026-08-31",
       "meta_score": 0.3333333333333333,
@@ -35,10 +35,10 @@
     "ASTOR": {
       "symbol": "ASTOR",
       "giris_fiyat": 341.25,
-      "guncel_fiyat": 349.0,
+      "guncel_fiyat": 349.25,
       "lotlar": 29,
-      "pnl_pct": 2.27,
-      "gun": 3,
+      "pnl_pct": 2.34,
+      "gun": 4,
       "giris_tarih": "2026-08-24",
       "max_gun_date": "2026-09-03",
       "meta_score": 0.7333333333333334,
@@ -55,7 +55,7 @@
       "guncel_fiyat": 3.2,
       "lotlar": 3115,
       "pnl_pct": -0.31,
-      "gun": 1,
+      "gun": 2,
       "giris_tarih": "2026-08-26",
       "max_gun_date": "2026-09-05",
       "meta_score": 0.7333333333333334,
@@ -69,10 +69,10 @@
     "OBASE": {
       "symbol": "OBASE",
       "giris_fiyat": 38.6,
-      "guncel_fiyat": 38.6,
+      "guncel_fiyat": 37.76,
       "lotlar": 259,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -2.18,
+      "gun": 1,
       "giris_tarih": "2026-08-27",
       "max_gun_date": "2026-09-06",
       "meta_score": 0.3333333333333333,
@@ -863,11 +863,17 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-28",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-08-27T17:16:46.833103",
+  "last_run": "2026-08-28T18:09:25.125828",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 102508,
-  "_gen": 13,
-  "_updated_at": "2026-08-27T20:16:50.941674+03:00"
+  "sermaye_mevcut": 102454,
+  "_gen": 14,
+  "_updated_at": "2026-08-28T21:09:28.071387+03:00"
 }
