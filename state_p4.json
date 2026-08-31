@@ -1,44 +1,12 @@
 {
   "pozisyonlar": {
-    "RAYSG": {
-      "symbol": "RAYSG",
-      "giris_fiyat": 165.4,
-      "guncel_fiyat": 161.8,
-      "lotlar": 60,
-      "pnl_pct": -2.18,
-      "gun": 7,
-      "giris_tarih": "2026-08-21",
-      "max_gun_date": "2026-08-31",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P2"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
-    "TKFEN": {
-      "symbol": "TKFEN",
-      "giris_fiyat": 205.9,
-      "guncel_fiyat": 221.0,
-      "lotlar": 48,
-      "pnl_pct": 7.33,
-      "gun": 7,
-      "giris_tarih": "2026-08-21",
-      "max_gun_date": "2026-08-31",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P3"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
     "ASTOR": {
       "symbol": "ASTOR",
       "giris_fiyat": 341.25,
-      "guncel_fiyat": 349.25,
+      "guncel_fiyat": 335.0,
       "lotlar": 29,
-      "pnl_pct": 2.34,
-      "gun": 4,
+      "pnl_pct": -1.83,
+      "gun": 7,
       "giris_tarih": "2026-08-24",
       "max_gun_date": "2026-09-03",
       "meta_score": 0.7333333333333334,
@@ -52,10 +20,10 @@
     "KRGYO": {
       "symbol": "KRGYO",
       "giris_fiyat": 3.21,
-      "guncel_fiyat": 3.2,
+      "guncel_fiyat": 3.21,
       "lotlar": 3115,
-      "pnl_pct": -0.31,
-      "gun": 2,
+      "pnl_pct": 0.0,
+      "gun": 5,
       "giris_tarih": "2026-08-26",
       "max_gun_date": "2026-09-05",
       "meta_score": 0.7333333333333334,
@@ -69,10 +37,10 @@
     "OBASE": {
       "symbol": "OBASE",
       "giris_fiyat": 38.6,
-      "guncel_fiyat": 37.76,
+      "guncel_fiyat": 36.82,
       "lotlar": 259,
-      "pnl_pct": -2.18,
-      "gun": 1,
+      "pnl_pct": -4.61,
+      "gun": 4,
       "giris_tarih": "2026-08-27",
       "max_gun_date": "2026-09-06",
       "meta_score": 0.3333333333333333,
@@ -567,6 +535,28 @@
       "giris_tarih": "2026-08-17",
       "cikis_tarih": "2026-08-27",
       "strateji": "P4"
+    },
+    {
+      "symbol": "RAYSG",
+      "giris_fiyat": 165.4,
+      "cikis_fiyat": 158.6,
+      "pnl_pct": -4.11,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-21",
+      "cikis_tarih": "2026-08-31",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "TKFEN",
+      "giris_fiyat": 205.9,
+      "cikis_fiyat": 210.5,
+      "pnl_pct": 2.23,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-21",
+      "cikis_tarih": "2026-08-31",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -873,7 +863,7 @@
   ],
   "last_run": "2026-08-28T18:09:25.125828",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 102454,
-  "_gen": 14,
-  "_updated_at": "2026-08-28T21:09:28.071387+03:00"
+  "sermaye_mevcut": 99790,
+  "_gen": 15,
+  "_updated_at": "2026-08-31T15:28:06.943047+03:00"
 }
