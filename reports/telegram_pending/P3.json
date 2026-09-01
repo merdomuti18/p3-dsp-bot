@@ -1,10 +1,10 @@
 {
   "strateji": "P3",
-  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 01.09.2026 | 20:13 TSİ\n\n⬜ *Satım:* `TKFEN`\n\n📈 *Sinyaller:*\n  • `NETAS   ` skor=+0.339  _marj=+0.355_\n  • `TUPRS   ` skor=+0.140  _marj=+0.117_\n  • `ORGE    ` skor=+0.124  _marj=+0.123_\n  • `BIOEN   ` skor=+0.102  _marj=+0.113_\n  • `GUBRF   ` skor=+0.097  _marj=+0.108_\n\n💼 *Açık pozisyon (2):*\n  • `TUPRS`\n  • `NETAS`\n📊 *WR:* 27%  |  *P&L:* +106.5%\n🟢 *Portföy değeri:* `121,304 TL` (+21.3%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 25.08.2026 | 18:45 TSİ\n\n🟢 *Alım:* `NETAS`\n\n📈 *Sinyaller:*\n  • `TKFEN   ` skor=+0.247  _marj=+0.225_\n  • `NETAS   ` skor=+0.215  _marj=+0.182_\n  • `TUPRS   ` skor=+0.181  _marj=+0.164_\n  • `ARDYZ   ` skor=+0.158  _marj=+0.153_\n  • `AYDEM   ` skor=+0.097  _marj=+0.097_\n\n💼 *Açık pozisyon (4):*\n  • `TKFEN`\n  • `TUPRS`\n  • `ARDYZ`\n  • `NETAS`\n📊 *WR:* 30%  |  *P&L:* +116.9%\n🟢 *Portföy değeri:* `123,376 TL` (+23.4%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
   "meta": {
-    "giris": [],
-    "cikis": [
-      "TKFEN"
-    ]
+    "giris": [
+      "NETAS"
+    ],
+    "cikis": []
   }
 }
