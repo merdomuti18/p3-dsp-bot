@@ -15,13 +15,6 @@
       "margin": 0.1556,
       "max_gun_date": "2026-09-03"
     },
-    "ARDYZ": {
-      "entry_date": "2026-08-24",
-      "entry_price": 90.95,
-      "score": 0.152,
-      "margin": 0.146,
-      "max_gun_date": "2026-09-03"
-    },
     "NETAS": {
       "entry_date": "2026-08-25",
       "entry_price": 96.6,
@@ -212,6 +205,16 @@
       "exit_price": 91.9,
       "pnl_pct": 21.8,
       "holding_days": 16
+    },
+    {
+      "symbol": "ARDYZ",
+      "entry_date": "2026-08-24",
+      "exit_date": "2026-09-01",
+      "entry_price": 90.95,
+      "exit_price": 82.75,
+      "pnl_pct": -9.02,
+      "holding_days": 8,
+      "reason": "ACIL_STOP"
     }
   ],
   "scan_log": [
@@ -1684,6 +1687,6 @@
       }
     ]
   },
-  "_gen": 9,
-  "_updated_at": "2026-08-28T21:08:45.068698+03:00"
+  "_gen": 10,
+  "_updated_at": "2026-09-01T13:58:17.576241+03:00"
 }
