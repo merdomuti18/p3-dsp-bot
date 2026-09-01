@@ -1,13 +1,6 @@
 {
   "created": "2026-07-02",
   "positions": {
-    "TKFEN": {
-      "entry_date": "2026-08-24",
-      "entry_price": 217.2,
-      "score": 0.2732,
-      "margin": 0.2709,
-      "max_gun_date": "2026-09-03"
-    },
     "TUPRS": {
       "entry_date": "2026-08-24",
       "entry_price": 400.5,
@@ -215,29 +208,18 @@
       "pnl_pct": -9.02,
       "holding_days": 8,
       "reason": "ACIL_STOP"
+    },
+    {
+      "symbol": "TKFEN",
+      "entry_date": "2026-08-24",
+      "exit_date": "2026-09-01",
+      "entry_price": 217.2,
+      "exit_price": 214.3,
+      "pnl_pct": -1.34,
+      "holding_days": 8
     }
   ],
   "scan_log": [
-    {
-      "date": "2026-07-02",
-      "scanned": 79,
-      "long_signals": 39,
-      "top5": [
-        "SKBNK",
-        "ISGYO",
-        "ODAS",
-        "AKBNK",
-        "GLYHO"
-      ],
-      "entries": [
-        "SKBNK",
-        "ISGYO",
-        "ODAS",
-        "AKBNK",
-        "GLYHO"
-      ],
-      "exits": []
-    },
     {
       "date": "2026-07-07",
       "scanned": 79,
@@ -1127,6 +1109,22 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-09-01",
+      "scanned": 79,
+      "long_signals": 55,
+      "top5": [
+        "NETAS",
+        "TUPRS",
+        "ORGE",
+        "BIOEN",
+        "GUBRF"
+      ],
+      "entries": [],
+      "exits": [
+        "TKFEN"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -1446,14 +1444,6 @@
     },
     "log": [
       {
-        "date": "2026-08-08",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-10",
         "total": 78,
         "reliable": 0,
@@ -1684,9 +1674,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-09-01",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 10,
-  "_updated_at": "2026-09-01T13:58:17.576241+03:00"
+  "_gen": 11,
+  "_updated_at": "2026-09-01T20:13:28.131417+03:00"
 }
