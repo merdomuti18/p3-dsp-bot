@@ -3,9 +3,9 @@
     "KRGYO": {
       "symbol": "KRGYO",
       "giris_fiyat": 3.21,
-      "guncel_fiyat": 3.19,
+      "guncel_fiyat": 3.2,
       "lotlar": 6230,
-      "pnl_pct": -0.62,
+      "pnl_pct": -0.31,
       "gun": 6,
       "giris_tarih": "2026-08-26",
       "max_gun_date": "2026-09-05",
@@ -1173,7 +1173,7 @@
   ],
   "last_run": "2026-08-28T18:10:03.077182",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 96582,
-  "_gen": 27,
-  "_updated_at": "2026-09-01T13:57:48.342510+03:00"
+  "sermaye_mevcut": 96644,
+  "_gen": 28,
+  "_updated_at": "2026-09-01T15:25:04.976422+03:00"
 }
