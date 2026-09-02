@@ -231,26 +231,6 @@
         "GLYHO",
         "THYAO"
       ],
-      "entries": [
-        "IZMDC",
-        "THYAO"
-      ],
-      "exits": [
-        "ODAS",
-        "AKBNK"
-      ]
-    },
-    {
-      "date": "2026-07-07",
-      "scanned": 79,
-      "long_signals": 34,
-      "top5": [
-        "ISGYO",
-        "SKBNK",
-        "IZMDC",
-        "GLYHO",
-        "THYAO"
-      ],
       "entries": [],
       "exits": []
     },
@@ -1125,6 +1105,20 @@
       "exits": [
         "TKFEN"
       ]
+    },
+    {
+      "date": "2026-09-02",
+      "scanned": 79,
+      "long_signals": 56,
+      "top5": [
+        "NETAS",
+        "HALKB",
+        "ORGE",
+        "TUPRS",
+        "GUBRF"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1452,14 +1446,6 @@
         "alert_symbols": []
       },
       {
-        "date": "2026-08-10",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-11",
         "total": 78,
         "reliable": 0,
@@ -1682,9 +1668,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-09-02",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 11,
-  "_updated_at": "2026-09-01T20:13:28.131417+03:00"
+  "_gen": 12,
+  "_updated_at": "2026-09-02T19:30:30.560578+03:00"
 }
