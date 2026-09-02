@@ -1,5 +1,22 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "HALKB": {
+      "symbol": "HALKB",
+      "giris_fiyat": 44.96,
+      "guncel_fiyat": 44.96,
+      "lotlar": 444,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-09-02",
+      "max_gun_date": "2026-09-12",
+      "komite_skor": 70,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    }
+  },
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -1212,11 +1229,65 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-09-02",
+      "secilen": [
+        "NETAS",
+        "HALKB"
+      ],
+      "elenen": [
+        {
+          "symbol": "ORGE",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TURGG",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "MANAS",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "KUYAS",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ISDMR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "KRDMA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "YIGIT",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "KGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "INFO",
+          "neden": "tek kaynak (P1)"
+        }
+      ],
+      "acilan": [
+        "HALKB"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-09-01T17:15:50.229700",
+  "last_run": "2026-09-02T16:32:36.073242",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 95148,
-  "_gen": 30,
-  "_updated_at": "2026-09-02T15:00:15.203924+03:00"
+  "_gen": 31,
+  "_updated_at": "2026-09-02T19:32:37.271010+03:00"
 }
