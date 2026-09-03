@@ -1,13 +1,6 @@
 {
   "created": "2026-07-02",
   "positions": {
-    "TUPRS": {
-      "entry_date": "2026-08-24",
-      "entry_price": 400.5,
-      "score": 0.1958,
-      "margin": 0.1556,
-      "max_gun_date": "2026-09-03"
-    },
     "NETAS": {
       "entry_date": "2026-08-25",
       "entry_price": 96.6,
@@ -217,23 +210,18 @@
       "exit_price": 214.3,
       "pnl_pct": -1.34,
       "holding_days": 8
+    },
+    {
+      "symbol": "TUPRS",
+      "entry_date": "2026-08-24",
+      "exit_date": "2026-09-03",
+      "entry_price": 400.5,
+      "exit_price": 391.0,
+      "pnl_pct": -2.37,
+      "holding_days": 10
     }
   ],
   "scan_log": [
-    {
-      "date": "2026-07-07",
-      "scanned": 79,
-      "long_signals": 34,
-      "top5": [
-        "ISGYO",
-        "SKBNK",
-        "IZMDC",
-        "GLYHO",
-        "THYAO"
-      ],
-      "entries": [],
-      "exits": []
-    },
     {
       "date": "2026-07-08",
       "scanned": 79,
@@ -1119,6 +1107,22 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-09-03",
+      "scanned": 79,
+      "long_signals": 55,
+      "top5": [
+        "NETAS",
+        "HALKB",
+        "TUPRS",
+        "GUBRF",
+        "ORGE"
+      ],
+      "entries": [],
+      "exits": [
+        "TUPRS"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -1438,14 +1442,6 @@
     },
     "log": [
       {
-        "date": "2026-08-10",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-11",
         "total": 78,
         "reliable": 0,
@@ -1676,9 +1672,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-09-03",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 12,
-  "_updated_at": "2026-09-02T19:30:30.560578+03:00"
+  "_gen": 13,
+  "_updated_at": "2026-09-03T19:20:44.012619+03:00"
 }
