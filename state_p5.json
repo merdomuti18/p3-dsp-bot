@@ -3,10 +3,10 @@
     "HALKB": {
       "symbol": "HALKB",
       "giris_fiyat": 44.96,
-      "guncel_fiyat": 44.96,
+      "guncel_fiyat": 49.44,
       "lotlar": 444,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 9.96,
+      "gun": 1,
       "giris_tarih": "2026-09-02",
       "max_gun_date": "2026-09-12",
       "komite_skor": 70,
@@ -1287,7 +1287,7 @@
   ],
   "last_run": "2026-09-02T16:32:36.073242",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 95148,
-  "_gen": 31,
-  "_updated_at": "2026-09-02T19:32:37.271010+03:00"
+  "sermaye_mevcut": 97140,
+  "_gen": 32,
+  "_updated_at": "2026-09-03T14:59:46.658954+03:00"
 }
