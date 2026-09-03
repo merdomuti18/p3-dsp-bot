@@ -1,39 +1,31 @@
 {
-  "pozisyonlar": {},
-  "nakit": 98915.89156352234,
-  "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "MANAS",
-      "score_count": 2,
-      "strategies": [
-        "ZT3",
-        "MR"
-      ],
-      "tarama_score": 28,
+  "pozisyonlar": {
+    "MANAS": {
+      "giris_f": 35.52,
+      "giris_t": "03.09.2026 10:34",
+      "tepe_f": 35.52,
+      "lotlar": 563,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "13.09.2026",
+      "final_score": 34,
       "ma_score": 0.0,
       "lgbm_score": null,
-      "viop_bias": "Temkinli long",
-      "viop_score": -2,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 34,
-      "change_pct": 4.8,
-      "rsi": 72.14,
-      "rel_vol": 1.27,
-      "cmf": -0.0504,
-      "islem_tl": 0,
-      "scan_time": "02.09.2026 19:31",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "03.09.2026 07:05",
-      "valid_for_date": "2026-09-04",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ZT3",
+          "MR"
+        ],
+        "viop_bias": "Temkinli long",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    }
+  },
+  "nakit": 78918.13156352233,
+  "baslangic": 100000,
+  "bekleyen_al": [
     {
       "symbol": "KUYAS",
       "score_count": 1,
@@ -60,8 +52,8 @@
       "queued_at": "03.09.2026 07:05",
       "valid_for_date": "2026-09-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.09.2026 10:34",
       "last_attempt_reason": ""
     },
     {
@@ -90,8 +82,8 @@
       "queued_at": "03.09.2026 07:05",
       "valid_for_date": "2026-09-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.09.2026 10:34",
       "last_attempt_reason": ""
     },
     {
@@ -120,8 +112,8 @@
       "queued_at": "03.09.2026 07:05",
       "valid_for_date": "2026-09-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.09.2026 10:34",
       "last_attempt_reason": ""
     },
     {
@@ -150,8 +142,8 @@
       "queued_at": "03.09.2026 07:05",
       "valid_for_date": "2026-09-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.09.2026 10:34",
       "last_attempt_reason": ""
     },
     {
@@ -180,8 +172,8 @@
       "queued_at": "03.09.2026 07:05",
       "valid_for_date": "2026-09-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.09.2026 10:34",
       "last_attempt_reason": ""
     },
     {
@@ -210,21 +202,31 @@
       "queued_at": "03.09.2026 07:05",
       "valid_for_date": "2026-09-04",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "03.09.2026 10:34",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "10:34",
+      "tarih": "2026-09-03",
+      "alinan": [
+        "MANAS"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 6,
-    "bought": 0,
+    "pending": 7,
+    "bought": 1,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "02.09.2026 10:26"
+    "time": "03.09.2026 10:34"
   },
-  "last_hourly_check_time": "02.09.2026 10:26",
+  "last_hourly_check_time": "03.09.2026 10:34",
   "trade_history": [
     {
       "symbol": "UFUK",
