@@ -105,30 +105,87 @@
   "baslangic": 100000,
   "bekleyen_al": [
     {
-      "symbol": "KUYAS",
-      "score": 3.5,
-      "final_score": 3.5,
+      "symbol": "MANAS",
+      "score": 5.0,
+      "final_score": 5.0,
       "verdict": "AL",
       "signals": [
-        "Bullish FVG"
+        "Bullish OB"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "03.09.2026 19:21",
+      "queued_at": "04.09.2026 19:46",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "MANAS",
+      "symbol": "PENGD",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "04.09.2026 19:46",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ALARK",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "04.09.2026 19:46",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "MIATK",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "04.09.2026 19:46",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ISDMR",
       "score": 3.0,
       "final_score": 3.0,
       "verdict": "AL",
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "03.09.2026 19:21",
+      "queued_at": "04.09.2026 19:46",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "NETAS",
+      "score": 3.0,
+      "final_score": 3.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "04.09.2026 19:46",
       "attempt_count": 0,
       "last_attempt_reason": ""
     }
