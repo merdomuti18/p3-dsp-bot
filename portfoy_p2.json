@@ -3,7 +3,7 @@
     "MARTI": {
       "giris_f": 2.05,
       "giris_t": "02.09.2026 11:59",
-      "tepe_f": 2.05,
+      "tepe_f": 2.119999885559082,
       "lotlar": 9377,
       "gun": 0,
       "tp1_yapildi": false,
@@ -18,7 +18,7 @@
     "OBASE": {
       "giris_f": 35.56,
       "giris_t": "02.09.2026 11:59",
-      "tepe_f": 35.56,
+      "tepe_f": 37.84000015258789,
       "lotlar": 398,
       "gun": 0,
       "tp1_yapildi": false,
@@ -47,7 +47,7 @@
     "OBAMS": {
       "giris_f": 5.12,
       "giris_t": "04.09.2026 10:24",
-      "tepe_f": 5.12,
+      "tepe_f": 5.28000020980835,
       "lotlar": 3373,
       "gun": 0,
       "tp1_yapildi": false,
@@ -61,7 +61,7 @@
     "BORSK": {
       "giris_f": 6.59,
       "giris_t": "04.09.2026 10:24",
-      "tepe_f": 6.59,
+      "tepe_f": 6.789999961853027,
       "lotlar": 1494,
       "gun": 0,
       "tp1_yapildi": false,
@@ -75,7 +75,7 @@
     "SKTAS": {
       "giris_f": 3.27,
       "giris_t": "04.09.2026 10:24",
-      "tepe_f": 3.27,
+      "tepe_f": 3.309999942779541,
       "lotlar": 1998,
       "gun": 0,
       "tp1_yapildi": false,
@@ -89,10 +89,10 @@
     "KARSN": {
       "giris_f": 12.78,
       "giris_t": "04.09.2026 10:24",
-      "tepe_f": 12.78,
-      "lotlar": 303,
+      "tepe_f": 13.9399995803833,
+      "lotlar": 152,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "max_gun_date": "14.09.2026",
       "smc_score": 3.5,
       "teyit_skoru": 0,
@@ -101,7 +101,7 @@
       ]
     }
   },
-  "nakit": 17181.800162006413,
+  "nakit": 19286.74009864429,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -112,7 +112,7 @@
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "04.09.2026 19:46",
       "attempt_count": 0,
@@ -126,7 +126,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "04.09.2026 19:46",
       "attempt_count": 0,
@@ -141,7 +141,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "04.09.2026 19:46",
       "attempt_count": 0,
@@ -155,7 +155,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "04.09.2026 19:46",
       "attempt_count": 0,
@@ -169,7 +169,7 @@
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "04.09.2026 19:46",
       "attempt_count": 0,
@@ -183,7 +183,7 @@
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "04.09.2026 19:46",
       "attempt_count": 0,
@@ -191,7 +191,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "04.09.2026 10:24",
+  "last_hourly_check_time": "07.09.2026 13:21",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -544,6 +544,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-09-02",
       "cikis_tarih": "2026-09-04"
+    },
+    {
+      "symbol": "KARSN",
+      "giris_fiyat": 12.78,
+      "cikis_fiyat": 13.94,
+      "lotlar": 151,
+      "pnl_pct": 9.08,
+      "gun": 3,
+      "neden": "TP1",
+      "giris_tarih": "2026-09-04",
+      "cikis_tarih": "2026-09-07"
     }
   ]
 }
