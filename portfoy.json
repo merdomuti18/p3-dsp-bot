@@ -3,10 +3,10 @@
     "MANAS": {
       "giris_f": 35.52,
       "giris_t": "03.09.2026 10:34",
-      "tepe_f": 35.52,
-      "lotlar": 563,
+      "tepe_f": 38.619998931884766,
+      "lotlar": 282,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "max_gun_date": "13.09.2026",
       "final_score": 34,
       "ma_score": 0.0,
@@ -23,7 +23,7 @@
       }
     }
   },
-  "nakit": 78918.13156352233,
+  "nakit": 89680.43134913634,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -52,8 +52,8 @@
       "queued_at": "07.09.2026 07:05",
       "valid_for_date": "2026-09-08",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "07.09.2026 11:22",
       "last_attempt_reason": ""
     },
     {
@@ -82,8 +82,8 @@
       "queued_at": "07.09.2026 07:05",
       "valid_for_date": "2026-09-08",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "07.09.2026 11:22",
       "last_attempt_reason": ""
     },
     {
@@ -112,8 +112,8 @@
       "queued_at": "07.09.2026 07:05",
       "valid_for_date": "2026-09-08",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "07.09.2026 11:22",
       "last_attempt_reason": ""
     },
     {
@@ -142,8 +142,8 @@
       "queued_at": "07.09.2026 07:05",
       "valid_for_date": "2026-09-08",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "07.09.2026 11:22",
       "last_attempt_reason": ""
     },
     {
@@ -172,8 +172,8 @@
       "queued_at": "07.09.2026 07:05",
       "valid_for_date": "2026-09-08",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "07.09.2026 11:22",
       "last_attempt_reason": ""
     },
     {
@@ -202,21 +202,29 @@
       "queued_at": "07.09.2026 07:05",
       "valid_for_date": "2026-09-08",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "07.09.2026 11:22",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:22",
+      "tarih": "2026-09-07",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 7,
-    "bought": 1,
+    "pending": 6,
+    "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "03.09.2026 10:34"
+    "time": "07.09.2026 11:22"
   },
-  "last_hourly_check_time": "03.09.2026 10:34",
+  "last_hourly_check_time": "07.09.2026 11:22",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -525,6 +533,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-08-25",
       "cikis_tarih": "2026-09-02"
+    },
+    {
+      "symbol": "MANAS",
+      "giris_fiyat": 35.52,
+      "cikis_fiyat": 38.3,
+      "lotlar": 281,
+      "pnl_pct": 7.83,
+      "gun": 4,
+      "neden": "TP1",
+      "giris_tarih": "2026-09-03",
+      "cikis_tarih": "2026-09-07"
     }
   ]
 }
