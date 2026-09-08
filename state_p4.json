@@ -3,10 +3,10 @@
     "KRDMD": {
       "symbol": "KRDMD",
       "giris_fiyat": 44.4,
-      "guncel_fiyat": 42.98,
+      "guncel_fiyat": 44.98,
       "lotlar": 225,
-      "pnl_pct": -3.2,
-      "gun": 2,
+      "pnl_pct": 1.31,
+      "gun": 7,
       "giris_tarih": "2026-09-01",
       "max_gun_date": "2026-09-11",
       "meta_score": 0.3333333333333333,
@@ -19,27 +19,10 @@
     "NETAS": {
       "symbol": "NETAS",
       "giris_fiyat": 93.5,
-      "guncel_fiyat": 99.0,
+      "guncel_fiyat": 99.6,
       "lotlar": 106,
-      "pnl_pct": 5.88,
-      "gun": 1,
-      "giris_tarih": "2026-09-02",
-      "max_gun_date": "2026-09-12",
-      "meta_score": 0.3666666666666667,
-      "kaynaklar": [
-        "P1",
-        "P3"
-      ],
-      "coklu_onay": true,
-      "strateji": "P4"
-    },
-    "HALKB": {
-      "symbol": "HALKB",
-      "giris_fiyat": 44.96,
-      "guncel_fiyat": 49.44,
-      "lotlar": 222,
-      "pnl_pct": 9.96,
-      "gun": 1,
+      "pnl_pct": 6.52,
+      "gun": 6,
       "giris_tarih": "2026-09-02",
       "max_gun_date": "2026-09-12",
       "meta_score": 0.3666666666666667,
@@ -53,10 +36,10 @@
     "OBAMS": {
       "symbol": "OBAMS",
       "giris_fiyat": 5.27,
-      "guncel_fiyat": 5.27,
+      "guncel_fiyat": 5.31,
       "lotlar": 1897,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 0.76,
+      "gun": 5,
       "giris_tarih": "2026-09-03",
       "max_gun_date": "2026-09-13",
       "meta_score": 0.3333333333333333,
@@ -69,10 +52,10 @@
     "TUPRS": {
       "symbol": "TUPRS",
       "giris_fiyat": 391.0,
-      "guncel_fiyat": 391.0,
+      "guncel_fiyat": 390.75,
       "lotlar": 25,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -0.06,
+      "gun": 5,
       "giris_tarih": "2026-09-03",
       "max_gun_date": "2026-09-13",
       "meta_score": 0.3333333333333333,
@@ -655,6 +638,17 @@
       "giris_tarih": "2026-09-01",
       "cikis_tarih": "2026-09-03",
       "strateji": "P4"
+    },
+    {
+      "symbol": "HALKB",
+      "giris_fiyat": 44.96,
+      "cikis_fiyat": 50.35,
+      "pnl_pct": 11.99,
+      "gun": 6,
+      "neden": "TP",
+      "giris_tarih": "2026-09-02",
+      "cikis_tarih": "2026-09-08",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -979,7 +973,7 @@
   ],
   "last_run": "2026-09-03T16:22:21.495998",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 96036,
-  "_gen": 22,
-  "_updated_at": "2026-09-03T19:22:24.757287+03:00"
+  "sermaye_mevcut": 97612,
+  "_gen": 23,
+  "_updated_at": "2026-09-08T13:28:02.670046+03:00"
 }
