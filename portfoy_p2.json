@@ -3,10 +3,10 @@
     "MARTI": {
       "giris_f": 2.05,
       "giris_t": "02.09.2026 11:59",
-      "tepe_f": 2.180000066757202,
-      "lotlar": 9377,
+      "tepe_f": 2.2200000286102295,
+      "lotlar": 4689,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "max_gun_date": "12.09.2026",
       "smc_score": 8.0,
       "teyit_skoru": 0,
@@ -47,7 +47,7 @@
     "OBAMS": {
       "giris_f": 5.12,
       "giris_t": "04.09.2026 10:24",
-      "tepe_f": 5.369999885559082,
+      "tepe_f": 5.480000019073486,
       "lotlar": 3373,
       "gun": 0,
       "tp1_yapildi": false,
@@ -101,7 +101,7 @@
       ]
     }
   },
-  "nakit": 19286.74009864429,
+  "nakit": 29553.460366893803,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -847,7 +847,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "09.09.2026 10:38",
+  "last_hourly_check_time": "09.09.2026 12:12",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -1211,6 +1211,17 @@
       "neden": "TP1",
       "giris_tarih": "2026-09-04",
       "cikis_tarih": "2026-09-07"
+    },
+    {
+      "symbol": "MARTI",
+      "giris_fiyat": 2.05,
+      "cikis_fiyat": 2.19,
+      "lotlar": 4688,
+      "pnl_pct": 6.83,
+      "gun": 7,
+      "neden": "TP1",
+      "giris_tarih": "2026-09-02",
+      "cikis_tarih": "2026-09-09"
     }
   ]
 }
