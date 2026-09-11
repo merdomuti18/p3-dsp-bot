@@ -105,109 +105,6 @@
   "baslangic": 100000,
   "bekleyen_al": [
     {
-      "symbol": "IMASM",
-      "score": 9.5,
-      "final_score": 9.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "PRKAB",
-      "score": 7.5,
-      "final_score": 7.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KLYPV",
-      "score": 7.0,
-      "final_score": 7.0,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish OB"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "BVSAN",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "EKGYO",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "HEKTS",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "INFO",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
       "symbol": "KUYAS",
       "score": 6.5,
       "final_score": 6.5,
@@ -216,131 +113,28 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "NATEN",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "BFREN",
-      "score": 6.0,
-      "final_score": 6.0,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "DOKTA",
-      "score": 6.0,
-      "final_score": 6.0,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KLMSN",
-      "score": 6.0,
-      "final_score": 6.0,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "RUZYE",
-      "score": 5.5,
-      "final_score": 5.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "SASA",
-      "score": 5.5,
-      "final_score": 5.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "TURSG",
-      "score": 5.5,
-      "final_score": 5.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "DEVA",
+      "symbol": "KLYPV",
       "score": 5.0,
       "final_score": 5.0,
       "verdict": "AL",
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "ALKIM",
+      "symbol": "EKGYO",
       "score": 4.5,
       "final_score": 4.5,
       "verdict": "AL",
@@ -348,235 +142,23 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "ARCLK",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "BAGFS",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "BRISA",
+      "symbol": "INFO",
       "score": 4.5,
       "final_score": 4.5,
       "verdict": "AL",
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "BURCE",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "CLEBI",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "CWENE",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "DOAS",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ENTRA",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "GARFA",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ICBCT",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "INVEO",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KAREL",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KTSKR",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ODAS",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "PNLSN",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "RAYSG",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -588,107 +170,37 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "SARKY",
-      "score": 4.5,
-      "final_score": 4.5,
+      "symbol": "BVSAN",
+      "score": 3.5,
+      "final_score": 3.5,
       "verdict": "AL",
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "SNICA",
-      "score": 4.5,
-      "final_score": 4.5,
+      "symbol": "EFOR",
+      "score": 3.5,
+      "final_score": 3.5,
       "verdict": "AL",
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "TKNSA",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ULUFA",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "YATAS",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ULKER",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "UCAYM",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -700,93 +212,9 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KARTN",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KRGYO",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "MNDRS",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ORGE",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "PETKM",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "THYAO",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -798,24 +226,9 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0,
+      "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KRDMD",
-      "score": 3.0,
-      "final_score": 3.0,
-      "verdict": "AL",
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "10.09.2026 19:55",
+      "queued_at": "11.09.2026 19:56",
       "attempt_count": 0,
       "last_attempt_reason": ""
     }
