@@ -1,10 +1,13 @@
 {
   "strateji": "P3",
-  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 25.08.2026 | 18:45 TSİ\n\n🟢 *Alım:* `NETAS`\n\n📈 *Sinyaller:*\n  • `TKFEN   ` skor=+0.247  _marj=+0.225_\n  • `NETAS   ` skor=+0.215  _marj=+0.182_\n  • `TUPRS   ` skor=+0.181  _marj=+0.164_\n  • `ARDYZ   ` skor=+0.158  _marj=+0.153_\n  • `AYDEM   ` skor=+0.097  _marj=+0.097_\n\n💼 *Açık pozisyon (4):*\n  • `TKFEN`\n  • `TUPRS`\n  • `ARDYZ`\n  • `NETAS`\n📊 *WR:* 30%  |  *P&L:* +116.9%\n🟢 *Portföy değeri:* `123,376 TL` (+23.4%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 11.09.2026 | 19:58 TSİ\n\n🟢 *Alım:* `KARSN`, `HALKB`\n⬜ *Satım:* `NETAS`\n\n📈 *Sinyaller:*\n  • `KARSN   ` skor=+0.295  _marj=+0.297_\n  • `HALKB   ` skor=+0.281  _marj=+0.291_\n  • `VAKBN   ` skor=+0.115  _marj=+0.079_\n  • `VESTL   ` skor=+0.113  _marj=+0.130_\n  • `PETKM   ` skor=+0.099  _marj=+0.082_\n\n💼 *Açık pozisyon (2):*\n  • `KARSN`\n  • `HALKB`\n📊 *WR:* 25%  |  *P&L:* +102.4%\n🟢 *Portföy değeri:* `120,478 TL` (+20.5%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
   "meta": {
     "giris": [
-      "NETAS"
+      "KARSN",
+      "HALKB"
     ],
-    "cikis": []
+    "cikis": [
+      "NETAS"
+    ]
   }
 }

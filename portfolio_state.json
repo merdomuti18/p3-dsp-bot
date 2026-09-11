@@ -1,12 +1,19 @@
 {
   "created": "2026-07-02",
   "positions": {
-    "NETAS": {
-      "entry_date": "2026-08-25",
-      "entry_price": 96.6,
-      "score": 0.2149,
-      "margin": 0.182,
-      "max_gun_date": "2026-09-04"
+    "KARSN": {
+      "entry_date": "2026-09-11",
+      "entry_price": 14.86,
+      "score": 0.2954,
+      "margin": 0.2973,
+      "max_gun_date": "2026-09-21"
+    },
+    "HALKB": {
+      "entry_date": "2026-09-11",
+      "entry_price": 50.0,
+      "score": 0.2808,
+      "margin": 0.2909,
+      "max_gun_date": "2026-09-21"
     }
   },
   "history": [
@@ -219,27 +226,18 @@
       "exit_price": 391.0,
       "pnl_pct": -2.37,
       "holding_days": 10
+    },
+    {
+      "symbol": "NETAS",
+      "entry_date": "2026-08-25",
+      "exit_date": "2026-09-11",
+      "entry_price": 96.6,
+      "exit_price": 94.9,
+      "pnl_pct": -1.76,
+      "holding_days": 17
     }
   ],
   "scan_log": [
-    {
-      "date": "2026-07-08",
-      "scanned": 79,
-      "long_signals": 29,
-      "top5": [
-        "ISGYO",
-        "SKBNK",
-        "IZMDC",
-        "GLYHO",
-        "KLNMA"
-      ],
-      "entries": [
-        "KLNMA"
-      ],
-      "exits": [
-        "THYAO"
-      ]
-    },
     {
       "date": "2026-07-09",
       "scanned": 79,
@@ -1123,6 +1121,25 @@
       "exits": [
         "TUPRS"
       ]
+    },
+    {
+      "date": "2026-09-11",
+      "scanned": 79,
+      "long_signals": 43,
+      "top5": [
+        "KARSN",
+        "HALKB",
+        "VAKBN",
+        "VESTL",
+        "PETKM"
+      ],
+      "entries": [
+        "KARSN",
+        "HALKB"
+      ],
+      "exits": [
+        "NETAS"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -1450,14 +1467,6 @@
         "alert_symbols": []
       },
       {
-        "date": "2026-08-11",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-12",
         "total": 78,
         "reliable": 0,
@@ -1680,9 +1689,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-09-11",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 13,
-  "_updated_at": "2026-09-03T19:20:44.012619+03:00"
+  "_gen": 14,
+  "_updated_at": "2026-09-11T19:58:44.879199+03:00"
 }
