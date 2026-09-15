@@ -3,10 +3,10 @@
     "KUYAS": {
       "symbol": "KUYAS",
       "giris_fiyat": 72.65,
-      "guncel_fiyat": 69.9,
+      "guncel_fiyat": 70.75,
       "lotlar": 137,
-      "pnl_pct": -3.79,
-      "gun": 3,
+      "pnl_pct": -2.62,
+      "gun": 4,
       "giris_tarih": "2026-09-11",
       "max_gun_date": "2026-09-21",
       "meta_score": 0.3333333333333333,
@@ -985,7 +985,7 @@
   ],
   "last_run": "2026-09-11T16:59:29.825187",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 97714,
-  "_gen": 27,
-  "_updated_at": "2026-09-14T16:43:54.420754+03:00"
+  "sermaye_mevcut": 97948,
+  "_gen": 28,
+  "_updated_at": "2026-09-15T13:53:04.350586+03:00"
 }
