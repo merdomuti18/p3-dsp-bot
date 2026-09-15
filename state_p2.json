@@ -1,358 +1,424 @@
 {
   "tarama": {
-    "scan_time": "11.09.2026 19:56",
+    "scan_time": "15.09.2026 20:32",
     "scan_label": "20:50 Akşam Tarama",
     "signals": [
       {
-        "symbol": "KUYAS",
-        "scan_time": "11.09.2026 19:56",
+        "symbol": "ANSGR",
+        "scan_time": "15.09.2026 20:32",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "GÜÇLÜ AL",
         "score": 6.5,
-        "pd_zone": "Premium",
-        "rvol": 2.03,
-        "rsi": 69.25,
-        "htf_aligned": true,
+        "pd_zone": "Discount",
+        "rvol": 1.26,
+        "rsi": 40.88,
+        "htf_aligned": false,
         "htf_trend": "Bullish",
         "signals": [
-          "Bullish OB",
-          "Bullish FVG"
+          "Bullish MACD Cross",
+          "Bullish OB"
         ],
-        "islem_tl": 1149390537.0,
-        "change_pct": 1.94
+        "islem_tl": 119172044.0,
+        "change_pct": 1.73
       },
       {
-        "symbol": "KLYPV",
-        "scan_time": "11.09.2026 19:56",
+        "symbol": "ENTRA",
+        "scan_time": "15.09.2026 20:32",
+        "scan_label": "20:50 Akşam Tarama",
+        "verdict": "GÜÇLÜ AL",
+        "score": 6.5,
+        "pd_zone": "Discount",
+        "rvol": 2.22,
+        "rsi": 39.33,
+        "htf_aligned": true,
+        "htf_trend": "Bearish",
+        "signals": [
+          "Bullish MACD Cross"
+        ],
+        "islem_tl": 127030567.0,
+        "change_pct": 2.14
+      },
+      {
+        "symbol": "IHLGM",
+        "scan_time": "15.09.2026 20:32",
+        "scan_label": "20:50 Akşam Tarama",
+        "verdict": "GÜÇLÜ AL",
+        "score": 6.5,
+        "pd_zone": "Discount",
+        "rvol": 1.73,
+        "rsi": 50.0,
+        "htf_aligned": true,
+        "htf_trend": "Bearish",
+        "signals": [
+          "Bullish FVG"
+        ],
+        "islem_tl": 66243247.0,
+        "change_pct": -9.09
+      },
+      {
+        "symbol": "SANKO",
+        "scan_time": "15.09.2026 20:32",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 5.0,
         "pd_zone": "Discount",
-        "rvol": 1.39,
-        "rsi": 27.46,
+        "rvol": 0.77,
+        "rsi": 66.17,
         "htf_aligned": false,
         "htf_trend": "Bearish",
         "signals": [
           "Bullish OB"
         ],
-        "islem_tl": 199778247.0,
-        "change_pct": -2.99
+        "islem_tl": 6889520.0,
+        "change_pct": -3.1
       },
       {
-        "symbol": "EKGYO",
-        "scan_time": "11.09.2026 19:56",
+        "symbol": "TKFEN",
+        "scan_time": "15.09.2026 20:32",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
-        "score": 4.5,
+        "score": 5.0,
         "pd_zone": "Premium",
-        "rvol": 0.89,
-        "rsi": 51.6,
+        "rvol": 1.96,
+        "rsi": 58.97,
         "htf_aligned": true,
         "htf_trend": "Bullish",
         "signals": [
-          "Bullish OB",
-          "Bullish FVG"
+          "Bullish OB"
         ],
-        "islem_tl": 2606745369.0,
-        "change_pct": 1.16
+        "islem_tl": 1957303014.0,
+        "change_pct": 6.42
       },
       {
-        "symbol": "INFO",
-        "scan_time": "11.09.2026 19:56",
+        "symbol": "ARSAN",
+        "scan_time": "15.09.2026 20:32",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 4.5,
         "pd_zone": "Discount",
-        "rvol": 0.82,
-        "rsi": 24.21,
+        "rvol": 0.49,
+        "rsi": 35.95,
+        "htf_aligned": true,
+        "htf_trend": "Bullish",
+        "signals": [
+          "Bullish FVG"
+        ],
+        "islem_tl": 52151209.0,
+        "change_pct": -5.15
+      },
+      {
+        "symbol": "KGYO",
+        "scan_time": "15.09.2026 20:32",
+        "scan_label": "20:50 Akşam Tarama",
+        "verdict": "AL",
+        "score": 4.5,
+        "pd_zone": "Discount",
+        "rvol": 0.77,
+        "rsi": 39.04,
+        "htf_aligned": true,
+        "htf_trend": "Bullish",
+        "signals": [
+          "Bullish FVG"
+        ],
+        "islem_tl": 165608152.0,
+        "change_pct": 3.31
+      },
+      {
+        "symbol": "ULUSE",
+        "scan_time": "15.09.2026 20:32",
+        "scan_label": "20:50 Akşam Tarama",
+        "verdict": "AL",
+        "score": 4.5,
+        "pd_zone": "Discount",
+        "rvol": 0.87,
+        "rsi": 21.41,
         "htf_aligned": true,
         "htf_trend": "Bearish",
         "signals": [
           "Bullish FVG"
         ],
-        "islem_tl": 179605485.0,
-        "change_pct": -5.22
+        "islem_tl": 31744740.0,
+        "change_pct": -3.23
       },
       {
-        "symbol": "SAFKR",
-        "scan_time": "11.09.2026 19:56",
-        "scan_label": "20:50 Akşam Tarama",
-        "verdict": "AL",
-        "score": 4.5,
-        "pd_zone": "Discount",
-        "rvol": 1.06,
-        "rsi": 12.9,
-        "htf_aligned": true,
-        "htf_trend": "Bearish",
-        "signals": [
-          "Bullish FVG"
-        ],
-        "islem_tl": 64186214.0,
-        "change_pct": 0.35
-      },
-      {
-        "symbol": "BVSAN",
-        "scan_time": "11.09.2026 19:56",
+        "symbol": "CELHA",
+        "scan_time": "15.09.2026 20:32",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 3.5,
         "pd_zone": "Premium",
-        "rvol": 2.97,
-        "rsi": 69.83,
+        "rvol": 2.03,
+        "rsi": 75.55,
         "htf_aligned": true,
         "htf_trend": "Bullish",
         "signals": [
           "Bullish FVG"
         ],
-        "islem_tl": 372932560.0,
-        "change_pct": -8.06
+        "islem_tl": 120680478.0,
+        "change_pct": 3.94
       },
       {
-        "symbol": "EFOR",
-        "scan_time": "11.09.2026 19:56",
+        "symbol": "EGEEN",
+        "scan_time": "15.09.2026 20:32",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 3.5,
         "pd_zone": "Premium",
-        "rvol": 1.89,
-        "rsi": 50.91,
+        "rvol": 2.58,
+        "rsi": 69.29,
         "htf_aligned": true,
         "htf_trend": "Bullish",
         "signals": [
-          "Bullish MACD Cross"
+          "Bullish FVG"
         ],
-        "islem_tl": 2232972557.0,
-        "change_pct": 6.81
+        "islem_tl": 301675500.0,
+        "change_pct": -2.7
       },
       {
         "symbol": "IEYHO",
-        "scan_time": "11.09.2026 19:56",
+        "scan_time": "15.09.2026 20:32",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 3.5,
         "pd_zone": "Premium",
-        "rvol": 2.63,
+        "rvol": 2.26,
         "rsi": 100.0,
         "htf_aligned": true,
         "htf_trend": "Bullish",
         "signals": [
           "Bullish FVG"
         ],
-        "islem_tl": 515288011.0,
-        "change_pct": 2.14
+        "islem_tl": 519968315.0,
+        "change_pct": 1.7
       },
       {
-        "symbol": "MARTI",
-        "scan_time": "11.09.2026 19:56",
+        "symbol": "TTKOM",
+        "scan_time": "15.09.2026 20:32",
         "scan_label": "20:50 Akşam Tarama",
         "verdict": "AL",
         "score": 3.5,
-        "pd_zone": "Premium",
-        "rvol": 1.95,
-        "rsi": 89.94,
-        "htf_aligned": true,
+        "pd_zone": "Discount",
+        "rvol": 0.83,
+        "rsi": 53.18,
+        "htf_aligned": false,
         "htf_trend": "Bullish",
         "signals": [
           "Bullish FVG"
         ],
-        "islem_tl": 749244488.0,
-        "change_pct": 7.84
-      },
-      {
-        "symbol": "PATEK",
-        "scan_time": "11.09.2026 19:56",
-        "scan_label": "20:50 Akşam Tarama",
-        "verdict": "AL",
-        "score": 3.5,
-        "pd_zone": "Premium",
-        "rvol": 3.99,
-        "rsi": 61.06,
-        "htf_aligned": true,
-        "htf_trend": "Bullish",
-        "signals": [
-          "Bullish FVG"
-        ],
-        "islem_tl": 1959999665.0,
-        "change_pct": 7.92
+        "islem_tl": 1541974205.0,
+        "change_pct": -4.26
       }
     ],
     "mod": "aksam"
   },
   "bekleyen_al": [
     {
-      "symbol": "KUYAS",
-      "scan_time": "11.09.2026 19:56",
+      "symbol": "ANSGR",
+      "scan_time": "15.09.2026 20:32",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "GÜÇLÜ AL",
       "score": 6.5,
-      "pd_zone": "Premium",
-      "rvol": 2.03,
-      "rsi": 69.25,
-      "htf_aligned": true,
+      "pd_zone": "Discount",
+      "rvol": 1.26,
+      "rsi": 40.88,
+      "htf_aligned": false,
       "htf_trend": "Bullish",
       "signals": [
-        "Bullish OB",
-        "Bullish FVG"
+        "Bullish MACD Cross",
+        "Bullish OB"
       ],
-      "islem_tl": 1149390537.0,
-      "change_pct": 1.94
+      "islem_tl": 119172044.0,
+      "change_pct": 1.73
     },
     {
-      "symbol": "KLYPV",
-      "scan_time": "11.09.2026 19:56",
+      "symbol": "ENTRA",
+      "scan_time": "15.09.2026 20:32",
+      "scan_label": "20:50 Akşam Tarama",
+      "verdict": "GÜÇLÜ AL",
+      "score": 6.5,
+      "pd_zone": "Discount",
+      "rvol": 2.22,
+      "rsi": 39.33,
+      "htf_aligned": true,
+      "htf_trend": "Bearish",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "islem_tl": 127030567.0,
+      "change_pct": 2.14
+    },
+    {
+      "symbol": "IHLGM",
+      "scan_time": "15.09.2026 20:32",
+      "scan_label": "20:50 Akşam Tarama",
+      "verdict": "GÜÇLÜ AL",
+      "score": 6.5,
+      "pd_zone": "Discount",
+      "rvol": 1.73,
+      "rsi": 50.0,
+      "htf_aligned": true,
+      "htf_trend": "Bearish",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "islem_tl": 66243247.0,
+      "change_pct": -9.09
+    },
+    {
+      "symbol": "SANKO",
+      "scan_time": "15.09.2026 20:32",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 5.0,
       "pd_zone": "Discount",
-      "rvol": 1.39,
-      "rsi": 27.46,
+      "rvol": 0.77,
+      "rsi": 66.17,
       "htf_aligned": false,
       "htf_trend": "Bearish",
       "signals": [
         "Bullish OB"
       ],
-      "islem_tl": 199778247.0,
-      "change_pct": -2.99
+      "islem_tl": 6889520.0,
+      "change_pct": -3.1
     },
     {
-      "symbol": "EKGYO",
-      "scan_time": "11.09.2026 19:56",
+      "symbol": "TKFEN",
+      "scan_time": "15.09.2026 20:32",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
-      "score": 4.5,
+      "score": 5.0,
       "pd_zone": "Premium",
-      "rvol": 0.89,
-      "rsi": 51.6,
+      "rvol": 1.96,
+      "rsi": 58.97,
       "htf_aligned": true,
       "htf_trend": "Bullish",
       "signals": [
-        "Bullish OB",
-        "Bullish FVG"
+        "Bullish OB"
       ],
-      "islem_tl": 2606745369.0,
-      "change_pct": 1.16
+      "islem_tl": 1957303014.0,
+      "change_pct": 6.42
     },
     {
-      "symbol": "INFO",
-      "scan_time": "11.09.2026 19:56",
+      "symbol": "ARSAN",
+      "scan_time": "15.09.2026 20:32",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 4.5,
       "pd_zone": "Discount",
-      "rvol": 0.82,
-      "rsi": 24.21,
+      "rvol": 0.49,
+      "rsi": 35.95,
+      "htf_aligned": true,
+      "htf_trend": "Bullish",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "islem_tl": 52151209.0,
+      "change_pct": -5.15
+    },
+    {
+      "symbol": "KGYO",
+      "scan_time": "15.09.2026 20:32",
+      "scan_label": "20:50 Akşam Tarama",
+      "verdict": "AL",
+      "score": 4.5,
+      "pd_zone": "Discount",
+      "rvol": 0.77,
+      "rsi": 39.04,
+      "htf_aligned": true,
+      "htf_trend": "Bullish",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "islem_tl": 165608152.0,
+      "change_pct": 3.31
+    },
+    {
+      "symbol": "ULUSE",
+      "scan_time": "15.09.2026 20:32",
+      "scan_label": "20:50 Akşam Tarama",
+      "verdict": "AL",
+      "score": 4.5,
+      "pd_zone": "Discount",
+      "rvol": 0.87,
+      "rsi": 21.41,
       "htf_aligned": true,
       "htf_trend": "Bearish",
       "signals": [
         "Bullish FVG"
       ],
-      "islem_tl": 179605485.0,
-      "change_pct": -5.22
+      "islem_tl": 31744740.0,
+      "change_pct": -3.23
     },
     {
-      "symbol": "SAFKR",
-      "scan_time": "11.09.2026 19:56",
-      "scan_label": "20:50 Akşam Tarama",
-      "verdict": "AL",
-      "score": 4.5,
-      "pd_zone": "Discount",
-      "rvol": 1.06,
-      "rsi": 12.9,
-      "htf_aligned": true,
-      "htf_trend": "Bearish",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "islem_tl": 64186214.0,
-      "change_pct": 0.35
-    },
-    {
-      "symbol": "BVSAN",
-      "scan_time": "11.09.2026 19:56",
+      "symbol": "CELHA",
+      "scan_time": "15.09.2026 20:32",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
       "pd_zone": "Premium",
-      "rvol": 2.97,
-      "rsi": 69.83,
+      "rvol": 2.03,
+      "rsi": 75.55,
       "htf_aligned": true,
       "htf_trend": "Bullish",
       "signals": [
         "Bullish FVG"
       ],
-      "islem_tl": 372932560.0,
-      "change_pct": -8.06
+      "islem_tl": 120680478.0,
+      "change_pct": 3.94
     },
     {
-      "symbol": "EFOR",
-      "scan_time": "11.09.2026 19:56",
+      "symbol": "EGEEN",
+      "scan_time": "15.09.2026 20:32",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
       "pd_zone": "Premium",
-      "rvol": 1.89,
-      "rsi": 50.91,
+      "rvol": 2.58,
+      "rsi": 69.29,
       "htf_aligned": true,
       "htf_trend": "Bullish",
       "signals": [
-        "Bullish MACD Cross"
+        "Bullish FVG"
       ],
-      "islem_tl": 2232972557.0,
-      "change_pct": 6.81
+      "islem_tl": 301675500.0,
+      "change_pct": -2.7
     },
     {
       "symbol": "IEYHO",
-      "scan_time": "11.09.2026 19:56",
+      "scan_time": "15.09.2026 20:32",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
       "pd_zone": "Premium",
-      "rvol": 2.63,
+      "rvol": 2.26,
       "rsi": 100.0,
       "htf_aligned": true,
       "htf_trend": "Bullish",
       "signals": [
         "Bullish FVG"
       ],
-      "islem_tl": 515288011.0,
-      "change_pct": 2.14
+      "islem_tl": 519968315.0,
+      "change_pct": 1.7
     },
     {
-      "symbol": "MARTI",
-      "scan_time": "11.09.2026 19:56",
+      "symbol": "TTKOM",
+      "scan_time": "15.09.2026 20:32",
       "scan_label": "20:50 Akşam Tarama",
       "verdict": "AL",
       "score": 3.5,
-      "pd_zone": "Premium",
-      "rvol": 1.95,
-      "rsi": 89.94,
-      "htf_aligned": true,
+      "pd_zone": "Discount",
+      "rvol": 0.83,
+      "rsi": 53.18,
+      "htf_aligned": false,
       "htf_trend": "Bullish",
       "signals": [
         "Bullish FVG"
       ],
-      "islem_tl": 749244488.0,
-      "change_pct": 7.84
-    },
-    {
-      "symbol": "PATEK",
-      "scan_time": "11.09.2026 19:56",
-      "scan_label": "20:50 Akşam Tarama",
-      "verdict": "AL",
-      "score": 3.5,
-      "pd_zone": "Premium",
-      "rvol": 3.99,
-      "rsi": 61.06,
-      "htf_aligned": true,
-      "htf_trend": "Bullish",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "islem_tl": 1959999665.0,
-      "change_pct": 7.92
+      "islem_tl": 1541974205.0,
+      "change_pct": -4.26
     }
   ],
-  "last_scan": "11.09.2026 19:56",
-  "_gen": 31,
-  "_updated_at": "2026-09-11T19:56:48.369816+03:00"
+  "last_scan": "15.09.2026 20:32",
+  "_gen": 32,
+  "_updated_at": "2026-09-15T20:32:29.908290+03:00"
 }
