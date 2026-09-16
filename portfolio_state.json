@@ -1,21 +1,6 @@
 {
   "created": "2026-07-02",
-  "positions": {
-    "KARSN": {
-      "entry_date": "2026-09-11",
-      "entry_price": 14.86,
-      "score": 0.2954,
-      "margin": 0.2973,
-      "max_gun_date": "2026-09-21"
-    },
-    "HALKB": {
-      "entry_date": "2026-09-11",
-      "entry_price": 50.0,
-      "score": 0.2808,
-      "margin": 0.2909,
-      "max_gun_date": "2026-09-21"
-    }
-  },
+  "positions": {},
   "history": [
     {
       "symbol": "ODAS",
@@ -235,6 +220,26 @@
       "exit_price": 94.9,
       "pnl_pct": -1.76,
       "holding_days": 17
+    },
+    {
+      "symbol": "KARSN",
+      "entry_date": "2026-09-11",
+      "exit_date": "2026-09-16",
+      "entry_price": 14.86,
+      "exit_price": 11.7,
+      "pnl_pct": -21.27,
+      "holding_days": 5,
+      "reason": "ACIL_STOP"
+    },
+    {
+      "symbol": "HALKB",
+      "entry_date": "2026-09-11",
+      "exit_date": "2026-09-16",
+      "entry_price": 50.0,
+      "exit_price": 45.72,
+      "pnl_pct": -8.56,
+      "holding_days": 5,
+      "reason": "ACIL_STOP"
     }
   ],
   "scan_log": [
@@ -1700,6 +1705,6 @@
       }
     ]
   },
-  "_gen": 14,
-  "_updated_at": "2026-09-11T19:58:44.879199+03:00"
+  "_gen": 15,
+  "_updated_at": "2026-09-16T13:42:43.954987+03:00"
 }
