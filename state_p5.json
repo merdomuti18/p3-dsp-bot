@@ -1,5 +1,22 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "PETKM": {
+      "symbol": "PETKM",
+      "giris_fiyat": 21.54,
+      "guncel_fiyat": 21.54,
+      "lotlar": 928,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-09-17",
+      "max_gun_date": "2026-09-27",
+      "komite_skor": 70,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    }
+  },
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -1424,11 +1441,64 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-09-17",
+      "secilen": [
+        "PETKM"
+      ],
+      "elenen": [
+        {
+          "symbol": "VESTL",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "KRGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "CCOLA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ECZYT",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "CELHA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "MAVI",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TKFEN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "VAKBN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "KRDMD",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "BIMAS",
+          "neden": "tek kaynak (P1)"
+        }
+      ],
+      "acilan": [
+        "PETKM"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-09-16T17:34:58.589970",
+  "last_run": "2026-09-17T17:34:48.844656",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 99326,
-  "_gen": 36,
-  "_updated_at": "2026-09-16T20:34:58.595634+03:00"
+  "_gen": 37,
+  "_updated_at": "2026-09-17T20:34:49.197302+03:00"
 }
