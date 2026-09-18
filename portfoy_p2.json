@@ -74,22 +74,7 @@
   },
   "nakit": 41682.65136689379,
   "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "TKFEN",
-      "score": 5.0,
-      "final_score": 5.0,
-      "verdict": "AL",
-      "signals": [
-        "Bullish OB"
-      ],
-      "teyit_skoru": 0,
-      "teyit_var": false,
-      "queued_at": "16.09.2026 20:31",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    }
-  ],
+  "bekleyen_al": [],
   "open_attempts_today": [],
   "last_hourly_check_time": "18.09.2026 12:08",
   "trade_history": [
