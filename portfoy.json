@@ -21,135 +21,99 @@
         "alpha_tag": "",
         "alpha_trend_bonus": 0
       }
+    },
+    "BIMAS": {
+      "giris_f": 416.0,
+      "giris_t": "18.09.2026 10:26",
+      "tepe_f": 416.0,
+      "lotlar": 33,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "28.09.2026",
+      "final_score": 43,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "ZKN"
+        ],
+        "viop_bias": "Long bias güçlü",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "LOGO": {
+      "giris_f": 139.1,
+      "giris_t": "18.09.2026 10:26",
+      "tepe_f": 139.1,
+      "lotlar": 84,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "28.09.2026",
+      "final_score": 43,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "ZKN"
+        ],
+        "viop_bias": "Long bias güçlü",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "MAVI": {
+      "giris_f": 37.02,
+      "giris_t": "18.09.2026 10:26",
+      "tepe_f": 37.02,
+      "lotlar": 232,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "28.09.2026",
+      "final_score": 37,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "KBM"
+        ],
+        "viop_bias": "Long bias güçlü",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "TKFEN": {
+      "giris_f": 243.7,
+      "giris_t": "18.09.2026 10:26",
+      "tepe_f": 243.7,
+      "lotlar": 25,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "28.09.2026",
+      "final_score": 31,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "MR",
+          "KBM"
+        ],
+        "viop_bias": "Long bias güçlü",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
     }
   },
-  "nakit": 90573.60845487975,
+  "nakit": 50480.06845487975,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "BIMAS",
-      "score_count": 2,
-      "strategies": [
-        "ALPHA",
-        "ZKN"
-      ],
-      "tarama_score": 30,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Long bias güçlü",
-      "viop_score": 5,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 43,
-      "change_pct": 3.08,
-      "rsi": 54.02,
-      "rel_vol": 1.5,
-      "cmf": 0.2075,
-      "islem_tl": 0,
-      "scan_time": "17.09.2026 20:31",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "18.09.2026 07:05",
-      "valid_for_date": "2026-09-21",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "LOGO",
-      "score_count": 2,
-      "strategies": [
-        "ALPHA",
-        "ZKN"
-      ],
-      "tarama_score": 30,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Long bias güçlü",
-      "viop_score": 5,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 43,
-      "change_pct": 8.63,
-      "rsi": 51.28,
-      "rel_vol": 1.75,
-      "cmf": 0.0353,
-      "islem_tl": 0,
-      "scan_time": "17.09.2026 20:31",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "18.09.2026 07:05",
-      "valid_for_date": "2026-09-21",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "MAVI",
-      "score_count": 2,
-      "strategies": [
-        "ALPHA",
-        "KBM"
-      ],
-      "tarama_score": 24,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Long bias güçlü",
-      "viop_score": 5,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 37,
-      "change_pct": 9.97,
-      "rsi": 48.71,
-      "rel_vol": 3.78,
-      "cmf": 0.0545,
-      "islem_tl": 0,
-      "scan_time": "17.09.2026 20:31",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "18.09.2026 07:05",
-      "valid_for_date": "2026-09-21",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "TKFEN",
-      "score_count": 2,
-      "strategies": [
-        "MR",
-        "KBM"
-      ],
-      "tarama_score": 18,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Long bias güçlü",
-      "viop_score": 5,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 31,
-      "change_pct": 9.93,
-      "rsi": 72.17,
-      "rel_vol": 1.32,
-      "cmf": 0.1234,
-      "islem_tl": 0,
-      "scan_time": "17.09.2026 20:31",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "18.09.2026 07:05",
-      "valid_for_date": "2026-09-21",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "KRGYO",
       "score_count": 1,
@@ -176,8 +140,8 @@
       "queued_at": "18.09.2026 07:05",
       "valid_for_date": "2026-09-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "18.09.2026 10:26",
       "last_attempt_reason": ""
     },
     {
@@ -206,8 +170,8 @@
       "queued_at": "18.09.2026 07:05",
       "valid_for_date": "2026-09-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "18.09.2026 10:26",
       "last_attempt_reason": ""
     },
     {
@@ -236,21 +200,34 @@
       "queued_at": "18.09.2026 07:05",
       "valid_for_date": "2026-09-21",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "18.09.2026 10:26",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "10:26",
+      "tarih": "2026-09-18",
+      "alinan": [
+        "BIMAS",
+        "LOGO",
+        "MAVI",
+        "TKFEN"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 5,
-    "bought": 0,
+    "pending": 7,
+    "bought": 4,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "17.09.2026 12:28"
+    "time": "18.09.2026 10:26"
   },
-  "last_hourly_check_time": "17.09.2026 12:28",
+  "last_hourly_check_time": "18.09.2026 10:26",
   "trade_history": [
     {
       "symbol": "UFUK",
