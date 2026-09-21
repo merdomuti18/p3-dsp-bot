@@ -1,31 +1,9 @@
 {
   "pozisyonlar": {
-    "AYGAZ": {
-      "giris_f": 327.5,
-      "giris_t": "09.09.2026 10:38",
-      "tepe_f": 336.5,
-      "lotlar": 15,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "19.09.2026",
-      "final_score": 45,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "ZKN"
-        ],
-        "viop_bias": "Long bias güçlü",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "BIMAS": {
       "giris_f": 416.0,
       "giris_t": "18.09.2026 10:26",
-      "tepe_f": 416.0,
+      "tepe_f": 423.25,
       "lotlar": 33,
       "gun": 0,
       "tp1_yapildi": false,
@@ -111,7 +89,7 @@
       }
     }
   },
-  "nakit": 50480.06845487975,
+  "nakit": 55146.94345487975,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -141,8 +119,8 @@
       "queued_at": "21.09.2026 07:05",
       "valid_for_date": "2026-09-22",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "21.09.2026 11:47",
       "last_attempt_reason": ""
     },
     {
@@ -172,8 +150,8 @@
       "queued_at": "21.09.2026 07:05",
       "valid_for_date": "2026-09-22",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "21.09.2026 11:47",
       "last_attempt_reason": ""
     },
     {
@@ -202,21 +180,29 @@
       "queued_at": "21.09.2026 07:05",
       "valid_for_date": "2026-09-22",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "21.09.2026 11:47",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:47",
+      "tarih": "2026-09-21",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 7,
-    "bought": 4,
+    "pending": 3,
+    "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "18.09.2026 10:26"
+    "time": "21.09.2026 11:47"
   },
-  "last_hourly_check_time": "18.09.2026 10:26",
+  "last_hourly_check_time": "21.09.2026 11:47",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -657,6 +643,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-09-14",
       "cikis_tarih": "2026-09-17"
+    },
+    {
+      "symbol": "AYGAZ",
+      "giris_fiyat": 327.5,
+      "cikis_fiyat": 311.125,
+      "lotlar": 15,
+      "pnl_pct": -5.0,
+      "gun": 12,
+      "neden": "STOP",
+      "giris_tarih": "2026-09-09",
+      "cikis_tarih": "2026-09-21"
     }
   ]
 }
