@@ -2,11 +2,11 @@
   "pozisyonlar": {
     "SANKO": {
       "symbol": "SANKO",
-      "giris_fiyat": 19.73,
-      "guncel_fiyat": 20.2,
+      "giris_fiyat": 17.5324,
+      "guncel_fiyat": 17.95,
       "lotlar": 506,
       "pnl_pct": 2.38,
-      "gun": 1,
+      "gun": 5,
       "giris_tarih": "2026-09-16",
       "max_gun_date": "2026-09-26",
       "meta_score": 0.3333333333333333,
@@ -14,15 +14,17 @@
         "P2"
       ],
       "coklu_onay": false,
-      "strateji": "P4"
+      "strateji": "P4",
+      "split_duzeltme": 1.1253,
+      "split_tarih": "2026-09-21"
     },
     "TKFEN": {
       "symbol": "TKFEN",
       "giris_fiyat": 234.7,
-      "guncel_fiyat": 258.0,
+      "guncel_fiyat": 238.8,
       "lotlar": 42,
-      "pnl_pct": 9.93,
-      "gun": 1,
+      "pnl_pct": 1.75,
+      "gun": 5,
       "giris_tarih": "2026-09-16",
       "max_gun_date": "2026-09-26",
       "meta_score": 0.19999999999999998,
@@ -35,10 +37,10 @@
     "BIMAS": {
       "symbol": "BIMAS",
       "giris_fiyat": 418.0,
-      "guncel_fiyat": 418.0,
+      "guncel_fiyat": 423.0,
       "lotlar": 23,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 1.2,
+      "gun": 4,
       "giris_tarih": "2026-09-17",
       "max_gun_date": "2026-09-27",
       "meta_score": 0.3333333333333333,
@@ -51,10 +53,10 @@
     "LOGO": {
       "symbol": "LOGO",
       "giris_fiyat": 138.4,
-      "guncel_fiyat": 138.4,
+      "guncel_fiyat": 137.7,
       "lotlar": 72,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -0.51,
+      "gun": 4,
       "giris_tarih": "2026-09-17",
       "max_gun_date": "2026-09-27",
       "meta_score": 0.3333333333333333,
@@ -67,10 +69,10 @@
     "MAVI": {
       "symbol": "MAVI",
       "giris_fiyat": 37.72,
-      "guncel_fiyat": 37.72,
+      "guncel_fiyat": 36.84,
       "lotlar": 265,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -2.33,
+      "gun": 4,
       "giris_tarih": "2026-09-17",
       "max_gun_date": "2026-09-27",
       "meta_score": 0.3333333333333333,
@@ -1094,7 +1096,7 @@
   ],
   "last_run": "2026-09-17T17:34:09.922953",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 94860,
-  "_gen": 33,
-  "_updated_at": "2026-09-17T20:34:14.093852+03:00"
+  "sermaye_mevcut": 92896,
+  "_gen": 34,
+  "_updated_at": "2026-09-21T14:46:35.439539+03:00"
 }
