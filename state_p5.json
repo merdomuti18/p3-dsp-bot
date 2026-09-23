@@ -3,10 +3,10 @@
     "PETKM": {
       "symbol": "PETKM",
       "giris_fiyat": 21.54,
-      "guncel_fiyat": 21.0,
+      "guncel_fiyat": 23.0,
       "lotlar": 928,
-      "pnl_pct": -2.51,
-      "gun": 5,
+      "pnl_pct": 6.78,
+      "gun": 6,
       "giris_tarih": "2026-09-17",
       "max_gun_date": "2026-09-27",
       "komite_skor": 70,
@@ -1498,7 +1498,7 @@
   ],
   "last_run": "2026-09-17T17:34:48.844656",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 98824,
-  "_gen": 38,
-  "_updated_at": "2026-09-22T13:49:11.607371+03:00"
+  "sermaye_mevcut": 100682,
+  "_gen": 39,
+  "_updated_at": "2026-09-23T13:38:45.693333+03:00"
 }
