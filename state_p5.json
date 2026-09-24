@@ -3,12 +3,28 @@
     "PETKM": {
       "symbol": "PETKM",
       "giris_fiyat": 21.54,
-      "guncel_fiyat": 22.02,
+      "guncel_fiyat": 22.0,
       "lotlar": 928,
-      "pnl_pct": 2.23,
+      "pnl_pct": 2.14,
       "gun": 7,
       "giris_tarih": "2026-09-17",
       "max_gun_date": "2026-09-27",
+      "komite_skor": 70,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    },
+    "TKFEN": {
+      "symbol": "TKFEN",
+      "giris_fiyat": 274.0,
+      "guncel_fiyat": 274.0,
+      "lotlar": 72,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-09-24",
+      "max_gun_date": "2026-10-04",
       "komite_skor": 70,
       "kaynaklar": [
         "P1",
@@ -1543,11 +1559,45 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-09-24",
+      "secilen": [
+        "PETKM",
+        "TKFEN"
+      ],
+      "elenen": [
+        {
+          "symbol": "HALKB",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "CELHA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "UNLU",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TOASO",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [
+        "TKFEN"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-09-23T17:48:49.987811",
+  "last_run": "2026-09-24T17:50:00.533754",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 99772,
-  "_gen": 41,
-  "_updated_at": "2026-09-24T15:35:42.107103+03:00"
+  "sermaye_mevcut": 99754,
+  "_gen": 42,
+  "_updated_at": "2026-09-24T20:50:01.227724+03:00"
 }
