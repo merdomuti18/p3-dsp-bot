@@ -22,28 +22,6 @@
         "alpha_trend_bonus": 0
       }
     },
-    "LOGO": {
-      "giris_f": 139.1,
-      "giris_t": "18.09.2026 10:26",
-      "tepe_f": 150.5,
-      "lotlar": 42,
-      "gun": 0,
-      "tp1_yapildi": true,
-      "max_gun_date": "28.09.2026",
-      "final_score": 43,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "ALPHA",
-          "ZKN"
-        ],
-        "viop_bias": "Long bias güçlü",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "MAVI": {
       "giris_f": 37.02,
       "giris_t": "18.09.2026 10:26",
@@ -89,7 +67,7 @@
       }
     }
   },
-  "nakit": 49796.3641985321,
+  "nakit": 55801.3141985321,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -119,9 +97,9 @@
       "queued_at": "24.09.2026 07:05",
       "valid_for_date": "2026-09-25",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
+      "attempt_count": 1,
+      "last_attempt_time": "24.09.2026 10:57",
+      "last_attempt_reason": "cooldown"
     },
     {
       "symbol": "TRMET",
@@ -149,8 +127,8 @@
       "queued_at": "24.09.2026 07:05",
       "valid_for_date": "2026-09-25",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.09.2026 10:57",
       "last_attempt_reason": ""
     },
     {
@@ -179,8 +157,8 @@
       "queued_at": "24.09.2026 07:05",
       "valid_for_date": "2026-09-25",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.09.2026 10:57",
       "last_attempt_reason": ""
     },
     {
@@ -209,8 +187,8 @@
       "queued_at": "24.09.2026 07:05",
       "valid_for_date": "2026-09-25",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.09.2026 10:57",
       "last_attempt_reason": ""
     },
     {
@@ -239,12 +217,24 @@
       "queued_at": "24.09.2026 07:05",
       "valid_for_date": "2026-09-25",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "24.09.2026 10:57",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "10:57",
+      "tarih": "2026-09-24",
+      "alinan": [],
+      "alinmayan": [
+        "TKFEN"
+      ],
+      "nedenler": {
+        "TKFEN": "cooldown"
+      }
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 5,
     "bought": 0,
@@ -256,9 +246,9 @@
         "reason": "cooldown"
       }
     ],
-    "time": "23.09.2026 10:38"
+    "time": "24.09.2026 10:57"
   },
-  "last_hourly_check_time": "23.09.2026 12:37",
+  "last_hourly_check_time": "24.09.2026 10:57",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -743,6 +733,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-09-22",
       "cikis_tarih": "2026-09-23"
+    },
+    {
+      "symbol": "LOGO",
+      "giris_fiyat": 139.1,
+      "cikis_fiyat": 142.975,
+      "lotlar": 42,
+      "pnl_pct": 2.79,
+      "gun": 6,
+      "neden": "TRAILING",
+      "giris_tarih": "2026-09-18",
+      "cikis_tarih": "2026-09-24"
     }
   ]
 }
