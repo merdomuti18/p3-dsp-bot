@@ -1,78 +1,12 @@
 {
   "pozisyonlar": {
-    "SANKO": {
-      "symbol": "SANKO",
-      "giris_fiyat": 17.5324,
-      "guncel_fiyat": 18.23,
-      "lotlar": 506,
-      "pnl_pct": 3.98,
-      "gun": 9,
-      "giris_tarih": "2026-09-16",
-      "max_gun_date": "2026-09-26",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P2"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4",
-      "split_duzeltme": 1.1253,
-      "split_tarih": "2026-09-21"
-    },
-    "BIMAS": {
-      "symbol": "BIMAS",
-      "giris_fiyat": 418.0,
-      "guncel_fiyat": 427.75,
-      "lotlar": 23,
-      "pnl_pct": 2.33,
-      "gun": 8,
-      "giris_tarih": "2026-09-17",
-      "max_gun_date": "2026-09-27",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P1"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
-    "LOGO": {
-      "symbol": "LOGO",
-      "giris_fiyat": 138.4,
-      "guncel_fiyat": 140.7,
-      "lotlar": 72,
-      "pnl_pct": 1.66,
-      "gun": 8,
-      "giris_tarih": "2026-09-17",
-      "max_gun_date": "2026-09-27",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P1"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
-    "MAVI": {
-      "symbol": "MAVI",
-      "giris_fiyat": 37.72,
-      "guncel_fiyat": 37.88,
-      "lotlar": 265,
-      "pnl_pct": 0.42,
-      "gun": 8,
-      "giris_tarih": "2026-09-17",
-      "max_gun_date": "2026-09-27",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P1"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
     "DOAS": {
       "symbol": "DOAS",
       "giris_fiyat": 158.1,
-      "guncel_fiyat": 154.8,
+      "guncel_fiyat": 150.7,
       "lotlar": 63,
-      "pnl_pct": -2.09,
-      "gun": 2,
+      "pnl_pct": -4.68,
+      "gun": 5,
       "giris_tarih": "2026-09-23",
       "max_gun_date": "2026-10-03",
       "meta_score": 0.3333333333333333,
@@ -765,6 +699,50 @@
       "giris_tarih": "2026-09-16",
       "cikis_tarih": "2026-09-23",
       "strateji": "P4"
+    },
+    {
+      "symbol": "SANKO",
+      "giris_fiyat": 17.5324,
+      "cikis_fiyat": 17.86,
+      "pnl_pct": 1.87,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-16",
+      "cikis_tarih": "2026-09-28",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "BIMAS",
+      "giris_fiyat": 418.0,
+      "cikis_fiyat": 420.5,
+      "pnl_pct": 0.6,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-17",
+      "cikis_tarih": "2026-09-28",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "LOGO",
+      "giris_fiyat": 138.4,
+      "cikis_fiyat": 137.2,
+      "pnl_pct": -0.87,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-17",
+      "cikis_tarih": "2026-09-28",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "MAVI",
+      "giris_fiyat": 37.72,
+      "cikis_fiyat": 37.52,
+      "pnl_pct": -0.53,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-17",
+      "cikis_tarih": "2026-09-28",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -1119,7 +1097,7 @@
   ],
   "last_run": "2026-09-24T17:49:30.264058",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 96176,
-  "_gen": 41,
-  "_updated_at": "2026-09-25T13:59:04.666333+03:00"
+  "sermaye_mevcut": 94194,
+  "_gen": 42,
+  "_updated_at": "2026-09-28T15:42:09.101521+03:00"
 }
