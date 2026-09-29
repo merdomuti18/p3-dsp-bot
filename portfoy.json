@@ -1,49 +1,5 @@
 {
   "pozisyonlar": {
-    "BIMAS": {
-      "giris_f": 416.0,
-      "giris_t": "18.09.2026 10:26",
-      "tepe_f": 434.25,
-      "lotlar": 33,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "28.09.2026",
-      "final_score": 43,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "ALPHA",
-          "ZKN"
-        ],
-        "viop_bias": "Long bias güçlü",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
-    "MAVI": {
-      "giris_f": 37.02,
-      "giris_t": "18.09.2026 10:26",
-      "tepe_f": 39.040000915527344,
-      "lotlar": 232,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "28.09.2026",
-      "final_score": 37,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "ALPHA",
-          "KBM"
-        ],
-        "viop_bias": "Long bias güçlü",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    },
     "ISDMR": {
       "giris_f": 62.25,
       "giris_t": "22.09.2026 12:25",
@@ -65,31 +21,9 @@
         "alpha_tag": "",
         "alpha_trend_bonus": 0
       }
-    },
-    "CELHA": {
-      "giris_f": 27.8,
-      "giris_t": "25.09.2026 12:37",
-      "tepe_f": 27.8,
-      "lotlar": 719,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "05.10.2026",
-      "final_score": 37,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "GT",
-          "ALPHA"
-        ],
-        "viop_bias": "Küçük boyut / nakit ağırlık",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
     }
   },
-  "nakit": 35813.1141985321,
+  "nakit": 77472.77416313172,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -119,8 +53,8 @@
       "queued_at": "29.09.2026 07:05",
       "valid_for_date": "2026-09-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.09.2026 11:59",
       "last_attempt_reason": ""
     },
     {
@@ -149,21 +83,29 @@
       "queued_at": "29.09.2026 07:05",
       "valid_for_date": "2026-09-30",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "29.09.2026 11:59",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:59",
+      "tarih": "2026-09-29",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 4,
-    "bought": 1,
+    "pending": 2,
+    "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "25.09.2026 12:37"
+    "time": "29.09.2026 11:59"
   },
-  "last_hourly_check_time": "25.09.2026 12:37",
+  "last_hourly_check_time": "29.09.2026 11:59",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -659,6 +601,39 @@
       "neden": "TRAILING",
       "giris_tarih": "2026-09-18",
       "cikis_tarih": "2026-09-24"
+    },
+    {
+      "symbol": "BIMAS",
+      "giris_fiyat": 416.0,
+      "cikis_fiyat": 425.75,
+      "lotlar": 33,
+      "pnl_pct": 2.34,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-18",
+      "cikis_tarih": "2026-09-29"
+    },
+    {
+      "symbol": "MAVI",
+      "giris_fiyat": 37.02,
+      "cikis_fiyat": 37.16,
+      "lotlar": 232,
+      "pnl_pct": 0.38,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-18",
+      "cikis_tarih": "2026-09-29"
+    },
+    {
+      "symbol": "CELHA",
+      "giris_fiyat": 27.8,
+      "cikis_fiyat": 26.41,
+      "lotlar": 719,
+      "pnl_pct": -5.0,
+      "gun": 4,
+      "neden": "STOP",
+      "giris_tarih": "2026-09-25",
+      "cikis_tarih": "2026-09-29"
     }
   ]
 }
