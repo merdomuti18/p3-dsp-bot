@@ -1,70 +1,86 @@
 {
   "pozisyonlar": {
-    "SANKO": {
-      "giris_f": 18.93,
-      "giris_t": "18.09.2026 12:08",
-      "tepe_f": 18.93,
-      "lotlar": 1056,
+    "AKSEN": {
+      "giris_f": 74.25,
+      "giris_t": "01.10.2026 12:17",
+      "tepe_f": 74.25,
+      "lotlar": 242,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "28.09.2026",
-      "smc_score": 6.0,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish OB"
-      ]
-    },
-    "UNLU": {
-      "giris_f": 11.59,
-      "giris_t": "18.09.2026 12:08",
-      "tepe_f": 11.59,
-      "lotlar": 1237,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "28.09.2026",
+      "max_gun_date": "11.10.2026",
       "smc_score": 5.0,
       "teyit_skoru": 0,
       "signals": [
-        "Bullish OB"
+        "Bullish MACD Cross",
+        "Bullish FVG"
       ]
     },
-    "ANSGR": {
-      "giris_f": 26.08,
-      "giris_t": "18.09.2026 12:08",
-      "tepe_f": 26.08,
-      "lotlar": 404,
+    "TUREX": {
+      "giris_f": 6.1,
+      "giris_t": "01.10.2026 12:17",
+      "tepe_f": 6.1,
+      "lotlar": 2411,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "28.09.2026",
-      "smc_score": 4.5,
+      "max_gun_date": "11.10.2026",
+      "smc_score": 5.0,
       "teyit_skoru": 0,
       "signals": [
-        "Bearish MACD Cross",
-        "Bullish OB"
+        "Bullish MACD Cross",
+        "Bullish FVG"
       ]
     },
-    "CELHA": {
-      "giris_f": 26.3,
-      "giris_t": "18.09.2026 12:08",
-      "tepe_f": 26.3,
-      "lotlar": 261,
+    "ODAS": {
+      "giris_f": 6.13,
+      "giris_t": "01.10.2026 12:18",
+      "tepe_f": 6.13,
+      "lotlar": 1759,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "28.09.2026",
-      "smc_score": 3.5,
+      "max_gun_date": "11.10.2026",
+      "smc_score": 4.5,
       "teyit_skoru": 0,
       "signals": [
         "Bullish FVG"
       ]
     },
-    "EGEEN": {
-      "giris_f": 5445.0,
-      "giris_t": "18.09.2026 12:08",
-      "tepe_f": 5445.0,
-      "lotlar": 1,
+    "TKFEN": {
+      "giris_f": 252.0,
+      "giris_t": "01.10.2026 12:18",
+      "tepe_f": 252.0,
+      "lotlar": 35,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "28.09.2026",
+      "max_gun_date": "11.10.2026",
+      "smc_score": 4.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ]
+    },
+    "MIATK": {
+      "giris_f": 23.46,
+      "giris_t": "01.10.2026 12:18",
+      "tepe_f": 23.46,
+      "lotlar": 320,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "11.10.2026",
+      "smc_score": 4.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish FVG"
+      ]
+    },
+    "KRDMB": {
+      "giris_f": 60.6,
+      "giris_t": "01.10.2026 12:18",
+      "tepe_f": 60.6,
+      "lotlar": 80,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "11.10.2026",
       "smc_score": 3.5,
       "teyit_skoru": 0,
       "signals": [
@@ -72,99 +88,11 @@
       ]
     }
   },
-  "nakit": 41682.65136689379,
+  "nakit": 32761.663300182365,
   "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "AKSEN",
-      "score": 5.0,
-      "final_score": 5.0,
-      "verdict": "AL",
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "25.09.2026 20:48",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "TUREX",
-      "score": 5.0,
-      "final_score": 5.0,
-      "verdict": "AL",
-      "signals": [
-        "Bullish MACD Cross",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "25.09.2026 20:48",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ODAS",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "25.09.2026 20:48",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "TKFEN",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish OB",
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "25.09.2026 20:48",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "MIATK",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "25.09.2026 20:48",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KRDMB",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "25.09.2026 20:48",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    }
-  ],
+  "bekleyen_al": [],
   "open_attempts_today": [],
-  "last_hourly_check_time": "18.09.2026 12:08",
+  "last_hourly_check_time": "01.10.2026 12:17",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -616,6 +544,61 @@
       "neden": "STOP",
       "giris_tarih": "2026-09-04",
       "cikis_tarih": "2026-09-18"
+    },
+    {
+      "symbol": "SANKO",
+      "giris_fiyat": 18.93,
+      "cikis_fiyat": 18.8,
+      "lotlar": 1056,
+      "pnl_pct": -0.69,
+      "gun": 13,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-18",
+      "cikis_tarih": "2026-10-01"
+    },
+    {
+      "symbol": "UNLU",
+      "giris_fiyat": 11.59,
+      "cikis_fiyat": 11.0105,
+      "lotlar": 1237,
+      "pnl_pct": -5.0,
+      "gun": 13,
+      "neden": "STOP",
+      "giris_tarih": "2026-09-18",
+      "cikis_tarih": "2026-10-01"
+    },
+    {
+      "symbol": "ANSGR",
+      "giris_fiyat": 26.08,
+      "cikis_fiyat": 24.776,
+      "lotlar": 404,
+      "pnl_pct": -5.0,
+      "gun": 13,
+      "neden": "STOP",
+      "giris_tarih": "2026-09-18",
+      "cikis_tarih": "2026-10-01"
+    },
+    {
+      "symbol": "CELHA",
+      "giris_fiyat": 26.3,
+      "cikis_fiyat": 27.04,
+      "lotlar": 261,
+      "pnl_pct": 2.81,
+      "gun": 13,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-18",
+      "cikis_tarih": "2026-10-01"
+    },
+    {
+      "symbol": "EGEEN",
+      "giris_fiyat": 5445.0,
+      "cikis_fiyat": 5172.75,
+      "lotlar": 1,
+      "pnl_pct": -5.0,
+      "gun": 13,
+      "neden": "STOP",
+      "giris_tarih": "2026-09-18",
+      "cikis_tarih": "2026-10-01"
     }
   ]
 }
