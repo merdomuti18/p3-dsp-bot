@@ -50,11 +50,11 @@
       "islem_tl": 0,
       "scan_time": "25.09.2026 20:49",
       "scan_label": "20:50 Kapanış",
-      "queued_at": "30.09.2026 07:05",
-      "valid_for_date": "2026-10-01",
+      "queued_at": "01.10.2026 05:50",
+      "valid_for_date": "2026-10-02",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "30.09.2026 11:47",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     },
     {
@@ -80,23 +80,15 @@
       "islem_tl": 0,
       "scan_time": "25.09.2026 20:49",
       "scan_label": "20:50 Kapanış",
-      "queued_at": "30.09.2026 07:05",
-      "valid_for_date": "2026-10-01",
+      "queued_at": "01.10.2026 05:50",
+      "valid_for_date": "2026-10-02",
       "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "30.09.2026 11:47",
+      "attempt_count": 0,
+      "last_attempt_time": "",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [
-    {
-      "saat": "11:47",
-      "tarih": "2026-09-30",
-      "alinan": [],
-      "alinmayan": [],
-      "nedenler": {}
-    }
-  ],
+  "open_attempts_today": [],
   "last_open_attempt_summary": {
     "pending": 2,
     "bought": 0,
