@@ -1582,11 +1582,60 @@
       ],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-10-05",
+      "secilen": [],
+      "elenen": [
+        {
+          "symbol": "KNFRT",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ASTOR",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ULUSE",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "CELHA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "BERA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ECZYT",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "BRSAN",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TAVHL",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "OBAMS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "BURCE",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-09-24T17:50:00.533754",
+  "last_run": "2026-10-05T15:41:41.405539",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 98184,
-  "_gen": 43,
-  "_updated_at": "2026-09-29T16:50:10.118989+03:00"
+  "_gen": 44,
+  "_updated_at": "2026-10-05T18:41:41.411141+03:00"
 }
