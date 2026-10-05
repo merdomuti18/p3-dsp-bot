@@ -244,20 +244,6 @@
   ],
   "scan_log": [
     {
-      "date": "2026-07-14",
-      "scanned": 79,
-      "long_signals": 21,
-      "top5": [
-        "ISGYO",
-        "SKBNK",
-        "TUPRS",
-        "IZMDC",
-        "AKCNS"
-      ],
-      "entries": [],
-      "exits": []
-    },
-    {
       "date": "2026-07-15",
       "scanned": 79,
       "long_signals": 21,
@@ -1137,6 +1123,20 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-10-05",
+      "scanned": 79,
+      "long_signals": 6,
+      "top5": [
+        "TKFEN",
+        "LOGO",
+        "MAVI",
+        "TAVHL",
+        "KRDMD"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1456,14 +1456,6 @@
     },
     "log": [
       {
-        "date": "2026-08-12",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-13",
         "total": 78,
         "reliable": 0,
@@ -1694,9 +1686,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-10-05",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 19,
-  "_updated_at": "2026-09-24T20:48:01.243118+03:00"
+  "_gen": 20,
+  "_updated_at": "2026-10-05T18:40:21.721465+03:00"
 }
