@@ -1,29 +1,6 @@
 {
-  "pozisyonlar": {
-    "ISDMR": {
-      "giris_f": 62.25,
-      "giris_t": "22.09.2026 12:25",
-      "tepe_f": 63.79999923706055,
-      "lotlar": 263,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "02.10.2026",
-      "final_score": 34,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 2,
-        "strategies": [
-          "ALPHA",
-          "MR"
-        ],
-        "viop_bias": "Normal",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    }
-  },
-  "nakit": 77472.77416313172,
+  "pozisyonlar": {},
+  "nakit": 94120.67396247864,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -53,8 +30,8 @@
       "queued_at": "05.10.2026 07:06",
       "valid_for_date": "2026-10-06",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "05.10.2026 13:22",
       "last_attempt_reason": ""
     },
     {
@@ -83,21 +60,29 @@
       "queued_at": "05.10.2026 07:06",
       "valid_for_date": "2026-10-06",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "05.10.2026 13:22",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "13:22",
+      "tarih": "2026-10-05",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 2,
     "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "30.09.2026 11:47"
+    "time": "05.10.2026 13:22"
   },
-  "last_hourly_check_time": "30.09.2026 11:47",
+  "last_hourly_check_time": "05.10.2026 13:22",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -626,6 +611,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-09-25",
       "cikis_tarih": "2026-09-29"
+    },
+    {
+      "symbol": "ISDMR",
+      "giris_fiyat": 62.25,
+      "cikis_fiyat": 63.3,
+      "lotlar": 263,
+      "pnl_pct": 1.69,
+      "gun": 13,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-09-22",
+      "cikis_tarih": "2026-10-05"
     }
   ]
 }
