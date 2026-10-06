@@ -145,7 +145,7 @@ jobs:
     needs: gate
     if: contains(fromJSON('["aksam","sabah","alim","takip","kapani"]'), needs.gate.outputs.mode)
     concurrency:
-      group: state-writer
+      group: p1-state-writer
       cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:

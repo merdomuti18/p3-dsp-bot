@@ -375,8 +375,12 @@ def vm_gonder(signal_records, scan_time, scan_label):
     # tarama_listesi.json — portfoy_yonetici.py için
     tarama_file = BASE_DIR / "tarama_listesi.json"
     try:
-        with open(tarama_file, "w", encoding="utf-8") as fh:
-            json.dump(payload, fh, indent=2, ensure_ascii=False)
+        try:
+            from mott_state_coordination import atomic_write_json
+            atomic_write_json(tarama_file, payload)
+        except ImportError:
+            with open(tarama_file, "w", encoding="utf-8") as fh:
+                json.dump(payload, fh, indent=2, ensure_ascii=False)
         log.info("P1 tarama tarama_listesi.json'a yazıldı")
     except Exception as exc:
         log.warning("tarama_listesi.json yazma hatası: %s", exc)

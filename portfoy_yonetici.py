@@ -961,7 +961,39 @@ def portfoy_yukle() -> dict:
     data.setdefault("last_open_attempt_summary", {})
     data.setdefault("last_hourly_check_time", "")
     data.setdefault("trade_history", [])
+    data.setdefault("islem_defteri", [])
+    data.setdefault("veri_hatalari", [])
+    data["_initial_gen"] = data.get("_gen", 0)
     return data
+
+
+def veri_hatasi_kaydet(
+    portfoy: dict,
+    symbol: str,
+    data_time: str,
+    stage: str,
+    reason: str,
+    now: datetime | None = None,
+) -> dict:
+    """Veri hatalarını sessizce geçmeyip yapılandırılmış biçimde kaydeder."""
+    ref_now = now if now is not None else datetime.now()
+    run_id = str(os.environ.get("GITHUB_RUN_ID") or f"run_{ref_now.strftime('%Y%m%d_%H%M%S')}")
+    err_entry = {
+        "event": "data_error",
+        "symbol": symbol,
+        "data_time": str(data_time),
+        "run_id": run_id,
+        "stage": stage,
+        "reason": reason,
+        "timestamp": ref_now.isoformat(),
+    }
+    log.warning("Veri Hatasi [%s] sembol=%s veri_zamani=%s sebep=%s run_id=%s", stage, symbol, data_time, reason, run_id)
+    append_jsonl(PORTFOY_AUDIT_FILE, err_entry)
+    hatalar = portfoy.setdefault("veri_hatalari", [])
+    hatalar.append(err_entry)
+    if len(hatalar) > 50:
+        portfoy["veri_hatalari"] = hatalar[-50:]
+    return portfoy
 
 
 def gunluk_equity_kaydet(portfoy: dict, now: datetime | None = None) -> dict:
@@ -992,10 +1024,36 @@ def gunluk_equity_kaydet(portfoy: dict, now: datetime | None = None) -> dict:
     return portfoy
 
 
-def portfoy_kaydet(portfoy: dict):
+def portfoy_kaydet(portfoy: dict, force: bool = False) -> dict:
+    """P1 portföyünü atomik ve optimistik concurrency korumasıyla diske yazar."""
+    from mott_state_coordination import atomic_write_json, stamp_state
     gunluk_equity_kaydet(portfoy)
-    with open(PORTFOY_FILE, "w", encoding="utf-8") as fh:
-        json.dump(portfoy, fh, indent=2, ensure_ascii=False)
+
+    # Concurrency guard: Disk üzerindeki güncel sürümü kontrol et
+    initial_gen = portfoy.get("_initial_gen", portfoy.get("_gen", 0))
+    if PORTFOY_FILE.exists() and not force:
+        try:
+            with open(PORTFOY_FILE, encoding="utf-8") as fh:
+                disk_state = json.load(fh)
+            disk_gen = disk_state.get("_gen", 0)
+            if disk_gen > initial_gen:
+                log.warning("P1 portfoy_kaydet: disk sürümü (%d) başlangıç sürümünden (%d) daha yeni! Birleştiriliyor...", disk_gen, initial_gen)
+                for k, v in disk_state.get("pozisyonlar", {}).items():
+                    if k not in portfoy.get("pozisyonlar", {}):
+                        portfoy.setdefault("pozisyonlar", {})[k] = v
+                current_trade_ids = {t.get("event_id") for t in portfoy.get("trade_history", []) if t.get("event_id")}
+                for t in disk_state.get("trade_history", []):
+                    if t.get("event_id") and t.get("event_id") not in current_trade_ids:
+                        portfoy.setdefault("trade_history", []).append(t)
+                portfoy["_gen"] = max(disk_gen, portfoy.get("_gen", 0))
+        except Exception as exc:
+            log.warning("portfoy_kaydet concurrency kontrol hatasi: %s", exc)
+
+    stamp_state(portfoy)
+    clean_portfoy = {k: v for k, v in portfoy.items() if k != "_initial_gen"}
+    atomic_write_json(PORTFOY_FILE, clean_portfoy)
+    portfoy["_initial_gen"] = portfoy.get("_gen", 0)
+    return portfoy
 
 
 def tarama_listesi_yukle() -> dict:
