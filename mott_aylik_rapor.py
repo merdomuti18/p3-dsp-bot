@@ -37,6 +37,16 @@ TSI = ZoneInfo("Europe/Istanbul")
 POS_TL = SERMAYE // 5  # 20.000
 
 
+def _yukle(fname: str) -> dict:
+    path = BASE / fname
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
 def _portfoy_getiri(fname: str, label: str) -> dict | None:
     """ESKİ okuyucu (P1/P2) — KORUNUR (migration equivalence + T4 kilidi).
     FAZ 3.2'de rapor_olustur bunu kullanmaz; _p1_p2_rapor_blok kullanır."""
@@ -208,16 +218,84 @@ def _p5_rapor_blok() -> dict:
 def _p1_p2_rapor_blok(kod: str) -> dict:
     n = normalize(kod)
     ad = "Momentum" if kod == "P1" else "SMC"
+    if kod == "P2":
+        # P2 davranışı korunur (yalnızca P1 kapsamı)
+        return {
+            "strateji": f"{kod} {ad}",
+            "sermaye": n["baslangic_sermayesi"],
+            "equity_est": n["baslangic_sermayesi"],
+            "getiri_pct": 0.0,
+            "kapanan": len(n["islem_gecmisi"]),
+            "acik_sayisi": len(n["pozisyonlar"]),
+            "nakit": n["nakit"],
+        }
+
+    # P1 dinamik muhasebe ve rapor blokları
+    sermaye = float(n.get("baslangic_sermayesi", SERMAYE) or SERMAYE)
+    nakit = float(n.get("nakit", 0.0) or 0.0)
+    open_positions = n.get("pozisyonlar", [])
+    acik_piyasa_degeri = 0.0
+    fiyat_eksik = False
+
+    for p in open_positions:
+        lot = int(p.get("lot", 0) or 0)
+        gf = p.get("guncel_fiyat")
+        if gf is None or float(gf) <= 0:
+            fiyat_eksik = True
+            gf = p.get("giris_fiyat", 0.0)
+        acik_piyasa_degeri += lot * float(gf or 0.0)
+
+    equity = round(nakit + acik_piyasa_degeri, 2)
+    baslangictan_getiri_pct = round((equity - sermaye) / sermaye * 100, 2)
+
+    # Ay başı equity kaydı varsa aylık getiri hesapla, yoksa None (hesaplanamıyor)
+    raw_p1 = _yukle("portfoy.json")
+    ay_basi_equity = raw_p1.get("ay_basi_equity")
+    if ay_basi_equity and float(ay_basi_equity) > 0:
+        aylik_getiri_pct = round((equity - float(ay_basi_equity)) / float(ay_basi_equity) * 100, 2)
+    else:
+        aylik_getiri_pct = None
+
+    islem_gecmisi = n.get("islem_gecmisi", [])
+    satis_olayi_sayisi = len(islem_gecmisi)
+    tamamlanan_pozisyon_sayisi = len([t for t in islem_gecmisi if t.get("neden") != "TP1"])
+
+    # Kâr faktörü: Parasal kâr / parasal zarar
+    kazanc_tl = 0.0
+    kayip_tl = 0.0
+    for t in islem_gecmisi:
+        if "tl_kar" in t and t["tl_kar"] is not None:
+            net_kar = float(t["tl_kar"])
+        else:
+            lot = float(t.get("lotlar", 1) or 1)
+            net_kar = lot * (float(t.get("cikis_fiyat", 0) or 0) - float(t.get("giris_fiyat", 0) or 0))
+        if net_kar > 0:
+            kazanc_tl += net_kar
+        elif net_kar < 0:
+            kayip_tl += abs(net_kar)
+
+    if kayip_tl > 0:
+        kar_faktoru = round(kazanc_tl / kayip_tl, 2)
+    elif kazanc_tl > 0:
+        kar_faktoru = 999.0
+    else:
+        kar_faktoru = 0.0
+
     return {
         "strateji": f"{kod} {ad}",
-        "sermaye": n["baslangic_sermayesi"],
-        # Mevcut davranış KORUNUR: state'te sermaye_mevcut yok → başlangıç
-        # sermayesi, %0 (bu migration'da DÜZELTİLMEZ — ayrı karar).
-        "equity_est": n["baslangic_sermayesi"],
-        "getiri_pct": 0.0,
-        "kapanan": len(n["islem_gecmisi"]),
-        "acik_sayisi": len(n["pozisyonlar"]),
-        "nakit": n["nakit"],
+        "sermaye": sermaye,
+        "equity_est": round(equity),
+        "getiri_pct": baslangictan_getiri_pct,
+        "baslangictan_getiri_pct": baslangictan_getiri_pct,
+        "aylik_getiri_pct": aylik_getiri_pct,
+        "kapanan": satis_olayi_sayisi,
+        "satis_olayi_sayisi": satis_olayi_sayisi,
+        "tamamlanan_pozisyon_sayisi": tamamlanan_pozisyon_sayisi,
+        "kar_faktoru": kar_faktoru,
+        "acik_sayisi": len(open_positions),
+        "nakit": nakit,
+        "acik_piyasa_degeri": round(acik_piyasa_degeri, 2),
+        "degerleme_eksik": fiyat_eksik,
     }
 
 
@@ -234,13 +312,17 @@ def rapor_olustur() -> dict:
         {"kod": "P5", "ad": "Komite", **{k: v for k, v in p5.items() if k != "strateji"}},
     ]
     for kod, ad, b in (("P1", "Momentum", p1), ("P2", "SMC", p2)):
+        durum_str = "fiyat_eksik" if b.get("degerleme_eksik") else None
         satirlar.append({
             "kod": kod,
             "ad": ad,
             "sermaye": b["sermaye"],
             "equity_est": b["equity_est"],
             "getiri_pct": b["getiri_pct"],
-            "durum": None,
+            "aylik_getiri_pct": b.get("aylik_getiri_pct"),
+            "kar_faktoru": b.get("kar_faktoru"),
+            "tamamlanan": b.get("tamamlanan_pozisyon_sayisi"),
+            "durum": durum_str,
             "sinyal_sayisi": None,
         })
 

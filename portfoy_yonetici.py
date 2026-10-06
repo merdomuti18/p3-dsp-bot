@@ -964,7 +964,36 @@ def portfoy_yukle() -> dict:
     return data
 
 
+def gunluk_equity_kaydet(portfoy: dict, now: datetime | None = None) -> dict:
+    """Günlük equity kaydını ileriye dönük oluşturur (geçmiş günlük equity'yi tahminle üretmez)."""
+    ref_now = now if now is not None else datetime.now()
+    bugun = ref_now.strftime("%Y-%m-%d")
+    tarihce = portfoy.setdefault("gunluk_equity_tarihcesi", [])
+    nakit = float(portfoy.get("nakit", 0.0) or 0.0)
+    acik_deger = 0.0
+    for sym, pos in (portfoy.get("pozisyonlar") or {}).items():
+        if isinstance(pos, dict):
+            lot = int(pos.get("lotlar", 0) or 0)
+            f = guncel_fiyat(sym) or float(pos.get("giris_f", 0.0) or 0.0)
+            acik_deger += lot * f
+    equity = round(nakit + acik_deger, 2)
+    idx = next((i for i, k in enumerate(tarihce) if isinstance(k, dict) and k.get("tarih") == bugun), None)
+    rec = {
+        "tarih": bugun,
+        "equity": equity,
+        "nakit": round(nakit, 2),
+        "acik_deger": round(acik_deger, 2),
+        "zaman": ref_now.isoformat(),
+    }
+    if idx is not None:
+        tarihce[idx] = rec
+    else:
+        tarihce.append(rec)
+    return portfoy
+
+
 def portfoy_kaydet(portfoy: dict):
+    gunluk_equity_kaydet(portfoy)
     with open(PORTFOY_FILE, "w", encoding="utf-8") as fh:
         json.dump(portfoy, fh, indent=2, ensure_ascii=False)
 
@@ -1810,10 +1839,11 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
                 "fiyat_zaman": f_detay.get("time", ""),
                 "tepe_f": round(giris_f, 4), "lotlar": lotlar, "gun": 0, "tp1_yapildi": False,
                 "max_gun_date": (date.today() + timedelta(days=MAX_GUN)).strftime("%d.%m.%Y"),
-                "final_score": aday["final_score"], "ma_score": aday["ma_score"],
-                "lgbm_score": aday["lgbm_score"],
-                "source_signal": {"score_count": aday["score_count"], "strategies": aday["strategies"],
-                                  "viop_bias": aday["viop_bias"], "alpha_tag": aday.get("alpha_tag",""),
+                "final_score": aday.get("final_score", 0),
+                "ma_score": aday.get("ma_score", 0),
+                "lgbm_score": aday.get("lgbm_score", None),
+                "source_signal": {"score_count": aday.get("score_count", 0), "strategies": aday.get("strategies", []),
+                                  "viop_bias": aday.get("viop_bias", "NEUTRAL"), "alpha_tag": aday.get("alpha_tag",""),
                                   "alpha_trend_bonus": aday.get("alpha_trend_bonus",0)},
             }
             portfoy.setdefault("islem_defteri", []).append({
@@ -1831,7 +1861,7 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
             mesajlar.append(
                 f"\U0001f6a8 <b>AL - {sym}</b>\n"
                 f"   {lotlar} lot @ {giris_f:.2f} TL\n"
-                f"   Skor: {aday['final_score']:.1f} {aday.get('alpha_tag','')} | V\u0130OP: {aday['viop_bias']}"
+                f"   Skor: {aday['final_score']:.1f} {aday.get('alpha_tag','')} | V\u0130OP: {aday.get('viop_bias', '')}"
             )
             append_jsonl(PORTFOY_AUDIT_FILE, {"event":"buy_success","symbol":sym,"price":giris_f,
                                                "lots":lotlar,"final_score":aday["final_score"]})
