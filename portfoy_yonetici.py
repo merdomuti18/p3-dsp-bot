@@ -109,6 +109,35 @@ WAITING_EXPIRES_HOUR     = 17
 EMERGENCY_LIQUIDATION_SCORE = 80
 RETRY_REASONS = {"veri_yok", "exception", "lot_yetersiz", "nakit_yetersiz"}
 
+# ── Merkezi İşlem Maliyeti ve Kayma Ayarları ────────────────────────────────
+VARSAYILAN_KOMISYON_ORANI  = 0.0005  # onbinde 5 (%0.05) varsayılan komisyon
+VARSAYILAN_KAYMA_ORANI     = 0.0010  # binde 1 (%0.10) varsayılan slippage
+MALIYET_VARSAYIMI_ACIKLAMA = "varsayilan_onbinde_5_komisyon_binde_1_kayma"
+
+
+def hesapla_cikis_kayma(tetik_f: float, open_f: float, kayma_orani: float = VARSAYILAN_KAYMA_ORANI) -> float:
+    """Satış işleminde kayma ve gap down hesabı:
+      Açılış stop/tetik seviyesinin altındaysa (gap down) açılıştan kayma düşülür.
+    """
+    if open_f < tetik_f:
+        return round(open_f * (1.0 - kayma_orani), 4)
+    return round(tetik_f * (1.0 - kayma_orani), 4)
+
+
+def hesapla_tp_kayma(tetik_f: float, open_f: float, kayma_orani: float = VARSAYILAN_KAYMA_ORANI) -> float:
+    """TP satışında: eğer açılış gap up ise (open_f > tetik_f), satış open_f üzerinden gerçekleşir."""
+    f = max(tetik_f, open_f)
+    return round(f * (1.0 - kayma_orani), 4)
+
+
+def hesapla_net_tutar(lotlar: int, fiyat: float, komisyon_orani: float = VARSAYILAN_KOMISYON_ORANI, islem: str = "satis") -> tuple[float, float]:
+    """Net nakit tutarı ve komisyonu hesaplar."""
+    brut = lotlar * fiyat
+    komisyon = round(brut * komisyon_orani, 4)
+    if islem == "satis":
+        return round(brut - komisyon, 4), komisyon
+    return round(brut + komisyon, 4), komisyon
+
 
 def _parse_tarih(t_val) -> date | None:
     if not t_val:
@@ -255,12 +284,27 @@ def _p2_alim_listesi() -> set[str]:
         return set()
 
 
-def _trade_kaydet(portfoy: dict, sym: str, pos: dict, cikis_f: float,
-                  neden: str, lotlar: int | None = None):
+def _trade_kaydet(
+    portfoy: dict,
+    sym: str,
+    pos: dict,
+    cikis_f: float,
+    neden: str,
+    lotlar: int | None = None,
+    tp1_tetik_fiyat: float | None = None,
+    ambiguity: str | None = None,
+    fiyat_kaynak: str | None = None,
+    fiyat_zaman: str | None = None,
+    likidite_teyitli: bool = True,
+    event_id: str | None = None,
+    now: datetime | None = None,
+):
     """Kapanan (veya kısmi kapanan) işlemi portföy JSON'ındaki trade_history'ye
-    yaz — P4/P5 şemasıyla uyumlu. Audit JSONL'e ek olarak tutulur; kalıcı
-    performans raporu ve cooldown kontrolü bu listeden beslenir."""
+    ve işlem defterine yaz — P1/P4/P5 şemasıyla uyumlu. Audit JSONL'e ek olarak tutulur;
+    kalıcı performans raporu, denetim ve cooldown kontrolü bu listeden beslenir."""
+    ref_now = now if now is not None else datetime.now()
     giris_f = pos.get("giris_f", 0) or 0
+    actual_lots = int(lotlar if lotlar is not None else pos.get("lotlar", 0))
     pnl = (cikis_f - giris_f) / giris_f * 100 if giris_f else 0.0
     giris_t = str(pos.get("giris_t", ""))
     giris_iso = ""
@@ -268,16 +312,59 @@ def _trade_kaydet(portfoy: dict, sym: str, pos: dict, cikis_f: float,
         giris_iso = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date().isoformat()
     except Exception:
         giris_iso = giris_t[:10]
-    portfoy.setdefault("trade_history", []).append({
+
+    pos_id = pos.get("position_id") or f"P1_{sym}_{giris_iso.replace('-', '')}_{abs(hash(sym + str(giris_f))) % 100000:05d}"
+    evt_id = event_id or f"EVT_EXIT_{ref_now.strftime('%Y%m%d%H%M%S')}_{abs(hash(sym + neden + str(actual_lots))) % 100000:05d}"
+
+    net_tutar, komisyon = hesapla_net_tutar(actual_lots, cikis_f, islem="satis")
+    brut_tutar = actual_lots * cikis_f
+    maliyet = actual_lots * giris_f
+    net_tl_kar = round(net_tutar - maliyet, 2)
+    brut_tl_kar = round(brut_tutar - maliyet, 2)
+
+    rec = {
         "symbol":       sym,
         "giris_fiyat":  giris_f,
         "cikis_fiyat":  round(float(cikis_f), 4),
-        "lotlar":       lotlar if lotlar is not None else pos.get("lotlar", 0),
+        "lotlar":       actual_lots,
         "pnl_pct":      round(pnl, 2),
-        "gun":          _elde_tutma_gunu(giris_t),
+        "gun":          _elde_tutma_gunu(giris_t, now_date=ref_now.date()),
         "neden":        neden,
         "giris_tarih":  giris_iso,
-        "cikis_tarih":  date.today().isoformat(),
+        "cikis_tarih":  ref_now.date().isoformat(),
+        # Ek muhasebe ve denetim alanları
+        "position_id":       pos_id,
+        "event_id":          evt_id,
+        "tl_kar":            net_tl_kar,
+        "brut_tl_kar":       brut_tl_kar,
+        "komisyon":          komisyon,
+        "kayma_orani":       VARSAYILAN_KAYMA_ORANI,
+        "maliyet_varsayimi": MALIYET_VARSAYIMI_ACIKLAMA,
+        "likidite_teyitli":  likidite_teyitli,
+    }
+    if tp1_tetik_fiyat is not None:
+        rec["tp1_trigger_price"] = tp1_tetik_fiyat
+    if ambiguity is not None:
+        rec["ambiguity"] = ambiguity
+    if fiyat_kaynak:
+        rec["fiyat_kaynak"] = fiyat_kaynak
+    if fiyat_zaman:
+        rec["fiyat_zaman"] = fiyat_zaman
+
+    portfoy.setdefault("trade_history", []).append(rec)
+
+    # İşlem defteri (Ledger): nakit ve lot hareketlerinin yeniden hesaplanabilmesi için
+    portfoy.setdefault("islem_defteri", []).append({
+        "event_id":     evt_id,
+        "position_id":  pos_id,
+        "symbol":       sym,
+        "islem_tipi":   f"SATIS_{neden}",
+        "lot":          actual_lots,
+        "fiyat":        round(float(cikis_f), 4),
+        "brut_tutar":   round(brut_tutar, 4),
+        "komisyon":     komisyon,
+        "nakit_etkisi": round(net_tutar, 4),
+        "zaman":        ref_now.isoformat(),
     })
 
 # ── LGBM global (uygulama başında bir kez yüklenir) ──────────────────────────
@@ -1705,13 +1792,20 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
                 append_jsonl(PORTFOY_AUDIT_FILE, {"event":"buy_failed","symbol":sym,"reason":"lot_yetersiz"})
                 continue
             maliyet = lotlar * giris_f
-            if maliyet > nakit:
+            net_alis_tutari, buy_komisyon = hesapla_net_tutar(lotlar, giris_f, islem="alis")
+            if net_alis_tutari > nakit:
                 alinmayan.append({"symbol": sym, "reason": "nakit_yetersiz"})
                 append_jsonl(PORTFOY_AUDIT_FILE, {"event":"buy_failed","symbol":sym,"reason":"nakit_yetersiz"})
                 continue
-            nakit -= maliyet
+            nakit -= net_alis_tutari
+            now_dt = datetime.now()
+            iso_now = now_dt.isoformat()
+            pos_id = f"P1_{sym}_{now_dt.strftime('%Y%m%d%H%M%S')}_{abs(hash(sym + str(lotlar))) % 100000:05d}"
+            buy_evt_id = f"EVT_BUY_{now_dt.strftime('%Y%m%d%H%M%S')}_{abs(hash(sym + str(giris_f))) % 100000:05d}"
             mevcut[sym] = {
-                "giris_f": round(giris_f, 4), "giris_t": datetime.now().strftime("%d.%m.%Y %H:%M"),
+                "position_id": pos_id,
+                "entry_event_id": buy_evt_id,
+                "giris_f": round(giris_f, 4), "giris_t": now_dt.strftime("%d.%m.%Y %H:%M"),
                 "fiyat_kaynak": f_detay.get("source", "unknown"),
                 "fiyat_zaman": f_detay.get("time", ""),
                 "tepe_f": round(giris_f, 4), "lotlar": lotlar, "gun": 0, "tp1_yapildi": False,
@@ -1722,6 +1816,18 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
                                   "viop_bias": aday["viop_bias"], "alpha_tag": aday.get("alpha_tag",""),
                                   "alpha_trend_bonus": aday.get("alpha_trend_bonus",0)},
             }
+            portfoy.setdefault("islem_defteri", []).append({
+                "event_id":     buy_evt_id,
+                "position_id":  pos_id,
+                "symbol":       sym,
+                "islem_tipi":   "ALIS",
+                "lot":          lotlar,
+                "fiyat":        round(giris_f, 4),
+                "brut_tutar":   round(maliyet, 4),
+                "komisyon":     buy_komisyon,
+                "nakit_etkisi": -round(net_alis_tutari, 4),
+                "zaman":        iso_now,
+            })
             mesajlar.append(
                 f"\U0001f6a8 <b>AL - {sym}</b>\n"
                 f"   {lotlar} lot @ {giris_f:.2f} TL\n"
@@ -1756,39 +1862,132 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str, makro_skor: float
             already_evaluated_bar = bool(bar_time) and (pos.get("last_bar_time") == bar_time)
 
             if not already_evaluated_bar:
-                pos["tepe_f"] = max(pos.get("tepe_f", giris_f), high)
-                # STOP
-                if (low - giris_f) / giris_f <= STOP_PCT:
-                    cikis_f = round(giris_f * (1 + STOP_PCT), 4)
-                    portfoy["nakit"] += lotlar * cikis_f
-                    _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP")
+                prev_tepe_f = float(pos.get("tepe_f", giris_f))
+                stop_seviyesi = round(giris_f * (1 + STOP_PCT), 4)
+                tp1_seviyesi = round(giris_f * (1 + TP1_PCT), 4)
+                is_stop = low <= stop_seviyesi
+                is_tp1 = (high >= tp1_seviyesi) and not pos.get("tp1_yapildi")
+                likidite_teyitli = bool(bar.get("volume", 0) > 0)
+
+                # Belirsizlik: STOP ve TP1 aynı mumda görüldüyse muhafazakâr stop önceliği
+                if is_stop and is_tp1:
+                    ambiguity = "both_stop_and_tp_in_bar"
+                    if bar["open"] <= stop_seviyesi:
+                        cikis_f = round(bar["open"] * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    else:
+                        cikis_f = round(stop_seviyesi * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    net_tutar, komisyon = hesapla_net_tutar(lotlar, cikis_f, islem="satis")
+                    portfoy["nakit"] += net_tutar
+                    _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP",
+                                  ambiguity=ambiguity, likidite_teyitli=likidite_teyitli, now=ref_now)
                     kapatilacak.append(sym)
-                    mesajlar.append(f"\U0001f6d1 <b>STOP - {sym}</b>\n   Giriş: {giris_f:.2f} \u2192 Çıkış: {cikis_f:.2f}")
-                    append_jsonl(PORTFOY_AUDIT_FILE, {"event":"stop","symbol":sym,"exit_price":cikis_f,"return_pct":STOP_PCT*100})
+                    ret_g = (cikis_f - giris_f) / giris_f
+                    mesajlar.append(
+                        f"\U0001f6d1 <b>STOP (Belirsiz Mum) - {sym}</b>\n"
+                        f"   Giriş: {giris_f:.2f} \u2192 Çıkış: {cikis_f:.2f} ({ret_g*100:+.1f}%) [Aynı barda TP1 ve STOP görüldü]"
+                    )
+                    append_jsonl(PORTFOY_AUDIT_FILE, {
+                        "event": "stop",
+                        "symbol": sym,
+                        "exit_price": cikis_f,
+                        "return_pct": ret_g * 100,
+                        "ambiguity": ambiguity,
+                        "likidite_teyitli": likidite_teyitli,
+                    })
                     pos["last_bar_time"] = bar_time
                     continue
-                # TP1
-                if (high - giris_f) / giris_f >= TP1_PCT and not pos.get("tp1_yapildi"):
-                    yari = max(1, lotlar // 2)
-                    portfoy["nakit"] += yari * close
-                    pos["lotlar"] -= yari
+
+                # Bağımsız STOP kontrolü
+                if is_stop:
+                    if bar["open"] <= stop_seviyesi:
+                        # Gap down: açılış stop seviyesinin altında
+                        cikis_f = round(bar["open"] * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    else:
+                        cikis_f = round(stop_seviyesi * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    net_tutar, komisyon = hesapla_net_tutar(lotlar, cikis_f, islem="satis")
+                    portfoy["nakit"] += net_tutar
+                    _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP", likidite_teyitli=likidite_teyitli, now=ref_now)
+                    kapatilacak.append(sym)
+                    ret_g = (cikis_f - giris_f) / giris_f
+                    mesajlar.append(f"\U0001f6d1 <b>STOP - {sym}</b>\n   Giriş: {giris_f:.2f} \u2192 Çıkış: {cikis_f:.2f} ({ret_g*100:+.1f}%)")
+                    append_jsonl(PORTFOY_AUDIT_FILE, {
+                        "event": "stop",
+                        "symbol": sym,
+                        "exit_price": cikis_f,
+                        "return_pct": ret_g * 100,
+                        "gap_down": bool(bar["open"] <= stop_seviyesi),
+                        "likidite_teyitli": likidite_teyitli,
+                    })
+                    pos["last_bar_time"] = bar_time
+                    continue
+
+                # TP1 kontrolü
+                if is_tp1:
+                    if bar["open"] >= tp1_seviyesi:
+                        tp1_cikis_f = round(bar["open"] * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    else:
+                        tp1_cikis_f = round(tp1_seviyesi * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+
+                    realized_pnl_pct = round((tp1_cikis_f - giris_f) / giris_f * 100, 2)
+
+                    if lotlar <= 1:
+                        yari = 1
+                        pos["lotlar"] = 0
+                        kapatilacak.append(sym)
+                    else:
+                        yari = lotlar // 2
+                        pos["lotlar"] -= yari
+
                     pos["tp1_yapildi"] = True
-                    _trade_kaydet(portfoy, sym, pos, close, "TP1", lotlar=yari)
-                    mesajlar.append(f"\U0001f3af <b>TP1 - {sym}</b>\n   {yari} lot @ {close:.2f} satıldı (+{TP1_PCT*100:.0f}%)")
-                    append_jsonl(PORTFOY_AUDIT_FILE, {"event":"tp1","symbol":sym,"price":close,"remaining":pos["lotlar"]})
-                # TRAILING
+                    net_tutar, komisyon = hesapla_net_tutar(yari, tp1_cikis_f, islem="satis")
+                    portfoy["nakit"] += net_tutar
+                    _trade_kaydet(portfoy, sym, pos, tp1_cikis_f, "TP1", lotlar=yari,
+                                  tp1_tetik_fiyat=tp1_seviyesi, likidite_teyitli=likidite_teyitli, now=ref_now)
+
+                    mesajlar.append(
+                        f"\U0001f3af <b>TP1 - {sym}</b>\n"
+                        f"   {yari} lot @ {tp1_cikis_f:.2f} satıldı ({realized_pnl_pct:+.2f}%) [Tetik: {tp1_seviyesi:.2f}]"
+                    )
+                    append_jsonl(PORTFOY_AUDIT_FILE, {
+                        "event": "tp1",
+                        "symbol": sym,
+                        "tp1_trigger_price": tp1_seviyesi,
+                        "simulated_fill_price": tp1_cikis_f,
+                        "realized_return_pct": realized_pnl_pct,
+                        "sold_lots": yari,
+                        "remaining_lots": pos["lotlar"],
+                        "likidite_teyitli": likidite_teyitli,
+                    })
+                    if pos["lotlar"] == 0:
+                        pos["last_bar_time"] = bar_time
+                        continue
+
+                # TRAILING kontrolü (Önceki mumlardan bilinen prev_tepe_f kullanılır)
                 elif pos.get("tp1_yapildi"):
-                    trail_ret = (low - pos["tepe_f"]) / pos["tepe_f"]
+                    trail_ret = (low - prev_tepe_f) / prev_tepe_f
                     if trail_ret <= TRAILING_PCT:
-                        cikis_f = round(pos["tepe_f"] * (1 + TRAILING_PCT), 4)
-                        portfoy["nakit"] += pos["lotlar"] * cikis_f
-                        _trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING")
+                        trail_seviyesi = round(prev_tepe_f * (1 + TRAILING_PCT), 4)
+                        if bar["open"] <= trail_seviyesi:
+                            cikis_f = round(bar["open"] * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                        else:
+                            cikis_f = round(trail_seviyesi * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                        net_tutar, komisyon = hesapla_net_tutar(pos["lotlar"], cikis_f, islem="satis")
+                        portfoy["nakit"] += net_tutar
+                        _trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING", likidite_teyitli=likidite_teyitli, now=ref_now)
                         kapatilacak.append(sym)
                         ret_g = (cikis_f - giris_f) / giris_f
                         mesajlar.append(f"\U0001f4c9 <b>TRAILING - {sym}</b>\n   Çıkış: {cikis_f:.2f} | Getiri: {ret_g*100:+.1f}%")
-                        append_jsonl(PORTFOY_AUDIT_FILE, {"event":"trailing","symbol":sym,"exit_price":cikis_f,"return_pct":ret_g*100})
+                        append_jsonl(PORTFOY_AUDIT_FILE, {
+                            "event": "trailing",
+                            "symbol": sym,
+                            "exit_price": cikis_f,
+                            "return_pct": ret_g * 100,
+                            "likidite_teyitli": likidite_teyitli,
+                        })
                         pos["last_bar_time"] = bar_time
                         continue
+
+                pos["tepe_f"] = max(prev_tepe_f, high)
                 pos["last_bar_time"] = bar_time
 
             # MAX GUN (Takvim günü bazlı kontrol)
@@ -1823,8 +2022,9 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str, makro_skor: float
                     # Erken MAX_GUN satışı yapma, pozisyonu tutmaya devam et!
                     continue
 
-                portfoy["nakit"] += pos["lotlar"] * close
-                _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
+                net_tutar, komisyon = hesapla_net_tutar(pos["lotlar"], close, islem="satis")
+                portfoy["nakit"] += net_tutar
+                _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN", likidite_teyitli=bool(bar.get("volume", 0) > 0), now=ref_now)
                 kapatilacak.append(sym)
                 gun_ret = (close - giris_f) / giris_f
                 mesajlar.append(f"\u23f0 <b>MAX GÜN - {sym}</b>\n   Çıkış: {close:.2f} | Getiri: {gun_ret*100:+.1f}%")
