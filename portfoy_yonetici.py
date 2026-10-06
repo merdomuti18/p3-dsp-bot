@@ -70,6 +70,7 @@ VIOP_TICKER   = os.environ.get("VIOP_TICKER", "XU030.IS")
 
 BASE_DIR             = Path(__file__).parent
 PORTFOY_FILE         = BASE_DIR / "portfoy.json"
+STATE_P1_FILE        = BASE_DIR / "state_p1.json"
 TARAMA_FILE          = BASE_DIR / "tarama_listesi.json"
 LGBM_MODEL_FILE      = BASE_DIR / "lgbm_model.pkl"
 LGBM_META_FILE       = BASE_DIR / "lgbm_ozellikler.json"
@@ -1068,6 +1069,136 @@ def _makro_cache_temizle():
     _MAKRO_CACHE = {"value": None, "fetched_at": None}
 
 
+def makro_karar_olustur(
+    skor: float,
+    karar: str,
+    detaylar: list,
+    piyasa_ret: dict,
+    kaynak: str = "sabah_09_akisi",
+    now: datetime | None = None,
+) -> dict:
+    """Sabah veya gün içi değerlendirilen makro kararını standart metadata ile paketler."""
+    ref_now = now if now is not None else datetime.now()
+    run_id = os.environ.get("GITHUB_RUN_ID") or f"run_{ref_now.strftime('%Y%m%d_%H%M%S')}"
+    return {
+        "karar": karar,
+        "skor": round(float(skor), 2),
+        "zaman": ref_now.isoformat(),
+        "gecerlilik_tarih": ref_now.strftime("%Y-%m-%d"),
+        "kaynak": kaynak,
+        "run_id": str(run_id),
+        "piyasa_ret": {k: round(float(v), 2) for k, v in piyasa_ret.items()} if piyasa_ret else {},
+        "detay_sayisi": len(detaylar) if detaylar else 0,
+        "valid": True,
+    }
+
+
+def get_aktif_makro_karar(
+    portfoy: dict | None = None,
+    now: datetime | None = None,
+) -> tuple[str, float, dict]:
+    """Aktif makro kararını, skorunu ve doğrulama metadata'sını döndürür.
+
+    Doğrulama kuralları:
+      - Karar 'NORMAL', 'DIKKATLI' veya 'GIRME' olmalıdır.
+      - gecerlilik_tarih bugünün tarihi ile eşleşmelidir.
+      - Karar zamanı son 14 saat içinde olmalıdır.
+      - Eksik, bozuk, parse edilemeyen veya süresi geçmiş kararda:
+        -> 'GIRME' döndürülür, valid=False olarak işaretlenir.
+        -> Yeni alım engellenir, mevcut pozisyon risk kontrolleri devam eder.
+    """
+    ref_now = now if now is not None else datetime.now()
+    bugun_str = ref_now.strftime("%Y-%m-%d")
+
+    data = None
+    if portfoy and isinstance(portfoy.get("makro_karar"), dict):
+        data = portfoy["makro_karar"]
+    elif PORTFOY_FILE.exists():
+        try:
+            with open(PORTFOY_FILE, encoding="utf-8") as fh:
+                pj = json.load(fh)
+                if isinstance(pj.get("makro_karar"), dict):
+                    data = pj["makro_karar"]
+        except Exception:
+            pass
+
+    if data is None and STATE_P1_FILE.exists():
+        try:
+            with open(STATE_P1_FILE, encoding="utf-8") as fh:
+                sp = json.load(fh)
+                if isinstance(sp.get("makro_karar"), dict):
+                    data = sp["makro_karar"]
+        except Exception:
+            pass
+
+    if data is None and DURUM_FILE.exists():
+        try:
+            with open(DURUM_FILE, encoding="utf-8") as fh:
+                df = json.load(fh)
+                if df.get("makro_karar"):
+                    data = {
+                        "karar": df.get("makro_karar"),
+                        "skor": df.get("makro_skor", 0.0),
+                        "zaman": df.get("tarih", ""),
+                        "gecerlilik_tarih": df.get("tarih", "")[:10] if df.get("tarih") else "",
+                        "kaynak": "son_durum_fallback",
+                        "run_id": "legacy_son_durum",
+                    }
+        except Exception:
+            pass
+
+    if not data:
+        meta = {"valid": False, "reason": "makro_karar_yok", "karar": "GIRME", "skor": 0.0}
+        return "GIRME", 0.0, meta
+
+    karar = str(data.get("karar", "")).upper()
+    if karar not in ("NORMAL", "DIKKATLI", "GIRME"):
+        meta = {"valid": False, "reason": "bozuk_karar_degeri", "raw": data, "karar": "GIRME", "skor": 0.0}
+        return "GIRME", 0.0, meta
+
+    gecerlilik = str(data.get("gecerlilik_tarih", ""))
+    zaman_raw = str(data.get("zaman", ""))
+    skor = float(data.get("skor", 0.0) or 0.0)
+
+    tarih_uyusuyor = False
+    if gecerlilik == bugun_str:
+        tarih_uyusuyor = True
+    elif zaman_raw:
+        z_dt = _parse_datetime(zaman_raw)
+        if z_dt and z_dt.date() == ref_now.date():
+            tarih_uyusuyor = True
+
+    if not tarih_uyusuyor:
+        meta = {
+            "valid": False,
+            "reason": "suresi_gecmis_karar",
+            "gecerlilik_tarih": gecerlilik,
+            "bugun": bugun_str,
+            "karar": "GIRME",
+            "skor": skor,
+            "run_id": data.get("run_id", ""),
+        }
+        return "GIRME", skor, meta
+
+    z_dt = _parse_datetime(zaman_raw)
+    if z_dt:
+        if z_dt.tzinfo is not None and ref_now.tzinfo is None:
+            z_dt = z_dt.replace(tzinfo=None)
+        elif z_dt.tzinfo is None and ref_now.tzinfo is not None:
+            ref_now = ref_now.replace(tzinfo=None)
+        diff = ref_now - z_dt
+        if diff.total_seconds() < -300:
+            meta = {"valid": False, "reason": "gelecek_tarihli_karar", "karar": "GIRME", "skor": skor}
+            return "GIRME", skor, meta
+        if diff.total_seconds() > 14 * 3600:
+            meta = {"valid": False, "reason": "karar_14h_asildi", "karar": "GIRME", "skor": skor}
+            return "GIRME", skor, meta
+
+    meta = dict(data)
+    meta["valid"] = True
+    return karar, skor, meta
+
+
 def viop_bias_hesapla() -> dict:
     """
     BIST yön tahmini için proxy zinciri:
@@ -1423,9 +1554,10 @@ def portfolio_preview(portfoy: dict) -> dict:
             "n_positions": len(portfoy.get("pozisyonlar", {}))}
 
 
-def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: dict):
+def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: dict, makro_meta: dict | None = None):
     if makro_karar == "GIRME":
-        return portfoy, [], [], [{"symbol": a["symbol"], "reason": "makro_girme"} for a in adaylar]
+        sub_reason = "makro_gecersiz" if (makro_meta and not makro_meta.get("valid", True)) else "makro_girme"
+        return portfoy, [], [], [{"symbol": a["symbol"], "reason": sub_reason} for a in adaylar]
     mesajlar, alinan, alinmayan = [], [], []
     mevcut   = portfoy["pozisyonlar"]
     nakit    = portfoy["nakit"]
@@ -1495,7 +1627,7 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
     return portfoy, mesajlar, alinan, alinmayan
 
 
-def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str, now: datetime | None = None):
+def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str, makro_skor: float | None = None, now: datetime | None = None):
     mesajlar, kapatilacak = [], []
     ref_now = now if now is not None else datetime.now()
     ref_date = ref_now.date()
@@ -1586,16 +1718,15 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str, now: datetime | N
             log.debug("Pozisyon guncelle %s: %s", sym, exc)
     for sym in kapatilacak:
         portfoy["pozisyonlar"].pop(sym, None)
-    # Acil likidasyon
-    makro_skor = guncel_makro_skoru()
-    if makro_karar == "GIRME" and portfoy["pozisyonlar"] and makro_skor >= EMERGENCY_LIQUIDATION_SCORE:
+    # Acil likidasyon: Yalnızca makro_karar ve makro_skor aynı tutarlı makro değerlendirmesinde GIRME ve skor >= EMERGENCY_LIQUIDATION_SCORE ise
+    if makro_skor is not None and makro_karar == "GIRME" and portfoy["pozisyonlar"] and makro_skor >= EMERGENCY_LIQUIDATION_SCORE:
         semboller = list(portfoy["pozisyonlar"].keys())
         for sym in semboller:
             pos = portfoy["pozisyonlar"].pop(sym)
             f   = guncel_fiyat(sym) or pos["giris_f"]
             portfoy["nakit"] += pos["lotlar"] * f
             _trade_kaydet(portfoy, sym, pos, f, "ACIL_NAKIT")
-        mesajlar.append(f"\U0001f6a8 <b>AC\u0130L NAK\u0130T</b>\n   Makro skor {makro_skor:.1f} \u2192 {len(semboller)} pozisyon kapat\u0131ld\u0131")
+        mesajlar.append(f"\U0001f6a8 <b>ACİL NAKİT</b>\n   Makro skor {makro_skor:.1f} → {len(semboller)} pozisyon kapatıldı")
         append_jsonl(PORTFOY_AUDIT_FILE, {"event":"risk_off_liquidation","symbols":semboller,"makro_skor":makro_skor})
     return portfoy, mesajlar
 
@@ -1653,11 +1784,11 @@ def portfoy_ozet_mesaji(portfoy: dict, saat_label: str, model_status: str = "pas
     return "\n".join(lines)
 
 
-def alim_denemesi(portfoy: dict, makro_karar: str, viop_bias: dict, now: datetime):
+def alim_denemesi(portfoy: dict, makro_karar: str, viop_bias: dict, now: datetime, makro_meta: dict | None = None):
     aktif, expired = ayikla_suresi_dolan_bekleyenler(portfoy.get("bekleyen_al", []), now)
     portfoy["bekleyen_al"] = aktif
     portfoy, al_mesajlari, alinanlar, alinmayanlar = yeni_pozisyon_ac(
-        portfoy, aktif, makro_karar, viop_bias)
+        portfoy, aktif, makro_karar, viop_bias, makro_meta=makro_meta)
     portfoy["bekleyen_al"] = [x for x in aktif if x["symbol"] not in set(alinanlar)]
     # Deneme kaydını güncelle
     for item in portfoy["bekleyen_al"]:
@@ -1710,6 +1841,8 @@ def sabah_09_akisi():
         bekleyen.append(bekleyen_adayi_hazirla(aday, now))
     portfoy["bekleyen_al"] = bekleyen
     portfoy["open_attempts_today"] = []
+    makro_payload = makro_karar_olustur(skor, karar, detaylar, piyasa_ret, kaynak="sabah_09_akisi", now=now)
+    portfoy["makro_karar"] = makro_payload
     portfoy_kaydet(portfoy)
     durum_kaydet({
         "tarih": saat_label,
@@ -1752,21 +1885,23 @@ def sabah_09_akisi():
     return karar
 
 
-def saat_11_alim(makro_karar: str):
-    now = datetime.now()
+def saat_11_alim(makro_karar: str | None = None, makro_skor: float | None = None, makro_meta: dict | None = None, now: datetime | None = None):
+    ref_now = now if now is not None else datetime.now()
     viop_bias = viop_bias_hesapla()
     portfoy = portfoy_yukle()
+    if makro_karar is None:
+        makro_karar, makro_skor, makro_meta = get_aktif_makro_karar(portfoy, now=ref_now)
     onceki = set(portfoy["pozisyonlar"].keys())
     mesajlar = []
     # Piyasa açılışından itibaren (10:00 TSİ) STOP/TP kontrolü de burada
     # yapılır — yalnızca "takip" penceresini (11:20+) beklemek, sabah erken
     # saatlerde taşınan pozisyonların saatlerce izlenmeden kalmasına yol açardı.
     if portfoy["pozisyonlar"]:
-        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar)
+        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar, makro_skor=makro_skor, now=ref_now)
         mesajlar.extend(islem_msg)
-    portfoy, al_msg, summary = alim_denemesi(portfoy, makro_karar, viop_bias, now)
+    portfoy, al_msg, summary = alim_denemesi(portfoy, makro_karar, viop_bias, ref_now, makro_meta=makro_meta)
     mesajlar.extend(al_msg)
-    portfoy["last_hourly_check_time"] = now.strftime("%d.%m.%Y %H:%M")
+    portfoy["last_hourly_check_time"] = ref_now.strftime("%d.%m.%Y %H:%M")
     portfoy_kaydet(portfoy)
     if mesajlar:
         sonra = set(portfoy["pozisyonlar"].keys())
@@ -1783,23 +1918,25 @@ def saat_1130_ozeti():
     log.info("11:30 ozet: islem bazli politika nedeniyle Telegram atlanir")
 
 
-def saatlik_kontrol(makro_karar: str):
-    now = datetime.now()
+def saatlik_kontrol(makro_karar: str | None = None, makro_skor: float | None = None, makro_meta: dict | None = None, now: datetime | None = None):
+    ref_now = now if now is not None else datetime.now()
     viop_bias = viop_bias_hesapla()
     portfoy = portfoy_yukle()
+    if makro_karar is None:
+        makro_karar, makro_skor, makro_meta = get_aktif_makro_karar(portfoy, now=ref_now)
     onceki = set(portfoy["pozisyonlar"].keys())
     mesajlar = []
     if portfoy["pozisyonlar"]:
-        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar)
+        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar, makro_skor=makro_skor, now=ref_now)
         mesajlar.extend(islem_msg)
     portfoy["bekleyen_al"] = retry_bekleyenleri_filtrele(portfoy.get("bekleyen_al", []))
     if portfoy["bekleyen_al"]:
-        portfoy, al_msg, _ = alim_denemesi(portfoy, makro_karar, viop_bias, now)
+        portfoy, al_msg, _ = alim_denemesi(portfoy, makro_karar, viop_bias, ref_now, makro_meta=makro_meta)
         mesajlar.extend(al_msg)
-    portfoy["last_hourly_check_time"] = now.strftime("%d.%m.%Y %H:%M")
+    portfoy["last_hourly_check_time"] = ref_now.strftime("%d.%m.%Y %H:%M")
     portfoy_kaydet(portfoy)
     append_jsonl(PORTFOY_AUDIT_FILE, {
-        "event": "hourly_check", "saat": now.strftime("%H:%M"),
+        "event": "hourly_check", "saat": ref_now.strftime("%H:%M"),
         "pozisyon_sayisi": len(portfoy["pozisyonlar"]),
         "bekleyen_sayisi": len(portfoy.get("bekleyen_al", [])),
     })
@@ -2030,8 +2167,9 @@ def main():
 
         # 11:00 İlk alım
         elif saat == "11:00" and not saat_11_yapildi:
-            saat_11_alim(makro_karar)
-            p2_saatlik_kontrol(makro_karar)
+            karar, skor, meta = get_aktif_makro_karar(portfoy_yukle(), now=now)
+            saat_11_alim(karar, makro_skor=skor, makro_meta=meta, now=now)
+            p2_saatlik_kontrol(karar)
             saat_11_yapildi = True
             son_saat = saat
             time.sleep(61)
@@ -2045,8 +2183,9 @@ def main():
 
         # 12:00-17:00 Saatlik kontrol
         elif now.minute == 0 and 12 <= now.hour <= 17 and son_saat != saat:
-            saatlik_kontrol(makro_karar)
-            p2_saatlik_kontrol(makro_karar)
+            karar, skor, meta = get_aktif_makro_karar(portfoy_yukle(), now=now)
+            saatlik_kontrol(karar, makro_skor=skor, makro_meta=meta, now=now)
+            p2_saatlik_kontrol(karar)
             son_saat = saat
             time.sleep(61)
 
@@ -2078,10 +2217,10 @@ if __name__ == "__main__":
         cmd = sys.argv[1].lower()
         cmds = {
             "sabah":  sabah_09_akisi,
-            "alim":   lambda: saat_11_alim("NORMAL"),
+            "alim":   lambda: saat_11_alim(),
             "ozet":   saat_1130_ozeti,
             "kapani": kapanis_ozeti_1730,
-            "takip":  lambda: saatlik_kontrol("NORMAL"),
+            "takip":  lambda: saatlik_kontrol(),
             "durum":  lambda: print(json.dumps(portfoy_yukle(), indent=2, ensure_ascii=False)),
             "viop":   lambda: print(json.dumps(viop_bias_hesapla(), ensure_ascii=False)),
             "makro":  lambda: [print(f"Skor: {s} -> {k}") or [print(f"  {t}: {v:+.2f}%") for t,v in pr.items()]
