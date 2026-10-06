@@ -1,0 +1,206 @@
+[
+  {
+    "scenario": "S1_20kBoyut_Maliyet1.2pct",
+    "position_size": 20000.0,
+    "roundtrip_cost_pct": 1.2,
+    "trades_count": 520,
+    "capacity_skipped_count": 93,
+    "final_equity_tl": 182274.34,
+    "total_return_pct": 82.27,
+    "cagr_pct": 12.76,
+    "max_daily_mtm_dd_pct": -22.14,
+    "avg_open_positions": 1.38,
+    "agent_breakdown": [
+      {
+        "primary_agent": "ALPHA_B",
+        "n": 63,
+        "win": 57.14,
+        "mean_ret": 1.2569841269841269,
+        "pnl_tl": 15894.800000000001
+      },
+      {
+        "primary_agent": "GTD",
+        "n": 412,
+        "win": 50.97,
+        "mean_ret": 0.771745145631068,
+        "pnl_tl": 63403.880000000005
+      },
+      {
+        "primary_agent": "ZT3",
+        "n": 45,
+        "win": 44.44,
+        "mean_ret": 0.33269555555555563,
+        "pnl_tl": 2975.5600000000004
+      }
+    ],
+    "regime_breakdown": [
+      {
+        "regime_bull": false,
+        "n": 31,
+        "win": 61.29,
+        "mean_ret": 1.6168967741935485,
+        "pnl_tl": 10025.690000000002
+      },
+      {
+        "regime_bull": true,
+        "n": 489,
+        "win": 50.51,
+        "mean_ret": 0.7402791411042945,
+        "pnl_tl": 72248.55
+      }
+    ]
+  },
+  {
+    "scenario": "S2_10kBoyut_Maliyet1.2pct",
+    "position_size": 10000.0,
+    "roundtrip_cost_pct": 1.2,
+    "trades_count": 522,
+    "capacity_skipped_count": 99,
+    "final_equity_tl": 141770.9,
+    "total_return_pct": 41.77,
+    "cagr_pct": 7.23,
+    "max_daily_mtm_dd_pct": -14.3,
+    "avg_open_positions": 1.39,
+    "agent_breakdown": [
+      {
+        "primary_agent": "ALPHA_B",
+        "n": 64,
+        "win": 56.25,
+        "mean_ret": 1.138203125,
+        "pnl_tl": 7284.459999999999
+      },
+      {
+        "primary_agent": "GTD",
+        "n": 413,
+        "win": 51.09,
+        "mean_ret": 0.7924937046004842,
+        "pnl_tl": 32999.09
+      },
+      {
+        "primary_agent": "ZT3",
+        "n": 45,
+        "win": 44.44,
+        "mean_ret": 0.33207333333333333,
+        "pnl_tl": 1487.4099999999996
+      }
+    ],
+    "regime_breakdown": [
+      {
+        "regime_bull": false,
+        "n": 31,
+        "win": 61.29,
+        "mean_ret": 1.6129064516129032,
+        "pnl_tl": 4975.69
+      },
+      {
+        "regime_bull": true,
+        "n": 491,
+        "win": 50.51,
+        "mean_ret": 0.7435602851323829,
+        "pnl_tl": 36795.27
+      }
+    ]
+  },
+  {
+    "scenario": "S3_20kBoyut_Maliyet0.8pct",
+    "position_size": 20000.0,
+    "roundtrip_cost_pct": 0.8,
+    "trades_count": 519,
+    "capacity_skipped_count": 93,
+    "final_equity_tl": 227937.34,
+    "total_return_pct": 127.94,
+    "cagr_pct": 17.91,
+    "max_daily_mtm_dd_pct": -18.11,
+    "avg_open_positions": 1.4,
+    "agent_breakdown": [
+      {
+        "primary_agent": "ALPHA_B",
+        "n": 63,
+        "win": 57.14,
+        "mean_ret": 1.617374603174603,
+        "pnl_tl": 20387.28
+      },
+      {
+        "primary_agent": "GTD",
+        "n": 411,
+        "win": 52.55,
+        "mean_ret": 1.2373167883211678,
+        "pnl_tl": 101469.76
+      },
+      {
+        "primary_agent": "ZT3",
+        "n": 45,
+        "win": 46.67,
+        "mean_ret": 0.6776022222222224,
+        "pnl_tl": 6080.240000000001
+      }
+    ],
+    "regime_breakdown": [
+      {
+        "regime_bull": false,
+        "n": 31,
+        "win": 61.29,
+        "mean_ret": 1.9833225806451613,
+        "pnl_tl": 12274.23
+      },
+      {
+        "regime_bull": true,
+        "n": 488,
+        "win": 52.05,
+        "mean_ret": 1.187378893442623,
+        "pnl_tl": 115663.05
+      }
+    ]
+  },
+  {
+    "scenario": "S4_10kBoyut_Maliyet0.8pct",
+    "position_size": 10000.0,
+    "roundtrip_cost_pct": 0.8,
+    "trades_count": 521,
+    "capacity_skipped_count": 99,
+    "final_equity_tl": 164629.81,
+    "total_return_pct": 64.63,
+    "cagr_pct": 10.48,
+    "max_daily_mtm_dd_pct": -12.46,
+    "avg_open_positions": 1.41,
+    "agent_breakdown": [
+      {
+        "primary_agent": "ALPHA_B",
+        "n": 64,
+        "win": 56.25,
+        "mean_ret": 1.499078125,
+        "pnl_tl": 9579.74
+      },
+      {
+        "primary_agent": "GTD",
+        "n": 412,
+        "win": 52.67,
+        "mean_ret": 1.2580665048543689,
+        "pnl_tl": 52009.06
+      },
+      {
+        "primary_agent": "ZT3",
+        "n": 45,
+        "win": 46.67,
+        "mean_ret": 0.676668888888889,
+        "pnl_tl": 3041.07
+      }
+    ],
+    "regime_breakdown": [
+      {
+        "regime_bull": false,
+        "n": 31,
+        "win": 61.29,
+        "mean_ret": 1.9793483870967743,
+        "pnl_tl": 6111.21
+      },
+      {
+        "regime_bull": true,
+        "n": 490,
+        "win": 52.04,
+        "mean_ret": 1.1905197959183673,
+        "pnl_tl": 58518.659999999996
+      }
+    ]
+  }
+]

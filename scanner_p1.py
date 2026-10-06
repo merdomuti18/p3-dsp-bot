@@ -519,6 +519,14 @@ def run_scan():
     vm_gonder(signal_records, scan_time, scan_label)
     log.info("P1 tarama tamamlandi: %s sinyal (Telegram: yalnizca islem varsa portfoy_yonetici uzerinden)", len(signal_records))
 
+    # P1 Paper Trading Hook (Feature Flag P1_PAPER=on)
+    if os.environ.get("P1_PAPER", "").lower() in ("1", "true", "on", "yes"):
+        try:
+            import p1_paper
+            p1_paper.run_phase_aksam()
+        except Exception as p_exc:
+            log.warning("P1 Paper aksam hook hatasi: %s", p_exc)
+
 
 if __name__ == "__main__":
     run_scan()

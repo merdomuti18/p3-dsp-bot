@@ -2374,6 +2374,13 @@ def saat_11_alim(makro_karar: str | None = None, makro_skor: float | None = None
             cikis=list(onceki - sonra),
             mesajlar=mesajlar,
         )
+    # P1 Paper Trading Hook (Feature Flag P1_PAPER=on)
+    if os.environ.get("P1_PAPER", "").lower() in ("1", "true", "on", "yes"):
+        try:
+            import p1_paper
+            p1_paper.run_phase_acilis(as_of_date=pd.to_datetime(ref_now.date()))
+        except Exception as p_exc:
+            log.warning("P1 Paper acilis hook hatasi: %s", p_exc)
 
 
 def saat_1130_ozeti():
@@ -2411,6 +2418,13 @@ def saatlik_kontrol(makro_karar: str | None = None, makro_skor: float | None = N
             cikis=list(onceki - sonra),
             mesajlar=mesajlar,
         )
+    # P1 Paper Trading Hook (Feature Flag P1_PAPER=on)
+    if os.environ.get("P1_PAPER", "").lower() in ("1", "true", "on", "yes"):
+        try:
+            import p1_paper
+            p1_paper.run_phase_takip(as_of_date=pd.to_datetime(ref_now.date()))
+        except Exception as p_exc:
+            log.warning("P1 Paper takip hook hatasi: %s", p_exc)
 
 
 def kapanis_ozeti_1730():
@@ -2674,6 +2688,25 @@ def main():
             time.sleep(20)
 
 
+def _cli_p1_paper(args: list):
+    import p1_paper
+    sub = args[0] if args else "status"
+    if sub == "aksam":
+        p1_paper.run_phase_aksam()
+    elif sub in ("acilis", "alim"):
+        p1_paper.run_phase_acilis()
+    elif sub in ("takip", "kapani"):
+        p1_paper.run_phase_takip()
+    elif sub == "replay":
+        from p1_signal_parity import run_60_session_replay
+        res = run_60_session_replay()
+        print(json.dumps(res, indent=2))
+    elif sub == "status":
+        st = p1_paper.load_paper_state()
+        print(f"P1 Paper Status (20k): Nakit={st.get('cash_20k',0):,.2f} TL, Pozisyon={len(st.get('positions_20k',{}))}")
+        print(f"P1 Paper Status (10k Eq): Nakit={st.get('cash_10k',0):,.2f} TL, Pozisyon={len(st.get('positions_10k',{}))}")
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1:
@@ -2688,6 +2721,8 @@ if __name__ == "__main__":
             "viop":   lambda: print(json.dumps(viop_bias_hesapla(), ensure_ascii=False)),
             "makro":  lambda: [print(f"Skor: {s} -> {k}") or [print(f"  {t}: {v:+.2f}%") for t,v in pr.items()]
                                for s,_,k,pr in [makro_risk_skoru()]],
+            # ── P1 — Paper Trading hook ──────────────────────────────────
+            "p1_paper": lambda: _cli_p1_paper(sys.argv[2:]),
             # ── P2 — SMC portföy köprüsü ──────────────────────────────────
             "p2_aksam": p2_adaylari_yukle_ve_hazirla,
             "p2_takip": lambda: p2_saatlik_kontrol("NORMAL"),
@@ -2696,6 +2731,6 @@ if __name__ == "__main__":
         if cmd in cmds:
             cmds[cmd]()
         else:
-            print("Kullanim: python portfoy_yonetici.py [sabah|alim|ozet|kapani|takip|durum|viop|makro|p2_aksam|p2_takip|p2_durum]")
+            print("Kullanim: python portfoy_yonetici.py [sabah|alim|ozet|kapani|takip|durum|viop|makro|p1_paper|p2_aksam|p2_takip|p2_durum]")
     else:
         main()
