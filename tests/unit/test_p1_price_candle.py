@@ -30,6 +30,11 @@ def _isolate_audit_file(tmp_path, monkeypatch):
 class TestP1PriceCandle:
     def test_guncel_fiyat_detayli_kaynak_ve_zaman(self, monkeypatch):
         ref_dt = datetime(2026, 10, 6, 11, 30)
+        monkeypatch.setattr(py, "_FIYAT_CACHE", {})
+        mock_ticker = MagicMock()
+        mock_ticker.history.return_value = pd.DataFrame()
+        mock_ticker.fast_info = {}
+        monkeypatch.setattr(py, "_ticker", lambda sym: mock_ticker)
         # Mock TradingView
         mock_tv = MagicMock()
         mock_tv.tv_fiyatlar.return_value = {"THYAO": 320.5}
