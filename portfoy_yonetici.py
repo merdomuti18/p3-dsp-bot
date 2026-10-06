@@ -109,7 +109,41 @@ EMERGENCY_LIQUIDATION_SCORE = 80
 RETRY_REASONS = {"veri_yok", "exception", "lot_yetersiz", "nakit_yetersiz"}
 
 
-def _elde_tutma_gunu(giris_t: str) -> int:
+def _parse_tarih(t_val) -> date | None:
+    if not t_val:
+        return None
+    if isinstance(t_val, date) and not isinstance(t_val, datetime):
+        return t_val
+    if isinstance(t_val, datetime):
+        return t_val.date()
+    s = str(t_val).strip().split(" ")[0].split("T")[0]
+    for fmt in ("%d.%m.%Y", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(s, fmt).date()
+        except ValueError:
+            pass
+    return None
+
+
+def _parse_datetime(dt_val) -> datetime | None:
+    if not dt_val:
+        return None
+    if isinstance(dt_val, datetime):
+        return dt_val
+    s = str(dt_val).strip()
+    try:
+        return datetime.fromisoformat(s)
+    except Exception:
+        pass
+    for fmt in ("%d.%m.%Y %H:%M:%S", "%d.%m.%Y %H:%M", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%d.%m.%Y", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(s, fmt)
+        except ValueError:
+            pass
+    return None
+
+
+def _elde_tutma_gunu(giris_t: str, now_date: date | None = None) -> int:
     """Pozisyonun kaç takvim günüdür açık olduğunu giriş tarihinden hesapla.
 
     Not: pos['gun'] sayacı yalnızca main() içindeki gün-sonu döngüsünde
@@ -119,33 +153,80 @@ def _elde_tutma_gunu(giris_t: str) -> int:
     (saatlik / 15 dk) bağımsız, her zaman doğru sonuç verir.
     """
     try:
-        giris_tarih = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date()
-        return (date.today() - giris_tarih).days
+        giris_tarih = _parse_tarih(giris_t)
+        if not giris_tarih:
+            return 0
+        ref = now_date if now_date is not None else date.today()
+        return (ref - giris_tarih).days
     except Exception:
         return 0
 
 
-def _max_gun_date_hesapla_p1(giris_t: str, max_gun: int = MAX_GUN) -> str:
+def _max_gun_date_hesapla_p1(giris_t: str, max_gun: int = MAX_GUN, now_date: date | None = None) -> str:
     """P1: Entry tarihinden MAX_GUN deadline hesapla (DD.MM.YYYY format)."""
-    try:
-        giris = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date()
+    giris = _parse_tarih(giris_t)
+    ref = now_date if now_date is not None else date.today()
+    if giris:
         return (giris + timedelta(days=max_gun)).strftime("%d.%m.%Y")
-    except Exception:
-        return (date.today() + timedelta(days=max_gun)).strftime("%d.%m.%Y")
+    return (ref + timedelta(days=max_gun)).strftime("%d.%m.%Y")
 
 
-def _p1_alim_listesi() -> set[str]:
-    """P1 canonical ALIM listesi — bugünkü tarama.
-    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+def _p1_alim_listesi_durum(now: datetime | None = None) -> tuple[set[str], str, dict]:
+    """P1 canonical ALIM listesi durumunu ve sembol kümesini döndürür.
+
+    Dönüş: (symbols_set, status, metadata)
+    status:
+      'valid'   : Taze ve geçerli tarama listesi
+      'stale'   : Süresi geçmiş tarama listesi (> 96 saat veya gelecek tarih)
+      'missing' : Dosya veya scan_time yok
+      'corrupt' : JSON veya veri bozuk
+      'empty'   : Geçerli tarama fakat sinyal yok
+    """
+    ref_now = now if now is not None else datetime.now()
+    if not TARAMA_FILE.exists():
+        return set(), "missing", {"reason": "tarama_listesi_yok"}
     try:
         tarama = tarama_listesi_yukle()
-        scan_time = tarama.get("scan_time", "")
-        bugun = date.today().isoformat()
-        if scan_time and scan_time[:10] != bugun:
-            return set()
-        return {s["symbol"] for s in tarama.get("signals", [])}
-    except Exception:
-        return set()
+    except Exception as exc:
+        return set(), "corrupt", {"reason": f"json_hatasi:{exc}"}
+
+    scan_time_raw = tarama.get("scan_time", "")
+    if not scan_time_raw:
+        return set(), "missing", {"reason": "scan_time_yok"}
+
+    scan_dt = _parse_datetime(scan_time_raw)
+    if scan_dt is None:
+        return set(), "corrupt", {"reason": f"gecersiz_scan_time:{scan_time_raw}"}
+
+    if scan_dt.tzinfo is not None and ref_now.tzinfo is None:
+        scan_dt = scan_dt.replace(tzinfo=None)
+    elif scan_dt.tzinfo is None and ref_now.tzinfo is not None:
+        ref_now = ref_now.replace(tzinfo=None)
+
+    diff = ref_now - scan_dt
+    if diff.total_seconds() < -300:
+        return set(), "stale", {"reason": "gelecek_tarihli_tarama", "scan_time": scan_time_raw}
+
+    if diff.total_seconds() > 96 * 3600:
+        return set(), "stale", {
+            "reason": "bayat_tarama_96h_asildi",
+            "scan_time": scan_time_raw,
+            "gecen_saat": round(diff.total_seconds() / 3600, 1),
+        }
+
+    signals = tarama.get("signals", [])
+    symbols = {s["symbol"] for s in signals if isinstance(s, dict) and "symbol" in s}
+    if not symbols:
+        return set(), "empty", {"reason": "sinyal_yok", "scan_time": scan_time_raw}
+
+    return symbols, "valid", {"scan_time": scan_time_raw, "signal_count": len(symbols)}
+
+
+def _p1_alim_listesi(now: datetime | None = None) -> set[str]:
+    """P1 canonical ALIM listesi — bugünkü tarama.
+    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+    symbols, status, _ = _p1_alim_listesi_durum(now=now)
+    return symbols if status == "valid" else set()
 
 
 def _p2_alim_listesi() -> set[str]:
@@ -1414,8 +1495,10 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
     return portfoy, mesajlar, alinan, alinmayan
 
 
-def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
+def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str, now: datetime | None = None):
     mesajlar, kapatilacak = [], []
+    ref_now = now if now is not None else datetime.now()
+    ref_date = ref_now.date()
     for sym, pos in list(portfoy["pozisyonlar"].items()):
         try:
             bar = saatlik_bar(sym)
@@ -1431,7 +1514,7 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
                 portfoy["nakit"] += lotlar * cikis_f
                 _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP")
                 kapatilacak.append(sym)
-                mesajlar.append(f"\U0001f6d1 <b>STOP - {sym}</b>\n   Giri\u015f: {giris_f:.2f} \u2192 \u00c7\u0131k\u0131\u015f: {cikis_f:.2f}")
+                mesajlar.append(f"\U0001f6d1 <b>STOP - {sym}</b>\n   Giriş: {giris_f:.2f} \u2192 Çıkış: {cikis_f:.2f}")
                 append_jsonl(PORTFOY_AUDIT_FILE, {"event":"stop","symbol":sym,"exit_price":cikis_f,"return_pct":STOP_PCT*100})
                 continue
             # TP1
@@ -1441,7 +1524,7 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
                 pos["lotlar"] -= yari
                 pos["tp1_yapildi"] = True
                 _trade_kaydet(portfoy, sym, pos, close, "TP1", lotlar=yari)
-                mesajlar.append(f"\U0001f3af <b>TP1 - {sym}</b>\n   {yari} lot @ {close:.2f} sat\u0131ld\u0131 (+{TP1_PCT*100:.0f}%)")
+                mesajlar.append(f"\U0001f3af <b>TP1 - {sym}</b>\n   {yari} lot @ {close:.2f} satıldı (+{TP1_PCT*100:.0f}%)")
                 append_jsonl(PORTFOY_AUDIT_FILE, {"event":"tp1","symbol":sym,"price":close,"remaining":pos["lotlar"]})
             # TRAILING
             elif pos.get("tp1_yapildi"):
@@ -1452,29 +1535,53 @@ def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
                     _trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING")
                     kapatilacak.append(sym)
                     ret_g = (cikis_f - giris_f) / giris_f
-                    mesajlar.append(f"\U0001f4c9 <b>TRAILING - {sym}</b>\n   \u00c7\u0131k\u0131\u015f: {cikis_f:.2f} | Getiri: {ret_g*100:+.1f}%")
+                    mesajlar.append(f"\U0001f4c9 <b>TRAILING - {sym}</b>\n   Çıkış: {cikis_f:.2f} | Getiri: {ret_g*100:+.1f}%")
                     append_jsonl(PORTFOY_AUDIT_FILE, {"event":"trailing","symbol":sym,"exit_price":cikis_f,"return_pct":ret_g*100})
                     continue
             # MAX GUN
-            if _elde_tutma_gunu(pos.get("giris_t", "")) >= MAX_GUN:
+            if _elde_tutma_gunu(pos.get("giris_t", ""), now_date=ref_date) >= MAX_GUN:
                 # Rolling extension: MAX_GUN gününde P1 ALIM listesi kontrolü
-                mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla_p1(pos.get("giris_t", ""))
-                try:
-                    mgd = datetime.strptime(mgd_str, "%d.%m.%Y").date()
-                except Exception:
-                    mgd = date.today()
-                if date.today() >= mgd:
-                    alim = _p1_alim_listesi()
-                    if sym in alim:
-                        pos["max_gun_date"] = (date.today() + timedelta(days=MAX_GUN_EXTENSION)).strftime("%d.%m.%Y")
+                mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla_p1(pos.get("giris_t", ""), now_date=ref_date)
+                mgd = _parse_tarih(mgd_str) or ref_date
+                if ref_date >= mgd:
+                    alim, status, meta = _p1_alim_listesi_durum(now=ref_now)
+                    if status == "valid" and sym in alim:
+                        pos["max_gun_date"] = (ref_date + timedelta(days=MAX_GUN_EXTENSION)).strftime("%d.%m.%Y")
+                        pos["extension_count"] = pos.get("extension_count", 0) + 1
+                        append_jsonl(PORTFOY_AUDIT_FILE, {
+                            "event": "max_gun_extended",
+                            "symbol": sym,
+                            "new_max_gun_date": pos["max_gun_date"],
+                            "extension_count": pos["extension_count"],
+                            "scan_meta": meta,
+                        })
                         continue
-                    # else: EXIT below
+                    # Aday listede yok veya veri hatası -> Güvenli MAX_GUN çıkışı
+                    sub_reason = "not_in_candidate_list" if status == "valid" else f"data_error_{status}"
+                    if status != "valid":
+                        append_jsonl(PORTFOY_AUDIT_FILE, {
+                            "event": "max_gun_data_error",
+                            "symbol": sym,
+                            "status": status,
+                            "scan_meta": meta,
+                        })
+                else:
+                    # Uzatılmış max_gun_date henüz gelmedi (örn: 11., 12., 13., 14. gün).
+                    # Erken MAX_GUN satışı yapma, pozisyonu tutmaya devam et!
+                    continue
+
                 portfoy["nakit"] += pos["lotlar"] * close
                 _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
                 kapatilacak.append(sym)
                 gun_ret = (close - giris_f) / giris_f
-                mesajlar.append(f"\u23f0 <b>MAX G\u00dcN - {sym}</b>\n   \u00c7\u0131k\u0131\u015f: {close:.2f} | Getiri: {gun_ret*100:+.1f}%")
-                append_jsonl(PORTFOY_AUDIT_FILE, {"event":"max_day","symbol":sym,"exit_price":close,"return_pct":gun_ret*100})
+                mesajlar.append(f"\u23f0 <b>MAX GÜN - {sym}</b>\n   Çıkış: {close:.2f} | Getiri: {gun_ret*100:+.1f}%")
+                append_jsonl(PORTFOY_AUDIT_FILE, {
+                    "event": "max_day",
+                    "symbol": sym,
+                    "exit_price": close,
+                    "return_pct": gun_ret * 100,
+                    "sub_reason": sub_reason,
+                })
         except Exception as exc:
             log.debug("Pozisyon guncelle %s: %s", sym, exc)
     for sym in kapatilacak:
