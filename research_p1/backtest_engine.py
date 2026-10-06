@@ -42,6 +42,16 @@ import numpy as np
 import pandas as pd
 
 from research_p1.p1_engine import compute_all_indicators
+from research_p1.p1_exit_rules import (
+    GAP_TOLERANCE,
+    MAX_HOLDING_DAYS,
+    gap_ratio,
+    gap_rejected,
+    stop_level_price,
+    tp1_level_price,
+    tp1_sold_lots,
+    trail_level_price,
+)
 
 DATA_DIR = Path(__file__).parent / "data"
 CACHE_DIR = DATA_DIR / "ohlcv"
@@ -207,7 +217,7 @@ def simulate_trades(
     precomputed_signals: Optional[Dict[str, Dict[str, pd.Series]]] = None,
     start_date: str = "2021-10-06",
     end_date: str = "2026-10-05",
-    gap_tolerance: float = 0.0001,  # Ana kural: gap yok (|gap| <= 0.0001)
+    gap_tolerance: float = GAP_TOLERANCE,  # Ana kural: gap yok (|gap| <= 0.0001)
     commission_rate: float = 0.0020,  # %0.20
     slippage_rate: float = 0.0020,    # %0.20
     slippage_rate_map: Optional[Dict[str, float]] = None,
@@ -265,19 +275,19 @@ def simulate_trades(
             holding_days = (current_date - pos.entry_date).days
 
             # STOP kontrolü (-%5)
-            stop_level = round(pos.entry_price * 0.95, 4)
+            stop_level = stop_level_price(pos.entry_price)
             is_stop = l_bar <= stop_level
 
             # TP1 kontrolü (+%8)
-            tp1_level = round(pos.entry_price * 1.08, 4)
+            tp1_level = tp1_level_price(pos.entry_price)
             is_tp1 = (h_bar >= tp1_level) and not pos.tp1_done
 
             # Trailing kontrolü (Önceki mumların zirvesinden -%5)
-            trail_level = round(pos.peak_price * 0.95, 4) if pos.tp1_done else 0.0
+            trail_level = trail_level_price(pos.peak_price) if pos.tp1_done else 0.0
             is_trailing = pos.tp1_done and (l_bar <= trail_level)
 
             # Max gün kontrolü (10 gün)
-            is_max_gun = holding_days >= 10
+            is_max_gun = holding_days >= MAX_HOLDING_DAYS
 
             # A. Çift Tetik Belirsizliği: STOP ve TP1 aynı mumda
             if is_stop and is_tp1:
@@ -334,12 +344,8 @@ def simulate_trades(
             if is_tp1:
                 ref_exit = max(o_bar, tp1_level)
                 tp_exit_price = round(ref_exit * (1.0 - sym_slip), 4)
-                if pos.lots <= 1:
-                    sold_lots = 1
-                    pos.lots = 0
-                else:
-                    sold_lots = pos.lots // 2
-                    pos.lots -= sold_lots
+                sold_lots = tp1_sold_lots(pos.lots)
+                pos.lots -= sold_lots
 
                 comm = round(sold_lots * tp_exit_price * commission_rate, 4)
                 net_income = round(sold_lots * tp_exit_price - comm, 4)
@@ -493,9 +499,9 @@ def simulate_trades(
             # Gap kontrolü
             prev_close = float(df.loc[prev_date, "close"])
             curr_open = float(df.loc[current_date, "open"])
-            gap = (curr_open / prev_close) - 1.0
+            gap = gap_ratio(curr_open, prev_close)
 
-            if abs(gap) > gap_tolerance:
+            if gap_rejected(curr_open, prev_close, gap_tolerance):
                 rejected_signals.append({
                     "symbol": sym,
                     "signal_date": str(prev_date.date()),

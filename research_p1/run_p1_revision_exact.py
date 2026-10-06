@@ -34,6 +34,12 @@ from research_p1.run_p1_revision_backtest import (
     evaluate_custom_agent_signals,
     simulate_priority_portfolio,
 )
+from research_p1.p1_exit_rules import (
+    MAX_HOLDING_DAYS,
+    stop_level_price,
+    tp1_level_price,
+    trail_level_price,
+)
 from research_p1.run_hurdle_and_robustness import get_daily_risk_free_rate
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -209,14 +215,14 @@ def run_exact_analysis():
                 row = df.loc[cur_dt]
                 o_b, h_b, l_b, c_b = float(row["open"]), float(row["high"]), float(row["low"]), float(row["close"])
                 h_days = (cur_dt - pos["entry_date"]).days
-                stop_l = round(pos["entry_price"] * 0.95, 4)
-                tp1_l = round(pos["entry_price"] * 1.08, 4)
-                tr_l = round(pos["peak"] * 0.95, 4) if pos["tp1"] else 0.0
+                stop_l = stop_level_price(pos["entry_price"])
+                tp1_l = tp1_level_price(pos["entry_price"])
+                tr_l = trail_level_price(pos["peak"]) if pos["tp1"] else 0.0
 
                 is_s = l_b <= stop_l
                 is_tp = h_b >= tp1_l and not pos["tp1"]
                 is_tr = pos["tp1"] and l_b <= tr_l
-                is_mg = h_days >= 10
+                is_mg = h_days >= MAX_HOLDING_DAYS
 
                 if is_s and is_tp:
                     ref_p = o_b if o_b <= stop_l else stop_l

@@ -31,6 +31,16 @@ import pandas as pd
 
 from research_p1.data_downloader import load_cached_ohlcv, BIST100_SYMBOLS
 from research_p1.p1_engine import compute_all_indicators
+from research_p1.p1_exit_rules import (
+    GAP_TOLERANCE,
+    MAX_HOLDING_DAYS,
+    gap_ratio,
+    gap_rejected,
+    stop_level_price,
+    tp1_level_price,
+    tp1_sold_lots,
+    trail_level_price,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
@@ -128,7 +138,7 @@ def simulate_priority_portfolio(
     precomputed: Dict[str, Dict[str, pd.Series]],
     start_date: str = FULL_START,
     end_date: str = FULL_END,
-    gap_tolerance: float = 0.0001,
+    gap_tolerance: float = GAP_TOLERANCE,
     commission_rate: float = 0.0030,  # %0.30
     slippage_rate: float = 0.0030,    # %0.30
     initial_capital: float = 100_000.0,
@@ -165,14 +175,14 @@ def simulate_priority_portfolio(
             pos["mae"] = min(pos["mae"], (l_bar - pos["entry_price"]) / pos["entry_price"])
 
             holding_days = (current_date - pos["entry_date"]).days
-            stop_level = round(pos["entry_price"] * 0.95, 4)
-            tp1_level = round(pos["entry_price"] * 1.08, 4)
-            trail_level = round(pos["peak_price"] * 0.95, 4) if pos["tp1_done"] else 0.0
+            stop_level = stop_level_price(pos["entry_price"])
+            tp1_level = tp1_level_price(pos["entry_price"])
+            trail_level = trail_level_price(pos["peak_price"]) if pos["tp1_done"] else 0.0
 
             is_stop = l_bar <= stop_level
             is_tp1 = (h_bar >= tp1_level) and not pos["tp1_done"]
             is_trailing = pos["tp1_done"] and (l_bar <= trail_level)
-            is_max_gun = holding_days >= 10
+            is_max_gun = holding_days >= MAX_HOLDING_DAYS
 
             # A. Çift Tetik
             if is_stop and is_tp1:
@@ -210,7 +220,7 @@ def simulate_priority_portfolio(
             if is_tp1:
                 ref_exit = max(o_bar, tp1_level)
                 exit_price = round(ref_exit * (1.0 - slippage_rate), 4)
-                sold_lots = 1 if pos["lots"] <= 1 else pos["lots"] // 2
+                sold_lots = tp1_sold_lots(pos["lots"])
                 pos["lots"] -= sold_lots
                 comm = round(sold_lots * exit_price * commission_rate, 4)
                 net_income = round(sold_lots * exit_price - comm, 4)
@@ -321,9 +331,9 @@ def simulate_priority_portfolio(
 
             prev_c = float(df.loc[prev_date, "close"])
             curr_o = float(df.loc[current_date, "open"])
-            gap = (curr_o / prev_c) - 1.0
+            gap = gap_ratio(curr_o, prev_c)
 
-            if abs(gap) > gap_tolerance:
+            if gap_rejected(curr_o, prev_c, gap_tolerance):
                 rejected_signals.append({
                     "symbol": sym, "signal_date": str(prev_date.date()), "entry_date": str(current_date.date()),
                     "gap": gap, "agents": trig, "reason": "gap_rejection"

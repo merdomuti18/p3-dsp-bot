@@ -26,7 +26,6 @@ from p1_paper_config import (
     COST_ALERT_GREEN_MAX,
     COST_ALERT_YELLOW_MAX,
     DD_ALERT_THRESHOLDS,
-    ROUNDTRIP_COST_PCT,
 )
 
 log = logging.getLogger(__name__)
@@ -48,34 +47,44 @@ def evaluate_cost_tier(rolling_cost_pct: float) -> Tuple[str, str]:
         return "KIRMIZI", f"KRİTİK UYARI (KIRMIZI): Dolum maliyeti yüksek: %{rolling_cost_pct:.2f} > %{COST_ALERT_YELLOW_MAX:.2f}"
 
 
+def _measured_proxy_cost(trade: dict) -> Optional[float]:
+    """Yalnızca ölçülen dolum vekili. Simüle slipaj (açılış×1,003 / %1,20) kullanılmaz."""
+    c_val = trade.get("dolum_vekili_tur_basi_maliyet_pct")
+    if c_val is None or c_val == "":
+        return None
+    if isinstance(c_val, float) and np_isnan(c_val):
+        return None
+    try:
+        return float(c_val)
+    except (ValueError, TypeError):
+        return None
+
+
 def check_fill_cost_alerts(
     trades: List[dict],
     window: int = 20,
     timestamp: Optional[datetime] = None,
 ) -> Optional[dict]:
-    """Son 20-30 işlemin hareketli ortalama dolum maliyetini kontrol eder (n >= 20)."""
+    """Son 20–30 işlemin ölçülen vekil maliyet ortalaması (n >= 20 ölçüm şart).
+
+    Simüle slipaj ve boş VWAP satırları hesaba katılmaz. n < 20 ise uyarı üretilmez.
+    """
     now_dt = timestamp or datetime.now()
-    if len(trades) < window:
+    window = min(max(int(window), 20), 30)
+
+    measured_costs: List[float] = []
+    for t in reversed(list(trades)):
+        val = _measured_proxy_cost(t)
+        if val is None:
+            continue
+        measured_costs.append(val)
+        if len(measured_costs) >= window:
+            break
+
+    if len(measured_costs) < 20:
         return None
 
-    # Son 'window' kadar işlemin maliyet değerleri
-    recent_trades = trades[-window:]
-    valid_costs = []
-    for t in recent_trades:
-        c_val = t.get("dolum_vekili_tur_basi_maliyet_pct")
-        if c_val is not None and c_val != "" and not (isinstance(c_val, float) and np_isnan(c_val)):
-            try:
-                valid_costs.append(float(c_val))
-            except (ValueError, TypeError):
-                pass
-        else:
-            # Vekil veri yoksa varsayılan backtest maliyetini (%1.20) kullan
-            valid_costs.append(ROUNDTRIP_COST_PCT)
-
-    if len(valid_costs) < window:
-        return None
-
-    avg_cost = sum(valid_costs) / len(valid_costs)
+    avg_cost = sum(measured_costs) / len(measured_costs)
     tier, msg = evaluate_cost_tier(avg_cost)
 
     alert = {
@@ -139,6 +148,29 @@ def _append_alert_log(alert: dict) -> None:
             fh.write(json.dumps(alert, ensure_ascii=False) + "\n")
     except Exception as exc:
         log.warning("Alert log yazılamadı: %s", exc)
+
+
+def warn_vwap_missing(
+    symbol: str,
+    session_date: str,
+    timestamp: Optional[datetime] = None,
+) -> dict:
+    """1m VWAP alınamadı. Sonradan doldurulamaz (Yahoo 1m ~7 gün)."""
+    now_dt = timestamp or datetime.now()
+    msg = (
+        f"VWAP verisi yok: {symbol} {session_date}. "
+        "Ölçülen dolum vekili boş bırakıldı; sonradan doldurulamaz."
+    )
+    alert = {
+        "timestamp": now_dt.isoformat(),
+        "type": "VWAP_VERISI_YOK",
+        "symbol": symbol,
+        "session_date": session_date,
+        "message": msg,
+    }
+    _append_alert_log(alert)
+    log.error("%s", msg)
+    return alert
 
 
 def np_isnan(val) -> bool:

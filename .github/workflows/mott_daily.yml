@@ -4,10 +4,9 @@ on:
   schedule:
     - cron: '5 16 * * 1-5'          # ~19:05 TSİ — akşam tam tarama
     - cron: '0 6 * * 1-5'           # ~09:00 TSİ — sabah değerlendirme
-    # Gün içi canlı takip: saatlik. (Not: GitHub zamanlanmış tetikleri
-    # "en iyi çaba" ile çalıştırır — 15 dk'lık deneme pratikte atlandığı
-    # için saatliğe çekildi. 15 dk sıklık için yol haritasına bakın:
-    # README "Yapılacaklar" → harici tetikleyici ile workflow_dispatch.)
+    # P1 paper `acilis` mevcut `alim` penceresine bağlanır (10:00–11:20 TSİ).
+    # İlk 5 adet 1m bar 10:00–10:05'te oluşur; paper adımı --wait-vwap-window ile
+    # 10:05'e kadar bekler (10:05–10:10 doldurma penceresi). Yeni cron yok.
     - cron: '0 7-15 * * 1-5'        # ~10:00–18:00 TSİ, saat başı
   workflow_dispatch:
     inputs:
@@ -31,6 +30,7 @@ concurrency:
 
 env:
   MOTT_BASE_DIR: "."
+  P1_PAPER: ${{ vars.P1_PAPER }}
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
   TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -183,6 +183,17 @@ jobs:
           elif [ "$MODE" = "kapani" ]; then
             python portfoy_yonetici.py kapani
           fi
+      - name: P1 paper trading fazı
+        if: env.P1_PAPER == 'on' || env.P1_PAPER == '1' || env.P1_PAPER == 'true' || env.P1_PAPER == 'yes'
+        run: |
+          MODE="${{ needs.gate.outputs.mode }}"
+          echo "P1 paper fazı (P1_PAPER=${P1_PAPER}, MOTT=$MODE)"
+          case "$MODE" in
+            aksam) python p1_paper.py aksam ;;
+            alim) python p1_paper.py acilis --wait-vwap-window ;;
+            takip|kapani) python p1_paper.py takip ;;
+            sabah) python p1_paper.py heartbeat-check ;;
+          esac
       - name: State commit
         run: |
           git config user.name "MOTT Bot"
@@ -191,6 +202,7 @@ jobs:
           KORUMA="state_p2.json tarama_listesi_p2.json portfoy_p2.json portfolio_state.json state_p4.json state_p5.json"
           STATE_BASE=$(git rev-parse HEAD)
           git add $FILES
+          git add results/p1_run_heartbeat.csv results/paper_trading_log.csv results/p1_paper_state.json results/shadow_signals.jsonl results/p1_monitoring_alerts.log results/signal_parity_log.csv 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "P1: $(date +'%Y-%m-%d %H:%M')"
           for i in 1 2 3 4 5; do

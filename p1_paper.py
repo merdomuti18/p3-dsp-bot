@@ -19,7 +19,7 @@ import json
 import logging
 import os
 import sys
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, time, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
 
@@ -32,11 +32,14 @@ import numpy as np
 import pandas as pd
 
 from p1_paper_config import (
+    ACILIS_VWAP_WINDOW_END,
+    ACILIS_VWAP_WINDOW_START,
     AGENTS_PRIORITY,
     ALERTS_LOG_FILE,
     BASE_DIR,
     COMMISSION_RATE,
     GAP_TOLERANCE,
+    HEARTBEAT_FILE,
     INITIAL_CAPITAL,
     MAX_HOLDING_DAYS,
     MAX_POSITIONS,
@@ -52,15 +55,25 @@ from p1_paper_config import (
     TP1_PCT,
     TRAILING_PCT,
     TZ_ISTANBUL,
+    gap_ratio,
+    gap_rejected,
     is_p1_paper_enabled,
+    stop_level_price,
+    tp1_level_price,
+    tp1_sold_lots,
+    trail_level_price,
 )
-from p1_monitoring import check_drawdown_alerts, check_fill_cost_alerts
+from p1_monitoring import check_drawdown_alerts, check_fill_cost_alerts, warn_vwap_missing
+from mott_bist_takvim import is_bist_islem_gunu
 from p1_signal_parity import compare_daily_signals, evaluate_backtest_signals_for_day
 from research_p1.data_downloader import load_cached_ohlcv, BIST100_SYMBOLS
 from research_p1.p1_engine import compute_all_indicators
 from research_p1.run_p1_revision_backtest import evaluate_custom_agent_signals
 
 log = logging.getLogger("p1_paper")
+
+# Tarihsel replay: shadow jsonl / KACIRILAN_GUN taraması kapatılır (canlı davranışı değiştirmez).
+_REPLAY_MODE = False
 
 # Log tablosu başlıkları (research_p1/results/paper_trading_log_template.csv ile birebir aynı + 2 kolon)
 PAPER_LOG_HEADERS = [
@@ -74,6 +87,7 @@ PAPER_LOG_HEADERS = [
     "sinyal_kapanis_fiyati",
     "beklenen_acilis_fiyati",
     "gerceklesen_acilis_fiyati",
+    "simule_dolum_fiyati",
     "gap_orani_pct",
     "gerceklesen_slipaj_pct",
     "komisyon_pct",
@@ -143,6 +157,7 @@ def load_paper_state() -> dict:
         "tracked_rejected_signals": [],
         "daily_equity": [],
         "processed_runs": {},  # {"YYYY-MM-DD_phase": timestamp}
+        "paper_start_date": "",
     }
 
 
@@ -155,7 +170,123 @@ def save_paper_state(state: dict) -> None:
     tmp_file = PAPER_STATE_FILE.with_suffix(".tmp")
     with open(tmp_file, "w", encoding="utf-8") as fh:
         json.dump(state, fh, indent=2, ensure_ascii=False)
-    tmp_file.replace(PAPER_STATE_FILE)
+    import time as _time
+    last_exc = None
+    for _attempt in range(8):
+        try:
+            tmp_file.replace(PAPER_STATE_FILE)
+            last_exc = None
+            break
+        except PermissionError as exc:
+            last_exc = exc
+            _time.sleep(0.15 * (_attempt + 1))
+    if last_exc is not None:
+        raise last_exc
+
+
+HEARTBEAT_HEADERS = ["tarih", "faz", "baslangic", "bitis", "durum"]
+EXPECTED_DAILY_PHASES = ("aksam", "acilis", "takip")
+
+
+def init_heartbeat_log() -> None:
+    if not HEARTBEAT_FILE.exists() or HEARTBEAT_FILE.stat().st_size == 0:
+        HEARTBEAT_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(HEARTBEAT_FILE, "w", encoding="utf-8", newline="") as fh:
+            csv.writer(fh).writerow(HEARTBEAT_HEADERS)
+
+
+def write_heartbeat(tarih: str, faz: str, baslangic: str, bitis: str, durum: str) -> None:
+    if _REPLAY_MODE:
+        return
+    init_heartbeat_log()
+    with open(HEARTBEAT_FILE, "a", encoding="utf-8", newline="") as fh:
+        csv.writer(fh).writerow([tarih, faz, baslangic, bitis, durum])
+
+
+def load_heartbeat_rows() -> List[dict]:
+    init_heartbeat_log()
+    with open(HEARTBEAT_FILE, "r", encoding="utf-8", newline="") as fh:
+        return list(csv.DictReader(fh))
+
+
+def check_missed_trading_days(as_of: date) -> List[dict]:
+    """Önceki BIST işlem günlerinde beklenen faz yoksa KACIRILAN_GUN yazar. Geçmişi telafi etmez."""
+    state = load_paper_state()
+    start_s = state.get("paper_start_date") or ""
+    if not start_s:
+        return []
+    try:
+        start_d = date.fromisoformat(str(start_s)[:10])
+    except ValueError:
+        return []
+
+    rows = load_heartbeat_rows()
+    done: Set[Tuple[str, str]] = set()
+    for r in rows:
+        if r.get("durum") in ("success", "skipped_idempotent", "no_pending_signals"):
+            done.add((str(r.get("tarih", "")), str(r.get("faz", ""))))
+
+    missed: List[dict] = []
+    cur = start_d
+    while cur < as_of:
+        if is_bist_islem_gunu(cur):
+            t_str = cur.isoformat()
+            for faz in EXPECTED_DAILY_PHASES:
+                key = (t_str, faz)
+                already_flagged = any(
+                    r.get("tarih") == t_str and r.get("faz") == faz and r.get("durum") == "KACIRILAN_GUN"
+                    for r in rows
+                )
+                if key not in done and not already_flagged:
+                    now_iso = datetime.now(TZ_ISTANBUL).isoformat()
+                    write_heartbeat(t_str, faz, now_iso, now_iso, "KACIRILAN_GUN")
+                    log.warning("KACIRILAN_GUN: %s faz=%s (geçmiş telafi edilmez)", t_str, faz)
+                    missed.append({"tarih": t_str, "faz": faz, "durum": "KACIRILAN_GUN"})
+        cur += timedelta(days=1)
+    return missed
+
+
+def _phase_guard(dt_str: str, faz: str, state: dict) -> Optional[dict]:
+    """İdempotent atlama + heartbeat. Atlanacaksa dict döner."""
+    run_key = f"{dt_str}_{faz}"
+    if run_key in state.get("processed_runs", {}):
+        now_iso = datetime.now(TZ_ISTANBUL).isoformat()
+        write_heartbeat(dt_str, faz, now_iso, now_iso, "skipped_idempotent")
+        return {"status": "skipped_idempotent", "date": dt_str}
+    return None
+
+
+def wait_for_acilis_vwap_window(now: Optional[datetime] = None, max_wait_sec: int = 600) -> None:
+    """TSİ 10:05'e kadar bekler (en fazla max_wait_sec). Testte PYTEST_CURRENT_TEST varken no-op."""
+    if os.environ.get("PYTEST_CURRENT_TEST"):
+        return
+    now_dt = now or datetime.now(TZ_ISTANBUL)
+    if now_dt.tzinfo is None:
+        now_dt = now_dt.replace(tzinfo=TZ_ISTANBUL)
+    else:
+        now_dt = now_dt.astimezone(TZ_ISTANBUL)
+    if now_dt.time() >= ACILIS_VWAP_WINDOW_START:
+        return
+    target = now_dt.replace(
+        hour=ACILIS_VWAP_WINDOW_START.hour,
+        minute=ACILIS_VWAP_WINDOW_START.minute,
+        second=0,
+        microsecond=0,
+    )
+    sleep_s = min(float(max_wait_sec), (target - now_dt).total_seconds())
+    if sleep_s > 0:
+        log.info("VWAP penceresi için %.0f sn bekleniyor (hedef 10:05 TSİ).", sleep_s)
+        import time as _time
+        _time.sleep(sleep_s)
+
+
+def _should_fetch_vwap(fetch_vwap: Optional[bool]) -> bool:
+    """Açık True/False çağıranı bağlar. None ise pytest'te False, canlıda True."""
+    if fetch_vwap is not None:
+        return bool(fetch_vwap)
+    if os.environ.get("PYTEST_CURRENT_TEST"):
+        return False
+    return True
 
 
 def get_xu100_regime(as_of_date: pd.Timestamp) -> bool:
@@ -179,9 +310,10 @@ def get_xu100_regime(as_of_date: pd.Timestamp) -> bool:
 def generate_bot_signals_for_day(
     symbol_data: Dict[str, pd.DataFrame],
     dt: pd.Timestamp,
+    precomputed: Optional[Dict[str, Dict[str, pd.Series]]] = None,
 ) -> Tuple[Set[Tuple[str, str]], List[dict]]:
     """Günün kapanışında botun sinyal üretim motorunu çalıştırır."""
-    all_agents = AGENTS_PRIORITY + SHADOW_AGENTS
+    all_agents = AGENTS_PRIORITY if _REPLAY_MODE else (AGENTS_PRIORITY + SHADOW_AGENTS)
     bot_signals_set = set()
     active_candidates = []
 
@@ -195,8 +327,12 @@ def generate_bot_signals_for_day(
         triggered_shadow = []
 
         for ag in all_agents:
-            sig_s = evaluate_custom_agent_signals(df, ag)
-            if sig_s.loc[dt]:
+            if precomputed is not None and sym in precomputed and ag in precomputed[sym]:
+                is_on = bool(precomputed[sym][ag].loc[dt]) if dt in precomputed[sym][ag].index else False
+            else:
+                sig_s = evaluate_custom_agent_signals(df, ag)
+                is_on = bool(sig_s.loc[dt])
+            if is_on:
                 bot_signals_set.add((sym, ag))
                 if ag in AGENTS_PRIORITY:
                     triggered_active.append(ag)
@@ -207,7 +343,7 @@ def generate_bot_signals_for_day(
         rel_vol = float(df.loc[dt, "rel_vol"]) if "rel_vol" in df.columns else 1.0
 
         # Gölge ajan sinyali kaydı (sermaye almaz!)
-        if triggered_shadow:
+        if triggered_shadow and not _REPLAY_MODE:
             for sh_ag in triggered_shadow:
                 _log_shadow_signal(dt, sym, sh_ag, c, rel_vol, df)
 
@@ -268,27 +404,38 @@ def _log_shadow_signal(dt: pd.Timestamp, sym: str, agent: str, close: float, rel
 def run_phase_aksam(
     as_of_date: Optional[pd.Timestamp] = None,
     symbol_data: Optional[Dict[str, pd.DataFrame]] = None,
+    precomputed: Optional[Dict[str, Dict[str, pd.Series]]] = None,
+    skip_signal_parity: bool = False,
 ) -> dict:
     """Phase A: Gün sonu kapanış taraması, sinyal üretimi ve parity kontrolü."""
+    t0 = datetime.now(TZ_ISTANBUL)
     if symbol_data is None:
         symbol_data = load_all_indicators()
 
     all_dates = sorted(list(set().union(*[df.index for df in symbol_data.values()])))
     dt = as_of_date or all_dates[-1]
     dt_str = dt.strftime("%Y-%m-%d")
+    if not _REPLAY_MODE:
+        check_missed_trading_days(dt.date() if hasattr(dt, "date") else date.fromisoformat(dt_str))
 
     state = load_paper_state()
-    run_key = f"{dt_str}_aksam"
-    if run_key in state.get("processed_runs", {}):
+    if not state.get("paper_start_date"):
+        state["paper_start_date"] = dt_str
+    skipped = _phase_guard(dt_str, "aksam", state)
+    if skipped:
         log.info("Phase Aksam [%s] zaten çalıştırılmış, idempotent olarak atlanıyor.", dt_str)
-        return {"status": "skipped_idempotent", "date": dt_str}
+        return skipped
 
     # 1. Sinyal üretimi
-    bot_sigs, candidates = generate_bot_signals_for_day(symbol_data, dt)
+    bot_sigs, candidates = generate_bot_signals_for_day(symbol_data, dt, precomputed=precomputed)
 
-    # 2. Backtest parity kontrolü
-    bt_sigs = evaluate_backtest_signals_for_day(symbol_data, dt)
-    parity_res = compare_daily_signals(dt_str, bot_sigs, bt_sigs)
+    # 2. Backtest parity kontrolü (tarihsel replay'de atlanabilir)
+    if skip_signal_parity:
+        parity_res = {"uyum_orani_pct": None}
+        bt_sigs = set()
+    else:
+        bt_sigs = evaluate_backtest_signals_for_day(symbol_data, dt)
+        parity_res = compare_daily_signals(dt_str, bot_sigs, bt_sigs)
 
     # 3. Adayları state'e kaydet
     serializable_candidates = []
@@ -305,14 +452,17 @@ def run_phase_aksam(
             "xu100_rejim_boga": regime_bull,
         })
     state["pending_candidates"] = serializable_candidates
-    state.setdefault("processed_runs", {})[run_key] = datetime.now(TZ_ISTANBUL).isoformat()
+    state.setdefault("processed_runs", {})[f"{dt_str}_aksam"] = datetime.now(TZ_ISTANBUL).isoformat()
 
     # 4. Günlük MTM Equity kaydı ve DD uyarıları
     _record_daily_mtm_equity(state, dt, symbol_data)
 
     save_paper_state(state)
-    log.info("Phase Aksam tamamlandı [%s]: %d aktif aday, %d backtest sinyali (Uyum: %%%.1f)",
-             dt_str, len(candidates), len(bt_sigs), parity_res["uyum_orani_pct"])
+    t1 = datetime.now(TZ_ISTANBUL)
+    write_heartbeat(dt_str, "aksam", t0.isoformat(), t1.isoformat(), "success")
+    parity_txt = "n/a" if parity_res.get("uyum_orani_pct") is None else f"{parity_res['uyum_orani_pct']:.1f}"
+    log.info("Phase Aksam tamamlandı [%s]: %d aktif aday, %d backtest sinyali (Uyum: %%%s)",
+             dt_str, len(candidates), len(bt_sigs), parity_txt)
 
     return {
         "status": "success",
@@ -327,26 +477,41 @@ def run_phase_acilis(
     open_prices: Optional[Dict[str, float]] = None,
     minute_bars: Optional[Dict[str, pd.DataFrame]] = None,
     symbol_data: Optional[Dict[str, pd.DataFrame]] = None,
+    fetch_vwap: Optional[bool] = None,
+    wait_vwap_window: bool = False,
 ) -> dict:
-    """Phase B: Ertesi gün açılış seansı, emirlerin doldurulması ve kapasite reddi loglaması."""
+    """Phase B: Ertesi gün açılış seansı, emirlerin doldurulması ve kapasite reddi loglaması.
+
+    simule_dolum_fiyati = açılış × (1 + SLIPPAGE_RATE)  [paper simülasyonu]
+    gerceklesen_slipaj_pct / dolum_vekili_* = yalnızca ölçülen 5dk VWAP vekili
+    """
+    t0 = datetime.now(TZ_ISTANBUL)
+    if wait_vwap_window:
+        wait_for_acilis_vwap_window()
     if symbol_data is None:
         symbol_data = load_all_indicators()
 
     all_dates = sorted(list(set().union(*[df.index for df in symbol_data.values()])))
     dt = as_of_date or all_dates[-1]
     dt_str = dt.strftime("%Y-%m-%d")
+    if not _REPLAY_MODE:
+        check_missed_trading_days(dt.date() if hasattr(dt, "date") else date.fromisoformat(dt_str))
 
     state = load_paper_state()
-    run_key = f"{dt_str}_acilis"
-    if run_key in state.get("processed_runs", {}):
+    if not state.get("paper_start_date"):
+        state["paper_start_date"] = dt_str
+    skipped = _phase_guard(dt_str, "acilis", state)
+    if skipped:
         log.info("Phase Acilis [%s] zaten çalıştırılmış, idempotent olarak atlanıyor.", dt_str)
-        return {"status": "skipped_idempotent", "date": dt_str}
+        return skipped
 
     pending = state.get("pending_candidates", [])
     if not pending:
         log.info("Phase Acilis [%s]: Bekleyen sinyal yok.", dt_str)
-        state.setdefault("processed_runs", {})[run_key] = datetime.now(TZ_ISTANBUL).isoformat()
+        state.setdefault("processed_runs", {})[f"{dt_str}_acilis"] = datetime.now(TZ_ISTANBUL).isoformat()
         save_paper_state(state)
+        t1 = datetime.now(TZ_ISTANBUL)
+        write_heartbeat(dt_str, "acilis", t0.isoformat(), t1.isoformat(), "no_pending_signals")
         return {"status": "no_pending_signals", "date": dt_str}
 
     paper_log = load_paper_log()
@@ -376,10 +541,11 @@ def run_phase_acilis(
             log.warning("%s için açılış fiyatı bulunamadı, atlanıyor.", sym)
             continue
 
-        gap = (curr_open / sig_close) - 1.0
+        gap = gap_ratio(curr_open, sig_close)
+        sim_fill = round(curr_open * (1.0 + SLIPPAGE_RATE), 4)
 
-        # Gap kontrolü
-        if abs(gap) > GAP_TOLERANCE:
+        # Gap kontrolü (oran: abs(open/close - 1) > 0.0001)
+        if gap_rejected(curr_open, sig_close, GAP_TOLERANCE):
             rej_row = {
                 "sinyal_tarihi": sig_date,
                 "giris_tarihi": dt_str,
@@ -391,6 +557,7 @@ def run_phase_acilis(
                 "sinyal_kapanis_fiyati": round(sig_close, 4),
                 "beklenen_acilis_fiyati": round(sig_close, 4),
                 "gerceklesen_acilis_fiyati": round(curr_open, 4),
+                "simule_dolum_fiyati": "",
                 "gap_orani_pct": round(gap * 100.0, 4),
                 "gerceklesen_slipaj_pct": "",
                 "komisyon_pct": round(COMMISSION_RATE * 100.0, 2),
@@ -431,6 +598,7 @@ def run_phase_acilis(
                 "sinyal_kapanis_fiyati": round(sig_close, 4),
                 "beklenen_acilis_fiyati": round(sig_close, 4),
                 "gerceklesen_acilis_fiyati": round(curr_open, 4),
+                "simule_dolum_fiyati": "",
                 "gap_orani_pct": round(gap * 100.0, 4),
                 "gerceklesen_slipaj_pct": "",
                 "komisyon_pct": round(COMMISSION_RATE * 100.0, 2),
@@ -486,21 +654,37 @@ def run_phase_acilis(
         state["cash_20k"] -= cost_20k
         state["cash_10k"] -= cost_10k
 
-        # Dakikalık VWAP vekili hesabı
+        # Dakikalık VWAP vekili (tipik fiyat = (H+L+C)/3). Simüle dolum ayrı kolon.
         slip_proxy_pct = ""
         maliyet_tur_basi_pct = ""
         notlar_str = ""
+        m_df = None
+        attempted_vwap = False
         if minute_bars and sym in minute_bars:
             m_df = minute_bars[sym]
-            if len(m_df) >= 5 and "volume" in m_df.columns and "close" in m_df.columns:
-                m5 = m_df.head(5)
-                v_sum = float(m5["volume"].sum())
-                if v_sum > 0:
-                    vwap5 = float((m5["close"] * m5["volume"]).sum() / v_sum)
-                    slip_proxy_pct = round(abs(vwap5 - curr_open) / curr_open * 100.0, 4)
-                    maliyet_tur_basi_pct = round(2.0 * (COMMISSION_RATE * 100.0 + slip_proxy_pct), 4)
+            attempted_vwap = True
+        elif _should_fetch_vwap(fetch_vwap):
+            from p1_data_provider import fetch_opening_minute_bars
+            session_day = dt.date() if hasattr(dt, "date") else date.fromisoformat(dt_str)
+            m_df = fetch_opening_minute_bars(sym, session_day, n_bars=5)
+            attempted_vwap = True
+
+        if m_df is not None:
+            from p1_data_provider import opening_vwap
+            vwap5 = opening_vwap(m_df, n_bars=5)
+            if vwap5 is not None and curr_open > 0:
+                slip_proxy_pct = round((vwap5 - curr_open) / curr_open * 100.0, 4)
+                maliyet_tur_basi_pct = round(
+                    2.0 * (COMMISSION_RATE * 100.0 + abs(float(slip_proxy_pct))), 4
+                )
         if slip_proxy_pct == "":
             notlar_str = "VWAP verisi yok"
+            if attempted_vwap:
+                log.error(
+                    "VWAP verisi yok: %s %s — ölçülen vekil boş; sonradan doldurulamaz (1m geçmiş ~7 gün).",
+                    sym, dt_str,
+                )
+                warn_vwap_missing(sym, dt_str)
 
         pos_id = f"P1_{sym}_{dt_str.replace('-', '')}_{len(paper_log)}"
         positions_20k[sym] = {
@@ -528,6 +712,7 @@ def run_phase_acilis(
             "sinyal_kapanis_fiyati": round(sig_close, 4),
             "beklenen_acilis_fiyati": round(sig_close, 4),
             "gerceklesen_acilis_fiyati": round(curr_open, 4),
+            "simule_dolum_fiyati": sim_fill,
             "gap_orani_pct": round(gap * 100.0, 4),
             "gerceklesen_slipaj_pct": slip_proxy_pct,
             "komisyon_pct": round(COMMISSION_RATE * 100.0, 2),
@@ -551,10 +736,12 @@ def run_phase_acilis(
 
     # İşlenen adayları temizle
     state["pending_candidates"] = []
-    state.setdefault("processed_runs", {})[run_key] = datetime.now(TZ_ISTANBUL).isoformat()
+    state.setdefault("processed_runs", {})[f"{dt_str}_acilis"] = datetime.now(TZ_ISTANBUL).isoformat()
 
     save_paper_log(paper_log)
     save_paper_state(state)
+    t1 = datetime.now(TZ_ISTANBUL)
+    write_heartbeat(dt_str, "acilis", t0.isoformat(), t1.isoformat(), "success")
     log.info("Phase Acilis tamamlandı [%s]: %d açıldı, %d reddedildi.", dt_str, opened_count, rejected_count)
 
     return {"status": "success", "date": dt_str, "opened": opened_count, "rejected": rejected_count}
@@ -566,14 +753,19 @@ def run_phase_takip(
     symbol_data: Optional[Dict[str, pd.DataFrame]] = None,
 ) -> dict:
     """Phase C & D: Açık pozisyonların çıkış kuralları ile yönetimi ve reddedilen sinyallerin sonradan getiri takibi."""
+    t0 = datetime.now(TZ_ISTANBUL)
     if symbol_data is None:
         symbol_data = load_all_indicators()
 
     all_dates = sorted(list(set().union(*[df.index for df in symbol_data.values()])))
     dt = as_of_date or all_dates[-1]
     dt_str = dt.strftime("%Y-%m-%d")
+    if not _REPLAY_MODE:
+        check_missed_trading_days(dt.date() if hasattr(dt, "date") else date.fromisoformat(dt_str))
 
     state = load_paper_state()
+    if not state.get("paper_start_date"):
+        state["paper_start_date"] = dt_str
     paper_log = load_paper_log()
 
     positions_20k = state.setdefault("positions_20k", {})
@@ -594,9 +786,9 @@ def run_phase_takip(
         pos_20["mfe"] = max(pos_20.get("mfe", 0.0), (h_b - entry_p) / entry_p)
         pos_20["mae"] = min(pos_20.get("mae", 0.0), (l_b - entry_p) / entry_p)
 
-        stop_l = round(entry_p * 0.95, 4)
-        tp1_l = round(entry_p * 1.08, 4)
-        tr_l = round(pos_20["peak_price"] * 0.95, 4) if pos_20["tp1_done"] else 0.0
+        stop_l = stop_level_price(entry_p)
+        tp1_l = tp1_level_price(entry_p)
+        tr_l = trail_level_price(pos_20["peak_price"]) if pos_20["tp1_done"] else 0.0
 
         is_stop = l_b <= stop_l
         is_tp1 = (h_b >= tp1_l) and not pos_20["tp1_done"]
@@ -627,8 +819,8 @@ def run_phase_takip(
         elif is_tp1:
             ref_exit = max(o_b, tp1_l)
             exit_price = round(ref_exit * (1.0 - SLIPPAGE_RATE), 4)
-            sold_lots_20k = 1 if pos_20["lots"] <= 1 else pos_20["lots"] // 2
-            sold_lots_10k = 1 if pos_10.get("lots", 0) <= 1 else pos_10.get("lots", 0) // 2
+            sold_lots_20k = tp1_sold_lots(pos_20["lots"])
+            sold_lots_10k = tp1_sold_lots(pos_10.get("lots", 0))
             pos_20["lots"] -= sold_lots_20k
             if "lots" in pos_10:
                 pos_10["lots"] -= sold_lots_10k
@@ -689,11 +881,14 @@ def run_phase_takip(
     _evaluate_tracked_rejected_signals(state, dt, paper_log, current_bars, symbol_data)
 
     # 3. İzleme Uyarıları (Dolum Maliyeti MA)
-    completed_trades = [r for r in paper_log if r.get("cikis_nedeni") != ""]
-    check_fill_cost_alerts(completed_trades, window=20)
+    if not _REPLAY_MODE:
+        completed_trades = [r for r in paper_log if r.get("cikis_nedeni") != ""]
+        check_fill_cost_alerts(completed_trades, window=20)
 
     save_paper_log(paper_log)
     save_paper_state(state)
+    t1 = datetime.now(TZ_ISTANBUL)
+    write_heartbeat(dt_str, "takip", t0.isoformat(), t1.isoformat(), "success")
 
     return {"status": "success", "date": dt_str, "closed": len(closed_syms)}
 
@@ -713,9 +908,9 @@ def _evaluate_tracked_rejected_signals(state: dict, dt: pd.Timestamp, paper_log:
         entry_p = cand["entry_price"]
         holding_days = (dt - pd.to_datetime(cand["entry_date"])).days
 
-        stop_l = round(entry_p * 0.95, 4)
-        tp1_l = round(entry_p * 1.08, 4)
-        tr_l = round(cand["peak_price"] * 0.95, 4) if cand["tp1_done"] else 0.0
+        stop_l = stop_level_price(entry_p)
+        tp1_l = tp1_level_price(entry_p)
+        tr_l = trail_level_price(cand["peak_price"]) if cand["tp1_done"] else 0.0
 
         is_stop = l_b <= stop_l
         is_tp1 = (h_b >= tp1_l) and not cand["tp1_done"]
@@ -786,10 +981,13 @@ def _record_daily_mtm_equity(state: dict, dt: pd.Timestamp, symbol_data: Dict[st
     state["peak_equity_10k"] = max(state.get("peak_equity_10k", INITIAL_CAPITAL), eq_10)
 
     # Drawdown uyarıları
-    check_drawdown_alerts(eq_20, state["peak_equity_20k"], size_label="20k")
-    check_drawdown_alerts(eq_10, state["peak_equity_10k"], size_label="10k")
+    if not _REPLAY_MODE:
+        check_drawdown_alerts(eq_20, state["peak_equity_20k"], size_label="20k")
+        check_drawdown_alerts(eq_10, state["peak_equity_10k"], size_label="10k")
 
     daily_eq_list = state.setdefault("daily_equity", [])
+    if _REPLAY_MODE:
+        return
     # İdempotent: Aynı tarih varsa güncelle, yoksa ekle
     idx = next((i for i, r in enumerate(daily_eq_list) if r.get("tarih") == dt_str), None)
     entry = {
@@ -850,13 +1048,79 @@ def load_all_indicators() -> Dict[str, pd.DataFrame]:
     return symbol_data
 
 
+def run_historical_replay(
+    symbol_data: Dict[str, pd.DataFrame],
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    precomputed: Optional[Dict[str, Dict[str, pd.Series]]] = None,
+) -> dict:
+    """Paper fazlarını backtest sırasıyla (takip → acilis → aksam) tarihsel koşturur.
+
+    Canlı sıra acilis sonra takip olduğu için aynı gün çıkış canlıda mümkün,
+    bu replay'de yeni açılan pozisyon aynı bar'da çıkılmaz (backtest ile hizalı).
+    VWAP çekilmez; simule_dolum_fiyati = open*(1+slippage).
+    """
+    all_dates = sorted(list(set().union(*[df.index for df in symbol_data.values()])))
+    if start_date:
+        start_ts = pd.to_datetime(start_date)
+        all_dates = [d for d in all_dates if d >= start_ts]
+    if end_date:
+        end_ts = pd.to_datetime(end_date)
+        all_dates = [d for d in all_dates if d <= end_ts]
+
+    n_aksam = n_acilis = n_takip = 0
+    global _REPLAY_MODE
+    prev = _REPLAY_MODE
+    _REPLAY_MODE = True
+    prev_level = log.level
+    log.setLevel(logging.WARNING)
+    try:
+        for dt in all_dates:
+            run_phase_takip(as_of_date=dt, symbol_data=symbol_data)
+            n_takip += 1
+            run_phase_acilis(as_of_date=dt, symbol_data=symbol_data, fetch_vwap=False)
+            n_acilis += 1
+            run_phase_aksam(
+                as_of_date=dt,
+                symbol_data=symbol_data,
+                precomputed=precomputed,
+                skip_signal_parity=True,
+            )
+            n_aksam += 1
+    finally:
+        _REPLAY_MODE = prev
+        log.setLevel(prev_level)
+
+    log_rows = load_paper_log()
+    taken = [r for r in log_rows if r.get("kapasite_durumu") == "ISLEME_ALINDI" and r.get("cikis_nedeni")]
+    return {
+        "n_days": len(all_dates),
+        "n_aksam": n_aksam,
+        "n_acilis": n_acilis,
+        "n_takip": n_takip,
+        "n_completed_trades": len(taken),
+        "n_log_rows": len(log_rows),
+        "start": str(all_dates[0].date()) if all_dates else "",
+        "end": str(all_dates[-1].date()) if all_dates else "",
+    }
+
+
 # ── CLI KOMUTLARI ────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="P1 Paper Trading Botu")
-    parser.add_argument("mode", choices=["aksam", "acilis", "takip", "replay", "status"], help="Çalışma modu")
+    parser.add_argument(
+        "mode",
+        choices=["aksam", "acilis", "takip", "replay", "status", "heartbeat-check"],
+        help="Çalışma modu",
+    )
     parser.add_argument("--date", help="Simüle edilecek tarih (YYYY-MM-DD)")
+    parser.add_argument(
+        "--wait-vwap-window",
+        action="store_true",
+        help="acilis: TSİ 10:05 VWAP penceresine kadar bekle (mott_daily alim)",
+    )
     args = parser.parse_args()
 
     as_of = pd.to_datetime(args.date) if args.date else None
@@ -864,9 +1128,17 @@ if __name__ == "__main__":
     if args.mode == "aksam":
         run_phase_aksam(as_of_date=as_of)
     elif args.mode == "acilis":
-        run_phase_acilis(as_of_date=as_of)
+        run_phase_acilis(
+            as_of_date=as_of,
+            fetch_vwap=True,
+            wait_vwap_window=bool(args.wait_vwap_window),
+        )
     elif args.mode == "takip":
         run_phase_takip(as_of_date=as_of)
+    elif args.mode == "heartbeat-check":
+        d = as_of.date() if as_of is not None else datetime.now(TZ_ISTANBUL).date()
+        missed = check_missed_trading_days(d)
+        print(json.dumps({"missed": missed}, ensure_ascii=False, indent=2))
     elif args.mode == "replay":
         from p1_signal_parity import run_60_session_replay
         res = run_60_session_replay()
