@@ -239,36 +239,50 @@ def _p1_p2_rapor_blok(kod: str) -> dict:
 
     for p in open_positions:
         lot = int(p.get("lot", 0) or 0)
-        gf = p.get("guncel_fiyat")
+        from portfoy_yonetici import guncel_fiyat_detayli
+        detail = guncel_fiyat_detayli(p["symbol"])
+        gf = detail.get("price") if detail.get("valuation_valid") else None
         if gf is None or float(gf) <= 0:
             fiyat_eksik = True
             gf = p.get("giris_fiyat", 0.0)
         acik_piyasa_degeri += lot * float(gf or 0.0)
 
     equity = round(nakit + acik_piyasa_degeri, 2)
-    baslangictan_getiri_pct = round((equity - sermaye) / sermaye * 100, 2)
+    baslangictan_getiri_pct = None if fiyat_eksik else round((equity - sermaye) / sermaye * 100, 2)
 
     # Ay başı equity kaydı varsa aylık getiri hesapla, yoksa None (hesaplanamıyor)
     raw_p1 = _yukle("portfoy.json")
     ay_basi_equity = raw_p1.get("ay_basi_equity")
-    if ay_basi_equity and float(ay_basi_equity) > 0:
+    if not fiyat_eksik and ay_basi_equity and float(ay_basi_equity) > 0:
         aylik_getiri_pct = round((equity - float(ay_basi_equity)) / float(ay_basi_equity) * 100, 2)
     else:
         aylik_getiri_pct = None
 
     islem_gecmisi = n.get("islem_gecmisi", [])
     satis_olayi_sayisi = len(islem_gecmisi)
-    tamamlanan_pozisyon_sayisi = len([t for t in islem_gecmisi if t.get("neden") != "TP1"])
+    closed_ids = {t["position_id"] for t in islem_gecmisi if t.get("position_id") and t.get("position_closed", t.get("neden") != "TP1")}
+    legacy_closes = sum(1 for t in islem_gecmisi if not t.get("position_id") and t.get("neden") != "TP1")
+    tamamlanan_pozisyon_sayisi = len(closed_ids) + legacy_closes
 
     # Kâr faktörü: Parasal kâr / parasal zarar
     kazanc_tl = 0.0
     kayip_tl = 0.0
+    position_profits = {}
+    legacy_profits = []
     for t in islem_gecmisi:
         if "tl_kar" in t and t["tl_kar"] is not None:
             net_kar = float(t["tl_kar"])
         else:
             lot = float(t.get("lotlar", 1) or 1)
             net_kar = lot * (float(t.get("cikis_fiyat", 0) or 0) - float(t.get("giris_fiyat", 0) or 0))
+        if t.get("position_id"):
+            pid = t["position_id"]
+            position_profits[pid] = position_profits.get(pid, 0.0) + net_kar
+        else:
+            legacy_profits.append(net_kar)
+    # A partial winner followed by a larger final loss is one losing position.
+    outcomes = legacy_profits + [value for pid, value in position_profits.items() if pid in closed_ids]
+    for net_kar in outcomes:
         if net_kar > 0:
             kazanc_tl += net_kar
         elif net_kar < 0:
@@ -277,14 +291,15 @@ def _p1_p2_rapor_blok(kod: str) -> dict:
     if kayip_tl > 0:
         kar_faktoru = round(kazanc_tl / kayip_tl, 2)
     elif kazanc_tl > 0:
-        kar_faktoru = 999.0
+        kar_faktoru = None
     else:
         kar_faktoru = 0.0
 
     return {
         "strateji": f"{kod} {ad}",
         "sermaye": sermaye,
-        "equity_est": round(equity),
+        "equity_est": round(equity, 2),
+        "kar_faktoru_sonsuz": kayip_tl == 0 and kazanc_tl > 0,
         "getiri_pct": baslangictan_getiri_pct,
         "baslangictan_getiri_pct": baslangictan_getiri_pct,
         "aylik_getiri_pct": aylik_getiri_pct,
@@ -292,6 +307,7 @@ def _p1_p2_rapor_blok(kod: str) -> dict:
         "satis_olayi_sayisi": satis_olayi_sayisi,
         "tamamlanan_pozisyon_sayisi": tamamlanan_pozisyon_sayisi,
         "kar_faktoru": kar_faktoru,
+        "kar_faktoru_kapsami": "tamamlanan_pozisyonlar; kimliksiz_eski_kayitlar_olay_bazli",
         "acik_sayisi": len(open_positions),
         "nakit": nakit,
         "acik_piyasa_degeri": round(acik_piyasa_degeri, 2),
@@ -355,7 +371,8 @@ def telegram_metin(rapor: dict) -> str:
         g = p.get("getiri_pct")
         eq = p.get("equity_est", SERMAYE)
         if g is None:
-            lines.append(f"{i}. `{kod}` {ad} — veri yok (sadece tarama)")
+            reason = "değerleme eksik; getiri hesaplanamadı" if p.get("durum") == "fiyat_eksik" else "veri yok (sadece tarama)"
+            lines.append(f"{i}. `{kod}` {ad} — {reason}")
         else:
             emoji = "🟢" if g >= 0 else "🔴"
             lines.append(f"{i}. {emoji} `{kod}` {ad}: *{g:+.2f}%* → ~{eq:,} TL")

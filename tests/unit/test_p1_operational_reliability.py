@@ -82,14 +82,14 @@ class TestP1OperationalReliability:
         }
         portfoy_path.write_text(json.dumps(portfoy_surec_2), encoding="utf-8")
 
-        # Süreç 1 işini bitirip kaydettiğinde Süreç 2'nin yazdığı ASELS ve EVT_2 korunmalıdır
-        p_sonuc = py.portfoy_kaydet(portfoy_surec_1)
+        # Stale economic calculations cannot be safely merged. Disk must remain unchanged.
+        before = portfoy_path.read_bytes()
+        with pytest.raises(py.StateConflict):
+            py.portfoy_kaydet(portfoy_surec_1)
+        assert portfoy_path.read_bytes() == before
         saved = json.loads(portfoy_path.read_text(encoding="utf-8"))
-
-        assert "ASELS" in saved["pozisyonlar"]
-        trade_event_ids = [t["event_id"] for t in saved["trade_history"]]
-        assert "EVT_2" in trade_event_ids
-        assert saved["_gen"] >= 7
+        assert saved["nakit"] == 80000.0
+        assert saved["_gen"] == 6
 
     def test_bist_islem_gunu_ve_tatiller(self):
         # Hafta sonu

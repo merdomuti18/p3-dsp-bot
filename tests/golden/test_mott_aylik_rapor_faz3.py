@@ -43,6 +43,8 @@ def _use_fixed_baseline_state(monkeypatch):
 def mock_fiyat_sabit(monkeypatch):
     """T4 mock stratejisi: tüm semboller için sabit 100.0 — deterministik."""
     monkeypatch.setattr(mpa, "get_price", lambda sym: 100.0)
+    import portfoy_yonetici as manager
+    monkeypatch.setattr(manager, "guncel_fiyat_detayli", lambda sym, **kw: {"price":100.0,"valuation_valid":True})
 
 
 # ---------------------------------------------------------------------------
@@ -94,7 +96,7 @@ def test_rapor_mock_fiyat_golden_degerler(mock_fiyat_sabit):
         "P3": (274000, 174.0, 16, 12.5),
         "P4": (95306, -4.69, 36, 36.1),
         "P5": (101460, 1.46, 12, 41.7),
-        "P1": (94801, -5.2, None, None),
+        "P1": (65886.91, -34.11, None, None),
         "P2": (100000, 0.0, None, None),
     }
     for p in r["portfoyler"]:

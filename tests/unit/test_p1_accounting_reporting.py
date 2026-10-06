@@ -36,7 +36,7 @@ class TestP1AccountingReporting:
         viop_bias = {"size_factor": 1.0}
 
         monkeypatch.setattr(py, "guncel_fiyat_detayli", lambda sym, **kw: {
-            "symbol": sym, "price": 100.0, "source": "tradingview", "time": "2026-10-06T10:00:00", "valid": True
+            "symbol": sym, "price": 100.0, "source": "tradingview", "time": "2026-10-06T10:00:00", "valid": True, "trade_eligible": True
         })
 
         p_sonuc, mesajlar, alinan, alinmayan = py.yeni_pozisyon_ac(
@@ -120,7 +120,7 @@ class TestP1AccountingReporting:
 
         # 1. Alış işlemi
         monkeypatch.setattr(py, "guncel_fiyat_detayli", lambda sym, **kw: {
-            "symbol": sym, "price": 100.0, "source": "tradingview", "time": "2026-10-06T10:00:00", "valid": True
+            "symbol": sym, "price": 100.0, "source": "tradingview", "time": "2026-10-06T10:00:00", "valid": True, "trade_eligible": True
         })
         p, _, alinan, _ = py.yeni_pozisyon_ac(portfoy, adaylar, "NORMAL", viop_bias)
         assert "THYAO" in alinan
@@ -168,6 +168,7 @@ class TestP1AccountingReporting:
 
         monkeypatch.setattr(mar, "normalize", lambda kod: mock_normalized_p1 if kod == "P1" else mar.normalize(kod))
         monkeypatch.setattr(mar, "_yukle", lambda fname: {"ay_basi_equity": 105000.0})
+        monkeypatch.setattr(py, "guncel_fiyat_detayli", lambda symbol, **kw: {"price": 150 if symbol == "THYAO" else 100, "valuation_valid": True})
 
         p1_blok = mar._p1_p2_rapor_blok("P1")
 
@@ -213,7 +214,7 @@ class TestP1AccountingReporting:
             ],
         }
 
-        with patch.object(py, "guncel_fiyat", return_value=105.0):
+        with patch.object(py, "guncel_fiyat_detayli", return_value={"price":105.0,"valuation_valid":True}):
             p = py.gunluk_equity_kaydet(portfoy, now=ref_dt)
 
         tarihce = p["gunluk_equity_tarihcesi"]
@@ -226,7 +227,7 @@ class TestP1AccountingReporting:
         assert bugun_kayit["acik_deger"] == 21000.0
 
         # Aynı gün tekrar çağrıldığında mükerrer kayıt oluşturmaz, mevcut bugünkü kaydı günceller (idempotent)
-        with patch.object(py, "guncel_fiyat", return_value=110.0):
+        with patch.object(py, "guncel_fiyat_detayli", return_value={"price":110.0,"valuation_valid":True}):
             p = py.gunluk_equity_kaydet(p, now=ref_dt + timedelta(hours=1))
 
         assert len(p["gunluk_equity_tarihcesi"]) == 2

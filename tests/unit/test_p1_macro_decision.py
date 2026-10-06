@@ -200,7 +200,7 @@ class TestP1MacroDecision:
         }
 
         normal_bar = {"open": 100.0, "high": 101.0, "low": 99.0, "close": 100.0}
-        mock_fiyat_detay = {"symbol": "GARAN", "price": 102.0, "source": "tradingview", "time": "2026-10-06T11:00:00", "valid": True}
+        mock_fiyat_detay = {"symbol": "GARAN", "price": 102.0, "source": "tradingview", "time": "2026-10-06T11:00:00", "valid": True, "trade_eligible": True}
         with patch.object(py, "saatlik_bar", return_value=normal_bar), \
              patch.object(py, "guncel_fiyat_detayli", return_value=mock_fiyat_detay):
             # makro_skor 80.0 >= EMERGENCY_LIQUIDATION_SCORE (75.0)
@@ -211,4 +211,4 @@ class TestP1MacroDecision:
         assert "GARAN" not in p_sonuc["pozisyonlar"]
         assert len(p_sonuc["trade_history"]) == 1
         assert p_sonuc["trade_history"][0]["neden"] == "ACIL_NAKIT"
-        assert p_sonuc["nakit"] == 50000.0 + (100 * 102.0)
+        assert p_sonuc["nakit"] == pytest.approx(60184.7051)  # 100*101.898 less 5.0949 sell commission

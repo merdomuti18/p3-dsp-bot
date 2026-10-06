@@ -162,6 +162,8 @@ def veri_hazirla(semboller):
                 df = raw[["Open","High","Low","Close","Volume"]].copy()
             df.columns = [c.lower() for c in df.columns]
             df["volume"] = df["volume"].ffill()
+            from p1_safety import closed_daily
+            df = closed_daily(df, datetime.now(timezone(timedelta(hours=3))))
             df = df.dropna(subset=["open","high","low","close"])
             if len(df) >= 50:
                 _VERI_CACHE[sym] = df
@@ -229,7 +231,7 @@ def get_indicators(df):
             bb_mid=bb_mid, bb_up=bb_up, bb_lo=bb_lo,
             cmf=cmf, adx=adx, di_p=dip, di_n=din,
             stochrsi=srsi, atr=atr_v, rel_vol=rel_vol,
-            change_pct=change_pct, alpha_bull=alpha_bull,
+            vol20=vol20, change_pct=change_pct, alpha_bull=alpha_bull,
             alpha_trend_bull=alpha_trend_bull,
         )
     except Exception as exc:
@@ -313,6 +315,7 @@ def _build_signal_records(scan_time, scan_label, strategy_results):
             "rsi": round(ind["rsi"], 2), "rel_vol": round(ind["rel_vol"], 2),
             "change_pct": round(ind["change_pct"], 2), "close": round(ind["close"], 4),
             "adx": round(ind["adx"], 2), "cmf": round(ind["cmf"], 4),
+            "islem_tl": round(float(ind["close"] * ind.get("vol20", 0)), 2),
             "alpha_bull": bool(ind["alpha_bull"]), "alpha_trend_bull": bool(ind["alpha_trend_bull"]),
             "ema200_filtre_devre_disi": ema200_bypassed,
             "ema200_bar_sayisi": ind.get("bar_sayisi", 0),

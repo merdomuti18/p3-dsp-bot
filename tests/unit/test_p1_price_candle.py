@@ -39,7 +39,10 @@ class TestP1PriceCandle:
         assert res["valid"] is True
         assert res["price"] == 320.5
         assert res["source"] == "tradingview"
-        assert res["time"] == ref_dt.isoformat()
+        assert res["time"] is None
+        assert res["source_time_known"] is False
+        assert res["trade_eligible"] is False
+        assert res["observed_at"] == py._p1_now(ref_dt).isoformat()
         assert py.guncel_fiyat("THYAO") == 320.5
 
     def test_eksik_fiyatla_yeni_alim_engellenir(self, monkeypatch):
@@ -86,7 +89,7 @@ class TestP1PriceCandle:
         # 12:30 itibariyle son KAPANMIŞ bar 11:00 barıdır (Close: 104.0)
         assert bar["open"] == 101.0
         assert bar["close"] == 104.0
-        assert bar["bar_time"] == t11.isoformat()
+        assert bar["bar_time"] == py._p1_now(t11).isoformat()
 
     def test_mum_idempotency_ayni_mumda_tekrar_calisma_engellenir(self, monkeypatch):
         """Aynı mum daha önce değerlendirildiyse, TP1/STOP kontrolleri tekrar çalıştırılmaz."""

@@ -189,8 +189,11 @@ class TestP1TradeExecution:
         # Gerçekleşen çıkış: 108 * (1 - 0.001) = 107.892
         assert trade["cikis_fiyat"] == round(108.0 * (1.0 - py.VARSAYILAN_KAYMA_ORANI), 4)
         assert trade["lotlar"] == 50
-        # Telegram mesajında gerçekleşen getiri gösterilmeli (+7.89%)
-        assert any("+7.89%" in m for m in mesajlar)
+        # Unknown legacy buy fee is not invented. Selling fee is deducted.
+        # (50*107.892 - 2.6973 - 5000)/5000*100 = 7.838054%
+        assert trade["net_pnl_pct"] == pytest.approx(7.8381, abs=.0001)
+        assert trade["maliyet_bilgisi_tam"] is False
+        assert any("net +7.84%" in m for m in mesajlar)
         assert any("Tetik: 108.00" in m for m in mesajlar)
 
     def test_tek_lot_tp1_tam_kapanis(self):

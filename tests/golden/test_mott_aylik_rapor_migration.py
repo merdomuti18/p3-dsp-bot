@@ -40,6 +40,8 @@ def _use_fixed_baseline_state(monkeypatch):
 @pytest.fixture
 def mock_fiyat(monkeypatch):
     monkeypatch.setattr(mpa, "get_price", lambda sym: 100.0)
+    import portfoy_yonetici as manager
+    monkeypatch.setattr(manager, "guncel_fiyat_detayli", lambda sym, **kw: {"price":100.0,"valuation_valid":True})
 
 
 # ---------------------------------------------------------------------------
@@ -85,8 +87,8 @@ def test_m1_p5_eski_yeni_esdeger(mock_fiyat):
 def test_m1_p1_eski_yeni_esdeger(mock_fiyat):
     yeni = mar._p1_p2_rapor_blok("P1")
     # P1 dinamik equity ve getiri: sabit 100.000 TL ve %0.0 kaldırıldı
-    assert yeni["equity_est"] == 94801
-    assert yeni["getiri_pct"] == -5.2
+    assert yeni["equity_est"] == 65886.91  # 21886.90527096556 cash + 440 lots * mock price 100
+    assert yeni["getiri_pct"] == -34.11
     assert yeni["kapanan"] == 11
     assert yeni["acik_sayisi"] == 6       # portfoy.json pozisyonlar
     assert yeni["nakit"] == pytest.approx(21886.90527096556, abs=1.0)
