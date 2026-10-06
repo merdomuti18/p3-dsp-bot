@@ -200,8 +200,9 @@ class TestP1MacroDecision:
         }
 
         normal_bar = {"open": 100.0, "high": 101.0, "low": 99.0, "close": 100.0}
+        mock_fiyat_detay = {"symbol": "GARAN", "price": 102.0, "source": "tradingview", "time": "2026-10-06T11:00:00", "valid": True}
         with patch.object(py, "saatlik_bar", return_value=normal_bar), \
-             patch.object(py, "guncel_fiyat", return_value=102.0):
+             patch.object(py, "guncel_fiyat_detayli", return_value=mock_fiyat_detay):
             # makro_skor 80.0 >= EMERGENCY_LIQUIDATION_SCORE (75.0)
             p_sonuc, mesajlar = py.pozisyon_guncelle_saatlik(
                 portfoy, makro_karar="GIRME", makro_skor=80.0, now=ref_dt

@@ -1,0 +1,1440 @@
+{
+  "created": "2026-07-02",
+  "positions": {
+    "IZMDC": {
+      "entry_date": "2026-07-07",
+      "entry_price": 9.25,
+      "score": 0.0758,
+      "margin": 0.0567
+    },
+    "TUPRS": {
+      "entry_date": "2026-07-09",
+      "entry_price": 264.25,
+      "score": 0.0709,
+      "margin": 0.0556
+    },
+    "TKFEN": {
+      "entry_date": "2026-07-30",
+      "entry_price": 152.7,
+      "score": 0.0844,
+      "margin": 0.0677
+    },
+    "ARDYZ": {
+      "entry_date": "2026-08-03",
+      "entry_price": 75.45,
+      "score": 0.0935,
+      "margin": 0.057
+    }
+  },
+  "history": [
+    {
+      "symbol": "ODAS",
+      "entry_date": "2026-07-02",
+      "exit_date": "2026-07-07",
+      "entry_price": 8.34,
+      "exit_price": 8.08,
+      "pnl_pct": -3.12,
+      "holding_days": 5
+    },
+    {
+      "symbol": "AKBNK",
+      "entry_date": "2026-07-02",
+      "exit_date": "2026-07-07",
+      "entry_price": 77.65,
+      "exit_price": 74.95,
+      "pnl_pct": -3.48,
+      "holding_days": 5
+    },
+    {
+      "symbol": "THYAO",
+      "entry_date": "2026-07-07",
+      "exit_date": "2026-07-08",
+      "entry_price": 355.0,
+      "exit_price": 332.0,
+      "pnl_pct": -6.48,
+      "holding_days": 1
+    },
+    {
+      "symbol": "GLYHO",
+      "entry_date": "2026-07-02",
+      "exit_date": "2026-07-09",
+      "entry_price": 18.12,
+      "exit_price": 17.55,
+      "pnl_pct": -3.15,
+      "holding_days": 7
+    },
+    {
+      "symbol": "KLNMA",
+      "entry_date": "2026-07-08",
+      "exit_date": "2026-07-10",
+      "entry_price": 9.79,
+      "exit_price": 9.7,
+      "pnl_pct": -0.92,
+      "holding_days": 2
+    },
+    {
+      "symbol": "ISGYO",
+      "entry_date": "2026-07-02",
+      "exit_date": "2026-07-17",
+      "entry_price": 24.96,
+      "exit_price": 27.58,
+      "pnl_pct": 10.5,
+      "holding_days": 15
+    },
+    {
+      "symbol": "AKCNS",
+      "entry_date": "2026-07-10",
+      "exit_date": "2026-07-17",
+      "entry_price": 234.7,
+      "exit_price": 238.3,
+      "pnl_pct": 1.53,
+      "holding_days": 7
+    },
+    {
+      "symbol": "SKBNK",
+      "entry_date": "2026-07-02",
+      "exit_date": "2026-07-21",
+      "entry_price": 17.43,
+      "exit_price": 16.12,
+      "pnl_pct": -7.52,
+      "holding_days": 19
+    },
+    {
+      "symbol": "ISGYO",
+      "entry_date": "2026-07-21",
+      "exit_date": "2026-07-23",
+      "entry_price": 26.5,
+      "exit_price": 25.8,
+      "pnl_pct": -2.64,
+      "holding_days": 2
+    },
+    {
+      "symbol": "PETKM",
+      "entry_date": "2026-07-23",
+      "exit_date": "2026-07-27",
+      "entry_price": 22.56,
+      "exit_price": 20.64,
+      "pnl_pct": -8.51,
+      "holding_days": 4,
+      "reason": "ACIL_STOP"
+    },
+    {
+      "symbol": "ARDYZ",
+      "entry_date": "2026-07-17",
+      "exit_date": "2026-07-29",
+      "entry_price": 68.8,
+      "exit_price": 67.95,
+      "pnl_pct": -1.24,
+      "holding_days": 12
+    },
+    {
+      "symbol": "AKSEN",
+      "entry_date": "2026-07-17",
+      "exit_date": "2026-07-30",
+      "entry_price": 106.0,
+      "exit_price": 97.5,
+      "pnl_pct": -8.02,
+      "holding_days": 13,
+      "reason": "ACIL_STOP"
+    },
+    {
+      "symbol": "KRDMD",
+      "entry_date": "2026-07-29",
+      "exit_date": "2026-07-30",
+      "entry_price": 41.84,
+      "exit_price": 40.88,
+      "pnl_pct": -2.29,
+      "holding_days": 1
+    },
+    {
+      "symbol": "AKSEN",
+      "entry_date": "2026-07-30",
+      "exit_date": "2026-08-03",
+      "entry_price": 97.0,
+      "exit_price": 91.0,
+      "pnl_pct": -6.19,
+      "holding_days": 4
+    },
+    {
+      "symbol": "SOKM",
+      "entry_date": "2026-07-27",
+      "exit_date": "2026-08-05",
+      "entry_price": 52.0,
+      "exit_price": 51.3,
+      "pnl_pct": -1.35,
+      "holding_days": 9
+    },
+    {
+      "symbol": "ENJSA",
+      "entry_date": "2026-08-05",
+      "exit_date": "2026-08-12",
+      "entry_price": 113.0,
+      "exit_price": 108.4,
+      "pnl_pct": -4.07,
+      "holding_days": 7
+    }
+  ],
+  "scan_log": [
+    {
+      "date": "2026-07-02",
+      "scanned": 79,
+      "long_signals": 39,
+      "top5": [
+        "SKBNK",
+        "ISGYO",
+        "ODAS",
+        "AKBNK",
+        "GLYHO"
+      ],
+      "entries": [
+        "SKBNK",
+        "ISGYO",
+        "ODAS",
+        "AKBNK",
+        "GLYHO"
+      ],
+      "exits": []
+    },
+    {
+      "date": "2026-07-07",
+      "scanned": 79,
+      "long_signals": 34,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "GLYHO",
+        "THYAO"
+      ],
+      "entries": [
+        "IZMDC",
+        "THYAO"
+      ],
+      "exits": [
+        "ODAS",
+        "AKBNK"
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "scanned": 79,
+      "long_signals": 34,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "GLYHO",
+        "THYAO"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-08",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "GLYHO",
+        "KLNMA"
+      ],
+      "entries": [
+        "KLNMA"
+      ],
+      "exits": [
+        "THYAO"
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "scanned": 79,
+      "long_signals": 26,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "TUPRS",
+        "KLNMA"
+      ],
+      "entries": [
+        "TUPRS"
+      ],
+      "exits": [
+        "GLYHO"
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "scanned": 79,
+      "long_signals": 26,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "IZMDC",
+        "TUPRS",
+        "KLNMA"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-10",
+      "scanned": 79,
+      "long_signals": 27,
+      "top5": [
+        "SKBNK",
+        "ISGYO",
+        "TUPRS",
+        "AKCNS",
+        "IZMDC"
+      ],
+      "entries": [
+        "AKCNS"
+      ],
+      "exits": [
+        "KLNMA"
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "scanned": 79,
+      "long_signals": 26,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "TUPRS",
+        "AKCNS",
+        "IZMDC"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-14",
+      "scanned": 79,
+      "long_signals": 21,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "TUPRS",
+        "IZMDC",
+        "AKCNS"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-15",
+      "scanned": 79,
+      "long_signals": 21,
+      "top5": [
+        "ISGYO",
+        "SKBNK",
+        "TUPRS",
+        "IZMDC",
+        "AKCNS"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-16",
+      "scanned": 79,
+      "long_signals": 20,
+      "top5": [
+        "TUPRS",
+        "SKBNK",
+        "ISGYO",
+        "AKCNS",
+        "IZMDC"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-17",
+      "scanned": 79,
+      "long_signals": 22,
+      "top5": [
+        "TUPRS",
+        "IZMDC",
+        "SKBNK",
+        "AKSEN",
+        "ARDYZ"
+      ],
+      "entries": [
+        "AKSEN",
+        "ARDYZ"
+      ],
+      "exits": [
+        "ISGYO",
+        "AKCNS"
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "scanned": 79,
+      "long_signals": 27,
+      "top5": [
+        "TUPRS",
+        "IZMDC",
+        "AKSEN",
+        "ARDYZ",
+        "ISGYO"
+      ],
+      "entries": [
+        "ISGYO"
+      ],
+      "exits": [
+        "SKBNK"
+      ]
+    },
+    {
+      "date": "2026-07-22",
+      "scanned": 79,
+      "long_signals": 25,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "ARDYZ",
+        "ISGYO"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-23",
+      "scanned": 79,
+      "long_signals": 27,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "ARDYZ",
+        "PETKM"
+      ],
+      "entries": [
+        "PETKM"
+      ],
+      "exits": [
+        "ISGYO"
+      ]
+    },
+    {
+      "date": "2026-07-24",
+      "scanned": 79,
+      "long_signals": 32,
+      "top5": [
+        "IZMDC",
+        "AKSEN",
+        "TUPRS",
+        "ARDYZ",
+        "PETKM"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-27",
+      "scanned": 79,
+      "long_signals": 32,
+      "top5": [
+        "IZMDC",
+        "AKSEN",
+        "TUPRS",
+        "ARDYZ",
+        "SOKM"
+      ],
+      "entries": [
+        "SOKM"
+      ],
+      "exits": []
+    },
+    {
+      "date": "2026-07-27",
+      "scanned": 79,
+      "long_signals": 32,
+      "top5": [
+        "IZMDC",
+        "AKSEN",
+        "TUPRS",
+        "ARDYZ",
+        "SOKM"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-28",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "IZMDC",
+        "AKSEN",
+        "TUPRS",
+        "SOKM",
+        "ARDYZ"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-28",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "IZMDC",
+        "AKSEN",
+        "TUPRS",
+        "SOKM",
+        "ARDYZ"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-29",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "SOKM",
+        "KRDMD"
+      ],
+      "entries": [
+        "KRDMD"
+      ],
+      "exits": [
+        "ARDYZ"
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "scanned": 79,
+      "long_signals": 28,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "SOKM",
+        "TKFEN"
+      ],
+      "entries": [
+        "AKSEN",
+        "TKFEN"
+      ],
+      "exits": [
+        "KRDMD"
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "scanned": 79,
+      "long_signals": 28,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "SOKM",
+        "TKFEN"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-07-31",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "AKSEN",
+        "SOKM",
+        "TKFEN"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-03",
+      "scanned": 79,
+      "long_signals": 29,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "TKFEN",
+        "SOKM",
+        "AKSEN"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-03",
+      "scanned": 79,
+      "long_signals": 26,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "TKFEN",
+        "ARDYZ",
+        "SOKM"
+      ],
+      "entries": [
+        "ARDYZ"
+      ],
+      "exits": [
+        "AKSEN"
+      ]
+    },
+    {
+      "date": "2026-08-04",
+      "scanned": 79,
+      "long_signals": 22,
+      "top5": [
+        "IZMDC",
+        "TUPRS",
+        "TKFEN",
+        "ARDYZ",
+        "SOKM"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-05",
+      "scanned": 79,
+      "long_signals": 21,
+      "top5": [
+        "IZMDC",
+        "TKFEN",
+        "TUPRS",
+        "ARDYZ",
+        "ENJSA"
+      ],
+      "entries": [
+        "ENJSA"
+      ],
+      "exits": [
+        "SOKM"
+      ]
+    },
+    {
+      "date": "2026-08-07",
+      "scanned": 79,
+      "long_signals": 18,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "ENJSA"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-07",
+      "scanned": 79,
+      "long_signals": 18,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "ENJSA"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-08",
+      "scanned": 79,
+      "long_signals": 21,
+      "top5": [
+        "IZMDC",
+        "TKFEN",
+        "TUPRS",
+        "ARDYZ",
+        "ENJSA"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-10",
+      "scanned": 79,
+      "long_signals": 18,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "ENJSA"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-10",
+      "scanned": 79,
+      "long_signals": 19,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "TUPRS",
+        "ARDYZ",
+        "ENJSA"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-11",
+      "scanned": 79,
+      "long_signals": 20,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "ENJSA"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-11",
+      "scanned": 79,
+      "long_signals": 20,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "ENJSA"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-12",
+      "scanned": 79,
+      "long_signals": 25,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "CWENE"
+      ],
+      "entries": [],
+      "exits": [
+        "ENJSA"
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "scanned": 79,
+      "long_signals": 25,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "CWENE"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-12",
+      "scanned": 79,
+      "long_signals": 25,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-12",
+      "scanned": 79,
+      "long_signals": 25,
+      "top5": [
+        "TKFEN",
+        "IZMDC",
+        "ARDYZ",
+        "TUPRS",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-13",
+      "scanned": 79,
+      "long_signals": 28,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "IZMDC",
+        "TUPRS",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-13",
+      "scanned": 79,
+      "long_signals": 28,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "IZMDC",
+        "TUPRS",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-14",
+      "scanned": 79,
+      "long_signals": 32,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "TUPRS",
+        "IZMDC",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-14",
+      "scanned": 79,
+      "long_signals": 32,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "TUPRS",
+        "IZMDC",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-17",
+      "scanned": 79,
+      "long_signals": 32,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "TUPRS",
+        "IZMDC",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-18",
+      "scanned": 79,
+      "long_signals": 33,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "TUPRS",
+        "IZMDC",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    },
+    {
+      "date": "2026-08-18",
+      "scanned": 79,
+      "long_signals": 33,
+      "top5": [
+        "TKFEN",
+        "ARDYZ",
+        "TUPRS",
+        "IZMDC",
+        "ASTOR"
+      ],
+      "entries": [],
+      "exits": []
+    }
+  ],
+  "cycle_monitor": {
+    "baselines": {
+      "AKBNK": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ALBRK": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "GARAN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "HALKB": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ICBCT": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ISCTR": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "KLNMA": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "SKBNK": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TSKB": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "VAKBN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "YKBNK": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "AKSEN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "AYDEM": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "BIOEN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "CWENE": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "EKGYO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ENJSA": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "EUPWR": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ODAS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ORGE": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "PETKM": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TUPRS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ZOREN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ASUZU": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "DOAS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "FROTO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "OTKAR": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TOASO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TTRAK": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "EREGL": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "IZMDC": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "KRDMD": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TMSN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ARDYZ": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ASELS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ASTOR": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "LOGO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "NETAS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "DOHOL": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "GLYHO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "GSDHO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "KCHOL": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "POLHO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "SAHOL": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "SISE": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "AEFES": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "BIMAS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "CCOLA": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "MGROS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "MAVI": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "SOKM": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ULKER": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "CLEBI": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "PGSUS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TAVHL": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "THYAO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "AKSGY": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ENKAI": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ISGYO": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "MPARK": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "AKCNS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "AKSA": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ALKIM": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "GUBRF": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TCELL": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TTKOM": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "AGESA": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ISMEN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "SNPAM": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "ARCLK": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "BRYAT": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "CIMSA": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "GESAN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "HEKTS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "JANTS": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "KARSN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "TKFEN": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      },
+      "VESTL": {
+        "period": 30.0,
+        "set_date": "2026-07-02"
+      }
+    },
+    "log": [
+      {
+        "date": "2026-07-27",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-27",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-28",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-28",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-29",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-30",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-30",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-07-31",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-03",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-03",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-04",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-05",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-07",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-07",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-08",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-10",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-10",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-11",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-11",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-12",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-12",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-12",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-12",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-13",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-13",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-14",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-14",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-17",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-18",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      },
+      {
+        "date": "2026-08-18",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
+      }
+    ]
+  }
+}

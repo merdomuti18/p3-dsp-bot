@@ -1,0 +1,717 @@
+{
+  "pozisyonlar": {
+    "TKFEN": {
+      "symbol": "TKFEN",
+      "giris_fiyat": 221.9,
+      "guncel_fiyat": 231.5,
+      "lotlar": 45,
+      "pnl_pct": 4.33,
+      "gun": 8,
+      "giris_tarih": "2026-08-10",
+      "meta_score": 0.857142857142857,
+      "kaynaklar": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "UFUK": {
+      "symbol": "UFUK",
+      "giris_fiyat": 1813.0,
+      "guncel_fiyat": 1779.0,
+      "lotlar": 5,
+      "pnl_pct": -1.88,
+      "gun": 8,
+      "giris_tarih": "2026-08-10",
+      "meta_score": 0.7333333333333334,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "BRSAN": {
+      "symbol": "BRSAN",
+      "giris_fiyat": 628.5,
+      "guncel_fiyat": 633.5,
+      "lotlar": 15,
+      "pnl_pct": 0.8,
+      "gun": 6,
+      "giris_tarih": "2026-08-12",
+      "meta_score": 0.41904761904761906,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "ARDYZ": {
+      "symbol": "ARDYZ",
+      "giris_fiyat": 91.6,
+      "guncel_fiyat": 89.65,
+      "lotlar": 109,
+      "pnl_pct": -2.13,
+      "gun": 1,
+      "giris_tarih": "2026-08-17",
+      "meta_score": 0.8444444444444444,
+      "kaynaklar": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    },
+    "KRDMA": {
+      "symbol": "KRDMA",
+      "giris_fiyat": 46.44,
+      "guncel_fiyat": 46.44,
+      "lotlar": 215,
+      "pnl_pct": 0.0,
+      "gun": 1,
+      "giris_tarih": "2026-08-17",
+      "meta_score": 0.5296296296296297,
+      "kaynaklar": [
+        "P1",
+        "P2"
+      ],
+      "coklu_onay": true,
+      "strateji": "P4"
+    }
+  },
+  "trade_history": [
+    {
+      "symbol": "ICBCT",
+      "giris_fiyat": 23.0,
+      "cikis_fiyat": 21.78,
+      "pnl_pct": -5.3,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-02",
+      "cikis_tarih": "2026-07-07",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "DAGI",
+      "giris_fiyat": 9.170000076293945,
+      "cikis_fiyat": 10.23,
+      "pnl_pct": 11.56,
+      "gun": 5,
+      "neden": "TP",
+      "giris_tarih": "2026-07-02",
+      "cikis_tarih": "2026-07-07",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ARDYZ",
+      "giris_fiyat": 59.650001525878906,
+      "cikis_fiyat": 67.25,
+      "pnl_pct": 12.74,
+      "gun": 5,
+      "neden": "TP",
+      "giris_tarih": "2026-07-02",
+      "cikis_tarih": "2026-07-07",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ARSAN",
+      "giris_fiyat": 3.4600000381469727,
+      "cikis_fiyat": 3.26,
+      "pnl_pct": -5.78,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-02",
+      "cikis_tarih": "2026-07-07",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "SKTAS",
+      "giris_fiyat": 3.7799999713897705,
+      "cikis_fiyat": 3.58,
+      "pnl_pct": -5.29,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-02",
+      "cikis_tarih": "2026-07-08",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "DAGI",
+      "giris_fiyat": 10.23,
+      "cikis_fiyat": 9.32,
+      "pnl_pct": -8.9,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-07",
+      "cikis_tarih": "2026-07-08",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "KLMSN",
+      "giris_fiyat": 34.0,
+      "cikis_fiyat": 31.34,
+      "pnl_pct": -7.82,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-07",
+      "cikis_tarih": "2026-07-08",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ICBCT",
+      "giris_fiyat": 21.78,
+      "cikis_fiyat": 20.6,
+      "pnl_pct": -5.42,
+      "gun": 2,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-07",
+      "cikis_tarih": "2026-07-09",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "THYAO",
+      "giris_fiyat": 348.25,
+      "cikis_fiyat": 324.25,
+      "pnl_pct": -6.89,
+      "gun": 7,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-07",
+      "cikis_tarih": "2026-07-14",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "AKSEN",
+      "giris_fiyat": 89.45,
+      "cikis_fiyat": 100.6,
+      "pnl_pct": 12.47,
+      "gun": 7,
+      "neden": "TP",
+      "giris_tarih": "2026-07-09",
+      "cikis_tarih": "2026-07-16",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "TRGYO",
+      "giris_fiyat": 101.7,
+      "cikis_fiyat": 99.1,
+      "pnl_pct": -2.56,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-09",
+      "cikis_tarih": "2026-07-20",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ARDYZ",
+      "giris_fiyat": 67.7,
+      "cikis_fiyat": 68.3,
+      "pnl_pct": 0.89,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-09",
+      "cikis_tarih": "2026-07-20",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "UFUK",
+      "giris_fiyat": 1685.0,
+      "cikis_fiyat": 1701.0,
+      "pnl_pct": 0.95,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-09",
+      "cikis_tarih": "2026-07-20",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "KRDMA",
+      "giris_fiyat": 41.02,
+      "cikis_fiyat": 45.28,
+      "pnl_pct": 10.39,
+      "gun": 6,
+      "neden": "TP",
+      "giris_tarih": "2026-07-14",
+      "cikis_tarih": "2026-07-20",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "KRDMA",
+      "giris_fiyat": 47.96,
+      "cikis_fiyat": 44.4,
+      "pnl_pct": -7.42,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-21",
+      "cikis_tarih": "2026-07-22",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "TUPRS",
+      "giris_fiyat": 286.25,
+      "cikis_fiyat": 316.25,
+      "pnl_pct": 10.48,
+      "gun": 7,
+      "neden": "TP",
+      "giris_tarih": "2026-07-16",
+      "cikis_tarih": "2026-07-23",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "AKSEN",
+      "giris_fiyat": 111.3,
+      "cikis_fiyat": 104.4,
+      "pnl_pct": -6.2,
+      "gun": 2,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-21",
+      "cikis_tarih": "2026-07-23",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "MOGAN",
+      "giris_fiyat": 18.92,
+      "cikis_fiyat": 17.82,
+      "pnl_pct": -5.81,
+      "gun": 2,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-21",
+      "cikis_tarih": "2026-07-23",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ODAS",
+      "giris_fiyat": 9.14,
+      "cikis_fiyat": 8.52,
+      "pnl_pct": -6.78,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-23",
+      "cikis_tarih": "2026-07-24",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ARDYZ",
+      "giris_fiyat": 70.85,
+      "cikis_fiyat": 67.1,
+      "pnl_pct": -5.29,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-22",
+      "cikis_tarih": "2026-07-28",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "TUREX",
+      "giris_fiyat": 7.23,
+      "cikis_fiyat": 6.86,
+      "pnl_pct": -5.12,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-23",
+      "cikis_tarih": "2026-07-29",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "TRMET",
+      "giris_fiyat": 136.1,
+      "cikis_fiyat": 125.4,
+      "pnl_pct": -7.86,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-24",
+      "cikis_tarih": "2026-07-29",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "PRKAB",
+      "giris_fiyat": 35.74,
+      "cikis_fiyat": 33.56,
+      "pnl_pct": -6.1,
+      "gun": 7,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-23",
+      "cikis_tarih": "2026-07-30",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "KRDMB",
+      "giris_fiyat": 133.5,
+      "cikis_fiyat": 134.1,
+      "pnl_pct": 0.45,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-21",
+      "cikis_tarih": "2026-07-31",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "EFOR",
+      "giris_fiyat": 20.62,
+      "cikis_fiyat": 19.06,
+      "pnl_pct": -7.57,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-28",
+      "cikis_tarih": "2026-08-03",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ENTRA",
+      "giris_fiyat": 5.32,
+      "cikis_fiyat": 4.9,
+      "pnl_pct": -7.89,
+      "gun": 4,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-30",
+      "cikis_tarih": "2026-08-03",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "DEVA",
+      "giris_fiyat": 72.5,
+      "cikis_fiyat": 68.65,
+      "pnl_pct": -5.31,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-30",
+      "cikis_tarih": "2026-08-05",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "TKFEN",
+      "giris_fiyat": 164.0,
+      "cikis_fiyat": 185.1,
+      "pnl_pct": 12.87,
+      "gun": 2,
+      "neden": "TP",
+      "giris_tarih": "2026-08-03",
+      "cikis_tarih": "2026-08-05",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "UFUK",
+      "giris_fiyat": 1750.0,
+      "cikis_fiyat": 1754.0,
+      "pnl_pct": 0.23,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-30",
+      "cikis_tarih": "2026-08-10",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "AKSA",
+      "giris_fiyat": 13.0,
+      "cikis_fiyat": 12.63,
+      "pnl_pct": -2.85,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-31",
+      "cikis_tarih": "2026-08-10",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "INFO",
+      "giris_fiyat": 6.89,
+      "cikis_fiyat": 8.01,
+      "pnl_pct": 16.26,
+      "gun": 5,
+      "neden": "TP",
+      "giris_tarih": "2026-08-05",
+      "cikis_tarih": "2026-08-10",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ARDYZ",
+      "giris_fiyat": 75.45,
+      "cikis_fiyat": 83.8,
+      "pnl_pct": 11.07,
+      "gun": 9,
+      "neden": "TP",
+      "giris_tarih": "2026-08-03",
+      "cikis_tarih": "2026-08-12",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ALARK",
+      "giris_fiyat": 107.0,
+      "cikis_fiyat": 101.6,
+      "pnl_pct": -5.05,
+      "gun": 2,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-12",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "FADE",
+      "giris_fiyat": 17.72,
+      "cikis_fiyat": 16.42,
+      "pnl_pct": -7.34,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-12",
+      "cikis_tarih": "2026-08-13",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "MOGAN",
+      "giris_fiyat": 20.2,
+      "cikis_fiyat": 19.98,
+      "pnl_pct": -1.09,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-05",
+      "cikis_tarih": "2026-08-17",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "CATES",
+      "giris_fiyat": 50.05,
+      "cikis_fiyat": 55.4,
+      "pnl_pct": 10.69,
+      "gun": 4,
+      "neden": "TP",
+      "giris_tarih": "2026-08-13",
+      "cikis_tarih": "2026-08-17",
+      "strateji": "P4"
+    }
+  ],
+  "ic_history": [
+    {
+      "tarih": "2026-07-02",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0681,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-07",
+      "ic_p1": 0.0,
+      "ic_p2": -0.0062,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-07",
+      "ic_p1": 0.0,
+      "ic_p2": -0.2342,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-09",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-10",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-13",
+      "ic_p1": 0.0,
+      "ic_p2": 0.288,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-14",
+      "ic_p1": 0.0,
+      "ic_p2": 0.3906,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-15",
+      "ic_p1": 0.0,
+      "ic_p2": 0.2918,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-16",
+      "ic_p1": 0.0,
+      "ic_p2": -0.1289,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-17",
+      "ic_p1": 0.0,
+      "ic_p2": 0.1053,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-21",
+      "ic_p1": 0.0,
+      "ic_p2": -0.1479,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-22",
+      "ic_p1": 0.0,
+      "ic_p2": -0.1465,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-23",
+      "ic_p1": 0.0,
+      "ic_p2": 0.1159,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-24",
+      "ic_p1": 0.0,
+      "ic_p2": -0.2064,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-27",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-28",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-28",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-30",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-07-31",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-03",
+      "ic_p1": 0.0,
+      "ic_p2": -0.0148,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-03",
+      "ic_p1": 0.0,
+      "ic_p2": -0.0619,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-04",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0697,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-05",
+      "ic_p1": 0.0,
+      "ic_p2": 0.1497,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-07",
+      "ic_p1": 0.0,
+      "ic_p2": -0.108,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-07",
+      "ic_p1": 0.0,
+      "ic_p2": -0.108,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-08",
+      "ic_p1": 0.0,
+      "ic_p2": -0.0338,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-10",
+      "ic_p1": 0.0,
+      "ic_p2": -0.2942,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-11",
+      "ic_p1": 0.0,
+      "ic_p2": -0.0674,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-11",
+      "ic_p1": 0.0,
+      "ic_p2": -0.0674,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-12",
+      "ic_p1": 0.0,
+      "ic_p2": -0.0459,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-12",
+      "ic_p1": 0.0,
+      "ic_p2": -0.2066,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-12",
+      "ic_p1": 0.0,
+      "ic_p2": -0.2066,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-13",
+      "ic_p1": 0.0,
+      "ic_p2": 0.1031,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-14",
+      "ic_p1": 0.0,
+      "ic_p2": -0.1642,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-14",
+      "ic_p1": 0.0,
+      "ic_p2": -0.1642,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-17",
+      "ic_p1": 0.0,
+      "ic_p2": -0.3025,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-18",
+      "ic_p1": 0.0,
+      "ic_p2": -0.2408,
+      "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-08-18",
+      "ic_p1": 0.0,
+      "ic_p2": -0.2408,
+      "ic_p3": 0.0
+    }
+  ],
+  "last_run": "2026-08-18T16:43:43.684512",
+  "sermaye_baslangic": 100000,
+  "sermaye_mevcut": 95306
+}

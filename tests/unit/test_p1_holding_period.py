@@ -226,7 +226,8 @@ class TestP1HoldingPeriod:
         assert trade["symbol"] == "THYAO"
         assert trade["neden"] == "MAX_GUN"
         assert trade["cikis_fiyat"] == 105.0
-        assert p_sonuc["nakit"] == 50000.0 + (100 * 105.0)
+        net_tutar, _ = py.hesapla_net_tutar(100, 105.0)
+        assert p_sonuc["nakit"] == pytest.approx(50000.0 + net_tutar, abs=0.01)
 
     def test_uzatma_stop_risk_kontrolunu_atlamaz(self, tmp_path):
         """Uzatılmış pozisyon 11. günde STOP seviyesine düşerse derhal STOP ile kapanmalıdır."""

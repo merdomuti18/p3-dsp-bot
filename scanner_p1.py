@@ -187,7 +187,8 @@ def get_indicators(df):
         ema8   = _ema(c, 8).iloc[-1]
         ema21  = _ema(c, 21).iloc[-1]
         ema50  = _ema(c, 50).iloc[-1]
-        ema200 = _ema(c, 200).iloc[-1] if len(df) >= 200 else float("nan")
+        ema200_yetersiz = len(df) < 200
+        ema200 = _ema(c, 200).iloc[-1] if not ema200_yetersiz else float("nan")
         sma20  = _sma(c, 20).iloc[-1]
         rsi    = _rsi(c).iloc[-1]
         macd_l, macd_s = _macd(c)
@@ -222,6 +223,7 @@ def get_indicators(df):
         alpha_trend_bull = c.iloc[-1] > alpha_cur
         return dict(
             close=close, ema8=ema8, ema21=ema21, ema50=ema50, ema200=ema200,
+            ema200_yetersiz_veri=ema200_yetersiz, bar_sayisi=len(df),
             sma20=sma20, rsi=rsi, macd=macd_val, macd_sig=macd_sig,
             macd_prev=macd_prev, macd_sprev=macd_sprev,
             bb_mid=bb_mid, bb_up=bb_up, bb_lo=bb_lo,
@@ -299,6 +301,9 @@ def _build_signal_records(scan_time, scan_label, strategy_results):
     records = []
     for sym, data in seen.items():
         ind = data["ind"]
+        ema200_bypassed = bool(ind.get("ema200_yetersiz_veri", False))
+        if ema200_bypassed:
+            log.info("P1 tarama %s: EMA200 verisi yetersiz (%d < 200 bar), EMA200 filtresi devre dışı.", sym, ind.get("bar_sayisi", 0))
         records.append({
             "symbol": sym, "scan_time": scan_time, "scan_label": scan_label,
             "strategies": data["strategies"], "score_count": len(data["strategies"]),
@@ -309,6 +314,8 @@ def _build_signal_records(scan_time, scan_label, strategy_results):
             "change_pct": round(ind["change_pct"], 2), "close": round(ind["close"], 4),
             "adx": round(ind["adx"], 2), "cmf": round(ind["cmf"], 4),
             "alpha_bull": bool(ind["alpha_bull"]), "alpha_trend_bull": bool(ind["alpha_trend_bull"]),
+            "ema200_filtre_devre_disi": ema200_bypassed,
+            "ema200_bar_sayisi": ind.get("bar_sayisi", 0),
         })
     return records
 

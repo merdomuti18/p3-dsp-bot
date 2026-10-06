@@ -1,0 +1,618 @@
+{
+  "pozisyonlar": {},
+  "trade_history": [
+    {
+      "symbol": "DAGI",
+      "giris_fiyat": 9.180000305175781,
+      "cikis_fiyat": 10.19,
+      "pnl_pct": 11.0,
+      "gun": 5,
+      "neden": "TP",
+      "giris_tarih": "2026-07-02",
+      "cikis_tarih": "2026-07-07",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "SKTAS",
+      "giris_fiyat": 3.7899999618530273,
+      "cikis_fiyat": 3.58,
+      "pnl_pct": -5.54,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-02",
+      "cikis_tarih": "2026-07-08",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "KORDS",
+      "giris_fiyat": 83.95,
+      "cikis_fiyat": 79.6,
+      "pnl_pct": -5.18,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-08",
+      "cikis_tarih": "2026-07-09",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "AKSEN",
+      "giris_fiyat": 89.45,
+      "cikis_fiyat": 100.1,
+      "pnl_pct": 11.91,
+      "gun": 7,
+      "neden": "TP",
+      "giris_tarih": "2026-07-09",
+      "cikis_tarih": "2026-07-16",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "HATEK",
+      "giris_fiyat": 14.1048,
+      "cikis_fiyat": 12.54,
+      "pnl_pct": -11.09,
+      "gun": 7,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-27",
+      "cikis_tarih": "2026-08-03",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "AKSEN",
+      "giris_fiyat": 96.85,
+      "cikis_fiyat": 91.3,
+      "pnl_pct": -5.73,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-29",
+      "cikis_tarih": "2026-08-03",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "ENTRA",
+      "giris_fiyat": 5.18,
+      "cikis_fiyat": 4.89,
+      "pnl_pct": -5.6,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-07-29",
+      "cikis_tarih": "2026-08-04",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "AKSA",
+      "giris_fiyat": 12.44,
+      "cikis_fiyat": 12.65,
+      "pnl_pct": 1.69,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-27",
+      "cikis_tarih": "2026-08-06",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "GRSEL",
+      "giris_fiyat": 344.0,
+      "cikis_fiyat": 344.0,
+      "pnl_pct": 0.0,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-27",
+      "cikis_tarih": "2026-08-06",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "CATES",
+      "giris_fiyat": 50.05,
+      "cikis_fiyat": 55.6,
+      "pnl_pct": 11.09,
+      "gun": 4,
+      "neden": "TP",
+      "giris_tarih": "2026-08-13",
+      "cikis_tarih": "2026-08-17",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "KGYO",
+      "giris_fiyat": 12.4,
+      "cikis_fiyat": 13.77,
+      "pnl_pct": 11.05,
+      "gun": 4,
+      "neden": "TP",
+      "giris_tarih": "2026-08-13",
+      "cikis_tarih": "2026-08-17",
+      "strateji": "P5"
+    },
+    {
+      "symbol": "ASTOR",
+      "giris_fiyat": 345.5,
+      "cikis_fiyat": 323.75,
+      "pnl_pct": -6.3,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-13",
+      "cikis_tarih": "2026-08-18",
+      "strateji": "P5"
+    }
+  ],
+  "komite_log": [
+    {
+      "tarih": "2026-07-02",
+      "secilen": [
+        "SKTAS",
+        "DAGI"
+      ],
+      "elenen": [
+        {
+          "symbol": "VAKBN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ISGYO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "ISCTR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "GARAN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "MANAS",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "THYAO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "AKBNK",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "KLGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "GLYHO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "SKTAS",
+        "DAGI"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-08",
+      "secilen": [
+        "KORDS"
+      ],
+      "elenen": [
+        {
+          "symbol": "GLYHO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "MAKIM",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "EREGL",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TRGYO",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "OBASE",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "SKBNK",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ASTOR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "CELHA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [
+        "KORDS"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-09",
+      "secilen": [
+        "AKSEN"
+      ],
+      "elenen": [
+        {
+          "symbol": "ISGYO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TRGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "EKGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "CATES",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "REEDR",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "OBASE",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "IEYHO",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TURSG",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "AKSEN"
+      ],
+      "kapanan": [
+        "KORDS"
+      ],
+      "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-27",
+      "secilen": [
+        "HATEK",
+        "AKSA",
+        "GRSEL"
+      ],
+      "elenen": [
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "AKSEN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TARKM",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "PAGYO",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "MAVI",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "CCOLA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "IEYHO",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUREX",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "DITAS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [
+        "HATEK",
+        "AKSA",
+        "GRSEL"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-29",
+      "secilen": [
+        "AKSEN",
+        "ENTRA"
+      ],
+      "elenen": [
+        {
+          "symbol": "KRDMB",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "KRDMD",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "SOKM",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "GRSEL",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "RALYH",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "EFOR",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "CCOLA",
+          "neden": "tek kaynak (P1)"
+        }
+      ],
+      "acilan": [
+        "AKSEN",
+        "ENTRA"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-07-30",
+      "secilen": [
+        "UFUK",
+        "ENTRA"
+      ],
+      "elenen": [
+        {
+          "symbol": "AKSEN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "DEVA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "SOKM",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TKFEN",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-08-10",
+      "secilen": [
+        "UFUK",
+        "TKFEN",
+        "TUPRS"
+      ],
+      "elenen": [
+        {
+          "symbol": "DOFER",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KORDS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ENJSA",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "BERA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "DEVA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ANSGR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "BORSK",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "GLCVY",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KLMSN",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-08-12",
+      "secilen": [
+        "TKFEN"
+      ],
+      "elenen": [
+        {
+          "symbol": "AYGAZ",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "YIGIT",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ASTOR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "IMASM",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "IZMDC",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "DOAS",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TTRAK",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "SILVR",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KONYA",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-08-13",
+      "secilen": [
+        "CATES",
+        "KGYO",
+        "ASTOR"
+      ],
+      "elenen": [
+        {
+          "symbol": "YATAS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KARTN",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "INFO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "ARDYZ",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "EFOR",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "GOODY",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "EKGYO",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "GLRMK",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "TUPRS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "EGEEN",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [
+        "CATES",
+        "KGYO",
+        "ASTOR"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
+    }
+  ],
+  "last_run": "2026-08-13T16:07:00.006436",
+  "sermaye_baslangic": 100000,
+  "sermaye_mevcut": 101460
+}
