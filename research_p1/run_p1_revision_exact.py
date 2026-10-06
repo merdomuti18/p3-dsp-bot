@@ -38,6 +38,7 @@ from research_p1.p1_exit_rules import (
     MAX_HOLDING_DAYS,
     stop_level_price,
     tp1_level_price,
+    tp1_sold_lots,
     trail_level_price,
 )
 from research_p1.run_hurdle_and_robustness import get_daily_risk_free_rate
@@ -241,7 +242,7 @@ def run_exact_analysis():
                 if is_tp:
                     ref_p = max(o_b, tp1_l)
                     p_exit = round(ref_p * (1.0 - 0.0030), 4)
-                    s_lots = 1 if pos["lots"] <= 1 else pos["lots"] // 2
+                    s_lots = tp1_sold_lots(pos["lots"])
                     pos["lots"] -= s_lots
                     inc = round(s_lots * p_exit * (1.0 - 0.0030), 4)
                     cash_balance += inc
