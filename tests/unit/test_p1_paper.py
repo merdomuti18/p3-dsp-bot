@@ -624,3 +624,25 @@ def test_trade_level_replay_records_mismatches(tmp_path, monkeypatch):
     if len(cmp_df) and not bool(cmp_df["eslesme"].all()):
         assert cmp_df.loc[~cmp_df["eslesme"].astype(bool), "kok_neden"].str.len().gt(0).all()
 
+
+def test_day_loop_calls_three_phases_and_finishes(tmp_path, monkeypatch):
+    """Gün-gün döngü run_phase_takip/acilis/aksam çağırır ve sentetik aralıkta bitirir."""
+    from research_p1 import run_day_loop_parity as dl
+    from research_p1 import run_trade_level_parity as par
+
+    monkeypatch.setattr(dl, "OUT_DIR", tmp_path / "loop")
+    monkeypatch.setattr(dl, "PROGRESS_FILE", tmp_path / "loop" / "progress.json")
+    monkeypatch.setattr(dl, "RESULTS_DIR", tmp_path)
+    monkeypatch.setattr(dl, "CMP_FILE", tmp_path / "day_loop_parity.csv")
+    monkeypatch.setattr(dl, "SUMMARY_FILE", tmp_path / "day_loop_parity_summary.json")
+    syn = par._synthetic_universe(n_sessions=25, n_symbols=4)
+    dates = sorted(list(set().union(*[df.index for df in syn.values()])))
+    start, end = str(dates[8].date()), str(dates[18].date())
+    monkeypatch.setattr(dl, "FULL_START", start)
+    monkeypatch.setattr(dl, "FULL_END", end)
+    monkeypatch.setattr(dl, "YEAR_CHUNKS", [("u", start, end)])
+    out = dl.run_day_loop(syn, start, end)
+    assert out["failed"] is None
+    assert out["n_days"] == 11
+    assert out["chunks"][0]["status"] == "ok"
+

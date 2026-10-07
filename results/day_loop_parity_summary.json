@@ -1,0 +1,105 @@
+{
+  "paper_yolu": "p1_paper.run_phase_takip / run_phase_acilis / run_phase_aksam (gün gün, _REPLAY_MODE)",
+  "backtest_yolu": "research_p1.run_p1_revision_backtest.simulate_priority_portfolio",
+  "start": "2021-10-06",
+  "end": "2026-10-05",
+  "n_days_run": 1260,
+  "n_dates_expected": 1260,
+  "chunks": [
+    {
+      "chunk": "2021",
+      "n_days": 62,
+      "start": "2021-10-06",
+      "end": "2021-12-31",
+      "status": "ok"
+    },
+    {
+      "chunk": "2022",
+      "n_days": 252,
+      "start": "2022-01-03",
+      "end": "2022-12-30",
+      "status": "ok"
+    },
+    {
+      "chunk": "2023",
+      "n_days": 249,
+      "start": "2023-01-02",
+      "end": "2023-12-29",
+      "status": "ok"
+    },
+    {
+      "chunk": "2024",
+      "n_days": 250,
+      "start": "2024-01-02",
+      "end": "2024-12-31",
+      "status": "ok"
+    },
+    {
+      "chunk": "2025",
+      "n_days": 251,
+      "start": "2025-01-02",
+      "end": "2025-12-31",
+      "status": "ok"
+    },
+    {
+      "chunk": "2026",
+      "n_days": 196,
+      "start": "2026-01-02",
+      "end": "2026-10-05",
+      "status": "ok"
+    }
+  ],
+  "failed": null,
+  "bt_n": 543,
+  "paper_n": 546,
+  "n_karsilastirma": 547,
+  "n_eslesen": 86,
+  "n_uyusmayan": 461,
+  "bt_pnl": 82307.0,
+  "paper_pnl": 100179.0,
+  "bt_by_agent": {
+    "ALPHA_B_SIMPLE": {
+      "n": 93,
+      "pnl": 20898.41
+    },
+    "GTD": {
+      "n": 407,
+      "pnl": 57986.42
+    },
+    "ZT3": {
+      "n": 43,
+      "pnl": 3422.17
+    }
+  },
+  "paper_by_agent": {
+    "ALPHA_B_SIMPLE": {
+      "n": 94,
+      "pnl": 19873.41
+    },
+    "GTD": {
+      "n": 409,
+      "pnl": 75806.13
+    },
+    "ZT3": {
+      "n": 43,
+      "pnl": 4499.46
+    }
+  },
+  "gap": {
+    "n_gap_orani": 4565,
+    "min": -73.8272,
+    "median": 0.2195,
+    "p90": 1.5965,
+    "max": 10.0,
+    "n_gap_reddi": 3824,
+    "n_kapasite_reddi": 123,
+    "n_sinyal": 4493,
+    "gap_reddi_orani": 0.8511,
+    "gap_tolerance_oran": 0.0001,
+    "gap_tolerance_pct_puan": 0.01,
+    "gap_formulu": "gap = open[t+1]/close[t] - 1.0  (oran; 0.0001 = 0.01%)"
+  },
+  "cikti": "C:\\Users\\mustafa\\Desktop\\github\\p3-dsp-bot\\results\\day_loop_parity.csv",
+  "referans_beklenen_n": 543,
+  "referans_beklenen_pnl": 82307.0
+}
