@@ -3,26 +3,10 @@
     "CELHA": {
       "symbol": "CELHA",
       "giris_fiyat": 28.8,
-      "guncel_fiyat": 28.8,
+      "guncel_fiyat": 30.26,
       "lotlar": 347,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-10-05",
-      "max_gun_date": "2026-10-15",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P2"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
-    "OBAMS": {
-      "symbol": "OBAMS",
-      "giris_fiyat": 4.66,
-      "guncel_fiyat": 4.66,
-      "lotlar": 2145,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 5.07,
+      "gun": 2,
       "giris_tarih": "2026-10-05",
       "max_gun_date": "2026-10-15",
       "meta_score": 0.3333333333333333,
@@ -35,10 +19,10 @@
     "TKFEN": {
       "symbol": "TKFEN",
       "giris_fiyat": 255.5,
-      "guncel_fiyat": 255.5,
+      "guncel_fiyat": 261.0,
       "lotlar": 39,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 2.15,
+      "gun": 2,
       "giris_tarih": "2026-10-05",
       "max_gun_date": "2026-10-15",
       "meta_score": 0.3333333333333333,
@@ -51,29 +35,13 @@
     "SANKO": {
       "symbol": "SANKO",
       "giris_fiyat": 20.36,
-      "guncel_fiyat": 20.36,
+      "guncel_fiyat": 21.62,
       "lotlar": 491,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 6.19,
+      "gun": 2,
       "giris_tarih": "2026-10-05",
       "max_gun_date": "2026-10-15",
       "meta_score": 0.2777777777777778,
-      "kaynaklar": [
-        "P2"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
-    "BERA": {
-      "symbol": "BERA",
-      "giris_fiyat": 12.47,
-      "guncel_fiyat": 12.47,
-      "lotlar": 801,
-      "pnl_pct": 0.0,
-      "gun": 0,
-      "giris_tarih": "2026-10-05",
-      "max_gun_date": "2026-10-15",
-      "meta_score": 0.25,
       "kaynaklar": [
         "P2"
       ],
@@ -818,6 +786,28 @@
       "giris_tarih": "2026-09-23",
       "cikis_tarih": "2026-09-29",
       "strateji": "P4"
+    },
+    {
+      "symbol": "OBAMS",
+      "giris_fiyat": 4.66,
+      "cikis_fiyat": 4.31,
+      "pnl_pct": -7.51,
+      "gun": 2,
+      "neden": "STOP",
+      "giris_tarih": "2026-10-05",
+      "cikis_tarih": "2026-10-07",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "BERA",
+      "giris_fiyat": 12.47,
+      "cikis_fiyat": 11.77,
+      "pnl_pct": -5.61,
+      "gun": 2,
+      "neden": "STOP",
+      "giris_tarih": "2026-10-05",
+      "cikis_tarih": "2026-10-07",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -1178,7 +1168,7 @@
   ],
   "last_run": "2026-10-05T15:40:58.601478",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 94042,
-  "_gen": 45,
-  "_updated_at": "2026-10-05T18:41:08.233620+03:00"
+  "sermaye_mevcut": 94100,
+  "_gen": 46,
+  "_updated_at": "2026-10-07T15:30:56.556239+03:00"
 }
