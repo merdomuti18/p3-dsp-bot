@@ -1,0 +1,24 @@
+{
+  "gate_1_block_bootstrap_oos": {
+    "requirement": "Birleşik OOS 95% GA alt sınırı >= 0",
+    "ci_lower": -0.43729772385673177,
+    "ci_upper": 2.3364870572480747,
+    "passed": false
+  },
+  "gate_2_top5_removed_robustness": {
+    "requirement": "Top-5 hisse çıkarılınca ortalama net getiri > 0",
+    "mean_return_no_top5_pct": 0.3282515151515151,
+    "profit_factor_no_top5": 1.1115066373454898,
+    "passed": true
+  },
+  "gate_3_daily_equity_drawdown": {
+    "requirement": "Günlük MTM DD 1.5x-2x çarpanla -%20 sınırını aşmamalı",
+    "realized_daily_max_dd_pct": -11.414941140001464,
+    "realized_daily_max_dd_oos_pct": -5.932613065331002,
+    "stressed_dd_1_5x_pct": -17.12,
+    "stressed_dd_2_0x_pct": -22.83,
+    "passed": true
+  },
+  "overall_stage_0_passed": false,
+  "recommendation": "Parametre revizyonu gerekli"
+}

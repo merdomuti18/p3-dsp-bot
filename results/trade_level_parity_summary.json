@@ -1,0 +1,150 @@
+{
+  "data_mode": "ohlcv_cache",
+  "cikti": "C:\\Users\\mustafa\\Desktop\\github\\p3-dsp-bot\\results\\trade_level_parity.csv",
+  "donemler": [
+    {
+      "donem": "60_seans",
+      "start": "2026-07-15",
+      "end": "2026-10-06",
+      "bt_n": 13,
+      "paper_n": 12,
+      "n_karsilastirma": 13,
+      "n_eslesen": 6,
+      "n_uyusmayan": 7,
+      "bt_pnl": -2219.5,
+      "paper_pnl": -2014.0,
+      "bt_by_agent": {
+        "ALPHA_B_SIMPLE": {
+          "n": 5,
+          "pnl": 1485.0
+        },
+        "GTD": {
+          "n": 8,
+          "pnl": -3704.5
+        }
+      },
+      "paper_by_agent": {
+        "ALPHA_B_SIMPLE": {
+          "n": 4,
+          "pnl": 1674.63
+        },
+        "GTD": {
+          "n": 8,
+          "pnl": -3688.63
+        }
+      },
+      "gap": {
+        "n_gap_orani": 86,
+        "min": -9.9596,
+        "median": 0.1331,
+        "p90": 1.0607,
+        "max": 2.8158,
+        "n_gap_reddi": 72,
+        "n_kapasite_reddi": 0,
+        "n_sinyal": 85,
+        "gap_reddi_orani": 0.8471,
+        "gap_tolerance_oran": 0.0001,
+        "gap_tolerance_pct_puan": 0.01,
+        "gap_formulu": "gap = open[t+1]/close[t] - 1.0  (oran; 0.0001 = 0.01%)"
+      },
+      "maliyet_konvansiyonu": {
+        "alis": "open * (1 + 0.0030)",
+        "satis": "ref * (1 - 0.0030)",
+        "komisyon": "0.0030",
+        "tur_basi_pct": 1.2,
+        "lot_farki": "paper komisyonu lot hesabına dahil eder; backtest fill üzerinden lot keser"
+      }
+    },
+    {
+      "donem": "5yil",
+      "start": "2021-10-06",
+      "end": "2026-10-05",
+      "bt_n": 543,
+      "paper_n": 546,
+      "n_karsilastirma": 547,
+      "n_eslesen": 86,
+      "n_uyusmayan": 461,
+      "bt_pnl": 82307.0,
+      "paper_pnl": 100179.0,
+      "bt_by_agent": {
+        "ALPHA_B_SIMPLE": {
+          "n": 93,
+          "pnl": 20898.41
+        },
+        "GTD": {
+          "n": 407,
+          "pnl": 57986.42
+        },
+        "ZT3": {
+          "n": 43,
+          "pnl": 3422.17
+        }
+      },
+      "paper_by_agent": {
+        "ALPHA_B_SIMPLE": {
+          "n": 94,
+          "pnl": 19873.41
+        },
+        "GTD": {
+          "n": 409,
+          "pnl": 75806.13
+        },
+        "ZT3": {
+          "n": 43,
+          "pnl": 4499.46
+        }
+      },
+      "gap": {
+        "n_gap_orani": 4565,
+        "min": -73.8272,
+        "median": 0.2195,
+        "p90": 1.5965,
+        "max": 10.0,
+        "n_gap_reddi": 3824,
+        "n_kapasite_reddi": 123,
+        "n_sinyal": 4493,
+        "gap_reddi_orani": 0.8511,
+        "gap_tolerance_oran": 0.0001,
+        "gap_tolerance_pct_puan": 0.01,
+        "gap_formulu": "gap = open[t+1]/close[t] - 1.0  (oran; 0.0001 = 0.01%)"
+      },
+      "maliyet_konvansiyonu": {
+        "alis": "open * (1 + 0.0030)",
+        "satis": "ref * (1 - 0.0030)",
+        "komisyon": "0.0030",
+        "tur_basi_pct": 1.2,
+        "lot_farki": "paper komisyonu lot hesabına dahil eder; backtest fill üzerinden lot keser"
+      }
+    }
+  ],
+  "referans_csv": {
+    "dosya": "C:\\Users\\mustafa\\Desktop\\github\\p3-dsp-bot\\research_p1\\results\\p1_rev_ALPHA_B_SIMPLE_20k_trades.csv",
+    "n": 543,
+    "pnl": 82307.0,
+    "by_agent": {
+      "ALPHA_B_SIMPLE": {
+        "n": 93,
+        "pnl": 20898.41
+      },
+      "GTD": {
+        "n": 407,
+        "pnl": 57986.42
+      },
+      "ZT3": {
+        "n": 43,
+        "pnl": 3422.17
+      }
+    },
+    "referans_beklenen_n": 543,
+    "referans_beklenen_pnl": 82307.0,
+    "not": "Karşılaştırma OHLCV cache üzerinde simulate_priority_portfolio + paper replay.",
+    "capacity_skipped_n": 117
+  },
+  "gap_anlami": {
+    "birim": "oran",
+    "formula": "open[t+1]/close[t] - 1.0",
+    "tolerance": 0.0001,
+    "tolerance_pct_puan": 0.01,
+    "paper_backtest_ayni_kaynak": "research_p1.p1_exit_rules.GAP_TOLERANCE"
+  }
+}

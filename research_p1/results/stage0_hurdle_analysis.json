@@ -1,0 +1,52 @@
+{
+  "diff_explanation": {
+    "single_agent_trades_count": 497,
+    "single_agent_total_pnl_tl": 37475.51,
+    "portfolio_trades_taken_count": 456,
+    "portfolio_total_pnl_tl": 20623.91,
+    "capacity_skipped_trades_count": 43,
+    "capacity_skipped_trades_pnl_tl": 18397.93,
+    "capacity_skipped_trades_mean_ret_pct": 4.29,
+    "mathematical_reconciliation_check": false
+  },
+  "exposure_summary": {
+    "mean_holding_calendar_days": 6.16,
+    "mean_holding_trading_days": 4.2,
+    "mean_daily_active_positions": 1.16,
+    "mean_capital_exposure_pct": 11.62,
+    "pct_days_idle_zero_positions": 45.0
+  },
+  "trade_vs_risk_free_cash": {
+    "mean_trade_net_return_pct": 0.4463,
+    "mean_risk_free_return_during_holding_pct": 0.4689,
+    "mean_excess_return_over_cash_pct": -0.0225,
+    "pct_trades_beating_cash_during_hold": 47.37,
+    "annualized_trade_return_on_active_capital_pct": 55.83,
+    "average_annual_risk_free_rate_5y_pct": 32.04,
+    "excess_annualized_edge_on_active_capital_pct": 23.79
+  },
+  "benchmark_comparisons": {
+    "final_p1_gtd_zero_cash_tl": 120623.91,
+    "cagr_p1_gtd_zero_cash_pct": 3.82,
+    "final_p1_gtd_with_ppf_tl": 260590.22,
+    "cagr_p1_gtd_with_ppf_pct": 21.11,
+    "final_100_ppf_tl": 387077.8,
+    "cagr_100_ppf_pct": 31.09,
+    "final_60_xu_40_ppf_tl": 699144.05,
+    "cagr_60_xu_40_ppf_pct": 47.54,
+    "final_100_xu100_tl": 907188.22,
+    "cagr_100_xu100_pct": 55.43
+  },
+  "monte_carlo_random_drops": {
+    "drop_5_random_mean_return_p05": 0.6254,
+    "drop_5_random_mean_return_median": 0.7499,
+    "drop_5_random_mean_return_p95": 0.8586,
+    "drop_5_pct_runs_positive": 100.0,
+    "drop_5_pnl_median_tl": 35834.01,
+    "drop_10_random_mean_return_p05": 0.57,
+    "drop_10_random_mean_return_median": 0.7579,
+    "drop_10_random_mean_return_p95": 0.9168,
+    "drop_10_pct_runs_positive": 100.0,
+    "drop_10_pnl_median_tl": 34634.48
+  }
+}
