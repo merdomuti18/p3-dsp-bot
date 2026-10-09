@@ -19,7 +19,9 @@ Onaylanmış semantik gate (karar A):
 from __future__ import annotations
 
 import pytest
+from pathlib import Path
 
+import mott_state
 from mott_state import normalize
 
 POS_TL = 20_000
@@ -28,6 +30,12 @@ _ISLEM_ANAHTARLARI = {
     "symbol", "giris_fiyat", "cikis_fiyat", "pnl_pct",
     "neden", "giris_tarih", "cikis_tarih",
 }
+
+@pytest.fixture(autouse=True)
+def _use_fixed_baseline_state(monkeypatch):
+    """Canlı portföy dosyalarındaki drift'ten bağımsız sabit test verisi kullanımı."""
+    fixed_base = Path(__file__).resolve().parent.parent / "fixtures" / "baseline_state"
+    monkeypatch.setattr(mott_state, "BASE", fixed_base)
 
 
 # ---------------------------------------------------------------------------

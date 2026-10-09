@@ -81,6 +81,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -142,8 +144,8 @@ jobs:
   # ── P1 — Momentum ─────────────────────────────────────────────────────────
   p1-momentum:
     name: P1 — Momentum
-    needs: gate
-    if: contains(fromJSON('["aksam","sabah","alim","takip","kapani"]'), needs.gate.outputs.mode)
+    needs: [gate, p3-dsp]
+    if: always() && !failure() && !cancelled() && (contains(fromJSON('["aksam","sabah","alim","takip","kapani"]'), needs.gate.outputs.mode))
     concurrency:
       group: state-writer
       cancel-in-progress: false
@@ -152,6 +154,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -185,21 +189,23 @@ jobs:
           git config user.email "bot@mott"
           FILES="state_p1.json tarama_listesi.json portfoy.json scan_history_p1.jsonl"
           KORUMA="state_p2.json tarama_listesi_p2.json portfoy_p2.json portfolio_state.json state_p4.json state_p5.json"
+          STATE_BASE=$(git rev-parse HEAD)
+          git add $FILES
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "P1: $(date +'%Y-%m-%d %H:%M')"
           for i in 1 2 3 4 5; do
-            git fetch origin main || true
-            git checkout origin/main -- $KORUMA 2>/dev/null || true
-            git restore --staged $KORUMA 2>/dev/null || true
-            git add $FILES || true
-            if git diff --cached --quiet; then echo "Degisiklik yok."; break; fi
-            git commit -m "P1: $(date +'%Y-%m-%d %H:%M')" || true
-            if git push origin HEAD:main; then echo "Push basarili (deneme $i)."; break; fi
-            echo "Push cakismasi (deneme $i/5) - senkronize ediliyor..."
             git fetch origin main
-            git reset --soft origin/main
-            git checkout origin/main -- $KORUMA 2>/dev/null || true
-            git add $FILES || true
-            sleep $((RANDOM % 5 + 2))
+            if ! git diff --quiet "$STATE_BASE" origin/main -- $FILES; then
+              echo "P1 state changed remotely. Reload/recompute is required; refusing stale push."
+              exit 1
+            fi
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((i * 2))
           done
+          echo "P1 state push failed after 5 attempts."
+          exit 1
+
       - name: Hata bildirimi (Telegram)
         if: failure()
         run: |
@@ -211,8 +217,8 @@ jobs:
   # ── P2 — SMC ──────────────────────────────────────────────────────────────
   p2-smc:
     name: P2 — SMC
-    needs: gate
-    if: contains(fromJSON('["aksam","alim","takip"]'), needs.gate.outputs.mode)
+    needs: [gate, p1-momentum]
+    if: always() && !failure() && !cancelled() && (contains(fromJSON('["aksam","alim","takip"]'), needs.gate.outputs.mode))
     concurrency:
       group: state-writer
       cancel-in-progress: false
@@ -221,6 +227,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -275,9 +283,9 @@ jobs:
   # ── P4 — Meta (yalnızca akşam) ────────────────────────────────────────────
   p4-meta:
     name: P4 — Meta Portföy
-    needs: [gate, p3-dsp, p1-momentum, p2-smc]
+    needs: [gate, p3-dsp, p1-momentum, p2-smc, p3-monitor]
     if: |
-      always() &&
+      always() && !failure() && !cancelled() &&
       needs.gate.outputs.mode == 'aksam' &&
       needs.p3-dsp.result == 'success'
     concurrency:
@@ -347,9 +355,9 @@ jobs:
   # ── P5 — Komite (yalnızca akşam, P4'ten sonra) ─────────────────────────
   p5-komite:
     name: P5 — Komite
-    needs: [gate, p3-dsp, p1-momentum, p2-smc, p4-meta]
+    needs: [gate, p3-dsp, p1-momentum, p2-smc, p4-meta, p4-monitor]
     if: |
-      always() &&
+      always() && !failure() && !cancelled() &&
       needs.gate.outputs.mode == 'aksam' &&
       needs.p3-dsp.result == 'success'
     concurrency:
@@ -462,8 +470,8 @@ jobs:
   # seçimi/tam tarama yapmaz. Fiyat kaynağı: TradingView (yfinance yedekli).
   p3-monitor:
     name: P3 — Canlı Takip
-    needs: gate
-    if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    needs: [gate, p2-smc]
+    if: always() && !failure() && !cancelled() && (contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode))
     concurrency:
       group: state-writer
       cancel-in-progress: false
@@ -515,8 +523,8 @@ jobs:
 
   p4-monitor:
     name: P4 — Canlı Takip
-    needs: gate
-    if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    needs: [gate, p4-meta]
+    if: always() && !failure() && !cancelled() && (contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode))
     concurrency:
       group: state-writer
       cancel-in-progress: false
@@ -568,8 +576,8 @@ jobs:
 
   p5-monitor:
     name: P5 — Canlı Takip
-    needs: gate
-    if: contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode)
+    needs: [gate, p5-komite]
+    if: always() && !failure() && !cancelled() && (contains(fromJSON('["alim","takip","kapani"]'), needs.gate.outputs.mode))
     concurrency:
       group: state-writer
       cancel-in-progress: false

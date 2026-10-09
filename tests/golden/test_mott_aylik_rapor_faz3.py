@@ -20,18 +20,31 @@ ve _portfoy_analiz kendi modül global'ini kullandığı için monkeypatch yeter
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
 import mott_aylik_rapor as mar
 import mott_performans_analiz as mpa
+import mott_state
 from mott_state import normalize
+
+
+@pytest.fixture(autouse=True)
+def _use_fixed_baseline_state(monkeypatch):
+    """Canlı portföy dosyalarındaki drift'ten bağımsız sabit test verisi kullanımı."""
+    fixed_base = Path(__file__).resolve().parent.parent / "fixtures" / "baseline_state"
+    monkeypatch.setattr(mott_state, "BASE", fixed_base)
+    monkeypatch.setattr(mpa, "BASE", fixed_base)
+    monkeypatch.setattr(mar, "BASE", fixed_base)
 
 
 @pytest.fixture
 def mock_fiyat_sabit(monkeypatch):
     """T4 mock stratejisi: tüm semboller için sabit 100.0 — deterministik."""
     monkeypatch.setattr(mpa, "get_price", lambda sym: 100.0)
+    import portfoy_yonetici as manager
+    monkeypatch.setattr(manager, "guncel_fiyat_detayli", lambda sym, **kw: {"price":100.0,"valuation_valid":True})
 
 
 # ---------------------------------------------------------------------------
@@ -83,7 +96,7 @@ def test_rapor_mock_fiyat_golden_degerler(mock_fiyat_sabit):
         "P3": (274000, 174.0, 16, 12.5),
         "P4": (95306, -4.69, 36, 36.1),
         "P5": (101460, 1.46, 12, 41.7),
-        "P1": (100000, 0.0, None, None),
+        "P1": (65886.91, -34.11, None, None),
         "P2": (100000, 0.0, None, None),
     }
     for p in r["portfoyler"]:
@@ -98,7 +111,7 @@ def test_rapor_siralama_azalan_getiri(mock_fiyat_sabit):
     r = mar.rapor_olustur()
     degerler = [p["getiri_pct"] for p in r["portfoyler"]]
     assert degerler == sorted(degerler, reverse=True)
-    assert [p["kod"] for p in r["portfoyler"]] == ["P3", "P5", "P1", "P2", "P4"]
+    assert [p["kod"] for p in r["portfoyler"]] == ["P3", "P5", "P2", "P4", "P1"]
 
 
 def test_p1_p2_equity_mevcut_davranis_kilit(mock_fiyat_sabit):
