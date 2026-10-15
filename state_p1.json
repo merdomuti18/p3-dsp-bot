@@ -1,91 +1,32 @@
 {
   "tarama": {
-    "scan_time": "14.10.2026 20:50",
+    "scan_time": "15.10.2026 20:39",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
-        "symbol": "KRGYO",
-        "scan_time": "14.10.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GT"
-        ],
-        "score_count": 1,
-        "score": 1,
-        "rsi": 59.43,
-        "rel_vol": 1.25,
-        "change_pct": -8.58,
-        "close": 3.41,
-        "adx": 28.49,
-        "cmf": 0.051,
-        "alpha_bull": false,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "SANKO",
-        "scan_time": "14.10.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "GT"
-        ],
-        "score_count": 1,
-        "score": 1,
-        "rsi": 57.31,
-        "rel_vol": 1.21,
-        "change_pct": -9.96,
-        "close": 19.79,
-        "adx": 40.54,
-        "cmf": 0.0824,
-        "alpha_bull": false,
-        "alpha_trend_bull": false
-      },
-      {
         "symbol": "CELHA",
-        "scan_time": "14.10.2026 20:50",
+        "scan_time": "15.10.2026 20:39",
         "scan_label": "20:50 Kapanış",
         "strategies": [
-          "GTD",
-          "ALPHA",
-          "MR"
-        ],
-        "score_count": 3,
-        "score": 3,
-        "rsi": 68.69,
-        "rel_vol": 1.25,
-        "change_pct": 3.55,
-        "close": 31.48,
-        "adx": 31.71,
-        "cmf": 0.0865,
-        "alpha_bull": true,
-        "alpha_trend_bull": true
-      },
-      {
-        "symbol": "BIMAS",
-        "scan_time": "14.10.2026 20:50",
-        "scan_label": "20:50 Kapanış",
-        "strategies": [
-          "ZKN"
+          "GT"
         ],
         "score_count": 1,
         "score": 1,
-        "rsi": 40.87,
-        "rel_vol": 0.88,
-        "change_pct": -0.79,
-        "close": 408.0,
-        "adx": 22.15,
-        "cmf": -0.0228,
+        "rsi": 60.03,
+        "rel_vol": 1.05,
+        "change_pct": -4.57,
+        "close": 30.04,
+        "adx": 32.98,
+        "cmf": 0.0569,
         "alpha_bull": false,
         "alpha_trend_bull": false
       }
     ],
     "semboller": [
-      "KRGYO",
-      "SANKO",
-      "CELHA",
-      "BIMAS"
+      "CELHA"
     ]
   },
-  "last_scan": "14.10.2026 20:50",
-  "_gen": 18,
-  "_updated_at": "2026-10-14T20:51:01.470221+03:00"
+  "last_scan": "15.10.2026 20:39",
+  "_gen": 19,
+  "_updated_at": "2026-10-15T20:40:12.742131+03:00"
 }
