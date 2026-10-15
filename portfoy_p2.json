@@ -93,7 +93,7 @@
     "INFO": {
       "giris_f": 1.18,
       "giris_t": "14.10.2026 11:02",
-      "tepe_f": 1.18,
+      "tepe_f": 1.2200000286102295,
       "lotlar": 4116,
       "gun": 0,
       "tp1_yapildi": false,
@@ -117,7 +117,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -131,7 +131,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -145,7 +145,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -161,7 +161,7 @@
         "Bullish OB",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -175,7 +175,7 @@
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -189,7 +189,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -203,7 +203,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -217,7 +217,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -231,7 +231,7 @@
       "signals": [
         "Bullish MACD Cross"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -245,7 +245,7 @@
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -259,7 +259,7 @@
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -274,7 +274,7 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -288,7 +288,7 @@
       "signals": [
         "Bullish OB"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "14.10.2026 20:49",
       "attempt_count": 0,
@@ -296,7 +296,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "14.10.2026 11:02",
+  "last_hourly_check_time": "15.10.2026 12:31",
   "trade_history": [
     {
       "symbol": "BFREN",
