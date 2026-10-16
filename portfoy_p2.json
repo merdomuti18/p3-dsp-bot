@@ -75,7 +75,36 @@
   },
   "nakit": 28837.013745677978,
   "baslangic": 100000,
-  "bekleyen_al": [],
+  "bekleyen_al": [
+    {
+      "symbol": "MANAS",
+      "score": 6.5,
+      "final_score": 6.5,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "16.10.2026 20:12",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "RUZYE",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "16.10.2026 20:12",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    }
+  ],
   "open_attempts_today": [],
   "last_hourly_check_time": "16.10.2026 12:08",
   "trade_history": [
