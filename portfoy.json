@@ -27,17 +27,7 @@
   "nakit": 74127.07396247864,
   "baslangic": 100000,
   "bekleyen_al": [],
-  "open_attempts_today": [
-    {
-      "saat": "10:44",
-      "tarih": "2026-10-15",
-      "alinan": [
-        "CELHA"
-      ],
-      "alinmayan": [],
-      "nedenler": {}
-    }
-  ],
+  "open_attempts_today": [],
   "last_open_attempt_summary": {
     "pending": 4,
     "bought": 1,
