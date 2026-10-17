@@ -17,18 +17,31 @@ Enrichment içinde mpa.get_price(sym) — runtime lookup (import kopyası YOK).
 
 from __future__ import annotations
 
+from pathlib import Path
 import pytest
 
 import mott_aylik_rapor as mar
 import mott_performans_analiz as mpa
+import mott_state
 from mott_state import normalize
 
 POS_TL = 20_000
 
 
+@pytest.fixture(autouse=True)
+def _use_fixed_baseline_state(monkeypatch):
+    """Canlı portföy dosyalarındaki drift'ten bağımsız sabit test verisi kullanımı."""
+    fixed_base = Path(__file__).resolve().parent.parent / "fixtures" / "baseline_state"
+    monkeypatch.setattr(mott_state, "BASE", fixed_base)
+    monkeypatch.setattr(mpa, "BASE", fixed_base)
+    monkeypatch.setattr(mar, "BASE", fixed_base)
+
+
 @pytest.fixture
 def mock_fiyat(monkeypatch):
     monkeypatch.setattr(mpa, "get_price", lambda sym: 100.0)
+    import portfoy_yonetici as manager
+    monkeypatch.setattr(manager, "guncel_fiyat_detayli", lambda sym, **kw: {"price":100.0,"valuation_valid":True})
 
 
 # ---------------------------------------------------------------------------
@@ -73,12 +86,9 @@ def test_m1_p5_eski_yeni_esdeger(mock_fiyat):
 
 def test_m1_p1_eski_yeni_esdeger(mock_fiyat):
     yeni = mar._p1_p2_rapor_blok("P1")
-    # Mevcut davranış KORUNUR: sermaye_mevcut yok → başlangıç sermayesi, %0.
-    assert yeni["equity_est"] == 100000
-    assert yeni["getiri_pct"] == 0.0
-    # FAZ 3.2 T10 (onaylı contract evolution): mott_state._p1_p2 artık
-    # `trade_history` anahtarını da okur → normalize("P1") islem_gecmisi = 10
-    # (portfoy.json trade_history) — eski gerçek okuyucu semantiğiyle aynı.
+    # P1 dinamik equity ve getiri: sabit 100.000 TL ve %0.0 kaldırıldı
+    assert yeni["equity_est"] == 65886.91  # 21886.90527096556 cash + 440 lots * mock price 100
+    assert yeni["getiri_pct"] == -34.11
     assert yeni["kapanan"] == 11
     assert yeni["acik_sayisi"] == 6       # portfoy.json pozisyonlar
     assert yeni["nakit"] == pytest.approx(21886.90527096556, abs=1.0)

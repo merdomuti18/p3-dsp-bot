@@ -1,0 +1,282 @@
+{
+  "pozisyonlar": {
+    "AYGAZ": {
+      "giris_f": 287.5,
+      "giris_t": "10.08.2026 07:20",
+      "tepe_f": 317.0,
+      "lotlar": 35,
+      "gun": 0,
+      "tp1_yapildi": true,
+      "final_score": 86,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 5,
+        "strategies": [
+          "GT",
+          "ALPHA",
+          "ZT3",
+          "MR",
+          "KBM"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "BRSAN": {
+      "giris_f": 631.5,
+      "giris_t": "12.08.2026 07:16",
+      "tepe_f": 665.0,
+      "lotlar": 31,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 34,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GTD",
+          "MR"
+        ],
+        "viop_bias": "Temkinli long",
+        "alpha_tag": "AT↑",
+        "alpha_trend_bonus": 4
+      }
+    },
+    "TRMET": {
+      "giris_f": 124.8,
+      "giris_t": "14.08.2026 11:44",
+      "tepe_f": 129.6999969482422,
+      "lotlar": 107,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 38,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ALPHA",
+          "ZKN"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "GRSEL": {
+      "giris_f": 352.25,
+      "giris_t": "17.08.2026 09:43",
+      "tepe_f": 355.0,
+      "lotlar": 56,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 40,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "GT",
+          "ZKN"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "KRDMD": {
+      "giris_f": 45.36,
+      "giris_t": "18.08.2026 07:39",
+      "tepe_f": 46.720001220703125,
+      "lotlar": 190,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 68,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 4,
+        "strategies": [
+          "GT",
+          "ALPHA",
+          "MR",
+          "KBM"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    },
+    "NETAS": {
+      "giris_f": 75.1,
+      "giris_t": "18.08.2026 07:39",
+      "tepe_f": 75.1,
+      "lotlar": 21,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "final_score": 36,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "source_signal": {
+        "score_count": 2,
+        "strategies": [
+          "ZT3",
+          "MR"
+        ],
+        "viop_bias": "Normal",
+        "alpha_tag": "",
+        "alpha_trend_bonus": 0
+      }
+    }
+  },
+  "nakit": 21886.90527096556,
+  "baslangic": 100000,
+  "bekleyen_al": [],
+  "open_attempts_today": [
+    {
+      "saat": "07:39",
+      "tarih": "2026-08-18",
+      "alinan": [
+        "KRDMD",
+        "NETAS"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
+  "last_open_attempt_summary": {
+    "pending": 6,
+    "bought": 2,
+    "failed": 0,
+    "expired": 0,
+    "failed_reasons": [],
+    "time": "18.08.2026 07:39"
+  },
+  "last_hourly_check_time": "18.08.2026 13:43",
+  "trade_history": [
+    {
+      "symbol": "UFUK",
+      "giris_fiyat": 1765.0,
+      "cikis_fiyat": 1717.0,
+      "lotlar": 11,
+      "pnl_pct": -2.72,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-31",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "TRMET",
+      "giris_fiyat": 136.5,
+      "cikis_fiyat": 129.675,
+      "lotlar": 138,
+      "pnl_pct": -5.0,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-06",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "FADE",
+      "giris_fiyat": 17.69,
+      "cikis_fiyat": 18.7,
+      "lotlar": 214,
+      "pnl_pct": 5.71,
+      "gun": 1,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "TUPRS",
+      "giris_fiyat": 314.5,
+      "cikis_fiyat": 343.75,
+      "lotlar": 6,
+      "pnl_pct": 9.3,
+      "gun": 6,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-06",
+      "cikis_tarih": "2026-08-12"
+    },
+    {
+      "symbol": "FADE",
+      "giris_fiyat": 17.69,
+      "cikis_fiyat": 18.506,
+      "lotlar": 214,
+      "pnl_pct": 4.61,
+      "gun": 2,
+      "neden": "TRAILING",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-12"
+    },
+    {
+      "symbol": "KMPUR",
+      "giris_fiyat": 23.1,
+      "cikis_fiyat": 21.945,
+      "lotlar": 238,
+      "pnl_pct": -5.0,
+      "gun": 3,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-13"
+    },
+    {
+      "symbol": "KCHOL",
+      "giris_fiyat": 199.7,
+      "cikis_fiyat": 205.7,
+      "lotlar": 54,
+      "pnl_pct": 3.0,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-06",
+      "cikis_tarih": "2026-08-17"
+    },
+    {
+      "symbol": "MOGAN",
+      "giris_fiyat": 19.96,
+      "cikis_fiyat": 19.98,
+      "lotlar": 448,
+      "pnl_pct": 0.1,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-06",
+      "cikis_tarih": "2026-08-17"
+    },
+    {
+      "symbol": "TUPRS",
+      "giris_fiyat": 314.5,
+      "cikis_fiyat": 364.25,
+      "lotlar": 6,
+      "pnl_pct": 15.82,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-08-06",
+      "cikis_tarih": "2026-08-17"
+    },
+    {
+      "symbol": "AYGAZ",
+      "giris_fiyat": 287.5,
+      "cikis_fiyat": 310.25,
+      "lotlar": 34,
+      "pnl_pct": 7.91,
+      "gun": 7,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-17"
+    },
+    {
+      "symbol": "ASTOR",
+      "giris_fiyat": 343.0,
+      "cikis_fiyat": 325.85,
+      "lotlar": 58,
+      "pnl_pct": -5.0,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-13",
+      "cikis_tarih": "2026-08-18"
+    }
+  ]
+}
