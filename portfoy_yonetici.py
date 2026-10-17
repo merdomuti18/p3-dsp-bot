@@ -14,9 +14,11 @@ Gün içi uygulama akışı:
 from __future__ import annotations
 
 import json
+import hashlib
 import logging
 import os
 import pickle
+import uuid
 import threading
 import time
 import warnings
@@ -36,6 +38,12 @@ except ImportError:
 warnings.filterwarnings("ignore")
 
 import mott_risk
+from mott_bist_takvim import to_tsi, is_bist_islem_gunu, is_bist_seans_acik
+from p1_safety import StateConflict, file_digest, state_lock, start_ledger, reconcile, closed_daily
+
+
+def _p1_now(now=None):
+    return to_tsi(now)
 
 try:
     _tz_cache = Path(os.environ.get("TMPDIR", "/tmp")) / "yf_tz"
@@ -70,6 +78,7 @@ VIOP_TICKER   = os.environ.get("VIOP_TICKER", "XU030.IS")
 
 BASE_DIR             = Path(__file__).parent
 PORTFOY_FILE         = BASE_DIR / "portfoy.json"
+STATE_P1_FILE        = BASE_DIR / "state_p1.json"
 TARAMA_FILE          = BASE_DIR / "tarama_listesi.json"
 LGBM_MODEL_FILE      = BASE_DIR / "lgbm_model.pkl"
 LGBM_META_FILE       = BASE_DIR / "lgbm_ozellikler.json"
@@ -108,8 +117,71 @@ WAITING_EXPIRES_HOUR     = 17
 EMERGENCY_LIQUIDATION_SCORE = 80
 RETRY_REASONS = {"veri_yok", "exception", "lot_yetersiz", "nakit_yetersiz"}
 
+# ── Merkezi İşlem Maliyeti ve Kayma Ayarları ────────────────────────────────
+VARSAYILAN_KOMISYON_ORANI  = 0.0005  # onbinde 5 (%0.05) varsayılan komisyon
+VARSAYILAN_KAYMA_ORANI     = 0.0010  # binde 1 (%0.10) varsayılan slippage
+MALIYET_VARSAYIMI_ACIKLAMA = "varsayilan_onbinde_5_komisyon_binde_1_kayma"
 
-def _elde_tutma_gunu(giris_t: str) -> int:
+
+def hesapla_cikis_kayma(tetik_f: float, open_f: float, kayma_orani: float = VARSAYILAN_KAYMA_ORANI) -> float:
+    """Satış işleminde kayma ve gap down hesabı:
+      Açılış stop/tetik seviyesinin altındaysa (gap down) açılıştan kayma düşülür.
+    """
+    if open_f < tetik_f:
+        return round(open_f * (1.0 - kayma_orani), 4)
+    return round(tetik_f * (1.0 - kayma_orani), 4)
+
+
+def hesapla_tp_kayma(tetik_f: float, open_f: float, kayma_orani: float = VARSAYILAN_KAYMA_ORANI) -> float:
+    """TP satışında: eğer açılış gap up ise (open_f > tetik_f), satış open_f üzerinden gerçekleşir."""
+    f = max(tetik_f, open_f)
+    return round(f * (1.0 - kayma_orani), 4)
+
+
+def hesapla_net_tutar(lotlar: int, fiyat: float, komisyon_orani: float = VARSAYILAN_KOMISYON_ORANI, islem: str = "satis") -> tuple[float, float]:
+    """Net nakit tutarı ve komisyonu hesaplar."""
+    brut = lotlar * fiyat
+    komisyon = round(brut * komisyon_orani, 4)
+    if islem == "satis":
+        return round(brut - komisyon, 4), komisyon
+    return round(brut + komisyon, 4), komisyon
+
+
+def _parse_tarih(t_val) -> date | None:
+    if not t_val:
+        return None
+    if isinstance(t_val, date) and not isinstance(t_val, datetime):
+        return t_val
+    if isinstance(t_val, datetime):
+        return t_val.date()
+    s = str(t_val).strip().split(" ")[0].split("T")[0]
+    for fmt in ("%d.%m.%Y", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(s, fmt).date()
+        except ValueError:
+            pass
+    return None
+
+
+def _parse_datetime(dt_val) -> datetime | None:
+    if not dt_val:
+        return None
+    if isinstance(dt_val, datetime):
+        return dt_val
+    s = str(dt_val).strip()
+    try:
+        return datetime.fromisoformat(s)
+    except Exception:
+        pass
+    for fmt in ("%d.%m.%Y %H:%M:%S", "%d.%m.%Y %H:%M", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%d.%m.%Y", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(s, fmt)
+        except ValueError:
+            pass
+    return None
+
+
+def _elde_tutma_gunu(giris_t: str, now_date: date | None = None) -> int:
     """Pozisyonun kaç takvim günüdür açık olduğunu giriş tarihinden hesapla.
 
     Not: pos['gun'] sayacı yalnızca main() içindeki gün-sonu döngüsünde
@@ -119,33 +191,80 @@ def _elde_tutma_gunu(giris_t: str) -> int:
     (saatlik / 15 dk) bağımsız, her zaman doğru sonuç verir.
     """
     try:
-        giris_tarih = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date()
-        return (date.today() - giris_tarih).days
+        giris_tarih = _parse_tarih(giris_t)
+        if not giris_tarih:
+            return 0
+        ref = now_date if now_date is not None else date.today()
+        return (ref - giris_tarih).days
     except Exception:
         return 0
 
 
-def _max_gun_date_hesapla_p1(giris_t: str, max_gun: int = MAX_GUN) -> str:
+def _max_gun_date_hesapla_p1(giris_t: str, max_gun: int = MAX_GUN, now_date: date | None = None) -> str:
     """P1: Entry tarihinden MAX_GUN deadline hesapla (DD.MM.YYYY format)."""
-    try:
-        giris = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date()
+    giris = _parse_tarih(giris_t)
+    ref = now_date if now_date is not None else date.today()
+    if giris:
         return (giris + timedelta(days=max_gun)).strftime("%d.%m.%Y")
-    except Exception:
-        return (date.today() + timedelta(days=max_gun)).strftime("%d.%m.%Y")
+    return (ref + timedelta(days=max_gun)).strftime("%d.%m.%Y")
 
 
-def _p1_alim_listesi() -> set[str]:
-    """P1 canonical ALIM listesi — bugünkü tarama.
-    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+def _p1_alim_listesi_durum(now: datetime | None = None) -> tuple[set[str], str, dict]:
+    """P1 canonical ALIM listesi durumunu ve sembol kümesini döndürür.
+
+    Dönüş: (symbols_set, status, metadata)
+    status:
+      'valid'   : Taze ve geçerli tarama listesi
+      'stale'   : Süresi geçmiş tarama listesi (> 96 saat veya gelecek tarih)
+      'missing' : Dosya veya scan_time yok
+      'corrupt' : JSON veya veri bozuk
+      'empty'   : Geçerli tarama fakat sinyal yok
+    """
+    ref_now = now if now is not None else datetime.now()
+    if not TARAMA_FILE.exists():
+        return set(), "missing", {"reason": "tarama_listesi_yok"}
     try:
         tarama = tarama_listesi_yukle()
-        scan_time = tarama.get("scan_time", "")
-        bugun = date.today().isoformat()
-        if scan_time and scan_time[:10] != bugun:
-            return set()
-        return {s["symbol"] for s in tarama.get("signals", [])}
-    except Exception:
-        return set()
+    except Exception as exc:
+        return set(), "corrupt", {"reason": f"json_hatasi:{exc}"}
+
+    scan_time_raw = tarama.get("scan_time", "")
+    if not scan_time_raw:
+        return set(), "missing", {"reason": "scan_time_yok"}
+
+    scan_dt = _parse_datetime(scan_time_raw)
+    if scan_dt is None:
+        return set(), "corrupt", {"reason": f"gecersiz_scan_time:{scan_time_raw}"}
+
+    if scan_dt.tzinfo is not None and ref_now.tzinfo is None:
+        scan_dt = scan_dt.replace(tzinfo=None)
+    elif scan_dt.tzinfo is None and ref_now.tzinfo is not None:
+        ref_now = ref_now.replace(tzinfo=None)
+
+    diff = ref_now - scan_dt
+    if diff.total_seconds() < -300:
+        return set(), "stale", {"reason": "gelecek_tarihli_tarama", "scan_time": scan_time_raw}
+
+    if diff.total_seconds() > 96 * 3600:
+        return set(), "stale", {
+            "reason": "bayat_tarama_96h_asildi",
+            "scan_time": scan_time_raw,
+            "gecen_saat": round(diff.total_seconds() / 3600, 1),
+        }
+
+    signals = tarama.get("signals", [])
+    symbols = {s["symbol"] for s in signals if isinstance(s, dict) and "symbol" in s}
+    if not symbols:
+        return set(), "empty", {"reason": "sinyal_yok", "scan_time": scan_time_raw}
+
+    return symbols, "valid", {"scan_time": scan_time_raw, "signal_count": len(symbols)}
+
+
+def _p1_alim_listesi(now: datetime | None = None) -> set[str]:
+    """P1 canonical ALIM listesi — bugünkü tarama.
+    Stale veya hata durumunda boş küme döner (güvenli EXIT)."""
+    symbols, status, _ = _p1_alim_listesi_durum(now=now)
+    return symbols if status == "valid" else set()
 
 
 def _p2_alim_listesi() -> set[str]:
@@ -173,7 +292,7 @@ def _p2_alim_listesi() -> set[str]:
         return set()
 
 
-def _trade_kaydet(portfoy: dict, sym: str, pos: dict, cikis_f: float,
+def _p2_trade_kaydet(portfoy: dict, sym: str, pos: dict, cikis_f: float,
                   neden: str, lotlar: int | None = None):
     """Kapanan (veya kısmi kapanan) işlemi portföy JSON'ındaki trade_history'ye
     yaz — P4/P5 şemasıyla uyumlu. Audit JSONL'e ek olarak tutulur; kalıcı
@@ -196,6 +315,100 @@ def _trade_kaydet(portfoy: dict, sym: str, pos: dict, cikis_f: float,
         "neden":        neden,
         "giris_tarih":  giris_iso,
         "cikis_tarih":  date.today().isoformat(),
+    })
+
+
+def _trade_kaydet(
+    portfoy: dict,
+    sym: str,
+    pos: dict,
+    cikis_f: float,
+    neden: str,
+    lotlar: int | None = None,
+    tp1_tetik_fiyat: float | None = None,
+    ambiguity: str | None = None,
+    fiyat_kaynak: str | None = None,
+    fiyat_zaman: str | None = None,
+    likidite_teyitli: bool = True,
+    event_id: str | None = None,
+    now: datetime | None = None,
+):
+    """Kapanan (veya kısmi kapanan) işlemi portföy JSON'ındaki trade_history'ye
+    ve işlem defterine yaz — P1/P4/P5 şemasıyla uyumlu. Audit JSONL'e ek olarak tutulur;
+    kalıcı performans raporu, denetim ve cooldown kontrolü bu listeden beslenir."""
+    ref_now = now if now is not None else datetime.now()
+    giris_f = pos.get("giris_f", 0) or 0
+    actual_lots = int(lotlar if lotlar is not None else pos.get("lotlar", 0))
+    pnl = (cikis_f - giris_f) / giris_f * 100 if giris_f else 0.0
+    giris_t = str(pos.get("giris_t", ""))
+    giris_iso = ""
+    try:
+        giris_iso = datetime.strptime(giris_t.split(" ")[0], "%d.%m.%Y").date().isoformat()
+    except Exception:
+        giris_iso = giris_t[:10]
+
+    pos_id = pos.setdefault("position_id", "P1_" + uuid.uuid5(uuid.NAMESPACE_URL, f"P1/{sym}/{giris_t}/{giris_f}").hex)
+    evt_id = event_id or "EVT_" + uuid.uuid5(uuid.NAMESPACE_URL, f"{pos_id}/{neden}/{pos.get('decision_bar_time', ref_now.isoformat())}/{actual_lots}").hex
+    if any(t.get("event_id") == evt_id for t in portfoy.get("trade_history", [])):
+        raise ValueError("Duplicate P1 exit event; economic change must not be repeated")
+
+    net_tutar, komisyon = hesapla_net_tutar(actual_lots, cikis_f, islem="satis")
+    brut_tutar = actual_lots * cikis_f
+    maliyet = actual_lots * giris_f
+    entry_lots = int(pos.get("entry_lotlar", actual_lots))
+    buy_fee = float(pos.get("entry_komisyon", 0)) * actual_lots / entry_lots
+    net_tl_kar = round(net_tutar - maliyet - buy_fee, 4)
+    net_pnl_pct = (net_tutar - maliyet - buy_fee) / (maliyet + buy_fee) * 100 if maliyet else 0.0
+    brut_tl_kar = round(brut_tutar - maliyet, 2)
+
+    rec = {
+        "symbol":       sym,
+        "giris_fiyat":  giris_f,
+        "cikis_fiyat":  round(float(cikis_f), 4),
+        "lotlar":       actual_lots,
+        "pnl_pct":      round(pnl, 2),
+        "net_pnl_pct":  round(net_pnl_pct, 4),
+        "gun":          _elde_tutma_gunu(giris_t, now_date=ref_now.date()),
+        "neden":        neden,
+        "giris_tarih":  giris_iso,
+        "cikis_tarih":  ref_now.date().isoformat(),
+        # Ek muhasebe ve denetim alanları
+        "position_id":       pos_id,
+        "event_id":          evt_id,
+        "tl_kar":            net_tl_kar,
+        "brut_tl_kar":       brut_tl_kar,
+        "komisyon":          komisyon,
+        "alis_komisyon_payi": buy_fee,
+        "position_closed": pos.get("lotlar", 0) == 0 or neden != "TP1",
+        "maliyet_bilgisi_tam": "entry_komisyon" in pos,
+        "source_signal": dict(pos.get("source_signal", {})),
+        "kayma_orani":       VARSAYILAN_KAYMA_ORANI,
+        "maliyet_varsayimi": MALIYET_VARSAYIMI_ACIKLAMA,
+        "likidite_teyitli":  likidite_teyitli,
+    }
+    if tp1_tetik_fiyat is not None:
+        rec["tp1_trigger_price"] = tp1_tetik_fiyat
+    if ambiguity is not None:
+        rec["ambiguity"] = ambiguity
+    if fiyat_kaynak:
+        rec["fiyat_kaynak"] = fiyat_kaynak
+    if fiyat_zaman:
+        rec["fiyat_zaman"] = fiyat_zaman
+
+    portfoy.setdefault("trade_history", []).append(rec)
+
+    # İşlem defteri (Ledger): nakit ve lot hareketlerinin yeniden hesaplanabilmesi için
+    portfoy.setdefault("islem_defteri", []).append({
+        "event_id":     evt_id,
+        "position_id":  pos_id,
+        "symbol":       sym,
+        "islem_tipi":   f"SATIS_{neden}",
+        "lot":          actual_lots,
+        "fiyat":        round(float(cikis_f), 4),
+        "brut_tutar":   round(brut_tutar, 4),
+        "komisyon":     komisyon,
+        "nakit_etkisi": round(net_tutar, 4),
+        "zaman":        ref_now.isoformat(),
     })
 
 # ── LGBM global (uygulama başında bir kez yüklenir) ──────────────────────────
@@ -235,7 +448,7 @@ def append_jsonl(path: Path, payload: dict):
 
 def sonraki_islem_gunu(ref_date: date) -> date:
     nxt = ref_date + timedelta(days=1)
-    while nxt.weekday() >= 5:
+    while not is_bist_islem_gunu(nxt):
         nxt += timedelta(days=1)
     return nxt
 
@@ -274,55 +487,117 @@ def guncel_makro_skoru() -> float:
         return 0.0
 
 
-def guncel_fiyat(symbol: str):
-    """
-    Fiyat çekme — dört katmanlı fallback:
-      1. TradingView screener (gerçek zamanlı, TV grafikleriyle birebir)
-      2. Intraday 1m chart (yfinance, piyasa açıkken)
-      3. fast_info.last_price (yfinance hızlı canlı alan)
-      4. Son günlük Close (her zaman çalışır)
-    """
-    # 1. TradingView
+_FIYAT_CACHE: dict = {}
+
+
+def _quote_quality(quote: dict, now: datetime) -> dict:
+    """A numeric quote is not necessarily a tradable or current quote."""
+    result = dict(quote)
+    result["observed_at"] = _p1_now(now).isoformat()
+    stamp = _parse_datetime(quote.get("time"))
+    known = bool(stamp) and quote.get("source") == "yfinance_1m"
+    age = (_p1_now(now) - to_tsi(stamp)).total_seconds() if known else None
+    fresh = known and -60 <= age <= 20*60
+    result["source_time_known"] = known
+    result["age_seconds"] = age
+    result["trade_eligible"] = bool(quote.get("valid")) and fresh and is_bist_seans_acik(_p1_now(now))
+    result["valuation_valid"] = bool(quote.get("valid")) and fresh
+    if not known:
+        result["reason"] = "source_time_unverified" if quote.get("source") != "yfinance_1d_close" else "daily_close_not_execution_price"
+    elif not fresh:
+        result["reason"] = "stale_or_future_quote"
+    return result
+
+
+def guncel_fiyat_detayli(symbol: str, cache: bool = True, now: datetime | None = None) -> dict:
+    ref_now = _p1_now(now)
+    cached = _FIYAT_CACHE.get(symbol)
+    if cache and cached and 0 <= (ref_now - to_tsi(cached["_cached_at"])).total_seconds() < 60:
+        return _quote_quality({k: v for k, v in cached.items() if not k.startswith("_")}, ref_now)
+    result = _guncel_fiyat_detayli_cek(symbol, ref_now)
+    result = _quote_quality(result, ref_now)
+    if cache and result.get("valid"):
+        _FIYAT_CACHE[symbol] = {**result, "_cached_at": ref_now}
+    return result
+
+
+def _guncel_fiyat_detayli_cek(symbol: str, ref_now: datetime) -> dict:
+    candidates = []
+    def add(price, source, timestamp=None):
+        if price is not None and np.isfinite(float(price)) and float(price) > 0:
+            candidates.append({"symbol": symbol, "price": float(price), "source": source,
+                               "time": timestamp, "valid": True, "reason": "ok"})
     try:
         from mott_fiyat import tv_fiyatlar
-        p = tv_fiyatlar([symbol]).get(symbol)
-        if p and p > 0:
-            return float(p)
+        add(tv_fiyatlar([symbol]).get(symbol), "tradingview")
     except Exception:
         pass
-    ticker_obj = _ticker(f"{symbol}.IS")
-    # 2. Intraday
+    ticker = _ticker(f"{symbol}.IS")
     try:
-        df = ticker_obj.history(period="1d", interval="1m")
-        if len(df) >= 1:
-            return float(df["Close"].iloc[-1])
+        df = ticker.history(period="1d", interval="1m")
+        if not df.empty:
+            add(df["Close"].iloc[-1], "yfinance_1m", df.index[-1].isoformat())
+            if _quote_quality(candidates[-1], ref_now)["valuation_valid"]:
+                return candidates[-1]
     except Exception:
         pass
-    # 3. fast_info
     try:
-        price = ticker_obj.fast_info.get("last_price") or ticker_obj.fast_info.get("lastPrice")
-        if price and float(price) > 0:
-            return float(price)
+        add(ticker.fast_info.get("last_price") or ticker.fast_info.get("lastPrice"), "yfinance_fast_info")
     except Exception:
         pass
-    # 4. Günlük Close
     try:
-        df = ticker_obj.history(period="5d", interval="1d")
-        if len(df) >= 1:
-            return float(df["Close"].iloc[-1])
+        df = ticker.history(period="5d", interval="1d")
+        if not df.empty:
+            add(df["Close"].iloc[-1], "yfinance_1d_close", df.index[-1].isoformat())
     except Exception:
         pass
-    return None
+    return candidates[0] if candidates else {"symbol": symbol, "price": None, "source": "none", "time": None, "valid": False, "reason": "fiyat_bulunamadi"}
 
 
-def saatlik_bar(symbol: str):
+def guncel_fiyat(symbol: str, cache: bool = True) -> float | None:
+    res = guncel_fiyat_detayli(symbol, cache=cache)
+    return res["price"] if res.get("valid") else None
+
+
+def saatlik_bar(symbol: str, now: datetime | None = None) -> dict | None:
+    """Son kapanmış saatlik mumu zaman bilgisine göre seçer (iloc[-2] varsayımına dayanmaz).
+
+    Bir mum [T, T + 1 saat) aralığını kapsar; ancak T + 1 saat tamamlandıktan
+    sonra kapanmış sayılır. ref_now'dan önce tamamlanmış en son bar seçilir.
+    """
+    ref_now = _p1_now(now)
     try:
         df = _ticker(f"{symbol}.IS").history(period="5d", interval="60m")
-        if len(df) < 2:
+        if df is None or len(df) == 0:
             return None
-        bar = df.iloc[-2]
-        return {"open": float(bar["Open"]), "high": float(bar["High"]),
-                "low": float(bar["Low"]), "close": float(bar["Close"])}
+
+        closed_bars = []
+        for idx, row in df.iterrows():
+            bar_start = idx.to_pydatetime() if hasattr(idx, "to_pydatetime") else idx
+            bar_start = to_tsi(bar_start)
+
+            bar_end = bar_start + timedelta(hours=1)
+            if bar_end <= ref_now and (ref_now-bar_end).total_seconds() <= 90*60 and is_bist_islem_gunu(bar_start.date()):
+                c = float(row["Close"])
+                o = float(row["Open"])
+                h = float(row["High"])
+                l = float(row["Low"])
+                if min(c, o, h, l) > 0 and np.isfinite([c,o,h,l]).all() and l <= min(o,c) <= max(o,c) <= h:
+                    closed_bars.append({
+                        "open": o,
+                        "high": h,
+                        "low": l,
+                        "close": c,
+                        "volume": float(row.get("Volume", 0) or 0),
+                        "bar_time": bar_start.isoformat(),
+                        "bar_end": bar_end.isoformat(),
+                        "source": "yfinance_60m",
+                    })
+
+        if not closed_bars:
+            return None
+
+        return closed_bars[-1]
     except Exception as exc:
         log.debug("saatlik_bar %s: %s", symbol, exc)
         return None
@@ -451,7 +726,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
             if (low - giris_f) / giris_f <= P2_STOP_PCT:
                 cikis_f = round(giris_f * (1 + P2_STOP_PCT), 4)
                 portfoy["nakit"] += lotlar * cikis_f
-                _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP")
+                _p2_trade_kaydet(portfoy, sym, pos, cikis_f, "STOP")
                 kapatilacak.append(sym)
                 mesajlar.append(f"\U0001f6d1 <b>P2-STOP - {sym}</b>\n   {giris_f:.2f} \u2192 {cikis_f:.2f}")
                 append_jsonl(PORTFOY_AUDIT_P2_FILE, {"event": "stop", "symbol": sym,
@@ -462,7 +737,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
                 portfoy["nakit"] += yari * close
                 pos["lotlar"]    -= yari
                 pos["tp1_yapildi"] = True
-                _trade_kaydet(portfoy, sym, pos, close, "TP1", lotlar=yari)
+                _p2_trade_kaydet(portfoy, sym, pos, close, "TP1", lotlar=yari)
                 mesajlar.append(f"\U0001f3af <b>P2-TP1 - {sym}</b>\n   {yari} lot @ {close:.2f} (+{P2_TP1_PCT*100:.0f}%)")
                 append_jsonl(PORTFOY_AUDIT_P2_FILE, {"event": "tp1", "symbol": sym,
                                                       "price": close, "remaining": pos["lotlar"]})
@@ -471,7 +746,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
                 if trail_ret <= P2_TRAILING_PCT:
                     cikis_f = round(pos["tepe_f"] * (1 + P2_TRAILING_PCT), 4)
                     portfoy["nakit"] += pos["lotlar"] * cikis_f
-                    _trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING")
+                    _p2_trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING")
                     kapatilacak.append(sym)
                     ret_g = (cikis_f - giris_f) / giris_f
                     mesajlar.append(f"\U0001f4c9 <b>P2-TRAIL - {sym}</b>\n   {cikis_f:.2f} | {ret_g*100:+.1f}%")
@@ -492,7 +767,7 @@ def p2_pozisyon_kontrol(portfoy: dict) -> tuple:
                         continue
                     # else: EXIT below
                 portfoy["nakit"] += pos["lotlar"] * close
-                _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
+                _p2_trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
                 kapatilacak.append(sym)
                 gun_ret = (close - giris_f) / giris_f
                 mesajlar.append(f"\u23f0 <b>P2-MAXGUN - {sym}</b>\n   {close:.2f} | {gun_ret*100:+.1f}%")
@@ -680,21 +955,108 @@ def p2_teyit_senkronize_et():
 
 def portfoy_yukle() -> dict:
     if PORTFOY_FILE.exists():
-        with open(PORTFOY_FILE, encoding="utf-8") as fh:
-            data = json.load(fh)
+        raw = PORTFOY_FILE.read_bytes()
+        data = json.loads(raw)
+        digest = hashlib.sha256(raw).hexdigest()
     else:
         data = {"pozisyonlar": {}, "nakit": SERMAYE_BASLANGIC, "baslangic": SERMAYE_BASLANGIC}
+        digest = None
     data.setdefault("bekleyen_al", [])
     data.setdefault("open_attempts_today", [])
     data.setdefault("last_open_attempt_summary", {})
     data.setdefault("last_hourly_check_time", "")
     data.setdefault("trade_history", [])
+    data.setdefault("islem_defteri", [])
+    data.setdefault("veri_hatalari", [])
+    data["_initial_gen"] = data.get("_gen", 0)
+    data["_initial_digest"] = digest
     return data
 
 
-def portfoy_kaydet(portfoy: dict):
-    with open(PORTFOY_FILE, "w", encoding="utf-8") as fh:
-        json.dump(portfoy, fh, indent=2, ensure_ascii=False)
+def veri_hatasi_kaydet(
+    portfoy: dict,
+    symbol: str,
+    data_time: str,
+    stage: str,
+    reason: str,
+    now: datetime | None = None,
+) -> dict:
+    """Veri hatalarını sessizce geçmeyip yapılandırılmış biçimde kaydeder."""
+    ref_now = now if now is not None else datetime.now()
+    run_id = str(os.environ.get("GITHUB_RUN_ID") or f"run_{ref_now.strftime('%Y%m%d_%H%M%S')}")
+    err_entry = {
+        "event": "data_error",
+        "symbol": symbol,
+        "data_time": str(data_time),
+        "run_id": run_id,
+        "stage": stage,
+        "reason": reason,
+        "timestamp": ref_now.isoformat(),
+    }
+    log.warning("Veri Hatasi [%s] sembol=%s veri_zamani=%s sebep=%s run_id=%s", stage, symbol, data_time, reason, run_id)
+    append_jsonl(PORTFOY_AUDIT_FILE, err_entry)
+    hatalar = portfoy.setdefault("veri_hatalari", [])
+    hatalar.append(err_entry)
+    if len(hatalar) > 50:
+        portfoy["veri_hatalari"] = hatalar[-50:]
+    return portfoy
+
+
+def gunluk_equity_kaydet(portfoy: dict, now: datetime | None = None) -> dict:
+    """Günlük equity kaydını ileriye dönük oluşturur (geçmiş günlük equity'yi tahminle üretmez)."""
+    ref_now = _p1_now(now)
+    bugun = ref_now.strftime("%Y-%m-%d")
+    tarihce = portfoy.setdefault("gunluk_equity_tarihcesi", [])
+    nakit = float(portfoy.get("nakit", 0.0) or 0.0)
+    acik_deger = 0.0
+    fiyat_eksik = []
+    for sym, pos in (portfoy.get("pozisyonlar") or {}).items():
+        if isinstance(pos, dict):
+            lot = int(pos.get("lotlar", 0) or 0)
+            detail = guncel_fiyat_detayli(sym, now=ref_now)
+            if not detail.get("valuation_valid"):
+                fiyat_eksik.append(sym)
+            f = detail.get("price") if detail.get("valuation_valid") else float(pos.get("giris_f", 0.0) or 0.0)
+            acik_deger += lot * f
+    equity = round(nakit + acik_deger, 2)
+    idx = next((i for i, k in enumerate(tarihce) if isinstance(k, dict) and k.get("tarih") == bugun), None)
+    rec = {
+        "tarih": bugun,
+        "equity": None if fiyat_eksik else equity,
+        "equity_cost_estimate": equity,
+        "degerleme_eksik": fiyat_eksik,
+        "nakit": round(nakit, 2),
+        "acik_deger": round(acik_deger, 2),
+        "zaman": ref_now.isoformat(),
+    }
+    if idx is not None:
+        tarihce[idx] = rec
+    else:
+        tarihce.append(rec)
+    return portfoy
+
+
+def portfoy_kaydet(portfoy: dict, force: bool = False) -> dict:
+    """Reject stale writes under an OS lock; retry requires a fresh decision.
+
+    force is retained for API compatibility, but cannot bypass a conflict.
+    """
+    from mott_state_coordination import atomic_write_json, stamp_state
+    with state_lock(PORTFOY_FILE):
+        disk = json.loads(PORTFOY_FILE.read_text(encoding="utf-8")) if PORTFOY_FILE.exists() else None
+        expected = portfoy.get("_initial_gen", portfoy.get("_gen", 0))
+        if disk is not None and disk.get("_gen", 0) != expected:
+            raise StateConflict("P1 stale state: reload and recompute; no merge performed")
+        if "_initial_digest" in portfoy and file_digest(PORTFOY_FILE) != portfoy["_initial_digest"]:
+            raise StateConflict("P1 state bytes changed: reload and recompute")
+        reconcile(portfoy)
+        gunluk_equity_kaydet(portfoy)
+        stamp_state(portfoy)
+        clean = {k: v for k, v in portfoy.items() if k not in ("_initial_gen", "_initial_digest")}
+        atomic_write_json(PORTFOY_FILE, clean)
+        portfoy["_initial_gen"] = portfoy["_gen"]
+        portfoy["_initial_digest"] = file_digest(PORTFOY_FILE)
+    return portfoy
 
 
 def tarama_listesi_yukle() -> dict:
@@ -738,9 +1100,9 @@ def hisse_listesi_kaydet(semboller: list) -> list:
     return unique
 
 
-def bekleyen_adayi_hazirla(aday: dict, ref_dt=None) -> dict:
+def bekleyen_adayi_hazirla(aday: dict, ref_dt=None, valid_for_date=None) -> dict:
     ref_dt = ref_dt or datetime.now()
-    valid_for = sonraki_islem_gunu(ref_dt.date())
+    valid_for = valid_for_date or sonraki_islem_gunu(ref_dt.date())
     hazir = dict(aday)
     hazir["queued_at"]           = ref_dt.strftime("%d.%m.%Y %H:%M")
     hazir["valid_for_date"]      = valid_for.isoformat()
@@ -987,6 +1349,139 @@ def _makro_cache_temizle():
     _MAKRO_CACHE = {"value": None, "fetched_at": None}
 
 
+def makro_karar_olustur(
+    skor: float,
+    karar: str,
+    detaylar: list,
+    piyasa_ret: dict,
+    kaynak: str = "sabah_09_akisi",
+    now: datetime | None = None,
+) -> dict:
+    """Sabah veya gün içi değerlendirilen makro kararını standart metadata ile paketler."""
+    ref_now = now if now is not None else datetime.now()
+    run_id = os.environ.get("GITHUB_RUN_ID") or f"run_{ref_now.strftime('%Y%m%d_%H%M%S')}"
+    return {
+        "karar": karar,
+        "skor": round(float(skor), 2),
+        "zaman": ref_now.isoformat(),
+        "gecerlilik_tarih": ref_now.strftime("%Y-%m-%d"),
+        "kaynak": kaynak,
+        "run_id": str(run_id),
+        "piyasa_ret": {k: round(float(v), 2) for k, v in piyasa_ret.items()} if piyasa_ret else {},
+        "detay_sayisi": len(detaylar) if detaylar else 0,
+        "valid": True,
+    }
+
+
+def get_aktif_makro_karar(
+    portfoy: dict | None = None,
+    now: datetime | None = None,
+) -> tuple[str, float, dict]:
+    """Aktif makro kararını, skorunu ve doğrulama metadata'sını döndürür.
+
+    Doğrulama kuralları:
+      - Karar 'NORMAL', 'DIKKATLI' veya 'GIRME' olmalıdır.
+      - gecerlilik_tarih bugünün tarihi ile eşleşmelidir.
+      - Karar zamanı son 14 saat içinde olmalıdır.
+      - Eksik, bozuk, parse edilemeyen veya süresi geçmiş kararda:
+        -> 'GIRME' döndürülür, valid=False olarak işaretlenir.
+        -> Yeni alım engellenir, mevcut pozisyon risk kontrolleri devam eder.
+    """
+    ref_now = now if now is not None else datetime.now()
+    bugun_str = ref_now.strftime("%Y-%m-%d")
+
+    data = None
+    if portfoy and isinstance(portfoy.get("makro_karar"), dict):
+        data = portfoy["makro_karar"]
+    elif PORTFOY_FILE.exists():
+        try:
+            with open(PORTFOY_FILE, encoding="utf-8") as fh:
+                pj = json.load(fh)
+                if isinstance(pj.get("makro_karar"), dict):
+                    data = pj["makro_karar"]
+        except Exception:
+            pass
+
+    if data is None and STATE_P1_FILE.exists():
+        try:
+            with open(STATE_P1_FILE, encoding="utf-8") as fh:
+                sp = json.load(fh)
+                if isinstance(sp.get("makro_karar"), dict):
+                    data = sp["makro_karar"]
+        except Exception:
+            pass
+
+    if data is None and DURUM_FILE.exists():
+        try:
+            with open(DURUM_FILE, encoding="utf-8") as fh:
+                df = json.load(fh)
+                if df.get("makro_karar"):
+                    data = {
+                        "karar": df.get("makro_karar"),
+                        "skor": df.get("makro_skor", 0.0),
+                        "zaman": df.get("tarih", ""),
+                        "gecerlilik_tarih": df.get("tarih", "")[:10] if df.get("tarih") else "",
+                        "kaynak": "son_durum_fallback",
+                        "run_id": "legacy_son_durum",
+                    }
+        except Exception:
+            pass
+
+    if not data:
+        meta = {"valid": False, "reason": "makro_karar_yok", "karar": "GIRME", "skor": 0.0}
+        return "GIRME", 0.0, meta
+
+    karar = str(data.get("karar", "")).upper()
+    if karar not in ("NORMAL", "DIKKATLI", "GIRME"):
+        meta = {"valid": False, "reason": "bozuk_karar_degeri", "raw": data, "karar": "GIRME", "skor": 0.0}
+        return "GIRME", 0.0, meta
+
+    gecerlilik = str(data.get("gecerlilik_tarih", ""))
+    zaman_raw = str(data.get("zaman", ""))
+    try:
+        skor = float(data.get("skor", 0.0) or 0.0)
+        if not np.isfinite(skor):
+            raise ValueError("nonfinite macro score")
+    except (TypeError, ValueError):
+        return "GIRME", 0.0, {"valid": False, "reason": "bozuk_makro_skor"}
+
+    tarih_uyusuyor = False
+    if gecerlilik == bugun_str:
+        tarih_uyusuyor = True
+    elif zaman_raw:
+        z_dt = _parse_datetime(zaman_raw)
+        if z_dt and z_dt.date() == ref_now.date():
+            tarih_uyusuyor = True
+
+    if not tarih_uyusuyor:
+        meta = {
+            "valid": False,
+            "reason": "suresi_gecmis_karar",
+            "gecerlilik_tarih": gecerlilik,
+            "bugun": bugun_str,
+            "karar": "GIRME",
+            "skor": skor,
+            "run_id": data.get("run_id", ""),
+        }
+        return "GIRME", 0.0, meta
+
+    z_dt = _parse_datetime(zaman_raw)
+    if z_dt is None:
+        return "GIRME", 0.0, {"valid": False, "reason": "makro_zamani_gecersiz"}
+    if z_dt:
+        diff = _p1_now(ref_now) - to_tsi(z_dt)
+        if diff.total_seconds() < -300:
+            meta = {"valid": False, "reason": "gelecek_tarihli_karar", "karar": "GIRME", "skor": skor}
+            return "GIRME", 0.0, meta
+        if diff.total_seconds() > 14 * 3600:
+            meta = {"valid": False, "reason": "karar_14h_asildi", "karar": "GIRME", "skor": skor}
+            return "GIRME", 0.0, meta
+
+    meta = dict(data)
+    meta["valid"] = True
+    return karar, skor, meta
+
+
 def viop_bias_hesapla() -> dict:
     """
     BIST yön tahmini için proxy zinciri:
@@ -1102,6 +1597,7 @@ def _rsi(series: pd.Series, period: int = 14) -> pd.Series:
 def ma_motor_skoru(symbol: str):
     try:
         df = _ticker(f"{symbol}.IS").history(period="6mo", interval="1d")
+        df = closed_daily(df, _p1_now())
         if len(df) < 60:
             return None
         c, v  = df["Close"], df["Volume"]
@@ -1142,6 +1638,7 @@ def lgbm_skor_hesapla(symbol: str, model):
         return None
     try:
         df = _ticker(f"{symbol}.IS").history(period="1y", interval="1d")
+        df = closed_daily(df, _p1_now())
         if len(df) < 60:
             return None
         c, h, l, v = df["Close"], df["High"], df["Low"], df["Volume"]
@@ -1210,11 +1707,17 @@ def lgbm_skor_hesapla(symbol: str, model):
         })
         feat_cols = (json.loads(LGBM_META_FILE.read_text(encoding="utf-8")).get("feature_cols")
                      if LGBM_META_FILE.exists() else None)
-        X = (pd.DataFrame([[feats.get(col,0.0) for col in feat_cols]],columns=feat_cols)
+        X = (pd.DataFrame([[feats[col] for col in feat_cols]],columns=feat_cols)
              if feat_cols else pd.DataFrame([feats]))
-        X = X.replace([np.inf,-np.inf],np.nan).fillna(0)
-        prob = model.predict_proba(X)[0][1]
-        return None if np.isnan(prob) else round(float(prob)*100,1)
+        if not np.isfinite(X.to_numpy(dtype=float)).all():
+            raise ValueError("LGBM features are incomplete")
+        classes = list(getattr(model, "classes_", []))
+        if 1 not in classes:
+            raise ValueError("LGBM positive class 1 is not declared")
+        prob = float(model.predict_proba(X)[0][classes.index(1)])
+        if not np.isfinite(prob) or not 0 <= prob <= 1:
+            raise ValueError("LGBM prediction outside probability range")
+        return round(prob*100, 1)
     except Exception as exc:
         log.debug("LGBM %s: %s", symbol, exc)
         return None
@@ -1223,6 +1726,7 @@ def lgbm_skor_hesapla(symbol: str, model):
 def alpha_trend_analiz(symbol: str) -> dict:
     try:
         df = _ticker(f"{symbol}.IS").history(period="8mo", interval="1d")
+        df = closed_daily(df, _p1_now())
         if len(df) < 60:
             return {"state": "none", "flip_up": False, "bonus": 0, "tag": ""}
         c,h,l,v = df["Close"],df["High"],df["Low"],df["Volume"]
@@ -1253,7 +1757,7 @@ def alpha_trend_analiz(symbol: str) -> dict:
 
 
 def _strategy_combo_score(strategies: list) -> float:
-    return sum(STRATEGY_WEIGHTS.get(x, 0) for x in strategies)
+    return sum(STRATEGY_WEIGHTS.get(x, 0) for x in dict.fromkeys(strategies))
 
 
 def final_signal_score(signal: dict, ma_score, lgbm_score, viop_bias: dict, alpha_bonus: float) -> float:
@@ -1295,6 +1799,7 @@ def build_candidate(symbol: str, signal: dict, model, viop_bias: dict) -> dict:
         "strategies":        signal.get("strategies", []),
         "tarama_score":      _strategy_combo_score(signal.get("strategies", [])),
         "ma_score":          round(ma_total, 2),
+        "agent_status": {"ma": "ok" if ma_result else "data_missing", "lgbm": "scored" if lgbm_score is not None else ("model_missing" if model is None else "invalid_prediction"), "market": viop_bias.get("source", "none"), "alpha": alpha["state"]},
         "lgbm_score":        lgbm_score,
         "viop_bias":         viop_bias["label"],
         "viop_score":        viop_bias["score"],
@@ -1342,9 +1847,14 @@ def portfolio_preview(portfoy: dict) -> dict:
             "n_positions": len(portfoy.get("pozisyonlar", {}))}
 
 
-def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: dict):
+def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: dict, makro_meta: dict | None = None, now: datetime | None = None):
+    ref_now = _p1_now(now)
+    if not is_bist_seans_acik(ref_now):
+        return portfoy, [], [], [{"symbol": a["symbol"], "reason": "seans_kapali"} for a in adaylar]
+    start_ledger(portfoy, ref_now.isoformat())
     if makro_karar == "GIRME":
-        return portfoy, [], [], [{"symbol": a["symbol"], "reason": "makro_girme"} for a in adaylar]
+        sub_reason = "makro_gecersiz" if (makro_meta and not makro_meta.get("valid", True)) else "makro_girme"
+        return portfoy, [], [], [{"symbol": a["symbol"], "reason": sub_reason} for a in adaylar]
     mesajlar, alinan, alinmayan = [], [], []
     mevcut   = portfoy["pozisyonlar"]
     nakit    = portfoy["nakit"]
@@ -1371,10 +1881,16 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
             append_jsonl(PORTFOY_AUDIT_FILE, {"event": "buy_failed", "symbol": sym, "reason": "kitap_limiti"})
             continue
         try:
-            giris_f = guncel_fiyat(sym)
-            if giris_f is None:
+            f_detay = guncel_fiyat_detayli(sym, now=ref_now)
+            giris_f = f_detay["price"] if f_detay.get("trade_eligible", False) else None
+            if giris_f is None or giris_f <= 0:
                 alinmayan.append({"symbol": sym, "reason": "veri_yok"})
-                append_jsonl(PORTFOY_AUDIT_FILE, {"event":"buy_failed","symbol":sym,"reason":"veri_yok"})
+                append_jsonl(PORTFOY_AUDIT_FILE, {
+                    "event": "buy_failed",
+                    "symbol": sym,
+                    "reason": "veri_yok",
+                    "fiyat_meta": f_detay,
+                })
                 continue
             alloc  = min(HISSE_LIMIT, nakit * size_factor * (aday["final_score"] / toplam_skor))
             lotlar = int(alloc / max(giris_f, 0.01))
@@ -1383,25 +1899,48 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
                 append_jsonl(PORTFOY_AUDIT_FILE, {"event":"buy_failed","symbol":sym,"reason":"lot_yetersiz"})
                 continue
             maliyet = lotlar * giris_f
-            if maliyet > nakit:
+            net_alis_tutari, buy_komisyon = hesapla_net_tutar(lotlar, giris_f, islem="alis")
+            if net_alis_tutari > nakit:
                 alinmayan.append({"symbol": sym, "reason": "nakit_yetersiz"})
                 append_jsonl(PORTFOY_AUDIT_FILE, {"event":"buy_failed","symbol":sym,"reason":"nakit_yetersiz"})
                 continue
-            nakit -= maliyet
+            nakit -= net_alis_tutari
+            now_dt = ref_now
+            iso_now = now_dt.isoformat()
+            pos_id = f"P1_{sym}_" + uuid.uuid4().hex
+            buy_evt_id = "EVT_BUY_" + pos_id
             mevcut[sym] = {
-                "giris_f": round(giris_f, 4), "giris_t": datetime.now().strftime("%d.%m.%Y %H:%M"),
+                "position_id": pos_id,
+                "entry_event_id": buy_evt_id,
+                "entry_lotlar": lotlar, "entry_komisyon": buy_komisyon,
+                "giris_f": round(giris_f, 4), "giris_t": now_dt.strftime("%d.%m.%Y %H:%M"),
+                "fiyat_kaynak": f_detay.get("source", "unknown"),
+                "fiyat_zaman": f_detay.get("time", ""),
                 "tepe_f": round(giris_f, 4), "lotlar": lotlar, "gun": 0, "tp1_yapildi": False,
-                "max_gun_date": (date.today() + timedelta(days=MAX_GUN)).strftime("%d.%m.%Y"),
-                "final_score": aday["final_score"], "ma_score": aday["ma_score"],
-                "lgbm_score": aday["lgbm_score"],
-                "source_signal": {"score_count": aday["score_count"], "strategies": aday["strategies"],
-                                  "viop_bias": aday["viop_bias"], "alpha_tag": aday.get("alpha_tag",""),
+                "max_gun_date": (ref_now.date() + timedelta(days=MAX_GUN)).strftime("%d.%m.%Y"),
+                "final_score": aday.get("final_score", 0),
+                "ma_score": aday.get("ma_score", 0),
+                "lgbm_score": aday.get("lgbm_score", None),
+                "source_signal": {"score_count": aday.get("score_count", 0), "strategies": aday.get("strategies", []),
+                                  "viop_bias": aday.get("viop_bias", "NEUTRAL"), "alpha_tag": aday.get("alpha_tag",""),
                                   "alpha_trend_bonus": aday.get("alpha_trend_bonus",0)},
             }
+            portfoy.setdefault("islem_defteri", []).append({
+                "event_id":     buy_evt_id,
+                "position_id":  pos_id,
+                "symbol":       sym,
+                "islem_tipi":   "ALIS",
+                "lot":          lotlar,
+                "fiyat":        round(giris_f, 4),
+                "brut_tutar":   round(maliyet, 4),
+                "komisyon":     buy_komisyon,
+                "nakit_etkisi": -round(net_alis_tutari, 4),
+                "zaman":        iso_now,
+            })
             mesajlar.append(
                 f"\U0001f6a8 <b>AL - {sym}</b>\n"
                 f"   {lotlar} lot @ {giris_f:.2f} TL\n"
-                f"   Skor: {aday['final_score']:.1f} {aday.get('alpha_tag','')} | V\u0130OP: {aday['viop_bias']}"
+                f"   Skor: {aday['final_score']:.1f} {aday.get('alpha_tag','')} | V\u0130OP: {aday.get('viop_bias', '')}"
             )
             append_jsonl(PORTFOY_AUDIT_FILE, {"event":"buy_success","symbol":sym,"price":giris_f,
                                                "lots":lotlar,"final_score":aday["final_score"]})
@@ -1414,82 +1953,242 @@ def yeni_pozisyon_ac(portfoy: dict, adaylar: list, makro_karar: str, viop_bias: 
     return portfoy, mesajlar, alinan, alinmayan
 
 
-def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str):
+def pozisyon_guncelle_saatlik(portfoy: dict, makro_karar: str, makro_skor: float | None = None, now: datetime | None = None):
     mesajlar, kapatilacak = [], []
+    ref_now = _p1_now(now)
+    ref_date = ref_now.date()
+    start_ledger(portfoy, ref_now.isoformat())
     for sym, pos in list(portfoy["pozisyonlar"].items()):
         try:
-            bar = saatlik_bar(sym)
+            bar = saatlik_bar(sym, now=ref_now)
             if bar is None:
                 continue
             high, low, close = bar["high"], bar["low"], bar["close"]
+            pos["decision_bar_time"] = str(bar.get("bar_time", ref_now.isoformat()))
             giris_f = pos["giris_f"]
             lotlar  = pos["lotlar"]
-            pos["tepe_f"] = max(pos.get("tepe_f", giris_f), high)
-            # STOP
-            if (low - giris_f) / giris_f <= STOP_PCT:
-                cikis_f = round(giris_f * (1 + STOP_PCT), 4)
-                portfoy["nakit"] += lotlar * cikis_f
-                _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP")
-                kapatilacak.append(sym)
-                mesajlar.append(f"\U0001f6d1 <b>STOP - {sym}</b>\n   Giri\u015f: {giris_f:.2f} \u2192 \u00c7\u0131k\u0131\u015f: {cikis_f:.2f}")
-                append_jsonl(PORTFOY_AUDIT_FILE, {"event":"stop","symbol":sym,"exit_price":cikis_f,"return_pct":STOP_PCT*100})
-                continue
-            # TP1
-            if (high - giris_f) / giris_f >= TP1_PCT and not pos.get("tp1_yapildi"):
-                yari = max(1, lotlar // 2)
-                portfoy["nakit"] += yari * close
-                pos["lotlar"] -= yari
-                pos["tp1_yapildi"] = True
-                _trade_kaydet(portfoy, sym, pos, close, "TP1", lotlar=yari)
-                mesajlar.append(f"\U0001f3af <b>TP1 - {sym}</b>\n   {yari} lot @ {close:.2f} sat\u0131ld\u0131 (+{TP1_PCT*100:.0f}%)")
-                append_jsonl(PORTFOY_AUDIT_FILE, {"event":"tp1","symbol":sym,"price":close,"remaining":pos["lotlar"]})
-            # TRAILING
-            elif pos.get("tp1_yapildi"):
-                trail_ret = (low - pos["tepe_f"]) / pos["tepe_f"]
-                if trail_ret <= TRAILING_PCT:
-                    cikis_f = round(pos["tepe_f"] * (1 + TRAILING_PCT), 4)
-                    portfoy["nakit"] += pos["lotlar"] * cikis_f
-                    _trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING")
+
+            # Aynı pozisyon ve mum için tekrar çalıştırma kontrolü (mum idempotency)
+            bar_time = str(bar.get("bar_time", ""))
+            already_evaluated_bar = bool(bar_time) and (pos.get("last_bar_time") == bar_time)
+
+            if not already_evaluated_bar:
+                prev_tepe_f = float(pos.get("tepe_f", giris_f))
+                stop_seviyesi = round(giris_f * (1 + STOP_PCT), 4)
+                tp1_seviyesi = round(giris_f * (1 + TP1_PCT), 4)
+                is_stop = low <= stop_seviyesi
+                is_tp1 = (high >= tp1_seviyesi) and not pos.get("tp1_yapildi")
+                likidite_teyitli = bool(bar.get("volume", 0) > 0)
+
+                # Belirsizlik: STOP ve TP1 aynı mumda görüldüyse muhafazakâr stop önceliği
+                if is_stop and is_tp1:
+                    ambiguity = "both_stop_and_tp_in_bar"
+                    if bar["open"] <= stop_seviyesi:
+                        cikis_f = round(bar["open"] * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    else:
+                        cikis_f = round(stop_seviyesi * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    net_tutar, komisyon = hesapla_net_tutar(lotlar, cikis_f, islem="satis")
+                    portfoy["nakit"] += net_tutar
+                    _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP",
+                                  ambiguity=ambiguity, likidite_teyitli=likidite_teyitli, now=ref_now)
                     kapatilacak.append(sym)
                     ret_g = (cikis_f - giris_f) / giris_f
-                    mesajlar.append(f"\U0001f4c9 <b>TRAILING - {sym}</b>\n   \u00c7\u0131k\u0131\u015f: {cikis_f:.2f} | Getiri: {ret_g*100:+.1f}%")
-                    append_jsonl(PORTFOY_AUDIT_FILE, {"event":"trailing","symbol":sym,"exit_price":cikis_f,"return_pct":ret_g*100})
+                    mesajlar.append(
+                        f"\U0001f6d1 <b>STOP (Belirsiz Mum) - {sym}</b>\n"
+                        f"   Giriş: {giris_f:.2f} \u2192 Çıkış: {cikis_f:.2f} ({ret_g*100:+.1f}%) [Aynı barda TP1 ve STOP görüldü]"
+                    )
+                    append_jsonl(PORTFOY_AUDIT_FILE, {
+                        "event": "stop",
+                        "symbol": sym,
+                        "exit_price": cikis_f,
+                        "return_pct": ret_g * 100,
+                        "ambiguity": ambiguity,
+                        "likidite_teyitli": likidite_teyitli,
+                    })
+                    pos["last_bar_time"] = bar_time
                     continue
-            # MAX GUN
-            if _elde_tutma_gunu(pos.get("giris_t", "")) >= MAX_GUN:
-                # Rolling extension: MAX_GUN gününde P1 ALIM listesi kontrolü
-                mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla_p1(pos.get("giris_t", ""))
-                try:
-                    mgd = datetime.strptime(mgd_str, "%d.%m.%Y").date()
-                except Exception:
-                    mgd = date.today()
-                if date.today() >= mgd:
-                    alim = _p1_alim_listesi()
-                    if sym in alim:
-                        pos["max_gun_date"] = (date.today() + timedelta(days=MAX_GUN_EXTENSION)).strftime("%d.%m.%Y")
+
+                # Bağımsız STOP kontrolü
+                if is_stop:
+                    if bar["open"] <= stop_seviyesi:
+                        # Gap down: açılış stop seviyesinin altında
+                        cikis_f = round(bar["open"] * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    else:
+                        cikis_f = round(stop_seviyesi * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    net_tutar, komisyon = hesapla_net_tutar(lotlar, cikis_f, islem="satis")
+                    portfoy["nakit"] += net_tutar
+                    _trade_kaydet(portfoy, sym, pos, cikis_f, "STOP", likidite_teyitli=likidite_teyitli, now=ref_now)
+                    kapatilacak.append(sym)
+                    ret_g = (cikis_f - giris_f) / giris_f
+                    mesajlar.append(f"\U0001f6d1 <b>STOP - {sym}</b>\n   Giriş: {giris_f:.2f} \u2192 Çıkış: {cikis_f:.2f} ({ret_g*100:+.1f}%)")
+                    append_jsonl(PORTFOY_AUDIT_FILE, {
+                        "event": "stop",
+                        "symbol": sym,
+                        "exit_price": cikis_f,
+                        "return_pct": ret_g * 100,
+                        "gap_down": bool(bar["open"] <= stop_seviyesi),
+                        "likidite_teyitli": likidite_teyitli,
+                    })
+                    pos["last_bar_time"] = bar_time
+                    continue
+
+                # TP1 kontrolü
+                if is_tp1:
+                    if bar["open"] >= tp1_seviyesi:
+                        tp1_cikis_f = round(bar["open"] * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                    else:
+                        tp1_cikis_f = round(tp1_seviyesi * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+
+                    realized_pnl_pct = round((tp1_cikis_f - giris_f) / giris_f * 100, 2)
+
+                    if lotlar <= 1:
+                        yari = 1
+                        pos["lotlar"] = 0
+                        kapatilacak.append(sym)
+                    else:
+                        yari = lotlar // 2
+                        pos["lotlar"] -= yari
+
+                    pos["tp1_yapildi"] = True
+                    net_tutar, komisyon = hesapla_net_tutar(yari, tp1_cikis_f, islem="satis")
+                    portfoy["nakit"] += net_tutar
+                    _trade_kaydet(portfoy, sym, pos, tp1_cikis_f, "TP1", lotlar=yari,
+                                  tp1_tetik_fiyat=tp1_seviyesi, likidite_teyitli=likidite_teyitli, now=ref_now)
+                    realized_pnl_pct = portfoy["trade_history"][-1]["net_pnl_pct"]
+
+                    mesajlar.append(
+                        f"\U0001f3af <b>TP1 - {sym}</b>\n"
+                        f"   {yari} lot @ {tp1_cikis_f:.2f} satıldı (net {realized_pnl_pct:+.2f}%) [Tetik: {tp1_seviyesi:.2f}]"
+                    )
+                    append_jsonl(PORTFOY_AUDIT_FILE, {
+                        "event": "tp1",
+                        "symbol": sym,
+                        "tp1_trigger_price": tp1_seviyesi,
+                        "simulated_fill_price": tp1_cikis_f,
+                        "realized_return_pct": realized_pnl_pct,
+                        "sold_lots": yari,
+                        "remaining_lots": pos["lotlar"],
+                        "likidite_teyitli": likidite_teyitli,
+                    })
+                    if pos["lotlar"] == 0:
+                        pos["last_bar_time"] = bar_time
                         continue
-                    # else: EXIT below
-                portfoy["nakit"] += pos["lotlar"] * close
-                _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN")
+
+                # TRAILING kontrolü (Önceki mumlardan bilinen prev_tepe_f kullanılır)
+                elif pos.get("tp1_yapildi"):
+                    trail_ret = (low - prev_tepe_f) / prev_tepe_f
+                    if trail_ret <= TRAILING_PCT:
+                        trail_seviyesi = round(prev_tepe_f * (1 + TRAILING_PCT), 4)
+                        if bar["open"] <= trail_seviyesi:
+                            cikis_f = round(bar["open"] * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                        else:
+                            cikis_f = round(trail_seviyesi * (1 - VARSAYILAN_KAYMA_ORANI), 4)
+                        net_tutar, komisyon = hesapla_net_tutar(pos["lotlar"], cikis_f, islem="satis")
+                        portfoy["nakit"] += net_tutar
+                        _trade_kaydet(portfoy, sym, pos, cikis_f, "TRAILING", likidite_teyitli=likidite_teyitli, now=ref_now)
+                        kapatilacak.append(sym)
+                        ret_g = (cikis_f - giris_f) / giris_f
+                        mesajlar.append(f"\U0001f4c9 <b>TRAILING - {sym}</b>\n   Çıkış: {cikis_f:.2f} | Getiri: {ret_g*100:+.1f}%")
+                        append_jsonl(PORTFOY_AUDIT_FILE, {
+                            "event": "trailing",
+                            "symbol": sym,
+                            "exit_price": cikis_f,
+                            "return_pct": ret_g * 100,
+                            "likidite_teyitli": likidite_teyitli,
+                        })
+                        pos["last_bar_time"] = bar_time
+                        continue
+
+                pos["tepe_f"] = max(prev_tepe_f, high)
+                pos["last_bar_time"] = bar_time
+
+            # MAX GUN (Takvim günü bazlı kontrol)
+            if _elde_tutma_gunu(pos.get("giris_t", ""), now_date=ref_date) >= MAX_GUN:
+                # Rolling extension: MAX_GUN gününde P1 ALIM listesi kontrolü
+                mgd_str = pos.get("max_gun_date") or _max_gun_date_hesapla_p1(pos.get("giris_t", ""), now_date=ref_date)
+                mgd = _parse_tarih(mgd_str) or ref_date
+                if ref_date >= mgd:
+                    alim, status, meta = _p1_alim_listesi_durum(now=ref_now)
+                    if status == "valid" and sym in alim:
+                        pos["max_gun_date"] = (ref_date + timedelta(days=MAX_GUN_EXTENSION)).strftime("%d.%m.%Y")
+                        pos["extension_count"] = pos.get("extension_count", 0) + 1
+                        append_jsonl(PORTFOY_AUDIT_FILE, {
+                            "event": "max_gun_extended",
+                            "symbol": sym,
+                            "new_max_gun_date": pos["max_gun_date"],
+                            "extension_count": pos["extension_count"],
+                            "scan_meta": meta,
+                        })
+                        continue
+                    # Aday listede yok veya veri hatası -> Güvenli MAX_GUN çıkışı
+                    sub_reason = "not_in_candidate_list" if status == "valid" else f"data_error_{status}"
+                    if status != "valid":
+                        append_jsonl(PORTFOY_AUDIT_FILE, {
+                            "event": "max_gun_data_error",
+                            "symbol": sym,
+                            "status": status,
+                            "scan_meta": meta,
+                        })
+                else:
+                    # Uzatılmış max_gun_date henüz gelmedi (örn: 11., 12., 13., 14. gün).
+                    # Erken MAX_GUN satışı yapma, pozisyonu tutmaya devam et!
+                    continue
+
+                net_tutar, komisyon = hesapla_net_tutar(pos["lotlar"], close, islem="satis")
+                portfoy["nakit"] += net_tutar
+                _trade_kaydet(portfoy, sym, pos, close, "MAX_GUN", likidite_teyitli=bool(bar.get("volume", 0) > 0), now=ref_now)
                 kapatilacak.append(sym)
                 gun_ret = (close - giris_f) / giris_f
-                mesajlar.append(f"\u23f0 <b>MAX G\u00dcN - {sym}</b>\n   \u00c7\u0131k\u0131\u015f: {close:.2f} | Getiri: {gun_ret*100:+.1f}%")
-                append_jsonl(PORTFOY_AUDIT_FILE, {"event":"max_day","symbol":sym,"exit_price":close,"return_pct":gun_ret*100})
+                mesajlar.append(f"\u23f0 <b>MAX GÜN - {sym}</b>\n   Çıkış: {close:.2f} | Getiri: {gun_ret*100:+.1f}%")
+                append_jsonl(PORTFOY_AUDIT_FILE, {
+                    "event": "max_day",
+                    "symbol": sym,
+                    "exit_price": close,
+                    "return_pct": gun_ret * 100,
+                    "sub_reason": sub_reason,
+                })
         except Exception as exc:
             log.debug("Pozisyon guncelle %s: %s", sym, exc)
     for sym in kapatilacak:
         portfoy["pozisyonlar"].pop(sym, None)
-    # Acil likidasyon
-    makro_skor = guncel_makro_skoru()
-    if makro_karar == "GIRME" and portfoy["pozisyonlar"] and makro_skor >= EMERGENCY_LIQUIDATION_SCORE:
+    # Acil likidasyon: Yalnızca makro_karar ve makro_skor aynı tutarlı makro değerlendirmesinde GIRME ve skor >= EMERGENCY_LIQUIDATION_SCORE ise
+    if makro_skor is not None and makro_karar == "GIRME" and portfoy["pozisyonlar"] and makro_skor >= EMERGENCY_LIQUIDATION_SCORE:
         semboller = list(portfoy["pozisyonlar"].keys())
         for sym in semboller:
-            pos = portfoy["pozisyonlar"].pop(sym)
-            f   = guncel_fiyat(sym) or pos["giris_f"]
-            portfoy["nakit"] += pos["lotlar"] * f
-            _trade_kaydet(portfoy, sym, pos, f, "ACIL_NAKIT")
-        mesajlar.append(f"\U0001f6a8 <b>AC\u0130L NAK\u0130T</b>\n   Makro skor {makro_skor:.1f} \u2192 {len(semboller)} pozisyon kapat\u0131ld\u0131")
-        append_jsonl(PORTFOY_AUDIT_FILE, {"event":"risk_off_liquidation","symbols":semboller,"makro_skor":makro_skor})
+            pos = portfoy["pozisyonlar"][sym]
+            f_detay = guncel_fiyat_detayli(sym, now=ref_now)
+            if f_detay.get("trade_eligible", False) and f_detay.get("price") and f_detay["price"] > 0:
+                cikis_f = round(float(f_detay["price"]) * (1-VARSAYILAN_KAYMA_ORANI), 4)
+                portfoy["pozisyonlar"].pop(sym, None)
+                kapatilacak.append(sym)
+                net_tutar, _ = hesapla_net_tutar(pos["lotlar"], cikis_f)
+                portfoy["nakit"] += net_tutar
+                _trade_kaydet(portfoy, sym, pos, cikis_f, "ACIL_NAKIT", now=ref_now, fiyat_kaynak=f_detay.get("source"), fiyat_zaman=f_detay.get("time"))
+                mesajlar.append(f"\U0001f6a8 <b>ACİL NAKİT - {sym}</b>\n   Çıkış: {cikis_f:.2f}")
+                append_jsonl(PORTFOY_AUDIT_FILE, {
+                    "event": "risk_off_liquidation_symbol",
+                    "symbol": sym,
+                    "cikis_fiyat": cikis_f,
+                    "kaynak": f_detay.get("source"),
+                    "zaman": f_detay.get("time"),
+                })
+            else:
+                # Fiyat yoksa POZİSYONU KORU, giriş fiyatından satma!
+                # Tasfiye talebini bekleyen durum olarak kaydet.
+                pos["pending_liquidation"] = {
+                    "requested_at": ref_now.isoformat(),
+                    "reason": "acil_nakit_fiyat_yok",
+                    "makro_skor": makro_skor,
+                    "run_id": os.environ.get("GITHUB_RUN_ID", "local"),
+                }
+                log.warning("Acil tasfiye: %s icin guncel fiyat yok, pozisyon korundu ve beklemeye alindi", sym)
+                append_jsonl(PORTFOY_AUDIT_FILE, {
+                    "event": "liquidation_deferred_no_price",
+                    "symbol": sym,
+                    "reason": "guncel_fiyat_yok",
+                    "fiyat_meta": f_detay,
+                })
+    return portfoy, mesajlar
     return portfoy, mesajlar
 
 
@@ -1546,11 +2245,11 @@ def portfoy_ozet_mesaji(portfoy: dict, saat_label: str, model_status: str = "pas
     return "\n".join(lines)
 
 
-def alim_denemesi(portfoy: dict, makro_karar: str, viop_bias: dict, now: datetime):
+def alim_denemesi(portfoy: dict, makro_karar: str, viop_bias: dict, now: datetime, makro_meta: dict | None = None):
     aktif, expired = ayikla_suresi_dolan_bekleyenler(portfoy.get("bekleyen_al", []), now)
     portfoy["bekleyen_al"] = aktif
     portfoy, al_mesajlari, alinanlar, alinmayanlar = yeni_pozisyon_ac(
-        portfoy, aktif, makro_karar, viop_bias)
+        portfoy, aktif, makro_karar, viop_bias, makro_meta=makro_meta, now=now)
     portfoy["bekleyen_al"] = [x for x in aktif if x["symbol"] not in set(alinanlar)]
     # Deneme kaydını güncelle
     for item in portfoy["bekleyen_al"]:
@@ -1588,7 +2287,9 @@ def alim_denemesi(portfoy: dict, makro_karar: str, viop_bias: dict, now: datetim
 
 
 def sabah_09_akisi():
-    now = datetime.now()
+    now = _p1_now()
+    if not is_bist_islem_gunu(now.date()):
+        return "GIRME"
     saat_label = now.strftime("%d.%m.%Y %H:%M")
     _makro_cache_temizle()  # her sabah taze veri çek
     skor, detaylar, karar, piyasa_ret = makro_risk_skoru()
@@ -1600,9 +2301,11 @@ def sabah_09_akisi():
     for aday in adaylar[:MAX_HISSE]:
         if aday["symbol"] in portfoy["pozisyonlar"]:
             continue
-        bekleyen.append(bekleyen_adayi_hazirla(aday, now))
+        bekleyen.append(bekleyen_adayi_hazirla(aday, now, valid_for_date=now.date()))
     portfoy["bekleyen_al"] = bekleyen
     portfoy["open_attempts_today"] = []
+    makro_payload = makro_karar_olustur(skor, karar, detaylar, piyasa_ret, kaynak="sabah_09_akisi", now=now)
+    portfoy["makro_karar"] = makro_payload
     portfoy_kaydet(portfoy)
     durum_kaydet({
         "tarih": saat_label,
@@ -1645,21 +2348,23 @@ def sabah_09_akisi():
     return karar
 
 
-def saat_11_alim(makro_karar: str):
-    now = datetime.now()
+def saat_11_alim(makro_karar: str | None = None, makro_skor: float | None = None, makro_meta: dict | None = None, now: datetime | None = None):
+    ref_now = now if now is not None else datetime.now()
     viop_bias = viop_bias_hesapla()
     portfoy = portfoy_yukle()
+    if makro_karar is None:
+        makro_karar, makro_skor, makro_meta = get_aktif_makro_karar(portfoy, now=ref_now)
     onceki = set(portfoy["pozisyonlar"].keys())
     mesajlar = []
     # Piyasa açılışından itibaren (10:00 TSİ) STOP/TP kontrolü de burada
     # yapılır — yalnızca "takip" penceresini (11:20+) beklemek, sabah erken
     # saatlerde taşınan pozisyonların saatlerce izlenmeden kalmasına yol açardı.
     if portfoy["pozisyonlar"]:
-        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar)
+        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar, makro_skor=makro_skor, now=ref_now)
         mesajlar.extend(islem_msg)
-    portfoy, al_msg, summary = alim_denemesi(portfoy, makro_karar, viop_bias, now)
+    portfoy, al_msg, summary = alim_denemesi(portfoy, makro_karar, viop_bias, ref_now, makro_meta=makro_meta)
     mesajlar.extend(al_msg)
-    portfoy["last_hourly_check_time"] = now.strftime("%d.%m.%Y %H:%M")
+    portfoy["last_hourly_check_time"] = ref_now.strftime("%d.%m.%Y %H:%M")
     portfoy_kaydet(portfoy)
     if mesajlar:
         sonra = set(portfoy["pozisyonlar"].keys())
@@ -1676,23 +2381,25 @@ def saat_1130_ozeti():
     log.info("11:30 ozet: islem bazli politika nedeniyle Telegram atlanir")
 
 
-def saatlik_kontrol(makro_karar: str):
-    now = datetime.now()
+def saatlik_kontrol(makro_karar: str | None = None, makro_skor: float | None = None, makro_meta: dict | None = None, now: datetime | None = None):
+    ref_now = now if now is not None else datetime.now()
     viop_bias = viop_bias_hesapla()
     portfoy = portfoy_yukle()
+    if makro_karar is None:
+        makro_karar, makro_skor, makro_meta = get_aktif_makro_karar(portfoy, now=ref_now)
     onceki = set(portfoy["pozisyonlar"].keys())
     mesajlar = []
     if portfoy["pozisyonlar"]:
-        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar)
+        portfoy, islem_msg = pozisyon_guncelle_saatlik(portfoy, makro_karar, makro_skor=makro_skor, now=ref_now)
         mesajlar.extend(islem_msg)
     portfoy["bekleyen_al"] = retry_bekleyenleri_filtrele(portfoy.get("bekleyen_al", []))
     if portfoy["bekleyen_al"]:
-        portfoy, al_msg, _ = alim_denemesi(portfoy, makro_karar, viop_bias, now)
+        portfoy, al_msg, _ = alim_denemesi(portfoy, makro_karar, viop_bias, ref_now, makro_meta=makro_meta)
         mesajlar.extend(al_msg)
-    portfoy["last_hourly_check_time"] = now.strftime("%d.%m.%Y %H:%M")
+    portfoy["last_hourly_check_time"] = ref_now.strftime("%d.%m.%Y %H:%M")
     portfoy_kaydet(portfoy)
     append_jsonl(PORTFOY_AUDIT_FILE, {
-        "event": "hourly_check", "saat": now.strftime("%H:%M"),
+        "event": "hourly_check", "saat": ref_now.strftime("%H:%M"),
         "pozisyon_sayisi": len(portfoy["pozisyonlar"]),
         "bekleyen_sayisi": len(portfoy.get("bekleyen_al", [])),
     })
@@ -1900,13 +2607,13 @@ def main():
     saat_1730_yapildi = False
 
     while True:
-        now  = datetime.now()
+        now  = _p1_now()
         saat = now.strftime("%H:%M")
         gun  = now.weekday()
 
         telegram_komutlarini_kontrol_et()
 
-        if gun >= 5:
+        if not is_bist_islem_gunu(now.date()):
             time.sleep(300)
             continue
 
@@ -1923,8 +2630,9 @@ def main():
 
         # 11:00 İlk alım
         elif saat == "11:00" and not saat_11_yapildi:
-            saat_11_alim(makro_karar)
-            p2_saatlik_kontrol(makro_karar)
+            karar, skor, meta = get_aktif_makro_karar(portfoy_yukle(), now=now)
+            saat_11_alim(karar, makro_skor=skor, makro_meta=meta, now=now)
+            p2_saatlik_kontrol(karar)
             saat_11_yapildi = True
             son_saat = saat
             time.sleep(61)
@@ -1938,8 +2646,9 @@ def main():
 
         # 12:00-17:00 Saatlik kontrol
         elif now.minute == 0 and 12 <= now.hour <= 17 and son_saat != saat:
-            saatlik_kontrol(makro_karar)
-            p2_saatlik_kontrol(makro_karar)
+            karar, skor, meta = get_aktif_makro_karar(portfoy_yukle(), now=now)
+            saatlik_kontrol(karar, makro_skor=skor, makro_meta=meta, now=now)
+            p2_saatlik_kontrol(karar)
             son_saat = saat
             time.sleep(61)
 
@@ -1971,10 +2680,10 @@ if __name__ == "__main__":
         cmd = sys.argv[1].lower()
         cmds = {
             "sabah":  sabah_09_akisi,
-            "alim":   lambda: saat_11_alim("NORMAL"),
+            "alim":   lambda: saat_11_alim(),
             "ozet":   saat_1130_ozeti,
             "kapani": kapanis_ozeti_1730,
-            "takip":  lambda: saatlik_kontrol("NORMAL"),
+            "takip":  lambda: saatlik_kontrol(),
             "durum":  lambda: print(json.dumps(portfoy_yukle(), indent=2, ensure_ascii=False)),
             "viop":   lambda: print(json.dumps(viop_bias_hesapla(), ensure_ascii=False)),
             "makro":  lambda: [print(f"Skor: {s} -> {k}") or [print(f"  {t}: {v:+.2f}%") for t,v in pr.items()]
