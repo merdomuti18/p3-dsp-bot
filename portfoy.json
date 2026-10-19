@@ -26,7 +26,38 @@
   },
   "nakit": 74127.07396247864,
   "baslangic": 100000,
-  "bekleyen_al": [],
+  "bekleyen_al": [
+    {
+      "symbol": "GLYHO",
+      "score_count": 1,
+      "strategies": [
+        "MR"
+      ],
+      "tarama_score": 10,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "viop_bias": "Küçük boyut / nakit ağırlık",
+      "viop_score": -5,
+      "alpha_trend_state": "bearish",
+      "alpha_trend_flip": false,
+      "alpha_trend_bonus": 0,
+      "alpha_tag": "",
+      "final_score": 7,
+      "change_pct": 0.57,
+      "rsi": 71.5,
+      "rel_vol": 1.28,
+      "cmf": 0.4025,
+      "islem_tl": 0,
+      "scan_time": "16.10.2026 20:12",
+      "scan_label": "20:50 Kapanış",
+      "queued_at": "19.10.2026 05:50",
+      "valid_for_date": "2026-10-20",
+      "expires_at_hour": 17,
+      "attempt_count": 0,
+      "last_attempt_time": "",
+      "last_attempt_reason": ""
+    }
+  ],
   "open_attempts_today": [],
   "last_open_attempt_summary": {
     "pending": 4,
