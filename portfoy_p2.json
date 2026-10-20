@@ -74,7 +74,66 @@
   },
   "nakit": 19175.97574567798,
   "baslangic": 100000,
-  "bekleyen_al": [],
+  "bekleyen_al": [
+    {
+      "symbol": "KUYAS",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "20.10.2026 20:50",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "TARKM",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "20.10.2026 20:50",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ICBCT",
+      "score": 4.0,
+      "final_score": 4.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bearish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "20.10.2026 20:50",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "EREGL",
+      "score": 3.0,
+      "final_score": 3.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bearish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "20.10.2026 20:50",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    }
+  ],
   "open_attempts_today": [],
   "last_hourly_check_time": "20.10.2026 12:35",
   "trade_history": [
