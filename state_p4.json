@@ -1,5 +1,86 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "KLYPV": {
+      "symbol": "KLYPV",
+      "giris_fiyat": 48.96,
+      "guncel_fiyat": 48.96,
+      "lotlar": 204,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-10-21",
+      "max_gun_date": "2026-10-31",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P2"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "GLYHO": {
+      "symbol": "GLYHO",
+      "giris_fiyat": 16.7,
+      "guncel_fiyat": 16.7,
+      "lotlar": 598,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-10-21",
+      "max_gun_date": "2026-10-31",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P3"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "OTKAR": {
+      "symbol": "OTKAR",
+      "giris_fiyat": 308.0,
+      "guncel_fiyat": 308.0,
+      "lotlar": 32,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-10-21",
+      "max_gun_date": "2026-10-31",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P3"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "ENJSA": {
+      "symbol": "ENJSA",
+      "giris_fiyat": 115.4,
+      "guncel_fiyat": 115.4,
+      "lotlar": 86,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-10-21",
+      "max_gun_date": "2026-10-31",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P3"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "TAVHL": {
+      "symbol": "TAVHL",
+      "giris_fiyat": 287.0,
+      "guncel_fiyat": 287.0,
+      "lotlar": 34,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-10-21",
+      "max_gun_date": "2026-10-31",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P3"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    }
+  },
   "trade_history": [
     {
       "symbol": "ICBCT",
@@ -1148,11 +1229,17 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-10-21",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-10-05T15:40:58.601478",
+  "last_run": "2026-10-21T17:58:47.913892",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 93386,
-  "_gen": 52,
-  "_updated_at": "2026-10-15T13:44:23.922974+03:00"
+  "_gen": 53,
+  "_updated_at": "2026-10-21T20:58:50.582880+03:00"
 }
