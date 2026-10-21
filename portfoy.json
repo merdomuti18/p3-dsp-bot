@@ -1,30 +1,6 @@
 {
-  "pozisyonlar": {
-    "CELHA": {
-      "giris_f": 31.24,
-      "giris_t": "15.10.2026 10:44",
-      "tepe_f": 31.440000534057617,
-      "lotlar": 640,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "25.10.2026",
-      "final_score": 54,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 3,
-        "strategies": [
-          "GTD",
-          "ALPHA",
-          "MR"
-        ],
-        "viop_bias": "Temkinli long",
-        "alpha_tag": "AT+",
-        "alpha_trend_bonus": 2
-      }
-    }
-  },
-  "nakit": 74127.07396247864,
+  "pozisyonlar": {},
+  "nakit": 93120.99396247863,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -53,8 +29,8 @@
       "queued_at": "21.10.2026 07:05",
       "valid_for_date": "2026-10-22",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "21.10.2026 11:01",
       "last_attempt_reason": ""
     },
     {
@@ -83,8 +59,8 @@
       "queued_at": "21.10.2026 07:05",
       "valid_for_date": "2026-10-22",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "21.10.2026 11:01",
       "last_attempt_reason": ""
     },
     {
@@ -113,8 +89,8 @@
       "queued_at": "21.10.2026 07:05",
       "valid_for_date": "2026-10-22",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "21.10.2026 11:01",
       "last_attempt_reason": ""
     },
     {
@@ -143,8 +119,8 @@
       "queued_at": "21.10.2026 07:05",
       "valid_for_date": "2026-10-22",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "21.10.2026 11:01",
       "last_attempt_reason": ""
     },
     {
@@ -173,21 +149,29 @@
       "queued_at": "21.10.2026 07:05",
       "valid_for_date": "2026-10-22",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "21.10.2026 11:01",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:01",
+      "tarih": "2026-10-21",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 4,
-    "bought": 1,
+    "pending": 5,
+    "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "15.10.2026 10:44"
+    "time": "21.10.2026 11:01"
   },
-  "last_hourly_check_time": "15.10.2026 12:30",
+  "last_hourly_check_time": "21.10.2026 11:01",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -727,6 +711,17 @@
       "neden": "MAX_GUN",
       "giris_tarih": "2026-09-22",
       "cikis_tarih": "2026-10-05"
+    },
+    {
+      "symbol": "CELHA",
+      "giris_fiyat": 31.24,
+      "cikis_fiyat": 29.678,
+      "lotlar": 640,
+      "pnl_pct": -5.0,
+      "gun": 6,
+      "neden": "STOP",
+      "giris_tarih": "2026-10-15",
+      "cikis_tarih": "2026-10-21"
     }
   ]
 }
