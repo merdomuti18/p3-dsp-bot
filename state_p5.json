@@ -1631,11 +1631,60 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-10-21",
+      "secilen": [],
+      "elenen": [
+        {
+          "symbol": "PGSUS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "KLYPV",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "GLYHO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "KRDMD",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "GARAN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "OTKAR",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "CIMSA",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "BORLS",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ENJSA",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "ULUFA",
+          "neden": "tek kaynak (P2)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-10-05T15:41:41.405539",
+  "last_run": "2026-10-21T17:59:24.822769",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 98184,
-  "_gen": 44,
-  "_updated_at": "2026-10-05T18:41:41.411141+03:00"
+  "_gen": 45,
+  "_updated_at": "2026-10-21T20:59:24.827683+03:00"
 }
