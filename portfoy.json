@@ -29,8 +29,8 @@
       "queued_at": "22.10.2026 07:05",
       "valid_for_date": "2026-10-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.10.2026 11:00",
       "last_attempt_reason": ""
     },
     {
@@ -59,8 +59,8 @@
       "queued_at": "22.10.2026 07:05",
       "valid_for_date": "2026-10-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.10.2026 11:00",
       "last_attempt_reason": ""
     },
     {
@@ -89,8 +89,8 @@
       "queued_at": "22.10.2026 07:05",
       "valid_for_date": "2026-10-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.10.2026 11:00",
       "last_attempt_reason": ""
     },
     {
@@ -119,8 +119,8 @@
       "queued_at": "22.10.2026 07:05",
       "valid_for_date": "2026-10-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.10.2026 11:00",
       "last_attempt_reason": ""
     },
     {
@@ -149,21 +149,29 @@
       "queued_at": "22.10.2026 07:05",
       "valid_for_date": "2026-10-23",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "22.10.2026 11:00",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:00",
+      "tarih": "2026-10-22",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 5,
     "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "21.10.2026 11:01"
+    "time": "22.10.2026 11:00"
   },
-  "last_hourly_check_time": "21.10.2026 12:46",
+  "last_hourly_check_time": "22.10.2026 11:00",
   "trade_history": [
     {
       "symbol": "UFUK",
