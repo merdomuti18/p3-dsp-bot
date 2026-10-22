@@ -244,20 +244,6 @@
   ],
   "scan_log": [
     {
-      "date": "2026-07-16",
-      "scanned": 79,
-      "long_signals": 20,
-      "top5": [
-        "TUPRS",
-        "SKBNK",
-        "ISGYO",
-        "AKCNS",
-        "IZMDC"
-      ],
-      "entries": [],
-      "exits": []
-    },
-    {
       "date": "2026-07-17",
       "scanned": 79,
       "long_signals": 22,
@@ -1137,6 +1123,20 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-10-22",
+      "scanned": 79,
+      "long_signals": 13,
+      "top5": [
+        "GLYHO",
+        "ENJSA",
+        "SOKM",
+        "GARAN",
+        "TAVHL"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1456,14 +1456,6 @@
     },
     "log": [
       {
-        "date": "2026-08-13",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-14",
         "total": 78,
         "reliable": 0,
@@ -1694,9 +1686,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-10-22",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 21,
-  "_updated_at": "2026-10-21T20:57:00.937057+03:00"
+  "_gen": 22,
+  "_updated_at": "2026-10-22T20:53:43.018637+03:00"
 }
