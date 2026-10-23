@@ -1,65 +1,106 @@
 {
-  "scan_time": "22.10.2026 20:54",
+  "scan_time": "23.10.2026 20:45",
   "scan_label": "20:50 Kapanış",
   "signals": [
     {
       "symbol": "SANKO",
-      "scan_time": "22.10.2026 20:54",
+      "scan_time": "23.10.2026 20:45",
       "scan_label": "20:50 Kapanış",
       "strategies": [
-        "GT"
+        "GT",
+        "ZKN",
+        "ZT3",
+        "KBM"
       ],
-      "score_count": 1,
-      "score": 1,
-      "rsi": 55.97,
-      "rel_vol": 1.61,
-      "change_pct": 3.08,
-      "close": 20.78,
-      "adx": 48.73,
-      "cmf": 0.0041,
+      "score_count": 4,
+      "score": 4,
+      "rsi": 53.65,
+      "rel_vol": 1.23,
+      "change_pct": 2.5,
+      "close": 21.3,
+      "adx": 46.87,
+      "cmf": 0.0509,
       "alpha_bull": false,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "PKENT",
-      "scan_time": "22.10.2026 20:54",
+      "symbol": "ERSU",
+      "scan_time": "23.10.2026 20:45",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ALPHA"
       ],
       "score_count": 1,
       "score": 1,
-      "rsi": 59.54,
-      "rel_vol": 2.05,
-      "change_pct": 10.0,
-      "close": 110.0,
-      "adx": 25.51,
-      "cmf": -0.0442,
+      "rsi": 56.85,
+      "rel_vol": 1.21,
+      "change_pct": 5.1,
+      "close": 16.7,
+      "adx": 19.15,
+      "cmf": 0.3496,
       "alpha_bull": true,
       "alpha_trend_bull": true
     },
     {
-      "symbol": "INDES",
-      "scan_time": "22.10.2026 20:54",
+      "symbol": "ANSGR",
+      "scan_time": "23.10.2026 20:45",
       "scan_label": "20:50 Kapanış",
       "strategies": [
-        "ZKN"
+        "DIP"
       ],
       "score_count": 1,
       "score": 1,
-      "rsi": 46.8,
-      "rel_vol": 0.83,
-      "change_pct": -0.96,
-      "close": 11.36,
-      "adx": 17.0,
-      "cmf": 0.1072,
+      "rsi": 17.55,
+      "rel_vol": 1.8,
+      "change_pct": 0.48,
+      "close": 20.82,
+      "adx": 36.95,
+      "cmf": -0.2395,
       "alpha_bull": false,
-      "alpha_trend_bull": true
+      "alpha_trend_bull": false
+    },
+    {
+      "symbol": "THYAO",
+      "scan_time": "23.10.2026 20:45",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "DIP"
+      ],
+      "score_count": 1,
+      "score": 1,
+      "rsi": 19.82,
+      "rel_vol": 1.63,
+      "change_pct": -0.39,
+      "close": 258.0,
+      "adx": 57.21,
+      "cmf": -0.2392,
+      "alpha_bull": false,
+      "alpha_trend_bull": false
+    },
+    {
+      "symbol": "SISE",
+      "scan_time": "23.10.2026 20:45",
+      "scan_label": "20:50 Kapanış",
+      "strategies": [
+        "DIP"
+      ],
+      "score_count": 1,
+      "score": 1,
+      "rsi": 20.78,
+      "rel_vol": 1.45,
+      "change_pct": -0.59,
+      "close": 33.88,
+      "adx": 50.9,
+      "cmf": -0.2395,
+      "alpha_bull": false,
+      "alpha_trend_bull": false
     }
   ],
   "semboller": [
     "SANKO",
-    "PKENT",
-    "INDES"
+    "ERSU",
+    "ANSGR",
+    "THYAO",
+    "SISE"
   ]
 }
