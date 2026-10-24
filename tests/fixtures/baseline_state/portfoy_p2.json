@@ -1,0 +1,669 @@
+{
+  "pozisyonlar": {
+    "BUCIM": {
+      "giris_f": 5.09,
+      "giris_t": "10.08.2026 07:20",
+      "tepe_f": 5.119999885559082,
+      "lotlar": 2805,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 6.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish FVG"
+      ]
+    },
+    "DOFER": {
+      "giris_f": 29.1,
+      "giris_t": "10.08.2026 07:20",
+      "tepe_f": 31.84000015258789,
+      "lotlar": 109,
+      "gun": 0,
+      "tp1_yapildi": true,
+      "smc_score": 6.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish MACD Cross"
+      ]
+    },
+    "INTEM": {
+      "giris_f": 253.25,
+      "giris_t": "11.08.2026 08:10",
+      "tepe_f": 264.5,
+      "lotlar": 76,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 6.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish FVG"
+      ]
+    },
+    "PKENT": {
+      "giris_f": 127.2,
+      "giris_t": "11.08.2026 08:10",
+      "tepe_f": 129.1999969482422,
+      "lotlar": 60,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 6.0,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish MACD Cross",
+        "Bullish FVG"
+      ]
+    },
+    "BORSK": {
+      "giris_f": 5.88,
+      "giris_t": "11.08.2026 11:45",
+      "tepe_f": 6.389999866485596,
+      "lotlar": 1701,
+      "gun": 0,
+      "tp1_yapildi": true,
+      "smc_score": 6.0,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish MACD Cross",
+        "Bullish FVG"
+      ]
+    },
+    "PATEK": {
+      "giris_f": 19.46,
+      "giris_t": "11.08.2026 13:09",
+      "tepe_f": 20.299999237060547,
+      "lotlar": 1023,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "smc_score": 6.0,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish MACD Cross",
+        "Bullish FVG"
+      ]
+    },
+    "HOROZ": {
+      "giris_f": 59.25,
+      "giris_t": "12.08.2026 13:12",
+      "tepe_f": 72.0,
+      "lotlar": 53,
+      "gun": 0,
+      "tp1_yapildi": true,
+      "smc_score": 8.0,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish OB"
+      ]
+    }
+  },
+  "nakit": 17518.10803237915,
+  "baslangic": 100000,
+  "bekleyen_al": [
+    {
+      "symbol": "BIMAS",
+      "score": 8.0,
+      "final_score": 8.0,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "DOKTA",
+      "score": 6.5,
+      "final_score": 6.5,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ORGE",
+      "score": 6.5,
+      "final_score": 6.5,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "NETAS",
+      "score": 5.0,
+      "final_score": 5.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "PETKM",
+      "score": 5.0,
+      "final_score": 5.0,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "AKGRT",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "BVSAN",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ELITE",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "GLCVY",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "HATEK",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "INDES",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ISKPL",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "KLGYO",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "LIDFA",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "LINK",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "NTGAZ",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ULKER",
+      "score": 4.5,
+      "final_score": 4.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "BAGFS",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "CELHA",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "DEVA",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "GOODY",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "KGYO",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "KRDMA",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "KRDMB",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "KRGYO",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "MNDRS",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "ALARK",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "OBAMS",
+      "score": 3.5,
+      "final_score": 3.5,
+      "verdict": "AL",
+      "signals": [
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "18.08.2026 19:41",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    }
+  ],
+  "open_attempts_today": [],
+  "last_hourly_check_time": "18.08.2026 13:43",
+  "trade_history": [
+    {
+      "symbol": "BFREN",
+      "giris_fiyat": 126.8,
+      "cikis_fiyat": 125.8,
+      "lotlar": 157,
+      "pnl_pct": -0.79,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-29",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "IEYHO",
+      "giris_fiyat": 165.7,
+      "cikis_fiyat": 174.2,
+      "lotlar": 120,
+      "pnl_pct": 5.13,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-07-29",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "ASTOR",
+      "giris_fiyat": 288.0,
+      "cikis_fiyat": 309.225,
+      "lotlar": 7,
+      "pnl_pct": 7.37,
+      "gun": 7,
+      "neden": "TRAILING",
+      "giris_tarih": "2026-08-03",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "INFO",
+      "giris_fiyat": 7.41,
+      "cikis_fiyat": 7.67,
+      "lotlar": 1349,
+      "pnl_pct": 3.51,
+      "gun": 4,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-06",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "MOGAN",
+      "giris_fiyat": 20.88,
+      "cikis_fiyat": 19.836,
+      "lotlar": 761,
+      "pnl_pct": -5.0,
+      "gun": 3,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-07",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "INFO",
+      "giris_fiyat": 7.41,
+      "cikis_fiyat": 7.695,
+      "lotlar": 1350,
+      "pnl_pct": 3.85,
+      "gun": 4,
+      "neden": "TRAILING",
+      "giris_tarih": "2026-08-06",
+      "cikis_tarih": "2026-08-10"
+    },
+    {
+      "symbol": "CWENE",
+      "giris_fiyat": 40.08,
+      "cikis_fiyat": 38.076,
+      "lotlar": 237,
+      "pnl_pct": -5.0,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "GLCVY",
+      "giris_fiyat": 53.1,
+      "cikis_fiyat": 50.445,
+      "lotlar": 376,
+      "pnl_pct": -5.0,
+      "gun": 1,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "UFUK",
+      "giris_fiyat": 1732.0,
+      "cikis_fiyat": 1822.0,
+      "lotlar": 3,
+      "pnl_pct": 5.2,
+      "gun": 8,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-03",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "UFUK",
+      "giris_fiyat": 1732.0,
+      "cikis_fiyat": 1800.25,
+      "lotlar": 3,
+      "pnl_pct": 3.94,
+      "gun": 8,
+      "neden": "TRAILING",
+      "giris_tarih": "2026-08-03",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "KLMSN",
+      "giris_fiyat": 29.76,
+      "cikis_fiyat": 28.272,
+      "lotlar": 429,
+      "pnl_pct": -5.0,
+      "gun": 0,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-11",
+      "cikis_tarih": "2026-08-11"
+    },
+    {
+      "symbol": "AKSA",
+      "giris_fiyat": 12.59,
+      "cikis_fiyat": 11.9605,
+      "lotlar": 524,
+      "pnl_pct": -5.0,
+      "gun": 9,
+      "neden": "STOP",
+      "giris_tarih": "2026-08-03",
+      "cikis_tarih": "2026-08-12"
+    },
+    {
+      "symbol": "HOROZ",
+      "giris_fiyat": 59.25,
+      "cikis_fiyat": 64.15,
+      "lotlar": 53,
+      "pnl_pct": 8.27,
+      "gun": 1,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-12",
+      "cikis_tarih": "2026-08-13"
+    },
+    {
+      "symbol": "DOFER",
+      "giris_fiyat": 29.1,
+      "cikis_fiyat": 30.9,
+      "lotlar": 109,
+      "pnl_pct": 6.19,
+      "gun": 7,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-10",
+      "cikis_tarih": "2026-08-17"
+    },
+    {
+      "symbol": "BORSK",
+      "giris_fiyat": 5.88,
+      "cikis_fiyat": 6.32,
+      "lotlar": 1700,
+      "pnl_pct": 7.48,
+      "gun": 7,
+      "neden": "TP1",
+      "giris_tarih": "2026-08-11",
+      "cikis_tarih": "2026-08-18"
+    }
+  ]
+}
