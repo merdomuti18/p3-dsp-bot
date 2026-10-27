@@ -54,21 +54,29 @@
       "queued_at": "27.10.2026 07:05",
       "valid_for_date": "2026-10-28",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "27.10.2026 11:27",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:27",
+      "tarih": "2026-10-27",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 2,
-    "bought": 1,
+    "pending": 1,
+    "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "26.10.2026 13:58"
+    "time": "27.10.2026 11:27"
   },
-  "last_hourly_check_time": "26.10.2026 13:58",
+  "last_hourly_check_time": "27.10.2026 11:27",
   "trade_history": [
     {
       "symbol": "UFUK",
