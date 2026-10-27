@@ -27,38 +27,7 @@
   },
   "nakit": 73127.07396247864,
   "baslangic": 100000,
-  "bekleyen_al": [
-    {
-      "symbol": "ERSU",
-      "score_count": 1,
-      "strategies": [
-        "ALPHA"
-      ],
-      "tarama_score": 16,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 0,
-      "alpha_trend_state": "bearish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 0,
-      "alpha_tag": "",
-      "final_score": 18,
-      "change_pct": 5.1,
-      "rsi": 56.85,
-      "rel_vol": 1.21,
-      "cmf": 0.3496,
-      "islem_tl": 0,
-      "scan_time": "23.10.2026 20:45",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "27.10.2026 07:05",
-      "valid_for_date": "2026-10-28",
-      "expires_at_hour": 17,
-      "attempt_count": 1,
-      "last_attempt_time": "27.10.2026 11:27",
-      "last_attempt_reason": ""
-    }
-  ],
+  "bekleyen_al": [],
   "open_attempts_today": [
     {
       "saat": "11:27",
@@ -76,7 +45,7 @@
     "failed_reasons": [],
     "time": "27.10.2026 11:27"
   },
-  "last_hourly_check_time": "27.10.2026 11:27",
+  "last_hourly_check_time": "27.10.2026 13:02",
   "trade_history": [
     {
       "symbol": "UFUK",
