@@ -17,7 +17,7 @@
     "AKSA": {
       "giris_f": 9.96,
       "giris_t": "23.10.2026 12:28",
-      "tepe_f": 9.96,
+      "tepe_f": 10.420000076293945,
       "lotlar": 1311,
       "gun": 0,
       "tp1_yapildi": false,
@@ -28,24 +28,10 @@
         "Bullish MACD Cross"
       ]
     },
-    "BORLS": {
-      "giris_f": 2.46,
-      "giris_t": "23.10.2026 12:28",
-      "tepe_f": 2.46,
-      "lotlar": 4246,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "02.11.2026",
-      "smc_score": 3.5,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish FVG"
-      ]
-    },
     "CIMSA": {
       "giris_f": 37.14,
       "giris_t": "23.10.2026 12:28",
-      "tepe_f": 37.14,
+      "tepe_f": 39.7599983215332,
       "lotlar": 225,
       "gun": 0,
       "tp1_yapildi": false,
@@ -59,7 +45,7 @@
     "KRDMD": {
       "giris_f": 38.22,
       "giris_t": "23.10.2026 12:28",
-      "tepe_f": 38.22,
+      "tepe_f": 38.2400016784668,
       "lotlar": 174,
       "gun": 0,
       "tp1_yapildi": false,
@@ -73,7 +59,7 @@
     "ULUFA": {
       "giris_f": 1.42,
       "giris_t": "23.10.2026 12:28",
-      "tepe_f": 1.42,
+      "tepe_f": 1.5299999713897705,
       "lotlar": 3772,
       "gun": 0,
       "tp1_yapildi": false,
@@ -86,11 +72,11 @@
       ]
     }
   },
-  "nakit": 21429.854245677976,
+  "nakit": 31352.756245677978,
   "baslangic": 100000,
   "bekleyen_al": [],
   "open_attempts_today": [],
-  "last_hourly_check_time": "23.10.2026 12:28",
+  "last_hourly_check_time": "28.10.2026 13:53",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -894,6 +880,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-10-22",
       "cikis_tarih": "2026-10-23"
+    },
+    {
+      "symbol": "BORLS",
+      "giris_fiyat": 2.46,
+      "cikis_fiyat": 2.337,
+      "lotlar": 4246,
+      "pnl_pct": -5.0,
+      "gun": 5,
+      "neden": "STOP",
+      "giris_tarih": "2026-10-23",
+      "cikis_tarih": "2026-10-28"
     }
   ]
 }
