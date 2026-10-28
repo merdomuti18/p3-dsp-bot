@@ -1,31 +1,6 @@
 {
-  "pozisyonlar": {
-    "SANKO": {
-      "giris_f": 21.18,
-      "giris_t": "26.10.2026 13:58",
-      "tepe_f": 21.18,
-      "lotlar": 944,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "05.11.2026",
-      "final_score": 72,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "source_signal": {
-        "score_count": 4,
-        "strategies": [
-          "GT",
-          "ZKN",
-          "ZT3",
-          "KBM"
-        ],
-        "viop_bias": "Temkinli long",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
-      }
-    }
-  },
-  "nakit": 73127.07396247864,
+  "pozisyonlar": {},
+  "nakit": 92121.29796247864,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -54,21 +29,29 @@
       "queued_at": "28.10.2026 07:05",
       "valid_for_date": "2026-10-29",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "28.10.2026 13:52",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "13:52",
+      "tarih": "2026-10-28",
+      "alinan": [],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 1,
     "bought": 0,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "27.10.2026 11:27"
+    "time": "28.10.2026 13:52"
   },
-  "last_hourly_check_time": "27.10.2026 13:02",
+  "last_hourly_check_time": "28.10.2026 13:52",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -619,6 +602,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-10-15",
       "cikis_tarih": "2026-10-21"
+    },
+    {
+      "symbol": "SANKO",
+      "giris_fiyat": 21.18,
+      "cikis_fiyat": 20.121,
+      "lotlar": 944,
+      "pnl_pct": -5.0,
+      "gun": 2,
+      "neden": "STOP",
+      "giris_tarih": "2026-10-26",
+      "cikis_tarih": "2026-10-28"
     }
   ]
 }
