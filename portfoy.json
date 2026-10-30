@@ -32,9 +32,9 @@
       "queued_at": "30.10.2026 07:05",
       "valid_for_date": "2026-11-02",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
+      "attempt_count": 1,
+      "last_attempt_time": "30.10.2026 11:59",
+      "last_attempt_reason": "cooldown"
     },
     {
       "symbol": "ERSU",
@@ -62,12 +62,24 @@
       "queued_at": "30.10.2026 07:05",
       "valid_for_date": "2026-11-02",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "30.10.2026 11:59",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "11:59",
+      "tarih": "2026-10-30",
+      "alinan": [],
+      "alinmayan": [
+        "SANKO"
+      ],
+      "nedenler": {
+        "SANKO": "cooldown"
+      }
+    }
+  ],
   "last_open_attempt_summary": {
     "pending": 2,
     "bought": 0,
@@ -79,9 +91,9 @@
         "reason": "cooldown"
       }
     ],
-    "time": "29.10.2026 13:58"
+    "time": "30.10.2026 11:59"
   },
-  "last_hourly_check_time": "29.10.2026 13:58",
+  "last_hourly_check_time": "30.10.2026 11:59",
   "trade_history": [
     {
       "symbol": "UFUK",
