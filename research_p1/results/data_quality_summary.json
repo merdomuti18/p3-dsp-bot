@@ -1,0 +1,15 @@
+{
+  "provider": "Yahoo Finance Chart API (v8)",
+  "download_time": "2026-10-06 20:34 TSİ",
+  "total_symbols_target": 128,
+  "total_symbols_success": 128,
+  "total_bars_cached": 181939,
+  "date_range_universe": "2020-01-02 -> 2026-10-06",
+  "core_research_period": "2021-10-06 -> 2026-10-05 (5 years)",
+  "warmup_period": "2020-01-02 -> 2021-10-05 (1.75 years for 200-bar EMA)",
+  "symbols_with_full_5y_history": 93,
+  "symbols_ipo_after_2021": 35,
+  "total_corporate_splits": 99,
+  "total_corporate_dividends": 442,
+  "zero_volume_bars_across_all": 720
+}
