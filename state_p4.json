@@ -1,14 +1,14 @@
 {
   "pozisyonlar": {
-    "KLYPV": {
-      "symbol": "KLYPV",
-      "giris_fiyat": 48.96,
-      "guncel_fiyat": 47.5,
-      "lotlar": 204,
-      "pnl_pct": -2.98,
-      "gun": 7,
-      "giris_tarih": "2026-10-21",
-      "max_gun_date": "2026-10-31",
+    "DOAS": {
+      "symbol": "DOAS",
+      "giris_fiyat": 134.3,
+      "guncel_fiyat": 134.3,
+      "lotlar": 74,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-02",
+      "max_gun_date": "2026-11-12",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
         "P2"
@@ -16,50 +16,66 @@
       "coklu_onay": false,
       "strateji": "P4"
     },
-    "OTKAR": {
-      "symbol": "OTKAR",
-      "giris_fiyat": 308.0,
-      "guncel_fiyat": 307.5,
-      "lotlar": 32,
-      "pnl_pct": -0.16,
-      "gun": 7,
-      "giris_tarih": "2026-10-21",
-      "max_gun_date": "2026-10-31",
+    "INTEM": {
+      "symbol": "INTEM",
+      "giris_fiyat": 156.0,
+      "guncel_fiyat": 156.0,
+      "lotlar": 64,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-02",
+      "max_gun_date": "2026-11-12",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
-        "P3"
+        "P2"
       ],
       "coklu_onay": false,
       "strateji": "P4"
     },
-    "ENJSA": {
-      "symbol": "ENJSA",
-      "giris_fiyat": 115.4,
-      "guncel_fiyat": 113.2,
-      "lotlar": 86,
-      "pnl_pct": -1.91,
-      "gun": 7,
-      "giris_tarih": "2026-10-21",
-      "max_gun_date": "2026-10-31",
+    "SARKY": {
+      "symbol": "SARKY",
+      "giris_fiyat": 16.51,
+      "guncel_fiyat": 16.51,
+      "lotlar": 605,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-02",
+      "max_gun_date": "2026-11-12",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
-        "P3"
+        "P2"
       ],
       "coklu_onay": false,
       "strateji": "P4"
     },
-    "SANKO": {
-      "symbol": "SANKO",
-      "giris_fiyat": 20.78,
-      "guncel_fiyat": 20.24,
-      "lotlar": 481,
-      "pnl_pct": -2.6,
-      "gun": 6,
-      "giris_tarih": "2026-10-22",
-      "max_gun_date": "2026-11-01",
+    "TABGD": {
+      "symbol": "TABGD",
+      "giris_fiyat": 178.5,
+      "guncel_fiyat": 178.5,
+      "lotlar": 56,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-02",
+      "max_gun_date": "2026-11-12",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
-        "P1"
+        "P2"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "BIOEN": {
+      "symbol": "BIOEN",
+      "giris_fiyat": 10.0,
+      "guncel_fiyat": 10.0,
+      "lotlar": 1000,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-02",
+      "max_gun_date": "2026-11-12",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P3"
       ],
       "coklu_onay": false,
       "strateji": "P4"
@@ -879,6 +895,50 @@
       "giris_tarih": "2026-10-21",
       "cikis_tarih": "2026-10-26",
       "strateji": "P4"
+    },
+    {
+      "symbol": "KLYPV",
+      "giris_fiyat": 48.96,
+      "cikis_fiyat": 48.0,
+      "pnl_pct": -1.96,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-21",
+      "cikis_tarih": "2026-11-02",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "OTKAR",
+      "giris_fiyat": 308.0,
+      "cikis_fiyat": 304.0,
+      "pnl_pct": -1.3,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-21",
+      "cikis_tarih": "2026-11-02",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "ENJSA",
+      "giris_fiyat": 115.4,
+      "cikis_fiyat": 111.1,
+      "pnl_pct": -3.73,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-21",
+      "cikis_tarih": "2026-11-02",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "SANKO",
+      "giris_fiyat": 20.78,
+      "cikis_fiyat": 20.1,
+      "pnl_pct": -3.27,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-22",
+      "cikis_tarih": "2026-11-02",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -1247,11 +1307,17 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-11-02",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-10-22T17:55:16.183407",
+  "last_run": "2026-11-02T16:55:40.387070",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 88988,
-  "_gen": 56,
-  "_updated_at": "2026-10-28T14:58:51.072569+03:00"
+  "sermaye_mevcut": 88466,
+  "_gen": 57,
+  "_updated_at": "2026-11-02T19:55:43.934731+03:00"
 }
