@@ -1,178 +1,107 @@
 {
   "pozisyonlar": {
-    "KLYPV": {
-      "giris_f": 47.9,
-      "giris_t": "22.10.2026 12:49",
-      "tepe_f": 48.119998931884766,
-      "lotlar": 417,
+    "DOAS": {
+      "giris_f": 130.1,
+      "giris_t": "03.11.2026 13:28",
+      "tepe_f": 130.1,
+      "lotlar": 114,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "01.11.2026",
+      "max_gun_date": "13.11.2026",
       "smc_score": 6.5,
       "teyit_skoru": 0,
       "signals": [
         "Bullish FVG"
       ]
     },
-    "AKSA": {
-      "giris_f": 9.96,
-      "giris_t": "23.10.2026 12:28",
-      "tepe_f": 10.420000076293945,
-      "lotlar": 1311,
+    "INTEM": {
+      "giris_f": 161.4,
+      "giris_t": "03.11.2026 13:28",
+      "tepe_f": 161.4,
+      "lotlar": 76,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "02.11.2026",
-      "smc_score": 3.5,
+      "max_gun_date": "13.11.2026",
+      "smc_score": 6.5,
       "teyit_skoru": 0,
       "signals": [
         "Bullish MACD Cross"
       ]
     },
-    "CIMSA": {
-      "giris_f": 37.14,
-      "giris_t": "23.10.2026 12:28",
-      "tepe_f": 39.7599983215332,
-      "lotlar": 225,
+    "SARKY": {
+      "giris_f": 17.02,
+      "giris_t": "03.11.2026 13:28",
+      "tepe_f": 17.02,
+      "lotlar": 601,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "02.11.2026",
+      "max_gun_date": "13.11.2026",
+      "smc_score": 6.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish MACD Cross"
+      ]
+    },
+    "TABGD": {
+      "giris_f": 181.5,
+      "giris_t": "03.11.2026 13:28",
+      "tepe_f": 181.5,
+      "lotlar": 46,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "13.11.2026",
+      "smc_score": 6.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish FVG"
+      ]
+    },
+    "SNICA": {
+      "giris_f": 1.87,
+      "giris_t": "03.11.2026 13:28",
+      "tepe_f": 1.87,
+      "lotlar": 2595,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "13.11.2026",
+      "smc_score": 4.5,
+      "teyit_skoru": 0,
+      "signals": [
+        "Bullish MACD Cross"
+      ]
+    },
+    "ANSGR": {
+      "giris_f": 21.98,
+      "giris_t": "03.11.2026 13:28",
+      "tepe_f": 21.98,
+      "lotlar": 151,
+      "gun": 0,
+      "tp1_yapildi": false,
+      "max_gun_date": "13.11.2026",
       "smc_score": 3.5,
       "teyit_skoru": 0,
       "signals": [
         "Bullish FVG"
       ]
     },
-    "KRDMD": {
-      "giris_f": 38.22,
-      "giris_t": "23.10.2026 12:28",
-      "tepe_f": 38.2400016784668,
-      "lotlar": 174,
+    "KARTN": {
+      "giris_f": 121.4,
+      "giris_t": "03.11.2026 13:28",
+      "tepe_f": 121.4,
+      "lotlar": 24,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "02.11.2026",
+      "max_gun_date": "13.11.2026",
       "smc_score": 3.5,
       "teyit_skoru": 0,
       "signals": [
-        "Bullish FVG"
-      ]
-    },
-    "ULUFA": {
-      "giris_f": 1.42,
-      "giris_t": "23.10.2026 12:28",
-      "tepe_f": 1.5299999713897705,
-      "lotlar": 3772,
-      "gun": 0,
-      "tp1_yapildi": false,
-      "max_gun_date": "02.11.2026",
-      "smc_score": 3.5,
-      "teyit_skoru": 0,
-      "signals": [
-        "Bullish OB",
         "Bullish FVG"
       ]
     }
   },
-  "nakit": 31352.756245677978,
+  "nakit": 29366.475016849545,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "DOAS",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "02.11.2026 19:53",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "INTEM",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish MACD Cross"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "02.11.2026 19:53",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "SARKY",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish MACD Cross"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "02.11.2026 19:53",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "TABGD",
-      "score": 6.5,
-      "final_score": 6.5,
-      "verdict": "GÜÇLÜ AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "02.11.2026 19:53",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "SNICA",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish MACD Cross"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "02.11.2026 19:53",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ANSGR",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "02.11.2026 19:53",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "KARTN",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "02.11.2026 19:53",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "KRDMB",
       "score": 3.5,
@@ -181,7 +110,7 @@
       "signals": [
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "02.11.2026 19:53",
       "attempt_count": 0,
@@ -196,7 +125,7 @@
         "Bullish MACD Cross",
         "Bullish FVG"
       ],
-      "teyit_skoru": 0.0,
+      "teyit_skoru": 0,
       "teyit_var": false,
       "queued_at": "02.11.2026 19:53",
       "attempt_count": 0,
@@ -204,7 +133,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "30.10.2026 13:53",
+  "last_hourly_check_time": "03.11.2026 13:28",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -1019,6 +948,72 @@
       "neden": "STOP",
       "giris_tarih": "2026-10-23",
       "cikis_tarih": "2026-10-28"
+    },
+    {
+      "symbol": "KLYPV",
+      "giris_fiyat": 47.9,
+      "cikis_fiyat": 47.82,
+      "lotlar": 417,
+      "pnl_pct": -0.17,
+      "gun": 12,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-22",
+      "cikis_tarih": "2026-11-03"
+    },
+    {
+      "symbol": "AKSA",
+      "giris_fiyat": 9.96,
+      "cikis_fiyat": 10.15,
+      "lotlar": 1311,
+      "pnl_pct": 1.91,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-23",
+      "cikis_tarih": "2026-11-03"
+    },
+    {
+      "symbol": "CIMSA",
+      "giris_fiyat": 37.14,
+      "cikis_fiyat": 39.98,
+      "lotlar": 225,
+      "pnl_pct": 7.65,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-23",
+      "cikis_tarih": "2026-11-03"
+    },
+    {
+      "symbol": "KRDMD",
+      "giris_fiyat": 38.22,
+      "cikis_fiyat": 38.42,
+      "lotlar": 174,
+      "pnl_pct": 0.52,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-23",
+      "cikis_tarih": "2026-11-03"
+    },
+    {
+      "symbol": "ULUFA",
+      "giris_fiyat": 1.42,
+      "cikis_fiyat": 1.55,
+      "lotlar": 1886,
+      "pnl_pct": 9.15,
+      "gun": 11,
+      "neden": "TP1",
+      "giris_tarih": "2026-10-23",
+      "cikis_tarih": "2026-11-03"
+    },
+    {
+      "symbol": "ULUFA",
+      "giris_fiyat": 1.42,
+      "cikis_fiyat": 1.55,
+      "lotlar": 1886,
+      "pnl_pct": 9.15,
+      "gun": 11,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-10-23",
+      "cikis_tarih": "2026-11-03"
     }
   ]
 }
