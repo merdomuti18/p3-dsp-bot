@@ -27,18 +27,39 @@
   },
   "nakit": 72124.67796247863,
   "baslangic": 100000,
-  "bekleyen_al": [],
-  "open_attempts_today": [
+  "bekleyen_al": [
     {
-      "saat": "13:29",
-      "tarih": "2026-11-03",
-      "alinan": [
-        "SANKO"
+      "symbol": "ERSU",
+      "score_count": 1,
+      "strategies": [
+        "ALPHA"
       ],
-      "alinmayan": [],
-      "nedenler": {}
+      "tarama_score": 16,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "viop_bias": "Normal",
+      "viop_score": 2,
+      "alpha_trend_state": "bearish",
+      "alpha_trend_flip": false,
+      "alpha_trend_bonus": 0,
+      "alpha_tag": "",
+      "final_score": 20,
+      "change_pct": 5.1,
+      "rsi": 56.85,
+      "rel_vol": 1.21,
+      "cmf": 0.3496,
+      "islem_tl": 0,
+      "scan_time": "23.10.2026 20:45",
+      "scan_label": "20:50 Kapanış",
+      "queued_at": "04.11.2026 05:50",
+      "valid_for_date": "2026-11-05",
+      "expires_at_hour": 17,
+      "attempt_count": 0,
+      "last_attempt_time": "",
+      "last_attempt_reason": ""
     }
   ],
+  "open_attempts_today": [],
   "last_open_attempt_summary": {
     "pending": 2,
     "bought": 1,
