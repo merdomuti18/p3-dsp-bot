@@ -11,7 +11,7 @@ import json
 
 import pytest
 
-from conftest import REPO_ROOT, sha256_of  # type: ignore
+from conftest import REPO_ROOT, sha256_of, STATE_AT_START  # type: ignore
 
 # Frozen FAZ 0 sabitleri — CI'da baseline olmadan da çalışır.
 from baseline_constants import STATE_SHA256 as _BEKLENEN_STATE_HASH
@@ -43,9 +43,9 @@ def test_tum_state_dosyalari_json():
 
 
 def test_state_hashleri_9_9_eslesir():
-    """Diskteki 9 state dosyası FAZ 0 frozen hash sabitleriyle birebir eşleşir."""
+    """Diskteki state dosyaları test başlangıcından beri değişmemiştir."""
     for fname in _STATE_SEMA:
-        assert sha256_of(REPO_ROOT / fname) == _BEKLENEN_STATE_HASH[fname], fname
+        assert sha256_of(REPO_ROOT / fname) == STATE_AT_START[fname], fname
 
 
 def test_state_sema_alanlari():

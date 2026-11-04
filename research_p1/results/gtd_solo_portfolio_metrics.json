@@ -1,0 +1,19 @@
+{
+  "n_trades": 469,
+  "win_rate": 51.81,
+  "mean_return_pct": 1.0925,
+  "median_return_pct": 0.8909,
+  "profit_factor": 1.39,
+  "mean_profit_tl": 203.18,
+  "total_profit_tl": 95293.14,
+  "rejected_signals": 2828,
+  "avg_holding_days": 6.3,
+  "avg_mfe_pct": 8.06,
+  "avg_mae_pct": -4.33,
+  "ci_lower_95": 0.4404,
+  "ci_upper_95": 1.7477,
+  "final_equity": 195293.23,
+  "total_return_pct": 95.29,
+  "cagr_pct": 14.32,
+  "max_drawdown_pct": -14.67
+}

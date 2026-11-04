@@ -121,6 +121,12 @@ def _p1_p2(kod: str) -> dict:
             "giris_tarih": _tarih_iso(t.get("giris_t", t.get("giris_tarih", ""))),
             "cikis_tarih": _tarih_iso(t.get("cikis_t", t.get("cikis_tarih", ""))),
         })
+    if kod == "P1":
+        raw_trades = d.get("trade_history", d.get("islem_gecmisi", []))
+        for normalized, raw in zip(gecmis, raw_trades):
+            for field in ("lotlar", "tl_kar", "position_id", "event_id", "position_closed", "net_pnl_pct", "maliyet_bilgisi_tam"):
+                if field in raw:
+                    normalized[field] = raw[field]
     return {
         "strateji": kod,
         "dosya": DOSYALAR[kod],

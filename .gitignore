@@ -5,6 +5,10 @@
 *.pkl
 *.log
 
+# Paper log & parity istisnaları
+!results/*.csv
+!research_p1/results/paper_trading_log_template.csv
+
 # Python
 __pycache__/
 *.pyc

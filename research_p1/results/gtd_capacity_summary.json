@@ -1,0 +1,10 @@
+{
+  "agent": "GTD Solo",
+  "total_generated_signals_5y": 3325,
+  "signals_rejected_by_gap_0_0001": 2828,
+  "gap_rejection_rate_pct": 85.05,
+  "signals_accepted_under_gap": 497,
+  "portfolio_trades_taken_7slots": 469,
+  "portfolio_rejected_by_capacity": 28,
+  "portfolio_capacity_rejection_rate_pct": 5.63
+}
