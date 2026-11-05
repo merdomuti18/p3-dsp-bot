@@ -3,7 +3,7 @@
     "DOAS": {
       "giris_f": 130.1,
       "giris_t": "03.11.2026 13:28",
-      "tepe_f": 130.1,
+      "tepe_f": 132.1999969482422,
       "lotlar": 114,
       "gun": 0,
       "tp1_yapildi": false,
@@ -17,7 +17,7 @@
     "INTEM": {
       "giris_f": 161.4,
       "giris_t": "03.11.2026 13:28",
-      "tepe_f": 161.4,
+      "tepe_f": 168.6999969482422,
       "lotlar": 76,
       "gun": 0,
       "tp1_yapildi": false,
@@ -45,10 +45,10 @@
     "TABGD": {
       "giris_f": 181.5,
       "giris_t": "03.11.2026 13:28",
-      "tepe_f": 181.5,
-      "lotlar": 46,
+      "tepe_f": 198.6999969482422,
+      "lotlar": 23,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "max_gun_date": "13.11.2026",
       "smc_score": 6.5,
       "teyit_skoru": 0,
@@ -59,10 +59,10 @@
     "SNICA": {
       "giris_f": 1.87,
       "giris_t": "03.11.2026 13:28",
-      "tepe_f": 1.87,
-      "lotlar": 2595,
+      "tepe_f": 2.059999942779541,
+      "lotlar": 1298,
       "gun": 0,
-      "tp1_yapildi": false,
+      "tp1_yapildi": true,
       "max_gun_date": "13.11.2026",
       "smc_score": 4.5,
       "teyit_skoru": 0,
@@ -73,7 +73,7 @@
     "ANSGR": {
       "giris_f": 21.98,
       "giris_t": "03.11.2026 13:28",
-      "tepe_f": 21.98,
+      "tepe_f": 23.260000228881836,
       "lotlar": 151,
       "gun": 0,
       "tp1_yapildi": false,
@@ -87,7 +87,7 @@
     "KARTN": {
       "giris_f": 121.4,
       "giris_t": "03.11.2026 13:28",
-      "tepe_f": 121.4,
+      "tepe_f": 128.60000610351562,
       "lotlar": 24,
       "gun": 0,
       "tp1_yapildi": false,
@@ -99,7 +99,7 @@
       ]
     }
   },
-  "nakit": 29366.475016849545,
+  "nakit": 36581.625095384625,
   "baslangic": 100000,
   "bekleyen_al": [
     {
@@ -133,7 +133,7 @@
     }
   ],
   "open_attempts_today": [],
-  "last_hourly_check_time": "03.11.2026 13:28",
+  "last_hourly_check_time": "05.11.2026 13:53",
   "trade_history": [
     {
       "symbol": "BFREN",
@@ -1014,6 +1014,28 @@
       "neden": "MAX_GUN",
       "giris_tarih": "2026-10-23",
       "cikis_tarih": "2026-11-03"
+    },
+    {
+      "symbol": "TABGD",
+      "giris_fiyat": 181.5,
+      "cikis_fiyat": 198.1,
+      "lotlar": 23,
+      "pnl_pct": 9.15,
+      "gun": 2,
+      "neden": "TP1",
+      "giris_tarih": "2026-11-03",
+      "cikis_tarih": "2026-11-05"
+    },
+    {
+      "symbol": "SNICA",
+      "giris_fiyat": 1.87,
+      "cikis_fiyat": 2.05,
+      "lotlar": 1297,
+      "pnl_pct": 9.63,
+      "gun": 2,
+      "neden": "TP1",
+      "giris_tarih": "2026-11-03",
+      "cikis_tarih": "2026-11-05"
     }
   ]
 }
