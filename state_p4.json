@@ -3,10 +3,10 @@
     "DOAS": {
       "symbol": "DOAS",
       "giris_fiyat": 134.3,
-      "guncel_fiyat": 131.8,
+      "guncel_fiyat": 135.3,
       "lotlar": 74,
-      "pnl_pct": -1.86,
-      "gun": 2,
+      "pnl_pct": 0.74,
+      "gun": 4,
       "giris_tarih": "2026-11-02",
       "max_gun_date": "2026-11-12",
       "meta_score": 0.3333333333333333,
@@ -19,10 +19,10 @@
     "INTEM": {
       "symbol": "INTEM",
       "giris_fiyat": 156.0,
-      "guncel_fiyat": 165.0,
+      "guncel_fiyat": 165.5,
       "lotlar": 64,
-      "pnl_pct": 5.77,
-      "gun": 2,
+      "pnl_pct": 6.09,
+      "gun": 4,
       "giris_tarih": "2026-11-02",
       "max_gun_date": "2026-11-12",
       "meta_score": 0.3333333333333333,
@@ -35,47 +35,15 @@
     "SARKY": {
       "symbol": "SARKY",
       "giris_fiyat": 16.51,
-      "guncel_fiyat": 16.87,
+      "guncel_fiyat": 16.43,
       "lotlar": 605,
-      "pnl_pct": 2.18,
-      "gun": 2,
+      "pnl_pct": -0.48,
+      "gun": 4,
       "giris_tarih": "2026-11-02",
       "max_gun_date": "2026-11-12",
       "meta_score": 0.3333333333333333,
       "kaynaklar": [
         "P2"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
-    "TABGD": {
-      "symbol": "TABGD",
-      "giris_fiyat": 178.5,
-      "guncel_fiyat": 191.0,
-      "lotlar": 56,
-      "pnl_pct": 7.0,
-      "gun": 2,
-      "giris_tarih": "2026-11-02",
-      "max_gun_date": "2026-11-12",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P2"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
-    "BIOEN": {
-      "symbol": "BIOEN",
-      "giris_fiyat": 10.0,
-      "guncel_fiyat": 10.62,
-      "lotlar": 1000,
-      "pnl_pct": 6.2,
-      "gun": 2,
-      "giris_tarih": "2026-11-02",
-      "max_gun_date": "2026-11-12",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P3"
       ],
       "coklu_onay": false,
       "strateji": "P4"
@@ -939,6 +907,28 @@
       "giris_tarih": "2026-10-22",
       "cikis_tarih": "2026-11-02",
       "strateji": "P4"
+    },
+    {
+      "symbol": "TABGD",
+      "giris_fiyat": 178.5,
+      "cikis_fiyat": 201.0,
+      "pnl_pct": 12.61,
+      "gun": 4,
+      "neden": "TP",
+      "giris_tarih": "2026-11-02",
+      "cikis_tarih": "2026-11-06",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "BIOEN",
+      "giris_fiyat": 10.0,
+      "cikis_fiyat": 12.2,
+      "pnl_pct": 22.0,
+      "gun": 4,
+      "neden": "TP",
+      "giris_tarih": "2026-11-02",
+      "cikis_tarih": "2026-11-06",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -1317,7 +1307,7 @@
   ],
   "last_run": "2026-11-02T16:55:40.387070",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 92324,
-  "_gen": 58,
-  "_updated_at": "2026-11-04T16:39:57.406546+03:00"
+  "sermaye_mevcut": 96658,
+  "_gen": 59,
+  "_updated_at": "2026-11-06T16:38:29.399235+03:00"
 }
