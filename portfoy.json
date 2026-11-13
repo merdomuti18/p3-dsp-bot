@@ -1,64 +1,31 @@
 {
   "pozisyonlar": {
-    "SANKO": {
-      "giris_f": 20.26,
-      "giris_t": "03.11.2026 13:29",
-      "tepe_f": 20.26,
-      "lotlar": 987,
+    "GARAN": {
+      "giris_f": 152.5,
+      "giris_t": "13.11.2026 13:48",
+      "tepe_f": 152.5,
+      "lotlar": 131,
       "gun": 0,
       "tp1_yapildi": false,
-      "max_gun_date": "13.11.2026",
-      "final_score": 79,
+      "max_gun_date": "23.11.2026",
+      "final_score": 36,
       "ma_score": 0.0,
       "lgbm_score": null,
       "source_signal": {
-        "score_count": 4,
+        "score_count": 2,
         "strategies": [
-          "GT",
-          "ZKN",
-          "ZT3",
-          "KBM"
+          "GTD",
+          "MR"
         ],
-        "viop_bias": "Long bias güçlü",
-        "alpha_tag": "",
-        "alpha_trend_bonus": 0
+        "viop_bias": "Normal",
+        "alpha_tag": "AT+",
+        "alpha_trend_bonus": 2
       }
     }
   },
-  "nakit": 72124.67796247863,
+  "nakit": 73367.67796247863,
   "baslangic": 100000,
   "bekleyen_al": [
-    {
-      "symbol": "GARAN",
-      "score_count": 2,
-      "strategies": [
-        "GTD",
-        "MR"
-      ],
-      "tarama_score": 24,
-      "ma_score": 0.0,
-      "lgbm_score": null,
-      "viop_bias": "Normal",
-      "viop_score": 2,
-      "alpha_trend_state": "bullish",
-      "alpha_trend_flip": false,
-      "alpha_trend_bonus": 2,
-      "alpha_tag": "AT+",
-      "final_score": 36,
-      "change_pct": 6.1,
-      "rsi": 72.89,
-      "rel_vol": 1.87,
-      "cmf": 0.3325,
-      "islem_tl": 0,
-      "scan_time": "09.11.2026 20:14",
-      "scan_label": "20:50 Kapanış",
-      "queued_at": "13.11.2026 07:05",
-      "valid_for_date": "2026-11-16",
-      "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
-      "last_attempt_reason": ""
-    },
     {
       "symbol": "ISGSY",
       "score_count": 1,
@@ -85,8 +52,8 @@
       "queued_at": "13.11.2026 07:05",
       "valid_for_date": "2026-11-16",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "13.11.2026 13:48",
       "last_attempt_reason": ""
     },
     {
@@ -115,8 +82,8 @@
       "queued_at": "13.11.2026 07:05",
       "valid_for_date": "2026-11-16",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "13.11.2026 13:48",
       "last_attempt_reason": ""
     },
     {
@@ -145,8 +112,8 @@
       "queued_at": "13.11.2026 07:05",
       "valid_for_date": "2026-11-16",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "13.11.2026 13:48",
       "last_attempt_reason": ""
     },
     {
@@ -175,21 +142,31 @@
       "queued_at": "13.11.2026 07:05",
       "valid_for_date": "2026-11-16",
       "expires_at_hour": 17,
-      "attempt_count": 0,
-      "last_attempt_time": "",
+      "attempt_count": 1,
+      "last_attempt_time": "13.11.2026 13:48",
       "last_attempt_reason": ""
     }
   ],
-  "open_attempts_today": [],
+  "open_attempts_today": [
+    {
+      "saat": "13:48",
+      "tarih": "2026-11-13",
+      "alinan": [
+        "GARAN"
+      ],
+      "alinmayan": [],
+      "nedenler": {}
+    }
+  ],
   "last_open_attempt_summary": {
-    "pending": 2,
+    "pending": 5,
     "bought": 1,
     "failed": 0,
     "expired": 0,
     "failed_reasons": [],
-    "time": "03.11.2026 13:29"
+    "time": "13.11.2026 13:48"
   },
-  "last_hourly_check_time": "03.11.2026 13:29",
+  "last_hourly_check_time": "13.11.2026 13:48",
   "trade_history": [
     {
       "symbol": "UFUK",
@@ -751,6 +728,17 @@
       "neden": "STOP",
       "giris_tarih": "2026-10-26",
       "cikis_tarih": "2026-10-28"
+    },
+    {
+      "symbol": "SANKO",
+      "giris_fiyat": 20.26,
+      "cikis_fiyat": 21.5,
+      "lotlar": 987,
+      "pnl_pct": 6.12,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-11-03",
+      "cikis_tarih": "2026-11-13"
     }
   ]
 }
