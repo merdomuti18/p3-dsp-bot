@@ -3,10 +3,10 @@
     "BUCIM": {
       "symbol": "BUCIM",
       "giris_fiyat": 4.18,
-      "guncel_fiyat": 4.14,
+      "guncel_fiyat": 4.1,
       "lotlar": 2392,
-      "pnl_pct": -0.96,
-      "gun": 4,
+      "pnl_pct": -1.91,
+      "gun": 5,
       "giris_tarih": "2026-11-12",
       "max_gun_date": "2026-11-22",
       "meta_score": 0.3333333333333333,
@@ -19,10 +19,10 @@
     "BIOEN": {
       "symbol": "BIOEN",
       "giris_fiyat": 12.8,
-      "guncel_fiyat": 13.26,
+      "guncel_fiyat": 13.75,
       "lotlar": 781,
-      "pnl_pct": 3.59,
-      "gun": 4,
+      "pnl_pct": 7.42,
+      "gun": 5,
       "giris_tarih": "2026-11-12",
       "max_gun_date": "2026-11-22",
       "meta_score": 0.3333333333333333,
@@ -35,10 +35,10 @@
     "PETKM": {
       "symbol": "PETKM",
       "giris_fiyat": 16.79,
-      "guncel_fiyat": 16.49,
+      "guncel_fiyat": 16.18,
       "lotlar": 595,
-      "pnl_pct": -1.79,
-      "gun": 4,
+      "pnl_pct": -3.63,
+      "gun": 5,
       "giris_tarih": "2026-11-12",
       "max_gun_date": "2026-11-22",
       "meta_score": 0.1111111111111111,
@@ -46,6 +46,39 @@
         "P2"
       ],
       "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "KRGYO": {
+      "symbol": "KRGYO",
+      "giris_fiyat": 3.93,
+      "guncel_fiyat": 3.93,
+      "lotlar": 2544,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-17",
+      "max_gun_date": "2026-11-27",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P1"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "PGSUS": {
+      "symbol": "PGSUS",
+      "giris_fiyat": 158.8,
+      "guncel_fiyat": 158.8,
+      "lotlar": 62,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-17",
+      "max_gun_date": "2026-11-27",
+      "meta_score": 0.18297029702970297,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "coklu_onay": true,
       "strateji": "P4"
     }
   },
@@ -1364,11 +1397,17 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-11-17",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-11-12T15:52:31.254938",
+  "last_run": "2026-11-17T16:47:22.842143",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 100454,
-  "_gen": 67,
-  "_updated_at": "2026-11-16T17:33:33.945321+03:00"
+  "sermaye_mevcut": 100662,
+  "_gen": 68,
+  "_updated_at": "2026-11-17T19:47:26.025748+03:00"
 }
