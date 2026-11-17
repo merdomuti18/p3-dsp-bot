@@ -7,6 +7,13 @@
       "score": 0.1514,
       "margin": 0.1509,
       "max_gun_date": "2026-11-22"
+    },
+    "PGSUS": {
+      "entry_date": "2026-11-17",
+      "entry_price": 158.8,
+      "score": 0.1525,
+      "margin": 0.1689,
+      "max_gun_date": "2026-11-27"
     }
   },
   "history": [
@@ -251,20 +258,6 @@
     }
   ],
   "scan_log": [
-    {
-      "date": "2026-07-22",
-      "scanned": 79,
-      "long_signals": 25,
-      "top5": [
-        "IZMDC",
-        "TUPRS",
-        "AKSEN",
-        "ARDYZ",
-        "ISGYO"
-      ],
-      "entries": [],
-      "exits": []
-    },
     {
       "date": "2026-07-23",
       "scanned": 79,
@@ -1135,6 +1128,22 @@
         "BIOEN"
       ],
       "exits": []
+    },
+    {
+      "date": "2026-11-17",
+      "scanned": 79,
+      "long_signals": 61,
+      "top5": [
+        "BIOEN",
+        "PGSUS",
+        "THYAO",
+        "GARAN",
+        "MPARK"
+      ],
+      "entries": [
+        "PGSUS"
+      ],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1454,14 +1463,6 @@
     },
     "log": [
       {
-        "date": "2026-08-17",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-18",
         "total": 78,
         "reliable": 0,
@@ -1692,9 +1693,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-11-17",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 24,
-  "_updated_at": "2026-11-12T18:51:56.126899+03:00"
+  "_gen": 25,
+  "_updated_at": "2026-11-17T19:46:47.816613+03:00"
 }
