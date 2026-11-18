@@ -14,6 +14,13 @@
       "score": 0.1525,
       "margin": 0.1689,
       "max_gun_date": "2026-11-27"
+    },
+    "THYAO": {
+      "entry_date": "2026-11-18",
+      "entry_price": 323.75,
+      "score": 0.1527,
+      "margin": 0.1599,
+      "max_gun_date": "2026-11-28"
     }
   },
   "history": [
@@ -258,24 +265,6 @@
     }
   ],
   "scan_log": [
-    {
-      "date": "2026-07-23",
-      "scanned": 79,
-      "long_signals": 27,
-      "top5": [
-        "IZMDC",
-        "TUPRS",
-        "AKSEN",
-        "ARDYZ",
-        "PETKM"
-      ],
-      "entries": [
-        "PETKM"
-      ],
-      "exits": [
-        "ISGYO"
-      ]
-    },
     {
       "date": "2026-07-24",
       "scanned": 79,
@@ -1144,6 +1133,22 @@
         "PGSUS"
       ],
       "exits": []
+    },
+    {
+      "date": "2026-11-18",
+      "scanned": 79,
+      "long_signals": 64,
+      "top5": [
+        "BIOEN",
+        "PGSUS",
+        "THYAO",
+        "GARAN",
+        "TSKB"
+      ],
+      "entries": [
+        "THYAO"
+      ],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1471,14 +1476,6 @@
         "alert_symbols": []
       },
       {
-        "date": "2026-08-18",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-19",
         "total": 78,
         "reliable": 0,
@@ -1701,9 +1698,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-11-18",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 25,
-  "_updated_at": "2026-11-17T19:46:47.816613+03:00"
+  "_gen": 26,
+  "_updated_at": "2026-11-18T19:17:29.337189+03:00"
 }
