@@ -1866,11 +1866,48 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-11-18",
+      "secilen": [],
+      "elenen": [
+        {
+          "symbol": "PGSUS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "CELHA",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "THYAO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "GARAN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TSKB",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "KRGYO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "BIOEN",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-11-17T16:48:00.434171",
+  "last_run": "2026-11-18T16:18:48.008711",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 98184,
-  "_gen": 49,
-  "_updated_at": "2026-11-17T19:48:01.351718+03:00"
+  "_gen": 50,
+  "_updated_at": "2026-11-18T19:18:48.013972+03:00"
 }
