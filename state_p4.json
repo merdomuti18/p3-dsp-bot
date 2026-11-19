@@ -1,44 +1,12 @@
 {
   "pozisyonlar": {
-    "BUCIM": {
-      "symbol": "BUCIM",
-      "giris_fiyat": 4.18,
-      "guncel_fiyat": 4.0,
-      "lotlar": 2392,
-      "pnl_pct": -4.31,
-      "gun": 6,
-      "giris_tarih": "2026-11-12",
-      "max_gun_date": "2026-11-22",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P2"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
-    "BIOEN": {
-      "symbol": "BIOEN",
-      "giris_fiyat": 12.8,
-      "guncel_fiyat": 13.87,
-      "lotlar": 781,
-      "pnl_pct": 8.36,
-      "gun": 6,
-      "giris_tarih": "2026-11-12",
-      "max_gun_date": "2026-11-22",
-      "meta_score": 0.3333333333333333,
-      "kaynaklar": [
-        "P3"
-      ],
-      "coklu_onay": false,
-      "strateji": "P4"
-    },
     "PGSUS": {
       "symbol": "PGSUS",
       "giris_fiyat": 158.8,
-      "guncel_fiyat": 155.0,
+      "guncel_fiyat": 156.6,
       "lotlar": 62,
-      "pnl_pct": -2.39,
-      "gun": 1,
+      "pnl_pct": -1.39,
+      "gun": 2,
       "giris_tarih": "2026-11-17",
       "max_gun_date": "2026-11-27",
       "meta_score": 0.18297029702970297,
@@ -52,10 +20,10 @@
     "CELHA": {
       "symbol": "CELHA",
       "giris_fiyat": 32.8,
-      "guncel_fiyat": 32.8,
+      "guncel_fiyat": 33.28,
       "lotlar": 304,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 1.46,
+      "gun": 1,
       "giris_tarih": "2026-11-18",
       "max_gun_date": "2026-11-28",
       "meta_score": 0.3333333333333333,
@@ -68,13 +36,45 @@
     "THYAO": {
       "symbol": "THYAO",
       "giris_fiyat": 323.75,
-      "guncel_fiyat": 323.75,
+      "guncel_fiyat": 328.25,
       "lotlar": 30,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": 1.39,
+      "gun": 1,
       "giris_tarih": "2026-11-18",
       "max_gun_date": "2026-11-28",
       "meta_score": 0.15723270440251574,
+      "kaynaklar": [
+        "P3"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "PKENT": {
+      "symbol": "PKENT",
+      "giris_fiyat": 115.0,
+      "guncel_fiyat": 115.0,
+      "lotlar": 86,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-19",
+      "max_gun_date": "2026-11-29",
+      "meta_score": 0.3333333333333333,
+      "kaynaklar": [
+        "P1"
+      ],
+      "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "GARAN": {
+      "symbol": "GARAN",
+      "giris_fiyat": 146.4,
+      "guncel_fiyat": 146.4,
+      "lotlar": 68,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-19",
+      "max_gun_date": "2026-11-29",
+      "meta_score": 0.3333333333333333,
       "kaynaklar": [
         "P3"
       ],
@@ -1039,6 +1039,28 @@
       "giris_tarih": "2026-11-17",
       "cikis_tarih": "2026-11-18",
       "strateji": "P4"
+    },
+    {
+      "symbol": "BUCIM",
+      "giris_fiyat": 4.18,
+      "cikis_fiyat": 3.97,
+      "pnl_pct": -5.02,
+      "gun": 7,
+      "neden": "STOP",
+      "giris_tarih": "2026-11-12",
+      "cikis_tarih": "2026-11-19",
+      "strateji": "P4"
+    },
+    {
+      "symbol": "BIOEN",
+      "giris_fiyat": 12.8,
+      "cikis_fiyat": 14.43,
+      "pnl_pct": 12.73,
+      "gun": 7,
+      "neden": "TP",
+      "giris_tarih": "2026-11-12",
+      "cikis_tarih": "2026-11-19",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -1431,11 +1453,17 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-11-19",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-11-18T16:18:07.866004",
+  "last_run": "2026-11-19T16:26:06.176390",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 97334,
-  "_gen": 69,
-  "_updated_at": "2026-11-18T19:18:10.134870+03:00"
+  "sermaye_mevcut": 98836,
+  "_gen": 70,
+  "_updated_at": "2026-11-19T19:26:08.591848+03:00"
 }
