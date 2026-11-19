@@ -1903,11 +1903,44 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-11-19",
+      "secilen": [],
+      "elenen": [
+        {
+          "symbol": "GARAN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "PKENT",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "PGSUS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "BIOEN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "THYAO",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-11-18T16:18:48.008711",
+  "last_run": "2026-11-19T16:26:42.177815",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 98184,
-  "_gen": 50,
-  "_updated_at": "2026-11-18T19:18:48.013972+03:00"
+  "_gen": 51,
+  "_updated_at": "2026-11-19T19:26:42.182886+03:00"
 }
