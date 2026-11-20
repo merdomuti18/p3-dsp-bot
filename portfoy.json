@@ -25,7 +25,39 @@
   },
   "nakit": 73367.67796247863,
   "baslangic": 100000,
-  "bekleyen_al": [],
+  "bekleyen_al": [
+    {
+      "symbol": "PKENT",
+      "score_count": 2,
+      "strategies": [
+        "ALPHA",
+        "MR"
+      ],
+      "tarama_score": 26,
+      "ma_score": 0.0,
+      "lgbm_score": null,
+      "viop_bias": "Temkinli long",
+      "viop_score": -2,
+      "alpha_trend_state": "bearish",
+      "alpha_trend_flip": false,
+      "alpha_trend_bonus": 0,
+      "alpha_tag": "",
+      "final_score": 32,
+      "change_pct": 8.39,
+      "rsi": 62.36,
+      "rel_vol": 1.43,
+      "cmf": 0.0063,
+      "islem_tl": 0,
+      "scan_time": "19.11.2026 19:25",
+      "scan_label": "20:50 Kapanış",
+      "queued_at": "20.11.2026 05:51",
+      "valid_for_date": "2026-11-23",
+      "expires_at_hour": 17,
+      "attempt_count": 0,
+      "last_attempt_time": "",
+      "last_attempt_reason": ""
+    }
+  ],
   "open_attempts_today": [],
   "last_open_attempt_summary": {
     "pending": 5,
