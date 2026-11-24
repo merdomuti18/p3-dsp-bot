@@ -103,7 +103,7 @@
   "baslangic": 100000,
   "bekleyen_al": [
     {
-      "symbol": "ERSU",
+      "symbol": "BUCIM",
       "score": 4.5,
       "final_score": 4.5,
       "verdict": "AL",
@@ -112,21 +112,7 @@
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "23.11.2026 20:08",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ISGSY",
-      "score": 4.5,
-      "final_score": 4.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish MACD Cross"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "23.11.2026 20:08",
+      "queued_at": "24.11.2026 19:52",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -140,26 +126,26 @@
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "23.11.2026 20:08",
+      "queued_at": "24.11.2026 19:52",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "RALYH",
+      "symbol": "UNLU",
       "score": 4.5,
       "final_score": 4.5,
       "verdict": "AL",
       "signals": [
-        "Bullish FVG"
+        "Bullish MACD Cross"
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "23.11.2026 20:08",
+      "queued_at": "24.11.2026 19:52",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "IEYHO",
+      "symbol": "BRSAN",
       "score": 3.5,
       "final_score": 3.5,
       "verdict": "AL",
@@ -168,12 +154,12 @@
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "23.11.2026 20:08",
+      "queued_at": "24.11.2026 19:52",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "IHLGM",
+      "symbol": "ISGSY",
       "score": 3.5,
       "final_score": 3.5,
       "verdict": "AL",
@@ -182,21 +168,7 @@
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "23.11.2026 20:08",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "MANAS",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "23.11.2026 20:08",
+      "queued_at": "24.11.2026 19:52",
       "attempt_count": 0,
       "last_attempt_reason": ""
     }
