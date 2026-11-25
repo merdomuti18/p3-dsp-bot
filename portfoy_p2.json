@@ -103,6 +103,51 @@
   "baslangic": 100000,
   "bekleyen_al": [
     {
+      "symbol": "EFOR",
+      "score": 9.0,
+      "final_score": 9.0,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bullish OB",
+        "Bullish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "25.11.2026 19:40",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "TSGYO",
+      "score": 6.5,
+      "final_score": 6.5,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish MACD Cross"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "25.11.2026 19:40",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
+      "symbol": "REEDR",
+      "score": 6.0,
+      "final_score": 6.0,
+      "verdict": "GÜÇLÜ AL",
+      "signals": [
+        "Bullish MACD Cross",
+        "Bearish FVG"
+      ],
+      "teyit_skoru": 0.0,
+      "teyit_var": false,
+      "queued_at": "25.11.2026 19:40",
+      "attempt_count": 0,
+      "last_attempt_reason": ""
+    },
+    {
       "symbol": "BUCIM",
       "score": 4.5,
       "final_score": 4.5,
@@ -112,12 +157,12 @@
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "24.11.2026 19:52",
+      "queued_at": "25.11.2026 19:40",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "NUHCM",
+      "symbol": "ISGSY",
       "score": 4.5,
       "final_score": 4.5,
       "verdict": "AL",
@@ -126,21 +171,21 @@
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "24.11.2026 19:52",
+      "queued_at": "25.11.2026 19:40",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
     {
-      "symbol": "UNLU",
-      "score": 4.5,
-      "final_score": 4.5,
+      "symbol": "ASTOR",
+      "score": 3.5,
+      "final_score": 3.5,
       "verdict": "AL",
       "signals": [
-        "Bullish MACD Cross"
+        "Bullish FVG"
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "24.11.2026 19:52",
+      "queued_at": "25.11.2026 19:40",
       "attempt_count": 0,
       "last_attempt_reason": ""
     },
@@ -154,21 +199,7 @@
       ],
       "teyit_skoru": 0.0,
       "teyit_var": false,
-      "queued_at": "24.11.2026 19:52",
-      "attempt_count": 0,
-      "last_attempt_reason": ""
-    },
-    {
-      "symbol": "ISGSY",
-      "score": 3.5,
-      "final_score": 3.5,
-      "verdict": "AL",
-      "signals": [
-        "Bullish FVG"
-      ],
-      "teyit_skoru": 0.0,
-      "teyit_var": false,
-      "queued_at": "24.11.2026 19:52",
+      "queued_at": "25.11.2026 19:40",
       "attempt_count": 0,
       "last_attempt_reason": ""
     }
