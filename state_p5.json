@@ -1985,11 +1985,60 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-11-25",
+      "secilen": [],
+      "elenen": [
+        {
+          "symbol": "EFOR",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "TSGYO",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "ISGSY",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "PGSUS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "MPARK",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "BIOEN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "BUCIM",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "BRSAN",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "REEDR",
+          "neden": "tek kaynak (P2)"
+        },
+        {
+          "symbol": "THYAO",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-11-23T17:11:30.964306",
+  "last_run": "2026-11-25T16:43:04.892413",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 98184,
-  "_gen": 52,
-  "_updated_at": "2026-11-23T20:11:30.969242+03:00"
+  "_gen": 53,
+  "_updated_at": "2026-11-25T19:43:04.897790+03:00"
 }
