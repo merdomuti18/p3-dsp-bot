@@ -1,10 +1,10 @@
 {
-  "scan_time": "26.11.2026 19:15",
+  "scan_time": "26.11.2026 20:35",
   "scan_label": "20:50 Kapanış",
   "signals": [
     {
       "symbol": "AKSA",
-      "scan_time": "26.11.2026 19:15",
+      "scan_time": "26.11.2026 20:35",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "GTD",
@@ -23,7 +23,7 @@
     },
     {
       "symbol": "TOASO",
-      "scan_time": "26.11.2026 19:15",
+      "scan_time": "26.11.2026 20:35",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ALPHA"
@@ -41,7 +41,7 @@
     },
     {
       "symbol": "GARAN",
-      "scan_time": "26.11.2026 19:15",
+      "scan_time": "26.11.2026 20:35",
       "scan_label": "20:50 Kapanış",
       "strategies": [
         "ZKN"

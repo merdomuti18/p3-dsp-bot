@@ -1,11 +1,11 @@
 {
   "tarama": {
-    "scan_time": "26.11.2026 19:15",
+    "scan_time": "26.11.2026 20:35",
     "scan_label": "20:50 Kapanış",
     "signals": [
       {
         "symbol": "AKSA",
-        "scan_time": "26.11.2026 19:15",
+        "scan_time": "26.11.2026 20:35",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "GTD",
@@ -24,7 +24,7 @@
       },
       {
         "symbol": "TOASO",
-        "scan_time": "26.11.2026 19:15",
+        "scan_time": "26.11.2026 20:35",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ALPHA"
@@ -42,7 +42,7 @@
       },
       {
         "symbol": "GARAN",
-        "scan_time": "26.11.2026 19:15",
+        "scan_time": "26.11.2026 20:35",
         "scan_label": "20:50 Kapanış",
         "strategies": [
           "ZKN"
@@ -65,7 +65,7 @@
       "GARAN"
     ]
   },
-  "last_scan": "26.11.2026 19:15",
-  "_gen": 31,
-  "_updated_at": "2026-11-26T19:15:36.421143+03:00"
+  "last_scan": "26.11.2026 20:35",
+  "_gen": 32,
+  "_updated_at": "2026-11-26T20:35:27.979493+03:00"
 }
