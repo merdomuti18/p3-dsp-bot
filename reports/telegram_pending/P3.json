@@ -1,10 +1,10 @@
 {
   "strateji": "P3",
-  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 26.11.2026 | 19:14 TSİ\n\n🟢 *Alım:* `BIOEN`\n\n📈 *Sinyaller:*\n  • `BIOEN   ` skor=+0.203  _marj=+0.180_\n  • `PGSUS   ` skor=+0.104  _marj=+0.119_\n  • `THYAO   ` skor=+0.087  _marj=+0.112_\n  • `CWENE   ` skor=+0.072  _marj=+0.083_\n  • `AKSA    ` skor=+0.070  _marj=+0.044_\n\n💼 *Açık pozisyon (3):*\n  • `PGSUS`\n  • `THYAO`\n  • `BIOEN`\n📊 *WR:* 26%  |  *P&L:* +80.8%\n🟢 *Portföy değeri:* `116,152 TL` (+16.1%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: LOW\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+  "mesaj": "🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n*P3 — DSP*\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n📅 23.11.2026 | 20:10 TSİ\n\n⬜ *Satım:* `BIOEN`\n\n📈 *Sinyaller:*\n  • `BIOEN   ` skor=+0.239  _marj=+0.211_\n  • `PGSUS   ` skor=+0.166  _marj=+0.178_\n  • `THYAO   ` skor=+0.148  _marj=+0.154_\n  • `CWENE   ` skor=+0.117  _marj=+0.107_\n  • `GARAN   ` skor=+0.097  _marj=+0.097_\n\n💼 *Açık pozisyon (2):*\n  • `PGSUS`\n  • `THYAO`\n📊 *WR:* 26%  |  *P&L:* +80.8%\n🟢 *Portföy değeri:* `116,152 TL` (+16.1%) · başlangıç `100,000 TL`\n\n🔬 Non-stat: ✅ Stabil\n🔗 Korelasyon: HIGH\n\n🟣 ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
   "meta": {
-    "giris": [
+    "giris": [],
+    "cikis": [
       "BIOEN"
-    ],
-    "cikis": []
+    ]
   }
 }
