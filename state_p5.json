@@ -1,5 +1,22 @@
 {
-  "pozisyonlar": {},
+  "pozisyonlar": {
+    "AKSA": {
+      "symbol": "AKSA",
+      "giris_fiyat": 11.5,
+      "guncel_fiyat": 11.5,
+      "lotlar": 1739,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-26",
+      "max_gun_date": "2026-12-06",
+      "komite_skor": 60,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "strateji": "P5"
+    }
+  },
   "trade_history": [
     {
       "symbol": "DAGI",
@@ -2083,11 +2100,48 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-11-26",
+      "secilen": [
+        "AKSA"
+      ],
+      "elenen": [
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TOASO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "BIOEN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "THYAO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "PGSUS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "GARAN",
+          "neden": "tek kaynak (P1)"
+        }
+      ],
+      "acilan": [
+        "AKSA"
+      ],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-11-25T17:53:24.765848",
+  "last_run": "2026-11-26T16:16:36.974756",
   "sermaye_baslangic": 100000,
   "sermaye_mevcut": 98184,
-  "_gen": 54,
-  "_updated_at": "2026-11-25T20:53:24.769382+03:00"
+  "_gen": 55,
+  "_updated_at": "2026-11-26T19:16:37.791342+03:00"
 }
