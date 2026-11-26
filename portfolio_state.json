@@ -275,24 +275,6 @@
   ],
   "scan_log": [
     {
-      "date": "2026-07-29",
-      "scanned": 79,
-      "long_signals": 29,
-      "top5": [
-        "IZMDC",
-        "TUPRS",
-        "AKSEN",
-        "SOKM",
-        "KRDMD"
-      ],
-      "entries": [
-        "KRDMD"
-      ],
-      "exits": [
-        "ARDYZ"
-      ]
-    },
-    {
       "date": "2026-07-30",
       "scanned": 79,
       "long_signals": 28,
@@ -1160,6 +1142,20 @@
         "BIOEN"
       ],
       "exits": []
+    },
+    {
+      "date": "2026-11-26",
+      "scanned": 79,
+      "long_signals": 37,
+      "top5": [
+        "BIOEN",
+        "PGSUS",
+        "THYAO",
+        "CWENE",
+        "AKSA"
+      ],
+      "entries": [],
+      "exits": []
     }
   ],
   "cycle_monitor": {
@@ -1479,14 +1475,6 @@
     },
     "log": [
       {
-        "date": "2026-08-20",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-21",
         "total": 78,
         "reliable": 0,
@@ -1717,9 +1705,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-11-26",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 31,
-  "_updated_at": "2026-11-26T19:14:38.449350+03:00"
+  "_gen": 32,
+  "_updated_at": "2026-11-26T20:36:32.472588+03:00"
 }
