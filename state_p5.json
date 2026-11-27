@@ -3,10 +3,10 @@
     "AKSA": {
       "symbol": "AKSA",
       "giris_fiyat": 11.5,
-      "guncel_fiyat": 11.5,
+      "guncel_fiyat": 11.42,
       "lotlar": 1739,
-      "pnl_pct": 0.0,
-      "gun": 0,
+      "pnl_pct": -0.7,
+      "gun": 1,
       "giris_tarih": "2026-11-26",
       "max_gun_date": "2026-12-06",
       "komite_skor": 60,
@@ -2172,11 +2172,50 @@
       "acilan": [],
       "kapanan": [],
       "makro": "NORMAL"
+    },
+    {
+      "tarih": "2026-11-27",
+      "secilen": [
+        "AKSA"
+      ],
+      "elenen": [
+        {
+          "symbol": "KNFRT",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "PGSUS",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "TOASO",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "BIOEN",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "BFREN",
+          "neden": "tek kaynak (P1)"
+        },
+        {
+          "symbol": "THYAO",
+          "neden": "tek kaynak (P3)"
+        },
+        {
+          "symbol": "CWENE",
+          "neden": "tek kaynak (P3)"
+        }
+      ],
+      "acilan": [],
+      "kapanan": [],
+      "makro": "NORMAL"
     }
   ],
-  "last_run": "2026-11-26T17:37:45.936227",
+  "last_run": "2026-11-27T16:01:56.982256",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 98184,
-  "_gen": 56,
-  "_updated_at": "2026-11-26T20:37:46.406008+03:00"
+  "sermaye_mevcut": 98044,
+  "_gen": 57,
+  "_updated_at": "2026-11-27T19:01:57.748425+03:00"
 }
