@@ -1,13 +1,6 @@
 {
   "created": "2026-07-02",
   "positions": {
-    "PGSUS": {
-      "entry_date": "2026-11-17",
-      "entry_price": 158.8,
-      "score": 0.1525,
-      "margin": 0.1689,
-      "max_gun_date": "2026-11-27"
-    },
     "THYAO": {
       "entry_date": "2026-11-18",
       "entry_price": 323.75,
@@ -271,28 +264,18 @@
       "exit_price": 13.85,
       "pnl_pct": 8.2,
       "holding_days": 11
+    },
+    {
+      "symbol": "PGSUS",
+      "entry_date": "2026-11-17",
+      "exit_date": "2026-11-27",
+      "entry_price": 158.8,
+      "exit_price": 152.6,
+      "pnl_pct": -3.9,
+      "holding_days": 10
     }
   ],
   "scan_log": [
-    {
-      "date": "2026-07-30",
-      "scanned": 79,
-      "long_signals": 28,
-      "top5": [
-        "IZMDC",
-        "TUPRS",
-        "AKSEN",
-        "SOKM",
-        "TKFEN"
-      ],
-      "entries": [
-        "AKSEN",
-        "TKFEN"
-      ],
-      "exits": [
-        "KRDMD"
-      ]
-    },
     {
       "date": "2026-07-30",
       "scanned": 79,
@@ -1156,6 +1139,22 @@
       ],
       "entries": [],
       "exits": []
+    },
+    {
+      "date": "2026-11-27",
+      "scanned": 79,
+      "long_signals": 25,
+      "top5": [
+        "BIOEN",
+        "PGSUS",
+        "THYAO",
+        "AKSA",
+        "CWENE"
+      ],
+      "entries": [],
+      "exits": [
+        "PGSUS"
+      ]
     }
   ],
   "cycle_monitor": {
@@ -1483,14 +1482,6 @@
         "alert_symbols": []
       },
       {
-        "date": "2026-08-21",
-        "total": 78,
-        "reliable": 0,
-        "drifted": 0,
-        "refit": 0,
-        "alert_symbols": []
-      },
-      {
         "date": "2026-08-24",
         "total": 78,
         "reliable": 0,
@@ -1713,9 +1704,17 @@
         "drifted": 0,
         "refit": 0,
         "alert_symbols": []
+      },
+      {
+        "date": "2026-11-27",
+        "total": 78,
+        "reliable": 0,
+        "drifted": 0,
+        "refit": 0,
+        "alert_symbols": []
       }
     ]
   },
-  "_gen": 32,
-  "_updated_at": "2026-11-26T20:36:32.472588+03:00"
+  "_gen": 33,
+  "_updated_at": "2026-11-27T18:59:51.467932+03:00"
 }
