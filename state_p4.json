@@ -1,29 +1,12 @@
 {
   "pozisyonlar": {
-    "PGSUS": {
-      "symbol": "PGSUS",
-      "giris_fiyat": 158.8,
-      "guncel_fiyat": 151.4,
-      "lotlar": 62,
-      "pnl_pct": -4.66,
-      "gun": 9,
-      "giris_tarih": "2026-11-17",
-      "max_gun_date": "2026-11-27",
-      "meta_score": 0.18297029702970297,
-      "kaynaklar": [
-        "P1",
-        "P3"
-      ],
-      "coklu_onay": true,
-      "strateji": "P4"
-    },
     "CELHA": {
       "symbol": "CELHA",
       "giris_fiyat": 32.8,
-      "guncel_fiyat": 32.1,
+      "guncel_fiyat": 32.14,
       "lotlar": 304,
-      "pnl_pct": -2.13,
-      "gun": 8,
+      "pnl_pct": -2.01,
+      "gun": 9,
       "giris_tarih": "2026-11-18",
       "max_gun_date": "2026-11-28",
       "meta_score": 0.3333333333333333,
@@ -36,10 +19,10 @@
     "THYAO": {
       "symbol": "THYAO",
       "giris_fiyat": 323.75,
-      "guncel_fiyat": 309.75,
+      "guncel_fiyat": 314.0,
       "lotlar": 30,
-      "pnl_pct": -4.32,
-      "gun": 8,
+      "pnl_pct": -3.01,
+      "gun": 9,
       "giris_tarih": "2026-11-18",
       "max_gun_date": "2026-11-28",
       "meta_score": 0.15723270440251574,
@@ -52,10 +35,10 @@
     "EFOR": {
       "symbol": "EFOR",
       "giris_fiyat": 11.25,
-      "guncel_fiyat": 11.4,
+      "guncel_fiyat": 11.75,
       "lotlar": 888,
-      "pnl_pct": 1.33,
-      "gun": 1,
+      "pnl_pct": 4.44,
+      "gun": 2,
       "giris_tarih": "2026-11-25",
       "max_gun_date": "2026-12-05",
       "meta_score": 0.3333333333333333,
@@ -68,10 +51,10 @@
     "BIOEN": {
       "symbol": "BIOEN",
       "giris_fiyat": 14.18,
-      "guncel_fiyat": 14.17,
+      "guncel_fiyat": 14.59,
       "lotlar": 705,
-      "pnl_pct": -0.07,
-      "gun": 1,
+      "pnl_pct": 2.89,
+      "gun": 2,
       "giris_tarih": "2026-11-25",
       "max_gun_date": "2026-12-05",
       "meta_score": 0.3333333333333333,
@@ -79,6 +62,23 @@
         "P3"
       ],
       "coklu_onay": false,
+      "strateji": "P4"
+    },
+    "AKSA": {
+      "symbol": "AKSA",
+      "giris_fiyat": 11.42,
+      "guncel_fiyat": 11.42,
+      "lotlar": 875,
+      "pnl_pct": 0.0,
+      "gun": 0,
+      "giris_tarih": "2026-11-27",
+      "max_gun_date": "2026-12-07",
+      "meta_score": 0.7333333333333334,
+      "kaynaklar": [
+        "P1",
+        "P3"
+      ],
+      "coklu_onay": true,
       "strateji": "P4"
     }
   },
@@ -1083,6 +1083,17 @@
       "giris_tarih": "2026-11-19",
       "cikis_tarih": "2026-11-25",
       "strateji": "P4"
+    },
+    {
+      "symbol": "PGSUS",
+      "giris_fiyat": 158.8,
+      "cikis_fiyat": 152.6,
+      "pnl_pct": -3.9,
+      "gun": 10,
+      "neden": "MAX_GUN",
+      "giris_tarih": "2026-11-17",
+      "cikis_tarih": "2026-11-27",
+      "strateji": "P4"
     }
   ],
   "ic_history": [
@@ -1511,11 +1522,17 @@
       "ic_p1": 0.0,
       "ic_p2": 0.0,
       "ic_p3": 0.0
+    },
+    {
+      "tarih": "2026-11-27",
+      "ic_p1": 0.0,
+      "ic_p2": 0.0,
+      "ic_p3": 0.0
     }
   ],
-  "last_run": "2026-11-26T17:37:07.268816",
+  "last_run": "2026-11-27T16:01:25.935015",
   "sermaye_baslangic": 100000,
-  "sermaye_mevcut": 93326,
-  "_gen": 76,
-  "_updated_at": "2026-11-26T20:37:09.846358+03:00"
+  "sermaye_mevcut": 94978,
+  "_gen": 77,
+  "_updated_at": "2026-11-27T19:01:28.174107+03:00"
 }
